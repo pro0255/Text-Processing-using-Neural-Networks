@@ -1,0 +1,20 @@
+from enum import Enum
+
+class ExperimentDescriptionType(Enum):
+    ExperimentType = "ExperimentType"
+    ExperimentId = "ExperimentId"
+    BatchSize = "BatchSize"
+    Epochs = "Epochs"
+    LearningRate = "LearningRate"
+    TransformerName = "TransformerName"
+    TransformerPooling = "TransformerPooling"
+    PredictionModelType = "PredictionModelType"
+    NetType = "NetType"
+    EmbeddingType = "EmbeddingType"
+    IsTrainable = "IsTrainable"
+    PreprocessingType = "PreprocessingType"
+    NumberOfAuthors = "NumberOfAuthors"
+    NumberOfSentences = "NumberOfSentences"
+    LoadPath = "LoadPath"
+    SeqLen = "SeqLen"
+    IsTest = "IsTest"
