@@ -8,7 +8,7 @@ from transformers import TFAutoModel, AutoConfig
 import tensorflow as tf
 import os
 from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_tokenizer
-from src.config.config import USE_TESTING_DATASET_FOLDER
+from src.config.config import USE_TESTING_DATASET_FOLDER, BLANK_DESCRIPTION
 from src.experiments.experiment_description import ExperimentDescription
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 from src.types.transformer_name import TransformerName
@@ -20,6 +20,7 @@ from src.types.processing_type import PreprocessingType
 from src.preprocessing.preprocessing_factory import PreprocessingFactory
 from src.config.config import get_current_folder
 import time
+import json
 
 
 class TransformerTrainExperiment:
@@ -97,7 +98,9 @@ class TransformerTrainExperiment:
                 number_of_sentences=3,
                 load_path=path_data,
                 seq_len=512,
-                is_test=USE_TESTING_DATASET_FOLDER
+                is_test=USE_TESTING_DATASET_FOLDER,
+                classic_model=BLANK_DESCRIPTION,
+                extra_field=BLANK_DESCRIPTION
             )
 
             wrapper = ExperimentRunWrapper(experiment_id)
