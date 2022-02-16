@@ -18,3 +18,4 @@ class ExperimentDescriptionType(Enum):
     LoadPath = "LoadPath"
     SeqLen = "SeqLen"
     IsTest = "IsTest"
+    ClassicModelName = "ClassicModelName"

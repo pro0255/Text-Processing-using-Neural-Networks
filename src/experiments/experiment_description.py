@@ -1,7 +1,7 @@
 
 
 import pandas as pd
-from src.config.config import LOG_SEP, EXPERIMENT_RESULTS_DIRECTORY, FILENAME_DESCRIPTION
+from src.config.config import LOG_SEP, EXPERIMENT_RESULTS_DIRECTORY, FILENAME_DESCRIPTION, BLANK_DESCRIPTION
 import os
 from src.types.experiment_description import ExperimentDescriptionType
 
@@ -23,6 +23,7 @@ class ExperimentDescription:
         load_path,
         seq_len,
         is_test,
+        classic_model_name = BLANK_DESCRIPTION,
         directory=EXPERIMENT_RESULTS_DIRECTORY
     ) -> None:
         self.directory = directory
@@ -47,6 +48,7 @@ class ExperimentDescription:
         self.state[ExperimentDescriptionType.LoadPath.value] = load_path
         self.state[ExperimentDescriptionType.SeqLen.value] = seq_len
         self.state[ExperimentDescriptionType.IsTest.value] = is_test
+        self.state[ExperimentDescriptionType.ClassicModelName.value] = classic_model_name
     
     def save(self):
         df = pd.DataFrame.from_dict(self.state, orient="index")
