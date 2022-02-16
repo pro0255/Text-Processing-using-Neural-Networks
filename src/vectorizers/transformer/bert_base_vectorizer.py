@@ -1,10 +1,11 @@
 from src.types.transformer_name import TransformerName
 from src.vectorizers.transformer.transformer_vectorizer import TransformerVectorizer
+from src.types.transformer_pooling import TransformerPooling
 
 class BertBaseUncasedVectorizer(TransformerVectorizer):
     def __init__(
         self, 
-        transformer_pooling_type,
+        transformer_pooling_type=TransformerPooling.Pooler,
         path_authors=None,
         encoder=None, 
         max_len=512, 

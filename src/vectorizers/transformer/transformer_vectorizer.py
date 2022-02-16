@@ -4,6 +4,7 @@ from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_tokenizer
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 from transformers import AutoConfig
+import numpy as np
 
 class TransformerVectorizer():
     def __init__(
@@ -33,7 +34,6 @@ class TransformerVectorizer():
         )
 
     def fit_transform(self, dataset):
-        #imagine X as list of sentences
         sentence_embedding = []
         labels = []
 
@@ -54,7 +54,6 @@ class TransformerVectorizer():
 
             labels.append(label)
             sentence_embedding.append(output)
-            break
         return np.array(sentence_embedding), np.array(labels)
 
     def create_embedding_matrix(self, X):
