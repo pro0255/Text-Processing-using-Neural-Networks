@@ -20,7 +20,8 @@ from src.types.processing_type import PreprocessingType
 from src.preprocessing.preprocessing_factory import PreprocessingFactory
 from src.config.config import get_current_folder
 import time
-import json
+from src.experiments.experiment_summarization import ExperimentSummarization
+from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 
 
 class TransformerTrainExperiment:
@@ -106,6 +107,11 @@ class TransformerTrainExperiment:
             wrapper = ExperimentRunWrapper(experiment_id)
             current_model = self.get_model(trainable)
             current_model.compile(loss=settings.loss, optimizer=settings.optimizer, metrics=settings.metric)
+            summarization = ExperimentSummarization(experiment_id)
+
+            summarization.inspect_set(train, ExperimentSummarizationFields.TrainRecords.value)
+            summarization.inspect_set(valid, ExperimentSummarizationFields.ValidRecords.value)
+            summarization.inspect_set(test, ExperimentSummarizationFields.TestRecords.value)
 
             wrapper.run(
                 current_model, 
