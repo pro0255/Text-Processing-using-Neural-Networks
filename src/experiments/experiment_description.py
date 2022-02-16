@@ -24,7 +24,8 @@ class ExperimentDescription:
         seq_len,
         is_test,
         classic_model_name = BLANK_DESCRIPTION,
-        directory=EXPERIMENT_RESULTS_DIRECTORY
+        extra_field = BLANK_DESCRIPTION,
+        directory = EXPERIMENT_RESULTS_DIRECTORY
     ) -> None:
         self.directory = directory
         self.experiment_id = experiment_id
@@ -49,6 +50,7 @@ class ExperimentDescription:
         self.state[ExperimentDescriptionType.SeqLen.value] = seq_len
         self.state[ExperimentDescriptionType.IsTest.value] = is_test
         self.state[ExperimentDescriptionType.ClassicModelName.value] = classic_model_name
+        self.state[ExperimentDescriptionType.ExtraField.value] = extra_field
     
     def save(self):
         df = pd.DataFrame.from_dict(self.state, orient="index")

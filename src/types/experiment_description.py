@@ -19,3 +19,4 @@ class ExperimentDescriptionType(Enum):
     SeqLen = "SeqLen"
     IsTest = "IsTest"
     ClassicModelName = "ClassicModelName"
+    ExtraField = "ExtraField"
