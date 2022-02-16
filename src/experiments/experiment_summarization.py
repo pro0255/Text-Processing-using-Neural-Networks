@@ -1,5 +1,5 @@
 import pandas as pd
-from src.config.config import LOG_SEP, EXPERIMENT_RESULTS_DIRECTORY, FILENAME_DESCRIPTION
+from src.config.config import LOG_SEP, EXPERIMENT_RESULTS_DIRECTORY, FILENAME_SUMMARIZATION
 import os
 from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 
@@ -30,7 +30,7 @@ class ExperimentSummarization:
     
     def save(self):
         df = pd.DataFrame.from_dict(self.state, orient="index")
-        path = os.path.sep.join([self.directory, self.experiment_id, FILENAME_DESCRIPTION])
+        path = os.path.sep.join([self.directory, self.experiment_id, FILENAME_SUMMARIZATION])
         df.to_csv(path, sep=LOG_SEP)
 
     def __str__(self) -> str:

@@ -53,6 +53,7 @@ MODEL_SAVE_DIRECTORY = "model"
 FILENAME_CONFUSION_MATRIX = f"confusion_matrix{Suffix.CSV.value}"
 FILENAME_METRICS = f"metrics{Suffix.CSV.value}"
 FILENAME_DESCRIPTION = f"description{Suffix.CSV.value}"
+FILENAME_SUMMARIZATION = f"summarization{Suffix.CSV.value}"
 
 LOG_SEP = ';'
 
