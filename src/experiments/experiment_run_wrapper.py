@@ -5,6 +5,7 @@ from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOG
 from src.utils.prediction_to_labels import prediction_to_labels
 from src.utils.dataset_to_ytrue import dataset_to_ytrue
 from src.callbacks.callback_factory import CallbacksFactory
+from src.experiments.experiment_timer import ExperimentTimer
 
 class ExperimentRunWrapper:
     def __init__(
@@ -19,6 +20,7 @@ class ExperimentRunWrapper:
         self.experiment_setup = ExperimentSetup(experiment_id, self.directory)
         self.experiment_evaluate = ExperimentEvaluate(experiment_id, self.directory)
         self.experiment_summarization = ExperimentSummarization(experiment_id, self.directory)
+        self.experiment_timer = ExperimentTimer()
 
     def run(
         self, 
@@ -30,6 +32,9 @@ class ExperimentRunWrapper:
         description,
         save_model
     ):
+
+        
+
         self.description = description
         #create directory
         self.experiment_setup.run()

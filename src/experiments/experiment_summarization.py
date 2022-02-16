@@ -27,13 +27,17 @@ class ExperimentSummarization:
         self.state[ExperimentSummarizationFields.ValidRecords.value] = 0
 
     def map_timer(self, experiment_timer):
+        print("Mapping timer")
         for k in experiment_timer.dic.keys():
             self.state[k] = experiment_timer.get_elapsed(k)
+        print("End of maping timer")
 
     def inspect_set(self, current_set, records_type):
+        print(f"Running inspection of input set for {records_type}")
         counter = 0
         for i in current_set:
             counter += 1
+        print(f"End of inspection of input set for {records_type} = {counter}")
         self.state[records_type] = counter
 
     def save(self):
