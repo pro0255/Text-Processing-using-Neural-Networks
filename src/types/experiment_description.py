@@ -23,3 +23,4 @@ class ExperimentDescriptionType(Enum):
     TransformerStartIndex = "TransformerStartIndex"
     TransformerEndIndex = "TransformerEndIndex"
     TransformerPoolingStrategy = "TransformerPoolingStrategy"
+    NormalizationSize = "NormalizationSize"

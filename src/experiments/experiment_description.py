@@ -28,6 +28,7 @@ class ExperimentDescription:
         transformer_start_index = BLANK_DESCRIPTION,
         transformer_end_index = BLANK_DESCRIPTION,
         transformer_pooling_strategy = BLANK_DESCRIPTION,
+        normalization_size = BLANK_DESCRIPTION,
         directory = EXPERIMENT_RESULTS_DIRECTORY
 
     ) -> None:
@@ -58,6 +59,7 @@ class ExperimentDescription:
         self.state[ExperimentDescriptionType.TransformerStartIndex.value] = transformer_start_index
         self.state[ExperimentDescriptionType.TransformerEndIndex.value] = transformer_end_index
         self.state[ExperimentDescriptionType.TransformerPoolingStrategy.value] = transformer_pooling_strategy
+        self.state[ExperimentDescriptionType.NormalizationSize.value] = normalization_size
 
     def save(self):
         df = pd.DataFrame.from_dict(self.state, orient="index")

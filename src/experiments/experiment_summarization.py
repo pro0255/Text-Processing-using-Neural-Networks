@@ -2,7 +2,6 @@ import pandas as pd
 from src.config.config import LOG_SEP, EXPERIMENT_RESULTS_DIRECTORY, FILENAME_SUMMARIZATION
 import os
 from src.types.experiment_summarization_fields import ExperimentSummarizationFields
-from src.experiments.experiment_timer import ExperimentTimer
 class ExperimentSummarization:
     def __init__(
         self, 
@@ -25,6 +24,10 @@ class ExperimentSummarization:
         self.state[ExperimentSummarizationFields.TrainRecords.value] = 0
         self.state[ExperimentSummarizationFields.TestRecords.value] = 0
         self.state[ExperimentSummarizationFields.ValidRecords.value] = 0
+
+        self.state[ExperimentSummarizationFields.MissingRatioTrain.value] = 0
+        self.state[ExperimentSummarizationFields.MissingRatioTest.value] = 0
+        self.state[ExperimentSummarizationFields.EmbeddingSize.value] = 0
 
     def map_timer(self, experiment_timer):
         print("Mapping timer")

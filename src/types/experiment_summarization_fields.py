@@ -12,3 +12,6 @@ class ExperimentSummarizationFields(Enum):
     LearningTime = TimeType.LearningTime.value
     PredictionTime = TimeType.PredictionTime.value
     EvaluateTime = TimeType.EvaluateTime.value
+    EmbeddingSize = "EmbeddingSize"
+    MissingRatioTrain = "MissingRatioTrain"
+    MissingRatioTest = "MissingRatioTest"

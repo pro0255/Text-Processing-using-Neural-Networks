@@ -9,7 +9,7 @@ def iterate_over_files(files_path, process_func):
         path = bytes.decode(path_to_file.numpy())
         data = load_json(path)
 
-        if counter % 1000 == 0:
+        if counter % 10000 == 0:
             print(counter)
 
         counter += 1

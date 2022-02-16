@@ -104,6 +104,7 @@ class TransformerTrainExperiment:
                 transformer_start_index = BLANK_DESCRIPTION,
                 transformer_end_index = BLANK_DESCRIPTION,
                 transformer_pooling_strategy = BLANK_DESCRIPTION,
+                normalization_size = BLANK_DESCRIPTION
             )
 
             summarization = ExperimentSummarization(experiment_id)
