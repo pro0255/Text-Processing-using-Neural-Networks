@@ -9,10 +9,18 @@ from src.types.subset_type import SubsetType
 from src.utils.add_suffix import add_suffix
 from src.config.config import NAME_OF_FILE_WITH_SUBSET_SIZES
 
-
 class DataSetSplitter:
-    
-    def __init__(self, path_to_save, train_size, test_size, valid_size, label_counter, normalization_size):
+    def __init__(
+        self, 
+        path_to_save, 
+        train_size, 
+        test_size, 
+        valid_size, 
+        label_counter, 
+        normalization_size, 
+        sub_directory
+    ):
+        self.sub_directory = sub_directory
         self.directory_path = path_to_save
         self.size_file_name = NAME_OF_FILE_WITH_SUBSET_SIZES
         self.create_state(train_size, test_size, valid_size)
@@ -21,30 +29,41 @@ class DataSetSplitter:
         self.normalize(normalization_size)  
         self.prepare_counters()
         self.save_counters()
-
         
+
+    def create_path(self, directory_path, subset_type, subdirectory):
+        if subdirectory is not None:
+            transformed_path = os.path.sep.join([directory_path, subdirectory])
+            if not os.path.exists(transformed_path):
+                os.makedirs(transformed_path)
+            return os.path.sep.join([transformed_path, add_suffix(subset_type.value)])
+
+        return os.path.sep.join([directory_path, add_suffix(subset_type.value)])
+
+
+    
     def create_state(self, train_size, test_size, valid_size):
         self.state = {
             SubsetType.Train.value: {
-                'path': os.path.sep.join([self.directory_path, add_suffix(SubsetType.Train.value)]),
+                'path': self.create_path(self.directory_path, SubsetType.Train, self.sub_directory),
                 'size': train_size
             
             },
             SubsetType.Test.value: {
-                'path': os.path.sep.join([self.directory_path, add_suffix(SubsetType.Test.value)]),
+                'path': self.create_path(self.directory_path, SubsetType.Test, self.sub_directory),
                 'size': test_size
             
             },
             SubsetType.Valid.value: {
-                'path': os.path.sep.join([self.directory_path, add_suffix(SubsetType.Valid.value)]),
+                'path': self.create_path(self.directory_path, SubsetType.Valid, self.sub_directory),
                 'size': valid_size
-            
             },
         }
+        print(self.state)
         
     def normalize(self, normalization_size):
         if normalization_size is not None:
-            self.counter_dataframe.iloc[:, 0] =  normalization_size
+            self.counter_dataframe.iloc[:, 0] = normalization_size
                
     def prepare_counters(self):
         dataset_counters = {name:{} for name in self.state.keys()}
@@ -88,14 +107,14 @@ class DataSetSplitter:
                 
                 
     def build_subsets(self, dataset):
-        print(f'Building subsest with state {self.state}')
+        print(f'Building subsets with state {self.state}')
         for line in tqdm(dataset.shuffle(10000).as_numpy_iterator()):
             #label = author Id
             text, label = line
             text = bytes.decode(text)
             
             #TODO: DELETE! 
-            label = bytes.decode(label)
+            #label = bytes.decode(label)
             
             path = self.get_path(label)
             if path is None:

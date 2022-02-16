@@ -33,25 +33,31 @@ from src.utils.create_path_to_gutenberg import get_paths_to_gutenberg
 #run_split_deps_on_stats_same_dir(test_path)
 
 
-path_data, path_authors = get_paths_to_gutenberg(10, 3, PATH_TO_DATASET_FOLDER_TEST)
-dataset = get_dataset_object_from_path(path_data, ';', None)
+# path_data, path_authors = get_paths_to_gutenberg(10, 3, PATH_TO_DATASET_FOLDER_TEST)
+# dataset = get_dataset_object_from_path(path_data, ';', None)
 
-model_name = "bert-base-uncased"
+# model_name = "bert-base-uncased"
 
-tokenizer = TransformerTokenizer(
-    model_name, 
-    create_encoder_from_path(
-        path_authors
-    )
-)
+# tokenizer = TransformerTokenizer(
+#     model_name, 
+#     create_encoder_from_path(
+#         path_authors
+#     )
+# )
 
 # for x in dataset:
 #     print(x)
 #     break
 
-for x in prepare_dataset_from_tokenizer(dataset, tokenizer).batch(10):
-    print(x)
-    break
+# for x in prepare_dataset_from_tokenizer(dataset, tokenizer).batch(10):
+#     print(x)
+#     break
 
 
 
+from src.data_preparing.split.run_split_deps_on_stats import run_split_deps_on_stats_same_dir
+from src.utils.create_path_to_gutenberg import create_path_to_gutenberg_sentence_authors_sentence
+
+path = create_path_to_gutenberg_sentence_authors_sentence(10, 3)
+
+run_split_deps_on_stats_same_dir(path, False, 100)

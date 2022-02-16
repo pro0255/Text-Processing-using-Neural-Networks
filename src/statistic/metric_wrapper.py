@@ -22,7 +22,8 @@ class MetricWrapper:
         if self.path_to_save is not None:
             print(f'Saving to {self.path_to_save}')
             with pd.ExcelWriter(self.path_to_save, engine='xlsxwriter') as writer:
-                self.statistic_description.get_dataframe().to_excel(writer, sheet_name=translate_instance_to_type(self.statistic_description))        
+                if self.statistic_description is not None:
+                    self.statistic_description.get_dataframe().to_excel(writer, sheet_name=translate_instance_to_type(self.statistic_description))        
                 for metric_instance in self.metric_instances:
                     metric_instance.get_dataframe().to_excel(writer, sheet_name=translate_instance_to_type(metric_instance))            
         else:

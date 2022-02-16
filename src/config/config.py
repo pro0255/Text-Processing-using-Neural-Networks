@@ -66,3 +66,5 @@ def get_current_folder(testing=USE_TESTING_DATASET_FOLDER):
 
 TEXT_COLUMN = "text"
 LABEL_COLUMN = "label"
+
+NORMALIZATION_SUFFIX = "Labels"
