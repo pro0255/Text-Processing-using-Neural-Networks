@@ -2,7 +2,6 @@ import pandas as pd
 from src.config.config import LOG_SEP, EXPERIMENT_RESULTS_DIRECTORY, FILENAME_DESCRIPTION
 import os
 from src.types.experiment_summarization_fields import ExperimentSummarizationFields
-from src.config.config import BLANK_DESCRIPTION
 
 
 
