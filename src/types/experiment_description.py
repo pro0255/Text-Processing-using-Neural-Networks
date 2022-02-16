@@ -20,3 +20,6 @@ class ExperimentDescriptionType(Enum):
     IsTest = "IsTest"
     ClassicModelName = "ClassicModelName"
     ExtraField = "ExtraField"
+    TransformerStartIndex = "TransformerStartIndex"
+    TransformerEndIndex = "TransformerEndIndex"
+    TransformerPoolingStrategy = "TransformerPoolingStrategy"

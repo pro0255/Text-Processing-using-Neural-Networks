@@ -25,7 +25,11 @@ class ExperimentDescription:
         is_test,
         classic_model_name = BLANK_DESCRIPTION,
         extra_field = BLANK_DESCRIPTION,
+        transformer_start_index = BLANK_DESCRIPTION,
+        transformer_end_index = BLANK_DESCRIPTION,
+        transformer_pooling_strategy = BLANK_DESCRIPTION,
         directory = EXPERIMENT_RESULTS_DIRECTORY
+
     ) -> None:
         self.directory = directory
         self.experiment_id = experiment_id
@@ -51,7 +55,10 @@ class ExperimentDescription:
         self.state[ExperimentDescriptionType.IsTest.value] = is_test
         self.state[ExperimentDescriptionType.ClassicModelName.value] = classic_model_name
         self.state[ExperimentDescriptionType.ExtraField.value] = extra_field
-    
+        self.state[ExperimentDescriptionType.TransformerStartIndex.value] = transformer_start_index
+        self.state[ExperimentDescriptionType.TransformerEndIndex.value] = transformer_end_index
+        self.state[ExperimentDescriptionType.TransformerPoolingStrategy.value] = transformer_pooling_strategy
+
     def save(self):
         df = pd.DataFrame.from_dict(self.state, orient="index")
         path = os.path.sep.join([self.directory, self.experiment_id, FILENAME_DESCRIPTION])

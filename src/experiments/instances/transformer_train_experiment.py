@@ -100,11 +100,14 @@ class TransformerTrainExperiment:
                 seq_len=512,
                 is_test=USE_TESTING_DATASET_FOLDER,
                 classic_model=BLANK_DESCRIPTION,
-                extra_field=BLANK_DESCRIPTION
+                extra_field=BLANK_DESCRIPTION,
+                transformer_start_index = BLANK_DESCRIPTION,
+                transformer_end_index = BLANK_DESCRIPTION,
+                transformer_pooling_strategy = BLANK_DESCRIPTION,
             )
 
             summarization = ExperimentSummarization(experiment_id)
-
+            
             summarization.inspect_set(train, ExperimentSummarizationFields.TrainRecords.value)
             summarization.inspect_set(valid, ExperimentSummarizationFields.ValidRecords.value)
             summarization.inspect_set(test, ExperimentSummarizationFields.TestRecords.value)
