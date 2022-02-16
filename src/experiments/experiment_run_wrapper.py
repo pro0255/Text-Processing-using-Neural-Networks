@@ -12,9 +12,9 @@ class ExperimentRunWrapper:
     def __init__(
         self,
         experiment_id,
+        experiment_summarization=None,
         directory=EXPERIMENT_RESULTS_DIRECTORY,
-        log_filename=NAME_OF_LEARNING_LOGS,
-        experiment_summarization=None
+        log_filename=NAME_OF_LEARNING_LOGS
     ) -> None:
         self.directory = directory 
         self.experiment_id = experiment_id

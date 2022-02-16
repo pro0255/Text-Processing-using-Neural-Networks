@@ -64,7 +64,6 @@ class TransformerTrainExperiment:
             current_folder
         )
 
-        #TODO: add preprocessing method
 
         preprocessing_factory = PreprocessingFactory()
 
@@ -104,14 +103,15 @@ class TransformerTrainExperiment:
                 extra_field=BLANK_DESCRIPTION
             )
 
-            wrapper = ExperimentRunWrapper(experiment_id)
-            current_model = self.get_model(trainable)
-            current_model.compile(loss=settings.loss, optimizer=settings.optimizer, metrics=settings.metric)
             summarization = ExperimentSummarization(experiment_id)
 
             summarization.inspect_set(train, ExperimentSummarizationFields.TrainRecords.value)
             summarization.inspect_set(valid, ExperimentSummarizationFields.ValidRecords.value)
             summarization.inspect_set(test, ExperimentSummarizationFields.TestRecords.value)
+             
+            wrapper = ExperimentRunWrapper(experiment_id, summarization)
+            current_model = self.get_model(trainable)
+            current_model.compile(loss=settings.loss, optimizer=settings.optimizer, metrics=settings.metric)
 
             wrapper.run(
                 current_model, 
