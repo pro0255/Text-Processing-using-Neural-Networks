@@ -67,7 +67,7 @@ def run_statistics_for(
             transformer_tokenizer=TransformerName.BertBaseUncased.value
         )
 
-        metric_instance = create_statistics_from(
+        create_statistics_from(
             *build_input_for_statistics(
                 current_path,
                 ';', 
