@@ -55,7 +55,6 @@ def run_split_deps_on_stats(
     if not normalization and specific_label_size is not None:
         number_of_min_label = specific_label_size
     
-    print(label_metric)
     split_file_to_train_test_valid(path_to_load, path_to_save, label_metric, number_of_min_label)
     print('Splitting finished!')
 
