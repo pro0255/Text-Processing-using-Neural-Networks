@@ -1,5 +1,6 @@
 from src.experiments.experiment_setup import ExperimentSetup
 from src.experiments.experiment_evaluate import ExperimentEvaluate
+from src.experiments.experiment_summarization import ExperimentSummarization
 from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOGS
 from src.utils.prediction_to_labels import prediction_to_labels
 from src.utils.dataset_to_ytrue import dataset_to_ytrue
@@ -17,6 +18,7 @@ class ExperimentRunWrapper:
         self.log_filename = log_filename
         self.experiment_setup = ExperimentSetup(experiment_id, self.directory)
         self.experiment_evaluate = ExperimentEvaluate(experiment_id, self.directory)
+        self.experiment_summarization = ExperimentSummarization(experiment_id, self.directory)
 
     def run(
         self, 
@@ -65,6 +67,8 @@ class ExperimentRunWrapper:
         print('Evaluating results')
         self.experiment_evaluate.calc(y_true_labels, y_pred_labels)
         self.experiment_evaluate.save()
+
+        self.experiment_summarization.save()
 
 
 
