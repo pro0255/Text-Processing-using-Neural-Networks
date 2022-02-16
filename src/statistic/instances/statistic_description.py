@@ -9,7 +9,8 @@ class StatisticDescription:
         subset_type=None,
         path=None,
         preprocessing_type=None,
-        transformer_tokenizer=None 
+        transformer_tokenizer=None,
+        normalization_size=None
     ):
         self.state = {}
         self.state[StatisticDescriptionField.NumberOfAuthors.value] = number_of_authors
@@ -18,6 +19,7 @@ class StatisticDescription:
         self.state[StatisticDescriptionField.Path.value] = path
         self.state[StatisticDescriptionField.PreprocessingType.value] = preprocessing_type
         self.state[StatisticDescriptionField.TransformerTokenizer.value] = transformer_tokenizer 
+        self.state[StatisticDescriptionField.TransformerTokenizer.value] = normalization_size
  
     def update_state(self, text, label):
         pass
