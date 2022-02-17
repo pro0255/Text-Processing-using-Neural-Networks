@@ -6,6 +6,8 @@ from src.experiments.experiment_timer import ExperimentTimer
 from src.types.time_type import TimeType
 from src.vectorizers.runner import VectorizerRunner
 from src.types.subset_type import SubsetType
+from src.utils.get_extra_field import get_extra
+from src.types.experiment_description import ExperimentDescriptionType
 
 class ClassicExperimentWrapper:
     def __init__(
@@ -34,6 +36,8 @@ class ClassicExperimentWrapper:
     ):
 
         self.description = description
+
+        description.state[ExperimentDescriptionType.ExtraField.value] = get_extra(predict_instance)
         #create directory
         self.experiment_setup.run()
 
