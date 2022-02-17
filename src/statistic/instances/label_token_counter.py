@@ -16,7 +16,7 @@ class LabelTokenMetric:
 
         current_length = len(splitted_text)
 
-        self.state[label] = self.updater.update(current_dic, current_length)
+        self.state[label] = self.updater.update(current_dic, current_length, label)
 
     def get_dataframe(self):
         return pd.DataFrame.from_dict(self.state, orient='index')

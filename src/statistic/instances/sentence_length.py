@@ -12,7 +12,7 @@ class SentenceLengthMetric:
         
         current_length = len(text)
 
-        self.state[label] = self.updater.update(current_dic, current_length)
+        self.state[label] = self.updater.update(current_dic, current_length, label)
 
     def get_dataframe(self):
         return pd.DataFrame.from_dict(self.state, orient='index')

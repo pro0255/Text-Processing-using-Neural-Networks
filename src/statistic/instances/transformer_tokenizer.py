@@ -17,7 +17,7 @@ class TransformerTokenizerCounter:
 
         current_length = len(self.tokenizer(text)[TransformerInput.input.value])
 
-        self.state[label] = self.updater.update(current_dic, current_length)
+        self.state[label] = self.updater.update(current_dic, current_length, label)
 
     def get_dataframe(self):
         return pd.DataFrame.from_dict(self.state, orient='index')
