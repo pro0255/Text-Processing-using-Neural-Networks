@@ -10,7 +10,7 @@ from src.types.subset_type import SubsetType
 from src.types.transformer_name import TransformerName
 from src.statistic.DEFAULT_INSTANCES import build_statistic_instances
 import itertools
-
+import os
 
 def get_subset_path_index(subset_type):
     dic = {
@@ -24,7 +24,8 @@ def run_statistics_for(
     authors,
     sentences,
     preprocessing_types=[PreprocessingType.Default],
-    subset_types=[SubsetType.Train.value]
+    subset_types=[SubsetType.Train],
+    specific_label_size=None
 ):
     number_of_authors_start, number_of_authors_end, step_authors = authors
     number_of_sentences_start, number_of_sentences_end, step_sentences = sentences
@@ -49,12 +50,17 @@ def run_statistics_for(
         paths_data, _ = get_path_to_gutenberg_sets(
             author_number, 
             sentence_number,
-            current_folder
+            current_folder,
+            specific_label_size
         )
 
 
         current_index = get_subset_path_index(subset)
         current_path = paths_data[current_index]
+
+        if not os.path.exists(current_path):
+            print(f"File with path {current_path} does not exist")
+            continue
 
         factory = PreprocessingFactory()
 
