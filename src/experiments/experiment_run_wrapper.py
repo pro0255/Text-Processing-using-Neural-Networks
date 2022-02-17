@@ -79,6 +79,7 @@ class ExperimentRunWrapper:
         self.experiment_evaluate.calc(y_true_labels, y_pred_labels)
         self.experiment_timer.end(TimeType.EvaluateTime.value)
 
+        self.experiment_summarization.map_timer(self.experiment_timer)
         print("Saving")
         self.experiment_evaluate.save()
         self.experiment_summarization.save()
