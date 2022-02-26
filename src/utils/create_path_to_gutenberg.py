@@ -84,6 +84,17 @@ def get_path_to_gutenberg_set(
     return path
 
 
+def get_path_to_gutenberg_all(
+    number_of_authors, 
+    number_of_sentence, 
+    path_to_dataset_folder=PATH_TO_DATASET_FOLDER
+):
+    authors = create_path_to_gutenberg_authors(number_of_authors, number_of_sentence, path_to_dataset_folder)
+    all_path = get_path_to_gutenberg_set(number_of_authors, number_of_sentence, SubsetType.All, path_to_dataset_folder)
+    
+    return all_path, authors
+
+
 def get_path_to_gutenberg_sets(
     number_of_authors, 
     number_of_sentence, 
