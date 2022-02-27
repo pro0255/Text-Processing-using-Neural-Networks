@@ -39,9 +39,9 @@ class ExperimentDescription:
 
         self.state[ExperimentDescriptionType.ExperimentType.value] = experiment_id
         self.state[ExperimentDescriptionType.ExperimentId.value] = experiment_type
-        self.state[ExperimentDescriptionType.BatchSize.value] = learning_settings.batch_size
-        self.state[ExperimentDescriptionType.Epochs.value] = learning_settings.epochs
-        self.state[ExperimentDescriptionType.LearningRate.value] = learning_settings.learning_rate
+        self.state[ExperimentDescriptionType.BatchSize.value] = learning_settings.batch_size if learning_settings is not None else None
+        self.state[ExperimentDescriptionType.Epochs.value] = learning_settings.epochs if learning_settings is not None else None
+        self.state[ExperimentDescriptionType.LearningRate.value] = learning_settings.learning_rate if learning_settings is not None else None
         self.state[ExperimentDescriptionType.TransformerName.value] = transformer_name
         self.state[ExperimentDescriptionType.TransformerPooling.value] = transformer_pooling
         self.state[ExperimentDescriptionType.PredictionModelType.value] = prediction_model_type
