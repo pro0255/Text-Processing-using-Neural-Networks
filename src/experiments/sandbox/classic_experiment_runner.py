@@ -86,7 +86,7 @@ class ClassicExperimentWrapper:
         #save results
         print('Predicting test dataset')
         self.experiment_timer.start(TimeType.PredictionTime.value)
-        y_pred_labels = predict_instance.predict(test_ds)
+        y_pred_labels = predict_instance.predict(X_test)
         self.experiment_timer.end(TimeType.PredictionTime.value)
 
 
