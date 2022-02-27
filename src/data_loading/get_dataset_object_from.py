@@ -14,8 +14,7 @@ def get_dataset_object_from_path(csv_filename, delim, text_pipeline_func=None):
         return text, int(author) 
 
     dataset = dataset.map(
-        lambda tpl: tf.py_function(parse_csv, [tpl], [tf.string, tf.int32]),
-        num_parallel_calls=tf.data.AUTOTUNE
+        lambda tpl: tf.py_function(parse_csv, [tpl], [tf.string, tf.int32])
     )
     
     return dataset

@@ -67,6 +67,8 @@ class VectorizerRunner:
 
     def fit(self, dataset, vectorizer_instance, subset_type, experiment_summarization_instance):
         name_of_instance = type(vectorizer_instance).__name__
+        
+        print(f"Fitting transformer with name {name_of_instance}")
 
         if name_of_instance in CLASSIC:
             return self.fit_classic(vectorizer_instance, dataset, subset_type, experiment_summarization_instance)

@@ -18,6 +18,8 @@ NAME_OF_LEARNING_LOGS = f'logs{Suffix.CSV.value}'
 ROOT = "C:\\Users\\Vojta\\Desktop\\diploma"
 #ROOT = "/home/usp/pro0255/diploma"
 
+GENSIM_DATA = os.sep.join([ROOT, "gensim_data"])
+
 PATH_TO_ALL_AUTHORS = os.sep.join([ROOT, "gutenberg_downloaded\\authors\\authors.csv"])
 ALL_AUTHORS_DELIMITER = ","
 

@@ -36,7 +36,7 @@ class ExperimentConfiguration:
     ) -> None:
         self.train = train
         self.test = test
-        self.experiment_id = experiment_id,
+        self.experiment_id = experiment_id
         self.description = description
         self.predict_instance = predict_instance
         self.vectorization_instance = vectorization_instance
@@ -47,8 +47,8 @@ class ExperimentConfiguration:
     def get_test(self):
         return self.test
 
-    def get_experiment_id(self, current_timestamp=None):
-        return self.experiment_id.format(current_timestamp)
+    def get_experiment_id(self):
+        return self.experiment_id
 
     def get_description(self):
         return self.description

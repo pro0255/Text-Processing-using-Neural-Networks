@@ -32,17 +32,15 @@ class ClassicExperimentWrapper:
         train_ds,
         val_ds,
         test_ds,
-        description,
+        description
     ):
 
         self.description = description
 
-        description.state[ExperimentDescriptionType.ExtraField.value] = get_extra(predict_instance)
         #create directory
         self.experiment_setup.run()
 
-        print('Saving decription of experiment')
-        self.description.save()
+
         #compile model
 
 
@@ -73,7 +71,7 @@ class ClassicExperimentWrapper:
         print("End test")
 
 
-        self.experiment_timer.start(TimeType.VectorizationTime.value)
+        self.experiment_timer.end(TimeType.VectorizationTime.value)
         print("End of vectorization")
 
 
@@ -101,6 +99,10 @@ class ClassicExperimentWrapper:
         print("Saving")
         self.experiment_evaluate.save()
         self.experiment_summarization.save()
+
+        print('Saving decription of experiment')
+        description.state[ExperimentDescriptionType.ExtraField.value] = get_extra(predict_instance)
+        self.description.save()
 
 
 
