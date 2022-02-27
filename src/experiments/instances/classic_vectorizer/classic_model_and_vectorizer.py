@@ -44,100 +44,100 @@ class ClassicModelAndVectorizer:
 
     def experiments_generator(self):
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             RandomForest(),
-            BoWVectorizer()
+            BoWVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             NaiveBayes(),
-            BoWVectorizer()
+            BoWVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             LinearClassifier(),
-            BoWVectorizer()
+            BoWVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             RandomForest(),
-            TfidfVectorizer()
+            TfidfVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             NaiveBayes(),
-            TfidfVectorizer()
+            TfidfVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             LinearClassifier(),
-            TfidfVectorizer()
+            TfidfVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             RandomForest(),
-            GloveVectorizer()
+            GloveVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             NaiveBayes(),
-            GloveVectorizer()
+            GloveVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             LinearClassifier(),
-            GloveVectorizer()
+            GloveVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             RandomForest(),
-            Word2VecVectorizer()
+            Word2VecVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             NaiveBayes(),
-            Word2VecVectorizer()
+            Word2VecVectorizer())
         )
         yield self.create_experiment_id(
-            NAME_OF_EXPERIMENT,
+            (NAME_OF_EXPERIMENT,
             30000,
             self.number_of_authors,
             self.number_of_sentences,
             LinearClassifier(),
-            Word2VecVectorizer()
+            Word2VecVectorizer())
         )
         
 
