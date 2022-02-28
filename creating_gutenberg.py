@@ -4,4 +4,4 @@ setup = ProjectSetup()
 
 setup.create_combs()
 
-setup.create_datasets(3, 35, 115)
+setup.create_datasets(10, 5, 115)

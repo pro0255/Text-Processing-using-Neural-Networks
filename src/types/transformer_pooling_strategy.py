@@ -1,7 +1,7 @@
 from enum import Enum
 from src.config.config import BLANK_DESCRIPTION
 
-class TransformerPooling(Enum):
+class TransformerPoolingStrategy(Enum):
     CLS = "CLS"
     Average = "Average"
     Stacking = "Stacking"

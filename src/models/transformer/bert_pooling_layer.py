@@ -3,7 +3,14 @@ from src.types.transformer_pooling import TransformerPooling
 
 class BertPoolingLayer(tf.keras.layers.Layer):
 
-    def call(self, inputs, pooling_type):
+    def call(
+        self, 
+        inputs, 
+        pooling_type, 
+        transformer_pooling_strategy,
+        transformer_start_index,
+        transformer_end_index
+    ):
         if pooling_type == TransformerPooling.LastHiddenState:
             last_hidden_state = inputs[TransformerPooling.LastHiddenState.value]
             return tf.reduce_mean(last_hidden_state, axis=1)
