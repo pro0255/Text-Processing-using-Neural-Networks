@@ -50,8 +50,8 @@ def create_description_for_classic(
         experiment_id=experiment_id,
         experiment_type=experiment_type,
         learning_settings=None,
-        transformer_name=BLANK_DESCRIPTION,  # here
-        transformer_pooling=BLANK_DESCRIPTION,  # here
+        transformer_name=BLANK_DESCRIPTION,
+        transformer_pooling=BLANK_DESCRIPTION,
         prediction_model_type=PredictionModelType.Classic.value,
         net_type=NetType.Blank.value,
         embedding_type=vectorizer_model_type,
@@ -60,13 +60,13 @@ def create_description_for_classic(
         number_of_authors=number_of_authors,
         number_of_sentences=number_of_sentences,
         load_path=path_data,
-        seq_len=BLANK_DESCRIPTION,  # here
+        seq_len=BLANK_DESCRIPTION,
         is_test=USE_TESTING_DATASET_FOLDER,
         classic_model_name=classic_model_type,
         extra_field=BLANK_DESCRIPTION,
-        transformer_start_index=BLANK_DESCRIPTION,  # here
-        transformer_end_index=BLANK_DESCRIPTION,  # here
-        transformer_pooling_strategy=BLANK_DESCRIPTION,  # here
+        transformer_start_index=BLANK_DESCRIPTION,
+        transformer_end_index=BLANK_DESCRIPTION,
+        transformer_pooling_strategy=BLANK_DESCRIPTION,
         normalization_size=normalization_size,
     )
 
