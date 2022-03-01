@@ -26,7 +26,7 @@ class VectorizerRunner:
             _X = X.toarray()
             experiment_summarization_instance.state[ExperimentSummarizationFields.TestRecords.value] = _X.shape[0]
 
-        return X, y
+        return X.toarray(), y
 
     def fit_embedding(self, vectorizer_instance, dataset, subset_type, experiment_summarization_instance):
             dataframe = from_dataset_dataframe(dataset)
@@ -68,15 +68,18 @@ class VectorizerRunner:
     def fit(self, dataset, vectorizer_instance, subset_type, experiment_summarization_instance):
         name_of_instance = type(vectorizer_instance).__name__
         
-        print(f"Fitting transformer with name {name_of_instance}")
+        print(f"Fitting vetorizer with name {name_of_instance}")
 
         if name_of_instance in CLASSIC:
+            print(f'Fitting vectorizer in {CLASSIC}')
             return self.fit_classic(vectorizer_instance, dataset, subset_type, experiment_summarization_instance)
 
         if name_of_instance in EMBEDDING:
+            print(f'Fitting vectorizer in {EMBEDDING}')
             return self.fit_embedding(vectorizer_instance, dataset, subset_type, experiment_summarization_instance)
 
         if name_of_instance in TRANSFORMER:
+            print(f'Fitting vectorizer in {TRANSFORMER}')
             return self.fit_transformer(vectorizer_instance, dataset, subset_type, experiment_summarization_instance)
 
 

@@ -71,20 +71,20 @@ class TransformerVectorizer():
         #TODO: add to embedding layer
         pass
 
-    def get_transformer_name():
+    def get_transformer_name(self):
         return self.transformer_type
 
-    def get_transformer_pooling():
+    def get_transformer_pooling(self):
         return self.transformer_pooling_type.value
 
-    def get_transformer_start_index():
+    def get_transformer_start_index(self):
         return self.transformer_start_index
 
-    def get_transformer_end_index():
+    def get_transformer_end_index(self):
         return self.transformer_end_index
 
-    def get_transformer_pooling_strategy():
+    def get_transformer_pooling_strategy(self):
         return self.transformer_pooling_strategy.value
 
-    def get_len():
+    def get_len(self):
         return self.max_len

@@ -40,7 +40,6 @@ class ClassicExperimentWrapper:
         #create directory
         self.experiment_setup.run()
 
-
         #compile model
 
 

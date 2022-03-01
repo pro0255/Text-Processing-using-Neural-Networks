@@ -6,4 +6,3 @@ class TransformerPooling(Enum):
     Pooler = "pooler_output"
     HiddenStates = "hidden_states"
     Blank = BLANK_DESCRIPTION
-    #TODO create own others

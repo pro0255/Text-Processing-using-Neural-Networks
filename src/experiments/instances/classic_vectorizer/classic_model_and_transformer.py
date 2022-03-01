@@ -27,13 +27,15 @@ from src.utils.normalize_dataframe_to_size import normalize_dataframe_to_size
 from src.utils.create_dataset_from_dataframe import create_dataset_from_Xy
 from src.experiments.descriptions.create_description import create_description_for_classic
 
+#TODO: find out sequence length.. 
 
-NAME_OF_EXPERIMENT = "ClassicAndVectorizer"
+NAME_OF_EXPERIMENT = "ClassicAndTransformer"
 
-class ClassicModelAndVectorizer:
-    def __init__(self, number_of_authors, number_of_sentences) -> None:
+class ClassicModelAndTransformer:
+    def __init__(self, number_of_authors, number_of_sentences, max_len=512) -> None:
         self.number_of_authors = number_of_authors
         self.number_of_sentences = number_of_sentences
+        self.max_len = max_len
 
 
     def create_experiment_id(self, args):
@@ -49,7 +51,7 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             RandomForest(),
-            BoWVectorizer())
+            BertBaseUncasedVectorizer(max_len=self.max_len))
         )
         yield self.create_experiment_id(
             (NAME_OF_EXPERIMENT,
@@ -57,7 +59,7 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             NaiveBayes(),
-            BoWVectorizer())
+            BertBaseUncasedVectorizer(max_len=self.max_len))
         )
         yield self.create_experiment_id(
             (NAME_OF_EXPERIMENT,
@@ -65,7 +67,7 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             LinearClassifier(),
-            BoWVectorizer())
+            BertBaseUncasedVectorizer(max_len=self.max_len))
         )
         yield self.create_experiment_id(
             (NAME_OF_EXPERIMENT,
@@ -73,7 +75,7 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             RandomForest(),
-            TfidfVectorizer())
+            DistilBertBaseUncasedVectorizer(max_len=self.max_len))
         )
         yield self.create_experiment_id(
             (NAME_OF_EXPERIMENT,
@@ -81,7 +83,7 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             NaiveBayes(),
-            TfidfVectorizer())
+            DistilBertBaseUncasedVectorizer(max_len=self.max_len))
         )
         yield self.create_experiment_id(
             (NAME_OF_EXPERIMENT,
@@ -89,7 +91,7 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             LinearClassifier(),
-            TfidfVectorizer())
+            DistilBertBaseUncasedVectorizer(max_len=self.max_len))
         )
         yield self.create_experiment_id(
             (NAME_OF_EXPERIMENT,
@@ -97,7 +99,7 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             RandomForest(),
-            GloveVectorizer())
+            ElectraSmallVectorizer(max_len=self.max_len))
         )
         yield self.create_experiment_id(
             (NAME_OF_EXPERIMENT,
@@ -105,7 +107,7 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             NaiveBayes(),
-            GloveVectorizer())
+            ElectraSmallVectorizer(max_len=self.max_len))
         )
         yield self.create_experiment_id(
             (NAME_OF_EXPERIMENT,
@@ -113,40 +115,22 @@ class ClassicModelAndVectorizer:
             self.number_of_authors,
             self.number_of_sentences,
             LinearClassifier(),
-            GloveVectorizer())
+            ElectraSmallVectorizer(max_len=self.max_len))
         )
-        yield self.create_experiment_id(
-            (NAME_OF_EXPERIMENT,
-            30000,
-            self.number_of_authors,
-            self.number_of_sentences,
-            RandomForest(),
-            Word2VecVectorizer())
-        )
-        yield self.create_experiment_id(
-            (NAME_OF_EXPERIMENT,
-            30000,
-            self.number_of_authors,
-            self.number_of_sentences,
-            NaiveBayes(),
-            Word2VecVectorizer())
-        )
-        yield self.create_experiment_id(
-            (NAME_OF_EXPERIMENT,
-            30000,
-            self.number_of_authors,
-            self.number_of_sentences,
-            LinearClassifier(),
-            Word2VecVectorizer())
-        )
-        
 
-    def run(self):
-        data, paths = get_dataset_all(self.number_of_authors, self.number_of_sentences)
-        all_data = from_dataset_dataframe(data[0])
+    def run(self, all_data=None, data=None, paths=None):
+        if all_data is None:
+            data, paths = get_dataset_all(self.number_of_authors, self.number_of_sentences)
+            all_data = from_dataset_dataframe(data[0])
 
         for value in self.experiments_generator():
             experiment_type, normalize_value, number_of_authors, number_of_sentences, prediction_instance, vectorizer_instance, experiment_id = value
+
+            print(
+                experiment_id,
+                type(vectorizer_instance).__name__
+            )
+
             description = create_description_for_classic(
                 experiment_id,
                 experiment_type,
@@ -171,5 +155,6 @@ class ClassicModelAndVectorizer:
                 predict_instance=prediction_instance, 
                 vectorization_instance=vectorizer_instance
             )
+
             experiment = ClassicModelWithVectorizerExperiment()
             experiment.run(conf)
