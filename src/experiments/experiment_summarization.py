@@ -19,6 +19,7 @@ class ExperimentSummarization:
         self.experiment_id = experiment_id
         self.state = {}
 
+        print(f'Creating new experiment summarization for {experiment_id}!')
         self.state[ExperimentSummarizationFields.ExperimentType.value] = experiment_id
         self.state[ExperimentSummarizationFields.ExperimentId.value] = experiment_type
 

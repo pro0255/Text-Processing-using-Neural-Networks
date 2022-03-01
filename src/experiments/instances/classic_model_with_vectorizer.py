@@ -10,6 +10,7 @@ class ClassicModelWithVectorizerExperiment:
         if cache is not None:
             old_summarization = cache[4]
             old_summarization.experiment_id = experiment_id
+            return old_summarization
         else:
             return ExperimentSummarization(experiment_id)
 
