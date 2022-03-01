@@ -16,31 +16,33 @@ def merge_content(confusion_matrix, metrics, description, summarization, directo
     keys = concat_df.iloc[:, 0].values
     values = concat_df.iloc[:, 1].values
 
-
     if metrics is None:
         print(f"No metrics in {directory}")
-        append_keys = [x.value for x in list(ResultType) if x != ResultType.ConsfusionMatrix] 
+        append_keys = [
+            x.value for x in list(ResultType) if x != ResultType.ConsfusionMatrix
+        ]
         keys = keys + append_keys
         values = values + [BLANK_DESCRIPTION] * len(append_keys)
 
     if description is None:
         print(f"No description in {directory}")
-        append_keys = [x.value for x in list(ExperimentDescriptionType)] 
+        append_keys = [x.value for x in list(ExperimentDescriptionType)]
         keys = keys + append_keys
         values = values + [BLANK_DESCRIPTION] * len(append_keys)
 
     if summarization is None:
         print(f"No summarization in {directory}")
-        append_keys = [x.value for x in list(ExperimentSummarizationFields)] 
+        append_keys = [x.value for x in list(ExperimentSummarizationFields)]
         keys = keys + append_keys
         values = values + [BLANK_DESCRIPTION] * len(append_keys)
 
-    dic = {k:v for k, v in zip(keys, values)}
+    dic = {k: v for k, v in zip(keys, values)}
 
-    dic['ConfusionMatrix'] = confusion_matrix.values if confusion_matrix is not None else BLANK_DESCRIPTION
-    dic['Directory'] = directory
-    
+    dic["ConfusionMatrix"] = (
+        confusion_matrix.values if confusion_matrix is not None else BLANK_DESCRIPTION
+    )
+    dic["Directory"] = directory
 
-    record = pd.DataFrame.from_dict(dic, orient='index').T
+    record = pd.DataFrame.from_dict(dic, orient="index").T
 
     return record

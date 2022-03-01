@@ -2,6 +2,7 @@ from src.data_loading.load_files import load_files
 from src.utils.load_json import load_json
 from tqdm import tqdm
 
+
 def iterate_over_files(files_path, process_func):
     print(f"Loading files from {files_path}")
     counter = 0
@@ -16,5 +17,5 @@ def iterate_over_files(files_path, process_func):
 
         if data is None:
             continue
-        
+
         process_func(data)

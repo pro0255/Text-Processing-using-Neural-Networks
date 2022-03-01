@@ -1,2 +1,2 @@
 def preprocess_newlines(document):
-    return document.replace('\n', '')
+    return document.replace("\n", "")

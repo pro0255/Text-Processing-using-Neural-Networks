@@ -7,14 +7,15 @@ from transformers import AutoConfig
 import numpy as np
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
-class TransformerVectorizer():
+
+class TransformerVectorizer:
     def __init__(
-        self, 
+        self,
         transformer_type,
         transformer_pooling_type,
         path_authors=None,
-        encoder=None, 
-        max_len=512, 
+        encoder=None,
+        max_len=512,
         preprocess_pipeline=None,
         transformer_pooling_strategy=TransformerPoolingStrategy.Blank,
         transformer_start_index=-1,
@@ -32,13 +33,17 @@ class TransformerVectorizer():
         self.setup()
 
     def setup(self):
-        self.config = AutoConfig.from_pretrained(self.transformer_type, output_hidden_states=True)
+        self.config = AutoConfig.from_pretrained(
+            self.transformer_type, output_hidden_states=True
+        )
         self.transformer = TFAutoModel.from_config(self.config)
-        encoder = None if self.path_to_authors is None else create_encoder_from_path(self.path_to_authors)
+        encoder = (
+            None
+            if self.path_to_authors is None
+            else create_encoder_from_path(self.path_to_authors)
+        )
         self.tokenizer = TransformerTokenizer(
-            self.transformer_type, 
-            encoder,
-            self.max_len
+            self.transformer_type, encoder, self.max_len
         )
 
     def fit_transform(self, dataset):
@@ -47,28 +52,25 @@ class TransformerVectorizer():
 
         for x in prepare_dataset_from_tokenizer(dataset, self.tokenizer).batch(1):
             transformer_input, label = x
-            output = self.transformer(
-                transformer_input, 
-                output_hidden_states=True
-            )
-            
+            output = self.transformer(transformer_input, output_hidden_states=True)
+
             output = BertPoolingLayer()(
-                output, 
+                output,
                 self.transformer_pooling_type,
                 self.transformer_pooling_strategy,
-                self.transformer_start_index, 
-                self.transformer_end_index
+                self.transformer_start_index,
+                self.transformer_end_index,
             )
 
             output = output.numpy().reshape(-1)
-            label = label.numpy()[0] 
+            label = label.numpy()[0]
 
             labels.append(label)
             sentence_embedding.append(output)
         return np.array(sentence_embedding), np.array(labels)
 
     def create_embedding_matrix(self, X):
-        #TODO: add to embedding layer
+        # TODO: add to embedding layer
         pass
 
     def get_transformer_name(self):

@@ -11,7 +11,7 @@ class TransformerTokenizerCounter:
         self.state = {}
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.updater = AvgMaxMinUpdate()
-    
+
     def update_state(self, text, label):
         current_dic = self.state.get(label, DEFAULT_DIC_VALUE)
 
@@ -20,4 +20,4 @@ class TransformerTokenizerCounter:
         self.state[label] = self.updater.update(current_dic, current_length, label)
 
     def get_dataframe(self):
-        return pd.DataFrame.from_dict(self.state, orient='index')
+        return pd.DataFrame.from_dict(self.state, orient="index")

@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class ResultType(Enum):
     Recall = "Recall"
     ConsfusionMatrix = "ConsfusionMatrix"

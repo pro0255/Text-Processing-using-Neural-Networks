@@ -5,43 +5,45 @@ from src.data_loading.get_dataset_object_from import get_dataset_object_from_pat
 from src.statistic.DEFAULT_INSTANCES import DEFAULT_STATISTICS_INSTANCES
 from src.config.config import SPECIFIC_DIRECTORY_FOR_STATISTICS, STATISTICS_SUBDIRECTORY
 
+
 def build_input_for_statistics(
-    path_to_load, 
+    path_to_load,
     sep,
     statistic_description,
-    metric_instances = DEFAULT_STATISTICS_INSTANCES, 
-    text_pipeline_func = None, 
-    save = True,
-    sub_directory = STATISTICS_SUBDIRECTORY,
-    specific_directory_for_statistic = SPECIFIC_DIRECTORY_FOR_STATISTICS
+    metric_instances=DEFAULT_STATISTICS_INSTANCES,
+    text_pipeline_func=None,
+    save=True,
+    sub_directory=STATISTICS_SUBDIRECTORY,
+    specific_directory_for_statistic=SPECIFIC_DIRECTORY_FOR_STATISTICS,
 ):
     path_parts = path_to_load.split(os.path.sep)
     name_of_file = path_parts[-1]
 
     del path_parts[-1]
-    
+
     return (
-        get_dataset_object_from_path(
-            path_to_load, 
-            sep, 
-            text_pipeline_func
-        ), 
+        get_dataset_object_from_path(path_to_load, sep, text_pipeline_func),
         MetricWrapper(
-            statistic_description, 
-            metric_instances, 
+            statistic_description,
+            metric_instances,
             create_path_to_save(
-                path_parts, 
-                name_of_file, 
-                sub_directory, 
-                save, 
-                specific_directory_for_statistic
-            )
-        )
+                path_parts,
+                name_of_file,
+                sub_directory,
+                save,
+                specific_directory_for_statistic,
+            ),
+        ),
     )
-    
 
 
-def create_path_to_save(path_parts, name_of_file, sub_directory, save=True, specific_directory_for_statistic=None):
+def create_path_to_save(
+    path_parts,
+    name_of_file,
+    sub_directory,
+    save=True,
+    specific_directory_for_statistic=None,
+):
     if not save:
         return None
 
@@ -52,7 +54,7 @@ def create_path_to_save(path_parts, name_of_file, sub_directory, save=True, spec
             os.makedirs(specific_directory_for_statistic)
         path = os.path.sep.join([specific_directory_for_statistic, name_of_file])
         print(f"Current path to statistics={path}")
-        return path 
+        return path
 
     else:
         path = os.path.sep.join(path_parts)
@@ -66,5 +68,3 @@ def create_path_to_save(path_parts, name_of_file, sub_directory, save=True, spec
         path = path + os.path.sep + name_of_file
         print(f"Current path to statistics={path}")
         return path
-
-    

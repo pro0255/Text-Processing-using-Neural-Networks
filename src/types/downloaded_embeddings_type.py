@@ -1,5 +1,5 @@
-
 from enum import Enum
+
 
 class DownloadedEmbeddingType(Enum):
     Word2Vec = "glove-wiki-gigaword-300"

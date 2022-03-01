@@ -1,5 +1,5 @@
-
 from enum import Enum
+
 
 class ClassicModelType(Enum):
     NaiveBayes = "NaiveBayesClassifier"

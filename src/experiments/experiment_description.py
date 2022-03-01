@@ -1,14 +1,18 @@
-
-
 import pandas as pd
-from src.config.config import LOG_SEP, EXPERIMENT_RESULTS_DIRECTORY, FILENAME_DESCRIPTION, BLANK_DESCRIPTION
+from src.config.config import (
+    LOG_SEP,
+    EXPERIMENT_RESULTS_DIRECTORY,
+    FILENAME_DESCRIPTION,
+    BLANK_DESCRIPTION,
+)
 import os
 from src.types.experiment_description import ExperimentDescriptionType
 
+
 class ExperimentDescription:
     def __init__(
-        self, 
-        experiment_id, 
+        self,
+        experiment_id,
         experiment_type,
         learning_settings,
         transformer_name,
@@ -23,14 +27,13 @@ class ExperimentDescription:
         load_path,
         seq_len,
         is_test,
-        classic_model_name = BLANK_DESCRIPTION,
-        extra_field = BLANK_DESCRIPTION,
-        transformer_start_index = BLANK_DESCRIPTION,
-        transformer_end_index = BLANK_DESCRIPTION,
-        transformer_pooling_strategy = BLANK_DESCRIPTION,
-        normalization_size = BLANK_DESCRIPTION,
-        directory = EXPERIMENT_RESULTS_DIRECTORY
-
+        classic_model_name=BLANK_DESCRIPTION,
+        extra_field=BLANK_DESCRIPTION,
+        transformer_start_index=BLANK_DESCRIPTION,
+        transformer_end_index=BLANK_DESCRIPTION,
+        transformer_pooling_strategy=BLANK_DESCRIPTION,
+        normalization_size=BLANK_DESCRIPTION,
+        directory=EXPERIMENT_RESULTS_DIRECTORY,
     ) -> None:
         self.directory = directory
         self.experiment_id = experiment_id
@@ -39,31 +42,57 @@ class ExperimentDescription:
 
         self.state[ExperimentDescriptionType.ExperimentType.value] = experiment_id
         self.state[ExperimentDescriptionType.ExperimentId.value] = experiment_type
-        self.state[ExperimentDescriptionType.BatchSize.value] = learning_settings.batch_size if learning_settings is not None else None
-        self.state[ExperimentDescriptionType.Epochs.value] = learning_settings.epochs if learning_settings is not None else None
-        self.state[ExperimentDescriptionType.LearningRate.value] = learning_settings.learning_rate if learning_settings is not None else None
+        self.state[ExperimentDescriptionType.BatchSize.value] = (
+            learning_settings.batch_size if learning_settings is not None else None
+        )
+        self.state[ExperimentDescriptionType.Epochs.value] = (
+            learning_settings.epochs if learning_settings is not None else None
+        )
+        self.state[ExperimentDescriptionType.LearningRate.value] = (
+            learning_settings.learning_rate if learning_settings is not None else None
+        )
         self.state[ExperimentDescriptionType.TransformerName.value] = transformer_name
-        self.state[ExperimentDescriptionType.TransformerPooling.value] = transformer_pooling
-        self.state[ExperimentDescriptionType.PredictionModelType.value] = prediction_model_type
+        self.state[
+            ExperimentDescriptionType.TransformerPooling.value
+        ] = transformer_pooling
+        self.state[
+            ExperimentDescriptionType.PredictionModelType.value
+        ] = prediction_model_type
         self.state[ExperimentDescriptionType.NetType.value] = net_type
         self.state[ExperimentDescriptionType.EmbeddingType.value] = embedding_type
         self.state[ExperimentDescriptionType.IsTrainable.value] = trainable
-        self.state[ExperimentDescriptionType.PreprocessingType.value] = preprocessing_type
+        self.state[
+            ExperimentDescriptionType.PreprocessingType.value
+        ] = preprocessing_type
         self.state[ExperimentDescriptionType.NumberOfAuthors.value] = number_of_authors
-        self.state[ExperimentDescriptionType.NumberOfSentences.value] = number_of_sentences
+        self.state[
+            ExperimentDescriptionType.NumberOfSentences.value
+        ] = number_of_sentences
         self.state[ExperimentDescriptionType.LoadPath.value] = load_path
         self.state[ExperimentDescriptionType.SeqLen.value] = seq_len
         self.state[ExperimentDescriptionType.IsTest.value] = is_test
-        self.state[ExperimentDescriptionType.ClassicModelName.value] = classic_model_name
+        self.state[
+            ExperimentDescriptionType.ClassicModelName.value
+        ] = classic_model_name
         self.state[ExperimentDescriptionType.ExtraField.value] = extra_field
-        self.state[ExperimentDescriptionType.TransformerStartIndex.value] = transformer_start_index
-        self.state[ExperimentDescriptionType.TransformerEndIndex.value] = transformer_end_index
-        self.state[ExperimentDescriptionType.TransformerPoolingStrategy.value] = transformer_pooling_strategy
-        self.state[ExperimentDescriptionType.NormalizationSize.value] = normalization_size
+        self.state[
+            ExperimentDescriptionType.TransformerStartIndex.value
+        ] = transformer_start_index
+        self.state[
+            ExperimentDescriptionType.TransformerEndIndex.value
+        ] = transformer_end_index
+        self.state[
+            ExperimentDescriptionType.TransformerPoolingStrategy.value
+        ] = transformer_pooling_strategy
+        self.state[
+            ExperimentDescriptionType.NormalizationSize.value
+        ] = normalization_size
 
     def save(self):
         df = pd.DataFrame.from_dict(self.state, orient="index")
-        path = os.path.sep.join([self.directory, self.experiment_id, FILENAME_DESCRIPTION])
+        path = os.path.sep.join(
+            [self.directory, self.experiment_id, FILENAME_DESCRIPTION]
+        )
         df.to_csv(path, sep=LOG_SEP)
 
     def __str__(self) -> str:

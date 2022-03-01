@@ -1,6 +1,7 @@
 import gensim.downloader
 import numpy as np
 
+
 class EmbeddingVectorizer:
     def __init__(self, embedding_type):
         self.embedding_type = embedding_type.value
@@ -11,7 +12,7 @@ class EmbeddingVectorizer:
 
     def setup(self):
         self.vectors = gensim.downloader.load(self.embedding_type)
-        self.embedding_size = len(self.vectors['king'])
+        self.embedding_size = len(self.vectors["king"])
 
     def get_from_vectors(self, key_vectors, key):
         self.counter += 1
@@ -19,10 +20,14 @@ class EmbeddingVectorizer:
             return key_vectors[key]
         except:
             self.missed += 1
-            return np.zeros(shape=(self.embedding_size, ))
+            return np.zeros(shape=(self.embedding_size,))
 
     def get_state(self):
-        missed, counter, accuracy = self.missed, self.counter, 100 * (self.missed / self.counter)
+        missed, counter, accuracy = (
+            self.missed,
+            self.counter,
+            100 * (self.missed / self.counter),
+        )
         print(f"Missed={missed}, counter={counter}, accuracy={accuracy}")
         return missed, counter, accuracy
 
@@ -34,7 +39,7 @@ class EmbeddingVectorizer:
         self.counter = 0
 
         corpus = []
-        
+
         for sentence in X:
             tokens = sentence.split(" ")
             sentence_embedding = []
@@ -46,5 +51,5 @@ class EmbeddingVectorizer:
         return self.get_mean(corpus)
 
     def create_embedding_matrix(self, X):
-        #TODO: add to embedding layer
+        # TODO: add to embedding layer
         pass

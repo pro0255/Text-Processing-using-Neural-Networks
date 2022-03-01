@@ -3,44 +3,50 @@ from src.types.transformer_pooling import TransformerPooling
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
 
-
-
 def verify_bert_pooling_input(
     pooling_type,
     transformer_pooling_strategy=None,
     transformer_start_index=None,
-    transformer_end_index=None
+    transformer_end_index=None,
 ):
-    if pooling_type in [TransformerPooling.LastHiddenState, TransformerPooling.Pooler] and (transformer_pooling_strategy is not None or transformer_start_index != -1 or transformer_end_index != -1):
-        assert Exception(f"Cannot use pooling strategy when is not used {TransformerPooling.HiddenStates.value}")
+    if pooling_type in [
+        TransformerPooling.LastHiddenState,
+        TransformerPooling.Pooler,
+    ] and (
+        transformer_pooling_strategy is not None
+        or transformer_start_index != -1
+        or transformer_end_index != -1
+    ):
+        assert Exception(
+            f"Cannot use pooling strategy when is not used {TransformerPooling.HiddenStates.value}"
+        )
         return None
-
 
 
 class BertPoolingLayer(tf.keras.layers.Layer):
     def call(
-        self, 
-        inputs, 
-        pooling_type, 
+        self,
+        inputs,
+        pooling_type,
         transformer_pooling_strategy,
         transformer_start_index,
-        transformer_end_index
+        transformer_end_index,
     ):
         verify_bert_pooling_input(
-            pooling_type, 
-            transformer_pooling_strategy, 
-            transformer_start_index, 
-            transformer_end_index
+            pooling_type,
+            transformer_pooling_strategy,
+            transformer_start_index,
+            transformer_end_index,
         )
-        
+
         if pooling_type == TransformerPooling.LastHiddenState:
             last_hidden_state = inputs[TransformerPooling.LastHiddenState.value]
             return tf.reduce_mean(last_hidden_state, axis=1)
-            
+
         if pooling_type == TransformerPooling.Pooler:
             pooler = inputs[TransformerPooling.Pooler.value]
             return pooler
-                
+
         if pooling_type == TransformerPooling.HiddenStates:
             selector = inputs[TransformerPooling.HiddenStates.value]
 
@@ -50,14 +56,17 @@ class BertPoolingLayer(tf.keras.layers.Layer):
 
             selector = selector[index_start_from_behinde:index_end_from_behinde]
 
-            if transformer_pooling_strategy in [TransformerPoolingStrategy.ConcatAverage, TransformerPoolingStrategy.ConcatCLS] :
+            if transformer_pooling_strategy in [
+                TransformerPoolingStrategy.ConcatAverage,
+                TransformerPoolingStrategy.ConcatCLS,
+            ]:
                 concatened = tf.concat(selector, axis=2)
 
                 if transformer_pooling_strategy == TransformerPoolingStrategy.ConcatCLS:
                     cls = concatened[:, 0, :]
                     return cls
                 else:
-                    averaged_sentence = tf.reduce_mean(concatened, axis=1) 
+                    averaged_sentence = tf.reduce_mean(concatened, axis=1)
                     return averaged_sentence
             else:
                 tf_tensor = tf.convert_to_tensor(selector)
@@ -66,5 +75,5 @@ class BertPoolingLayer(tf.keras.layers.Layer):
                     cls = averaged[:, 0, :]
                     return cls
                 else:
-                    averaged_sentence = tf.reduce_mean(averaged, axis=1) 
+                    averaged_sentence = tf.reduce_mean(averaged, axis=1)
                     return averaged_sentence

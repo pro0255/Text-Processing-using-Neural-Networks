@@ -1,4 +1,3 @@
-
 def get_data_from_gutenberg(data, key):
     try:
         return data[key][0]

@@ -1,6 +1,16 @@
-from gensim.parsing.preprocessing import preprocess_string, strip_tags as strip_tags_gensim, strip_punctuation as strip_punctuation_gensim, strip_multiple_whitespaces as strip_multiple_whitespaces_gensim, strip_numeric as strip_numeric_gensim, remove_stopwords as remove_stopwords_gensim, strip_short as strip_short_gensim, stem_text as stem_text_gensim
+from gensim.parsing.preprocessing import (
+    preprocess_string,
+    strip_tags as strip_tags_gensim,
+    strip_punctuation as strip_punctuation_gensim,
+    strip_multiple_whitespaces as strip_multiple_whitespaces_gensim,
+    strip_numeric as strip_numeric_gensim,
+    remove_stopwords as remove_stopwords_gensim,
+    strip_short as strip_short_gensim,
+    stem_text as stem_text_gensim,
+)
 import nltk
 from nltk.stem import WordNetLemmatizer
+
 
 class TextPreprocessor:
     def __init__(self) -> None:
@@ -12,10 +22,10 @@ class TextPreprocessor:
 
     def strip_punctuation(self, text):
         return strip_punctuation_gensim(text)
-    
+
     def strip_multiple_whitespaces(self, text):
         return strip_multiple_whitespaces_gensim(text)
-    
+
     def strip_numeric(self, text):
         return strip_numeric_gensim(text)
 
@@ -29,10 +39,12 @@ class TextPreprocessor:
         return strip_short_gensim(text)
 
     def create_strip_short_method(self, minsize=3):
-        #TODO: fix
-        print(f'Creating shorting method with min = {minsize}')
+        # TODO: fix
+        print(f"Creating shorting method with min = {minsize}")
+
         def strip_short(text, minsize=minsize):
             return strip_short_gensim(text, minsize)
+
         return strip_short
 
     def stem_text(self, text):
@@ -43,30 +55,31 @@ class TextPreprocessor:
 
     def create_lemma_text(self):
         instance = WordNetLemmatizer()
-        print(f'Creating lemma method with instance {instance}')
+        print(f"Creating lemma method with instance {instance}")
+
         def lemma_text(text):
             word_list = nltk.word_tokenize(text)
-            return ' '.join([instance.lemmatize(word) for word in word_list])
-        return lemma_text 
+            return " ".join([instance.lemmatize(word) for word in word_list])
+
+        return lemma_text
 
     def create_preprocess_string_func(self, filters, tokenized=False):
         def preprocess_func(text):
             result = preprocess_string(text, filters)
-            return result if tokenized else ' '.join(result)
+            return result if tokenized else " ".join(result)
+
         return preprocess_func
 
-
     def default_preprocessing(self):
-        return self.create_preprocess_string_func([
-            self.to_lowercase,
-            self.strip_punctuation,
-            self.strip_tags,
-            self.strip_multiple_whitespaces,
-            self.strip_numeric,
-            self.strip_stopwords,
-            self.strip_short,
-            self.lemma_text
-        ])
-
-
-
+        return self.create_preprocess_string_func(
+            [
+                self.to_lowercase,
+                self.strip_punctuation,
+                self.strip_tags,
+                self.strip_multiple_whitespaces,
+                self.strip_numeric,
+                self.strip_stopwords,
+                self.strip_short,
+                self.lemma_text,
+            ]
+        )

@@ -1,8 +1,10 @@
 from src.analysis.experiments.process_directory import process_directory
 import pandas as pd
 
+
 def create_dataframe(start_directory, storage=None):
     return process_directory(start_directory, storage)
+
 
 class Storage:
     def __init__(self):

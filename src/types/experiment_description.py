@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class ExperimentDescriptionType(Enum):
     ExperimentType = "ExperimentType"
     ExperimentId = "ExperimentId"

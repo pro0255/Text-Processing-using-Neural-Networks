@@ -2,8 +2,11 @@ from transformers import AutoTokenizer
 import tensorflow as tf
 from src.types.transformer_input import TransformerInput
 
+
 class TransformerTokenizer:
-    def __init__(self, name, encoder=None, max_len=512, preprocess_pipeline=None) -> None:
+    def __init__(
+        self, name, encoder=None, max_len=512, preprocess_pipeline=None
+    ) -> None:
         self.name = name
         self.tokenizer = AutoTokenizer.from_pretrained(name)
         self.preprocess_pipeline = preprocess_pipeline
@@ -18,28 +21,31 @@ class TransformerTokenizer:
             text = self.preprocess_pipeline(text)
 
         tokenized = self.tokenizer(
-            text, 
-            return_tensors="tf",      
+            text,
+            return_tensors="tf",
             max_length=self.max_len,
             add_special_tokens=True,
             return_attention_mask=True,
             pad_to_max_length=True,
             return_token_type_ids=False,
-            padding='max_length',
-            truncation=True
-
+            padding="max_length",
+            truncation=True,
         )
-        #encode label
+        # encode label
 
-        label = self.encoder.transform([label])[0] if self.encoder is not None else label
-        return tokenized[TransformerInput.input.value][0], tokenized[TransformerInput.mask.value][0], label
+        label = (
+            self.encoder.transform([label])[0] if self.encoder is not None else label
+        )
+        return (
+            tokenized[TransformerInput.input.value][0],
+            tokenized[TransformerInput.mask.value][0],
+            label,
+        )
 
     def ty_py_func(self, text, label):
-        return tf.py_function(self.tokenize, [text, label], [tf.int32, tf.int32, tf.int32])
+        return tf.py_function(
+            self.tokenize, [text, label], [tf.int32, tf.int32, tf.int32]
+        )
 
     def to_model_input(self, input_ids, attention_mask, label):
         return {"input_ids": input_ids, "attention_mask": attention_mask}, label
-
-
-
-

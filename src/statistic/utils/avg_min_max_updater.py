@@ -1,6 +1,7 @@
 from src.statistic.types.avg_max_min import Stat
 from src.statistic.utils.moving_avg_calculator import MovingAverageCalculator
 
+
 class AvgMaxMinUpdate:
     def __init__(self) -> None:
         self.moving_avg_calculators = {}
@@ -17,9 +18,11 @@ class AvgMaxMinUpdate:
         if value > current_max:
             updated_dic[Stat.Max.value] = value
 
-        current_calculator = self.moving_avg_calculators.get(label, MovingAverageCalculator())
+        current_calculator = self.moving_avg_calculators.get(
+            label, MovingAverageCalculator()
+        )
         current_calculator.update(value)
 
-        updated_dic[Stat.Avg.value] = current_calculator.mean 
-        
+        updated_dic[Stat.Avg.value] = current_calculator.mean
+
         return updated_dic

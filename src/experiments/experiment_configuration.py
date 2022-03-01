@@ -21,18 +21,18 @@ from src.config.config import get_current_folder
 import time
 from src.experiments.experiment_summarization import ExperimentSummarization
 from src.types.experiment_summarization_fields import ExperimentSummarizationFields
-from src.experiments.sandbox.classic_experiment_runner import ClassicExperimentWrapper 
+from src.experiments.sandbox.classic_experiment_runner import ClassicExperimentWrapper
 
 
 class ExperimentConfiguration:
     def __init__(
-        self, 
-        train, 
-        test, 
-        experiment_id, 
-        description, 
-        predict_instance, 
-        vectorization_instance
+        self,
+        train,
+        test,
+        experiment_id,
+        description,
+        predict_instance,
+        vectorization_instance,
     ) -> None:
         self.train = train
         self.test = test
@@ -43,7 +43,7 @@ class ExperimentConfiguration:
 
     def get_train(self):
         return self.train
-    
+
     def get_test(self):
         return self.test
 

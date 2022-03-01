@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class GutenbergJsonAttributes(Enum):
     Title = "Title"
     Author = "Author"

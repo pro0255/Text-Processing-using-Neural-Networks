@@ -27,18 +27,21 @@ class ExperimentTimer:
         }
 
     def create_dic(self, times):
-        return {time_key: self.create_time_parts() for time_key in times} 
+        return {time_key: self.create_time_parts() for time_key in times}
 
     def update(self, time_type, time_part, value):
         self.dic[time_type][time_part] = value
 
     def get_elapsed(self, time_type):
-        return self.dic[time_type][TimeParts.End.value] - self.dic[time_type][TimeParts.Start.value]
+        return (
+            self.dic[time_type][TimeParts.End.value]
+            - self.dic[time_type][TimeParts.Start.value]
+        )
 
     def start(self, time_type):
         current = time.time()
         self.update(time_type, TimeParts.Start.value, current)
 
-    def end(self, time_type):        
+    def end(self, time_type):
         current = time.time()
         self.update(time_type, TimeParts.End.value, current)

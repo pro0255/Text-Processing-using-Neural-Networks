@@ -1,6 +1,6 @@
-
 from enum import Enum
 from src.types.time_type import TimeType
+
 
 class ExperimentSummarizationFields(Enum):
     ExperimentType = "ExperimentType"

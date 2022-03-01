@@ -1,5 +1,6 @@
 from src.experiments.experiment_summarization import ExperimentSummarization
-from src.experiments.sandbox.classic_experiment_runner import ClassicExperimentWrapper 
+from src.experiments.sandbox.classic_experiment_runner import ClassicExperimentWrapper
+
 
 class ClassicModelWithVectorizerExperiment:
     def __init__(self) -> None:
@@ -12,11 +13,7 @@ class ClassicModelWithVectorizerExperiment:
         else:
             return ExperimentSummarization(experiment_id)
 
-    def run(
-        self,
-        experiment_configuration,
-        cache=None
-    ):
+    def run(self, experiment_configuration, cache=None):
         train_ds = experiment_configuration.get_train()
         test_ds = experiment_configuration.get_test()
         experiment_id = experiment_configuration.get_experiment_id()
@@ -26,19 +23,30 @@ class ClassicModelWithVectorizerExperiment:
 
         summarization = self.get_summarization(experiment_id, cache)
 
-        wrapper = ClassicExperimentWrapper(
-            experiment_id, 
-            summarization
-        )
+        wrapper = ClassicExperimentWrapper(experiment_id, summarization)
 
-        X_train, X_test, y_train, y_true_labels, experiment_summarization, experiment_timer = wrapper.run(
+        (
+            X_train,
+            X_test,
+            y_train,
+            y_true_labels,
+            experiment_summarization,
+            experiment_timer,
+        ) = wrapper.run(
             predict_instance,
             vectorization_instance,
             train_ds,
             None,
             test_ds,
             description,
-            cache
+            cache,
         )
 
-        return X_train, X_test, y_train, y_true_labels, experiment_summarization, experiment_timer
+        return (
+            X_train,
+            X_test,
+            y_train,
+            y_true_labels,
+            experiment_summarization,
+            experiment_timer,
+        )

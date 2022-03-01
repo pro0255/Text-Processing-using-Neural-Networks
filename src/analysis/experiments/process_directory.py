@@ -2,10 +2,11 @@ from src.analysis.experiments.is_correct_file import is_correct_file
 from src.analysis.experiments.create_record import create_record
 import os
 
+
 def process_directory(directory, storage=None):
     is_correct = is_correct_file(directory)
     record = None
-    
+
     if is_correct:
         if storage is not None:
             record = create_record(directory)
