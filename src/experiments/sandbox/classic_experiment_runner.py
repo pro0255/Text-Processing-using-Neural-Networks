@@ -26,35 +26,43 @@ class ClassicExperimentWrapper:
         self.experiment_timer = ExperimentTimer()
 
 
-    def vectorizer_sentences(self, train_ds, test_ds, vectorization_instance):
+    def vectorizer_sentences(self, train_ds, test_ds, vectorization_instance, cache=None):
         print("Running vectorization of data")
-        
-        #if cached then set experiment timer VectorizationTime.value with old
-        #get X_train, y_train, X_test, y_true_labels
-        vectorization_runner = VectorizerRunner()
 
-        self.experiment_timer.start(TimeType.VectorizationTime.value)
-        X_train, y_train = vectorization_runner.fit(
-            train_ds, 
-            vectorization_instance, 
-            SubsetType.Train, 
-            self.experiment_summarization
-        )
-        print("End train")
+        if cache is not None:
+            print('Vectorization from cache')
+            X_train, X_test, y_train, y_true_labels, _, experiment_timer = cache
+            self.experiment_timer.dic[TimeType.VectorizationTime.value] = experiment_timer.dic[TimeType.VectorizationTime.value]
+            return X_train, X_test, y_train, y_true_labels
+
+        else:
+            print('New vectorization')
+            
+            #if cached then set experiment timer VectorizationTime.value with old
+            #get X_train, y_train, X_test, y_true_labels
+            vectorization_runner = VectorizerRunner()
+
+            self.experiment_timer.start(TimeType.VectorizationTime.value)
+            X_train, y_train = vectorization_runner.fit(
+                train_ds, 
+                vectorization_instance, 
+                SubsetType.Train, 
+                self.experiment_summarization
+            )
+            print("End train")
 
 
-        X_test, y_true_labels = vectorization_runner.fit(
-            test_ds, 
-            vectorization_instance, 
-            SubsetType.Test, 
-            self.experiment_summarization
-        )
-        print("End test")
-        self.experiment_timer.end(TimeType.VectorizationTime.value)
-        print("End of vectorization")
-        
-
-        return X_train, X_test, y_train, y_true_labels
+            X_test, y_true_labels = vectorization_runner.fit(
+                test_ds, 
+                vectorization_instance, 
+                SubsetType.Test, 
+                self.experiment_summarization
+            )
+            print("End test")
+            self.experiment_timer.end(TimeType.VectorizationTime.value)
+            print("End of vectorization")
+            
+            return X_train, X_test, y_train, y_true_labels
 
 
     def fit(self, X_train, y_train, predict_instance):
@@ -79,20 +87,19 @@ class ClassicExperimentWrapper:
         train_ds,
         val_ds,
         test_ds,
-        description
+        description,
+        cache=None
     ):
         self.description = description
 
         #create directory
         self.experiment_setup.run()
 
-        X_train, X_test, y_train, y_true_labels = self.vectorizer_sentences(train_ds, test_ds, vectorization_instance)
+        X_train, X_test, y_train, y_true_labels = self.vectorizer_sentences(train_ds, test_ds, vectorization_instance, cache)
 
 
-        
         self.fit(X_train, y_train, predict_instance)
         y_pred_labels = self.predict(X_test, predict_instance)
-
 
         print('Evaluating results')
         self.experiment_timer.start(TimeType.EvaluateTime.value)
@@ -109,7 +116,7 @@ class ClassicExperimentWrapper:
         description.state[ExperimentDescriptionType.ExtraField.value] = get_extra(predict_instance)
         self.description.save()
 
-        return X_train, X_test, y_train, y_true_labels, self.experiment_summarization
+        return X_train, X_test, y_train, y_true_labels, self.experiment_summarization, self.experiment_timer
 
 
 

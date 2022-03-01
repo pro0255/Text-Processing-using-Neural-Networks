@@ -25,75 +25,89 @@ from src.experiments.experiment_configuration import ExperimentConfiguration
 from src.utils.split_dataframe import split_dataframe
 from src.utils.normalize_dataframe_to_size import normalize_dataframe_to_size
 from src.utils.create_dataset_from_dataframe import create_dataset_from_Xy
-from src.experiments.descriptions.create_description import create_description_for_classic
-
-#TODO: find out sequence length.. 
+from src.experiments.descriptions.create_description import create_description_for_classic, create_description_for_transformer_with_classic
+from src.models.transformer.pooling_strategy import pooling_strategy_dictionary
 
 NAME_OF_EXPERIMENT = "ClassicAndTransformerPoolingStrategy"
 
 class ClassicModelAndTransformerPoolingStrategy:
-    def __init__(self, number_of_authors, number_of_sentences, max_len=512) -> None:
-        self.number_of_authors = number_of_authors
-        self.number_of_sentences = number_of_sentences
-        self.max_len = max_len
+    def __init__(self) -> None:
+        pass
 
 
-    def create_experiment_id(self, args):
+    def create_experiment_id(self):
         current_timestamp = time.time()
-        current_experiment_id = args[0] + os.path.sep + f"stamp:{str(current_timestamp)}"
-        return (*args, current_experiment_id)
+        current_experiment_id = NAME_OF_EXPERIMENT + os.path.sep + f"stamp:{str(current_timestamp)}"
+        return current_experiment_id
 
 
-    def experiments_generator(self):
-        yield self.create_experiment_id(
-            (
-                NAME_OF_EXPERIMENT,
-                30000,
-                self.number_of_authors,
-                self.number_of_sentences,
-                RandomForest(),
-                BertBaseUncasedVectorizer(max_len=self.max_len)
-            )
-        )
+    def transformer_vectorizer_generator(max_lenghts=[], transformer_vectorizers=[], pooling_strategies=[]):
+        for max_len in max_lenghts:
+            for transformer_vectorizer in transformer_vectorizers:
+                for strategy in pooling_strategies:
+                        transformer_pooling_type, transformer_pooling_strategy, transformer_start_index, transformer_end_index = pooling_strategy_dictionary[strategy]
+                        yield (
+                            transformer_vectorizer(
+                                max_len=max_len,
+                                transformer_pooling_type=transformer_pooling_type,
+                                transformer_pooling_strategy=transformer_pooling_strategy,
+                                transformer_start_index=transformer_start_index,
+                                transformer_end_index=transformer_end_index
+                            )
+                        )
 
-
-    def run(self, all_data=None, data=None, paths=None):
+    def run(
+        self, 
+        number_of_authors,
+        number_of_sentences,
+        max_lenghts=[], 
+        transformer_vectorizers=[], 
+        pooling_strategies=[], 
+        predictors_factory=[], 
+        normalize_value=None, 
+        all_data=None, 
+        data=None, 
+        paths=None
+    ):
         if all_data is None:
-            data, paths = get_dataset_all(self.number_of_authors, self.number_of_sentences)
+            data, paths = get_dataset_all(number_of_authors, number_of_sentences)
             all_data = from_dataset_dataframe(data[0])
 
-        for value in self.experiments_generator():
-            experiment_type, normalize_value, number_of_authors, number_of_sentences, prediction_instance, vectorizer_instance, experiment_id = value
+        for value in self.transformer_vectorizer_generator(max_lenghts, transformer_vectorizers, pooling_strategies):
 
-            print(
-                experiment_id,
-                type(vectorizer_instance).__name__
-            )
+            transformer_vectorizer = value
 
-            description = create_description_for_classic(
-                experiment_id,
-                experiment_type,
-                number_of_authors,
-                number_of_sentences,
-                prediction_instance,
-                vectorizer_instance,
-                normalize_value,
-                paths[0]
-            )
+            cache = None
 
-            data_normalized = normalize_dataframe_to_size(all_data, normalize_value)
-            X_train, X_test, y_train, y_test = split_dataframe(data_normalized)
-            train_ds = create_dataset_from_Xy(X_train, y_train)
-            test_ds = create_dataset_from_Xy(X_test, y_test)
+            for predict_instance_factory in predictors_factory:
 
-            conf = ExperimentConfiguration(
-                train=train_ds, 
-                test=test_ds, 
-                experiment_id=experiment_id, 
-                description=description, 
-                predict_instance=prediction_instance, 
-                vectorization_instance=prediction_instance
-            )
+                current_predict_instance = predict_instance_factory()
+                current_experiment_id = self.create_experiment_id()
 
-            experiment = ClassicModelWithVectorizerExperiment()
-            experiment.run(conf)
+                description = create_description_for_transformer_with_classic(
+                    current_experiment_id,
+                    NAME_OF_EXPERIMENT,
+                    number_of_authors,
+                    number_of_sentences,
+                    current_predict_instance,
+                    transformer_vectorizer,
+                    normalize_value,
+                    paths[0]
+                )
+
+                data_normalized = normalize_dataframe_to_size(all_data, normalize_value)
+                X_train, X_test, y_train, y_test = split_dataframe(data_normalized)
+                train_ds = create_dataset_from_Xy(X_train, y_train)
+                test_ds = create_dataset_from_Xy(X_test, y_test)
+
+                conf = ExperimentConfiguration(
+                    train=train_ds, 
+                    test=test_ds, 
+                    experiment_id=current_experiment_id, 
+                    description=description, 
+                    predict_instance=current_predict_instance, 
+                    vectorization_instance=transformer_vectorizer
+                )
+
+                experiment = ClassicModelWithVectorizerExperiment()
+                cache = experiment.run(conf, cache)

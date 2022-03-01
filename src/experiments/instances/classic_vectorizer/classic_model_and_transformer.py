@@ -1,22 +1,10 @@
 import os
-from src.config.config import get_current_folder
 from src.models.classic.linear import LinearClassifier
 from src.models.classic.naive_bayes import NaiveBayes
 from src.models.classic.random_forest import RandomForest
-from src.vectorizers.classic.bow_vectorizer import BoWVectorizer
-from src.vectorizers.classic.tfidf_vectorizer import TfidfVectorizer
 from src.vectorizers.transformer.bert_base_vectorizer import BertBaseUncasedVectorizer
 from src.vectorizers.transformer.distil_bert_base_vectorizer import DistilBertBaseUncasedVectorizer
 from src.vectorizers.transformer.electra_small_vectorizer import ElectraSmallVectorizer
-from src.vectorizers.embedding.glove_vectorizer import GloveVectorizer
-from src.vectorizers.embedding.word2vec_vectorizer import Word2VecVectorizer
-from src.config.config import BLANK_DESCRIPTION
-from src.experiments.experiment_description import ExperimentDescription
-from src.types.transformer_pooling import TransformerPooling
-from src.types.prediction_model_type import PredictionModelType
-from src.types.net_type import NetType
-from src.types.embedding_type import EmbeddingType
-from src.types.processing_type import PreprocessingType
 import time
 from src.data_loading.get_dataset_object_from import get_dataset_all
 from src.utils.from_dataset_arrays import from_dataset_dataframe
@@ -25,9 +13,8 @@ from src.experiments.experiment_configuration import ExperimentConfiguration
 from src.utils.split_dataframe import split_dataframe
 from src.utils.normalize_dataframe_to_size import normalize_dataframe_to_size
 from src.utils.create_dataset_from_dataframe import create_dataset_from_Xy
-from src.experiments.descriptions.create_description import create_description_for_classic
+from src.experiments.descriptions.create_description import create_description_for_transformer_with_classic
 
-#TODO: find out sequence length.. 
 
 NAME_OF_EXPERIMENT = "ClassicAndTransformer"
 
@@ -131,7 +118,7 @@ class ClassicModelAndTransformer:
                 type(vectorizer_instance).__name__
             )
 
-            description = create_description_for_classic(
+            description = create_description_for_transformer_with_classic(
                 experiment_id,
                 experiment_type,
                 number_of_authors,
