@@ -60,7 +60,7 @@ class ClassicModelAndTransformerPoolingStrategy:
         self, 
         number_of_authors,
         number_of_sentences,
-        max_lenghts=[], 
+        max_lengths=[], 
         transformer_vectorizers=[], 
         pooling_strategies=[], 
         predictors_factory=[], 
@@ -73,7 +73,7 @@ class ClassicModelAndTransformerPoolingStrategy:
             data, paths = get_dataset_all(number_of_authors, number_of_sentences)
             all_data = from_dataset_dataframe(data[0])
 
-        for value in self.transformer_vectorizer_generator(max_lenghts, transformer_vectorizers, pooling_strategies):
+        for value in self.transformer_vectorizer_generator(max_lengths, transformer_vectorizers, pooling_strategies):
 
             transformer_vectorizer = value
 
