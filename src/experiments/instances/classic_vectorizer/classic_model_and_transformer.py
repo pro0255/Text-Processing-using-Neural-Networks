@@ -22,7 +22,7 @@ class ClassicModelAndTransformer:
     def __init__(self) -> None:
         pass
 
-    def create_experiment_id(self, args):
+    def create_experiment_id(self):
         current_timestamp = time.time()
         current_experiment_id = NAME_OF_EXPERIMENT + os.path.sep + f"stamp:{str(current_timestamp)}"
         return current_experiment_id
