@@ -41,7 +41,7 @@ class ClassicModelAndTransformerPoolingStrategy:
         return current_experiment_id
 
 
-    def transformer_vectorizer_generator(max_lenghts=[], transformer_vectorizers=[], pooling_strategies=[]):
+    def transformer_vectorizer_generator(self, max_lenghts=[], transformer_vectorizers=[], pooling_strategies=[]):
         for max_len in max_lenghts:
             for transformer_vectorizer in transformer_vectorizers:
                 for strategy in pooling_strategies:
