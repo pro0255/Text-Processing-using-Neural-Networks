@@ -147,7 +147,7 @@ class ClassicModelAndVectorizer:
 
         for value in self.experiments_generator():
             experiment_type, normalize_value, number_of_authors, number_of_sentences, prediction_instance, vectorizer_instance, experiment_id = value
-            
+
             print(f"Experiment id {experiment_id}")
 
             description = create_description_for_classic(

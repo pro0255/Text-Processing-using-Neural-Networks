@@ -19,16 +19,71 @@ from src.experiments.descriptions.create_description import create_description_f
 NAME_OF_EXPERIMENT = "ClassicAndTransformer"
 
 class ClassicModelAndTransformer:
-    def __init__(self, number_of_authors, number_of_sentences, max_len=512) -> None:
-        self.number_of_authors = number_of_authors
-        self.number_of_sentences = number_of_sentences
-        self.max_len = max_len
-
+    def __init__(self) -> None:
+        pass
 
     def create_experiment_id(self, args):
         current_timestamp = time.time()
-        current_experiment_id = args[0] + os.path.sep + f"stamp:{str(current_timestamp)}"
-        return (*args, current_experiment_id)
+        current_experiment_id = NAME_OF_EXPERIMENT + os.path.sep + f"stamp:{str(current_timestamp)}"
+        return current_experiment_id
+
+    def transformer_vectorizer_generator(self, max_lenghts=[], transformer_vectorizers=[]):
+        for max_len in max_lenghts:
+            for transformer_vectorizer in transformer_vectorizers:
+                yield transformer_vectorizer(max_len=max_len)
+
+    def run(
+        self, 
+        number_of_authors,
+        number_of_sentences,
+        max_lengths=[], 
+        transformer_vectorizers=[BertBaseUncasedVectorizer, DistilBertBaseUncasedVectorizer, ElectraSmallVectorizer],
+        predictors_factory=[], 
+        normalize_value=None, 
+        all_data=None, 
+        data=None, 
+        paths=None
+    ):
+        if all_data is None:
+            data, paths = get_dataset_all(number_of_authors, number_of_sentences)
+            all_data = from_dataset_dataframe(data[0])
+
+        data_normalized = normalize_dataframe_to_size(all_data, normalize_value)
+        X_train, X_test, y_train, y_test = split_dataframe(data_normalized)
+        train_ds = create_dataset_from_Xy(X_train, y_train)
+        test_ds = create_dataset_from_Xy(X_test, y_test)
+
+        for value in self.transformer_vectorizer_generator(max_lengths, transformer_vectorizers):
+            transformer_vectorizer = value
+            cache = None
+
+            for predict_instance_factory in predictors_factory:
+
+                current_predict_instance = predict_instance_factory()
+                current_experiment_id = self.create_experiment_id()
+
+                description = create_description_for_transformer_with_classic(
+                    current_experiment_id,
+                    NAME_OF_EXPERIMENT,
+                    number_of_authors,
+                    number_of_sentences,
+                    current_predict_instance,
+                    transformer_vectorizer,
+                    normalize_value,
+                    paths[0]
+                )
+
+                conf = ExperimentConfiguration(
+                    train=train_ds, 
+                    test=test_ds, 
+                    experiment_id=current_experiment_id, 
+                    description=description, 
+                    predict_instance=current_predict_instance, 
+                    vectorization_instance=transformer_vectorizer
+                )
+
+                experiment = ClassicModelWithVectorizerExperiment()
+                cache = experiment.run(conf, cache)
 
 
     def experiments_generator(self):
