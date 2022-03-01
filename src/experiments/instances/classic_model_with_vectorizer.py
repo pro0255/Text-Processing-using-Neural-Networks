@@ -22,7 +22,7 @@ class ClassicModelWithVectorizerExperiment:
             summarization
         )
 
-        wrapper.run(
+        X_train, X_test, y_train, y_true_labels, experiment_summarization = wrapper.run(
             predict_instance,
             vectorization_instance,
             train_ds,
@@ -30,3 +30,5 @@ class ClassicModelWithVectorizerExperiment:
             test_ds,
             description,
         )
+
+        return X_train, X_test, y_train, y_true_labels, experiment_summarization

@@ -25,33 +25,15 @@ class ClassicExperimentWrapper:
         self.experiment_summarization = ExperimentSummarization(experiment_id, self.directory) if experiment_summarization is None else experiment_summarization
         self.experiment_timer = ExperimentTimer()
 
-    def run(
-        self, 
-        predict_instance,
-        vectorization_instance,
-        train_ds,
-        val_ds,
-        test_ds,
-        description
-    ):
 
-        self.description = description
-
-        #create directory
-        self.experiment_setup.run()
-
-        #compile model
-
-
-        #Vectorize train, test data
-
+    def vectorizer_sentences(self, train_ds, test_ds, vectorization_instance):
         print("Running vectorization of data")
+        
+        #if cached then set experiment timer VectorizationTime.value with old
+        #get X_train, y_train, X_test, y_true_labels
         vectorization_runner = VectorizerRunner()
 
-
         self.experiment_timer.start(TimeType.VectorizationTime.value)
-
-
         X_train, y_train = vectorization_runner.fit(
             train_ds, 
             vectorization_instance, 
@@ -68,28 +50,52 @@ class ClassicExperimentWrapper:
             self.experiment_summarization
         )
         print("End test")
-
-
         self.experiment_timer.end(TimeType.VectorizationTime.value)
         print("End of vectorization")
+        
+
+        return X_train, X_test, y_train, y_true_labels
 
 
+    def fit(self, X_train, y_train, predict_instance):
         print('Fitting model')
         self.experiment_timer.start(TimeType.LearningTime.value)
         predict_instance.fit(X_train, y_train)
         self.experiment_timer.end(TimeType.LearningTime.value)
 
 
-        #save results
+    def predict(self, X_test, predict_instance):
         print('Predicting test dataset')
         self.experiment_timer.start(TimeType.PredictionTime.value)
         y_pred_labels = predict_instance.predict(X_test)
         self.experiment_timer.end(TimeType.PredictionTime.value)
+        return y_pred_labels
+
+
+    def run(
+        self, 
+        predict_instance,
+        vectorization_instance,
+        train_ds,
+        val_ds,
+        test_ds,
+        description
+    ):
+        self.description = description
+
+        #create directory
+        self.experiment_setup.run()
+
+        X_train, X_test, y_train, y_true_labels = self.vectorizer_sentences(train_ds, test_ds, vectorization_instance)
+
+
+        
+        self.fit(X_train, y_train, predict_instance)
+        y_pred_labels = self.predict(X_test, predict_instance)
 
 
         print('Evaluating results')
         self.experiment_timer.start(TimeType.EvaluateTime.value)
-   
         self.experiment_evaluate.calc(y_true_labels, y_pred_labels)
         self.experiment_timer.end(TimeType.EvaluateTime.value)
 
@@ -102,6 +108,9 @@ class ClassicExperimentWrapper:
         print('Saving decription of experiment')
         description.state[ExperimentDescriptionType.ExtraField.value] = get_extra(predict_instance)
         self.description.save()
+
+        return X_train, X_test, y_train, y_true_labels, self.experiment_summarization
+
 
 
 
