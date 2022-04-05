@@ -52,7 +52,7 @@ class TransformerVectorizer:
 
         for x in prepare_dataset_from_tokenizer(dataset, self.tokenizer).batch(1):
             transformer_input, label = x
-            output = self.transformer(transformer_input, output_hidden_states=True)
+            output = self.transformer(transformer_input)
 
             output = BertPoolingLayer()(
                 output,

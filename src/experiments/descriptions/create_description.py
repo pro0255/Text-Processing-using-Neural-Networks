@@ -117,3 +117,45 @@ def create_description_for_transformer_with_classic(
         transformer_pooling_strategy=transformer_pooling_strategy,
         normalization_size=normalization_size,
     )
+
+
+def create_description_for_transformer_with_dense_head(
+    experiment_id,
+    experiment_type,
+    number_of_authors,
+    number_of_sentences,
+    model_name,
+    pooling_strategy_arguments,
+    seq_len,
+    trainable,
+    normalization_size,
+    path_data,
+    learning_settings,
+    preprocessing_type=PreprocessingType.Default.value,
+):
+    transformer_pooling, transformer_pooling_strategy, transformer_start_index, transformer_end_index = pooling_strategy_arguments
+
+    return ExperimentDescription(
+        experiment_id=experiment_id,
+        experiment_type=experiment_type,
+        learning_settings=learning_settings,
+        transformer_name=model_name.value,
+        transformer_pooling=transformer_pooling.value,
+        prediction_model_type=PredictionModelType.Classic.value,
+        net_type=NetType.Dense.value,
+        embedding_type=EmbeddingType.Transformer.value,
+        trainable=trainable,
+        preprocessing_type=preprocessing_type,
+        number_of_authors=number_of_authors,
+        number_of_sentences=number_of_sentences,
+        load_path=path_data,
+        seq_len=seq_len,
+        is_test=USE_TESTING_DATASET_FOLDER,
+        classic_model_name=BLANK_DESCRIPTION,
+        extra_field=BLANK_DESCRIPTION,
+        transformer_start_index=transformer_start_index,
+        transformer_end_index=transformer_end_index,
+        transformer_pooling_strategy=BLANK_DESCRIPTION if transformer_pooling_strategy is None else transformer_pooling_strategy.value,
+        normalization_size=normalization_size,
+    )
+

@@ -28,9 +28,9 @@ class BertPoolingLayer(tf.keras.layers.Layer):
         self,
         inputs,
         pooling_type,
-        transformer_pooling_strategy,
-        transformer_start_index,
-        transformer_end_index,
+        transformer_pooling_strategy=None,
+        transformer_start_index=lambda x: 0,
+        transformer_end_index=lambda x: 0,
     ):
         verify_bert_pooling_input(
             pooling_type,
@@ -49,13 +49,14 @@ class BertPoolingLayer(tf.keras.layers.Layer):
 
         if pooling_type == TransformerPooling.HiddenStates:
             selector = inputs[TransformerPooling.HiddenStates.value]
-
+                        
             number_of_layers = len(selector) - 1
-            index_start_from_behinde = number_of_layers - transformer_start_index
-            index_end_from_behinde = number_of_layers - transformer_end_index + 1
-
-            selector = selector[index_start_from_behinde:index_end_from_behinde]
-
+            index_start_from_behind = number_of_layers - transformer_start_index(number_of_layers)
+            index_end_from_behind = number_of_layers - transformer_end_index(number_of_layers) + 1
+            
+            
+            selector = selector[index_start_from_behind:index_end_from_behind]
+            
             if transformer_pooling_strategy in [
                 TransformerPoolingStrategy.ConcatAverage,
                 TransformerPoolingStrategy.ConcatCLS,

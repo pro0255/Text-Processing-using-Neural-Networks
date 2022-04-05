@@ -63,9 +63,6 @@ LOG_SEP = ";"
 
 BLANK_DESCRIPTION = "Nada"
 
-# "/home/usp/pro0255/diploma"
-
-
 def get_current_folder(testing=USE_TESTING_DATASET_FOLDER):
     return PATH_TO_DATASET_FOLDER_TEST if testing else PATH_TO_DATASET_FOLDER
 
@@ -74,3 +71,5 @@ TEXT_COLUMN = "text"
 LABEL_COLUMN = "label"
 
 NORMALIZATION_SUFFIX = "Labels"
+
+RANDOM_STATE = 7

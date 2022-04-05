@@ -1,7 +1,6 @@
 from src.preprocessing.preprocessor import TextPreprocessor
 from src.types.processing_type import PreprocessingType
 
-
 class PreprocessingFactory:
     def __init__(self) -> None:
         self.preprocessor = TextPreprocessor()
@@ -13,6 +12,8 @@ class PreprocessingFactory:
             PreprocessingType.Lowercase: self.preprocessor.create_preprocess_string_func(
                 [self.preprocessor.to_lowercase]
             ),
+            PreprocessingType.Raw: lambda x: x,
+            PreprocessingType.CaseInterpunction: self.preprocessor.default_lowerinterpunction(),
             PreprocessingType.Blank: None,
         }
 

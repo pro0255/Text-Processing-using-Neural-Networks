@@ -1,5 +1,5 @@
 import itertools
-from src.data_preparing.build.gutenberg_builder import GutenbergBuilder
+from src.data_preparing.build.gutenberg_builder import gutenberg_builder
 from src.config.config import (
     GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS,
     FILE_DATA_NAME,
@@ -15,7 +15,7 @@ SENTENCES = list(range(1, 11, 1))
 
 class ProjectSetup:
     def __init__(self) -> None:
-        self.builder = GutenbergBuilder()
+        self.builder = gutenberg_builder()
         self.combs = None
 
     def create_combs(self) -> None:

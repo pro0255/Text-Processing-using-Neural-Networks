@@ -2,7 +2,7 @@ import pandas as pd
 from src.config.config import PATH_TO_ALL_AUTHORS, ALL_AUTHORS_DELIMITER
 
 
-class AuthorsGenerator:
+class authors_generator:
     def __init__(
         self, path: str = PATH_TO_ALL_AUTHORS, sep: str = ALL_AUTHORS_DELIMITER
     ):

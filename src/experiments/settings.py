@@ -17,9 +17,7 @@ class LearningSettings:
         self.learning_rate = learning_rate
         self.metric = metric
         self.loss = loss
-        self.optimizer = tf.keras.optimizers.Adam(
-            learning_rate=self.learning_rate, epsilon=1e-08
-        )
+        self.optimizer = tf.keras.optimizers.Adam(epsilon=1e-08)
 
     def __str__(self) -> str:
         # TODO

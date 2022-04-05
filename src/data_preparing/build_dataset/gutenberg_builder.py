@@ -1,6 +1,6 @@
 from src.data_loading.iterate_over_files import iterate_over_files
 from src.data_preparing.build.build_process_func import build_process_func
-from src.authors.AuthorsGenerator import AuthorsGenerator
+from authors.authors_generator import authors_generator
 from src.types.dataset_type import DataSetType
 import os
 from src.config.config import (
@@ -10,9 +10,9 @@ from src.config.config import (
 )
 
 
-class GutenbergBuilder:
+class gutenberg_builder:
     def __init__(self) -> None:
-        self.author_generator = AuthorsGenerator()
+        self.author_generator = authors_generator()
 
     def build_dataset(
         self,

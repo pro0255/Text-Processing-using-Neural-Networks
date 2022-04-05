@@ -37,8 +37,6 @@ class ExperimentRunWrapper:
         # create directory
         self.experiment_setup.run()
 
-        print("Saving decription of experiment")
-        self.description.save()
         # compile model
 
         print("Compiling model")
@@ -81,3 +79,6 @@ class ExperimentRunWrapper:
         print("Saving")
         self.experiment_evaluate.save()
         self.experiment_summarization.save()
+        
+        print("Saving decription of experiment")
+        self.description.save()

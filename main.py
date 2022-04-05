@@ -1,6 +1,6 @@
 
 import imp
-from src.data_preparing.build.gutenberg_builder import GutenbergBuilder
+from src.data_preparing.build.gutenberg_builder import gutenberg_builder
 from src.app.project_setup import ProjectSetup
 from src.data_preparing.split.run_split_deps_on_stats import run_split_deps_on_stats_same_dir
 from src.utils.create_path_to_gutenberg import create_path_to_gutenberg_sentence_authors_sentence, create_path_to_gutenberg_authors
@@ -20,7 +20,7 @@ from src.utils.create_path_to_gutenberg import get_paths_to_gutenberg
 #path = create_path_to_gutenberg_sentence_authors_sentence(10, 3)
 #run_split_deps_on_stats_same_dir(path)
 
-#g_builder = GutenbergBuilder()
+#g_builder = gutenberg_builder()
 #g_builder.build_dataset(3, 10)
 
 #setup = ProjectSetup()
