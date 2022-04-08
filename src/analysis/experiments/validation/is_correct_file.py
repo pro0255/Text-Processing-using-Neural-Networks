@@ -16,7 +16,7 @@ filenames = [
 ]
 
 
-def is_correct_file(path):
+def is_correct_file(path, filenames=filenames):
     for filename in filenames:
         current_path = os.path.sep.join([path, filename])
         if os.path.exists(current_path):

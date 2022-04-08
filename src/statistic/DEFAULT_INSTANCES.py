@@ -13,6 +13,16 @@ DEFULT_WITHOUT_TRANSFORMER_INSTANCES = [
     TokenMetric(),
 ]
 
+def build_default_instances():
+    instances = []
+    instances.append(LabelMetric())
+    instances.append(LabelTokenMetric())
+    instances.append(SentenceLengthMetric())
+    instances.append(TokenMetric())
+
+
+
+
 DEFAULT_STATISTICS_INSTANCES = DEFULT_WITHOUT_TRANSFORMER_INSTANCES.copy().append(
     TransformerTokenizerCounter()
 )
