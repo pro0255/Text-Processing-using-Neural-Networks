@@ -13,22 +13,21 @@ DEFULT_WITHOUT_TRANSFORMER_INSTANCES = [
     TokenMetric(),
 ]
 
+DEFAULT_STATISTICS_INSTANCES = DEFULT_WITHOUT_TRANSFORMER_INSTANCES.copy().append(
+    TransformerTokenizerCounter()
+)
+
 def build_default_instances():
     instances = []
     instances.append(LabelMetric())
     instances.append(LabelTokenMetric())
     instances.append(SentenceLengthMetric())
     instances.append(TokenMetric())
-
-
-
-
-DEFAULT_STATISTICS_INSTANCES = DEFULT_WITHOUT_TRANSFORMER_INSTANCES.copy().append(
-    TransformerTokenizerCounter()
-)
+    return instances
 
 
 def build_statistic_instances(model_name=TransformerName.BertBaseUncased.value):
-    instances = DEFULT_WITHOUT_TRANSFORMER_INSTANCES.copy()
-    instances.append(TransformerTokenizerCounter(model_name))
+    instances = build_default_instances()
+    if model_name is not None:
+        instances.append(TransformerTokenizerCounter(model_name))
     return instances
