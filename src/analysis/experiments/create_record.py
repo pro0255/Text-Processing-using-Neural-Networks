@@ -1,9 +1,9 @@
-from src.analysis.experiments.parse_confusion_matrix import parse_confusion_matrix
-from src.analysis.experiments.parse_metrics import parse_metrics
-from src.analysis.experiments.parse_description import parse_description
-from src.analysis.experiments.parse_summarization import parse_summarization
-from src.analysis.experiments.merge_content import merge_content
-
+from src.analysis.experiments.parse.parse_confusion_matrix import parse_confusion_matrix
+from src.analysis.experiments.parse.parse_description import parse_description
+from src.analysis.experiments.parse.parse_metrics import parse_metrics
+from src.analysis.experiments.parse.parse_summarization import parse_summarization
+from src.analysis.experiments.parse.parse_log import parse_log
+from src.analysis.experiments.merge.merge_content import merge_content
 
 def create_record(directory):
     try:
@@ -11,8 +11,9 @@ def create_record(directory):
         metrics = parse_metrics(directory)
         description = parse_description(directory)
         summarization = parse_summarization(directory)
+        logs = parse_log(directory)
         record = merge_content(
-            confusion_matrix, metrics, description, summarization, directory
+            confusion_matrix, metrics, description, summarization, directory, logs
         )
         return record
     except Exception as e:

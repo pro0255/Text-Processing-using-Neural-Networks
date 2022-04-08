@@ -1,5 +1,5 @@
 from src.config.config import FILENAME_CONFUSION_MATRIX
-from src.analysis.experiments.exists import exists
+from src.analysis.experiments.validation.exists import exists
 import pandas as pd
 
 

@@ -42,6 +42,11 @@ class ExperimentSummarization:
             self.state[k] = experiment_timer.get_elapsed(k)
         print("End of maping timer")
 
+    def set_records(self, train_records, test_records, valid_records):
+        self.state[ExperimentSummarizationFields.TrainRecords.value] = train_records
+        self.state[ExperimentSummarizationFields.TestRecords.value] = test_records
+        self.state[ExperimentSummarizationFields.ValidRecords.value] = valid_records
+
     def inspect_set(self, current_set, records_type):
         print(f"Running inspection of input set for {records_type}")
         counter = 0

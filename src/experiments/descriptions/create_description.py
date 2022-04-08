@@ -6,6 +6,7 @@ from src.types.net_type import NetType
 from src.types.embedding_type import EmbeddingType
 from src.types.processing_type import PreprocessingType
 from src.types.classic_model_type import ClassicModelType
+from src.models.transformer.pooling_strategy import MAX_FAKE_LAYERS
 
 
 def from_pred_instance_get_type(prediction_instance):
@@ -119,7 +120,7 @@ def create_description_for_transformer_with_classic(
     )
 
 
-def create_description_for_transformer_with_dense_head(
+def create_description_for_transformer(
     experiment_id,
     experiment_type,
     number_of_authors,
@@ -141,7 +142,7 @@ def create_description_for_transformer_with_dense_head(
         learning_settings=learning_settings,
         transformer_name=model_name.value,
         transformer_pooling=transformer_pooling.value,
-        prediction_model_type=PredictionModelType.Classic.value,
+        prediction_model_type=PredictionModelType.NeuralNet.value,
         net_type=NetType.Dense.value,
         embedding_type=EmbeddingType.Transformer.value,
         trainable=trainable,
@@ -150,11 +151,11 @@ def create_description_for_transformer_with_dense_head(
         number_of_sentences=number_of_sentences,
         load_path=path_data,
         seq_len=seq_len,
-        is_test=USE_TESTING_DATASET_FOLDER,
+        is_test=str(False),
         classic_model_name=BLANK_DESCRIPTION,
         extra_field=BLANK_DESCRIPTION,
-        transformer_start_index=transformer_start_index,
-        transformer_end_index=transformer_end_index,
+        transformer_start_index=transformer_start_index(MAX_FAKE_LAYERS),
+        transformer_end_index=transformer_end_index(MAX_FAKE_LAYERS),
         transformer_pooling_strategy=BLANK_DESCRIPTION if transformer_pooling_strategy is None else transformer_pooling_strategy.value,
         normalization_size=normalization_size,
     )

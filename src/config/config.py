@@ -58,6 +58,8 @@ FILENAME_CONFUSION_MATRIX = f"confusion_matrix{Suffix.CSV.value}"
 FILENAME_METRICS = f"metrics{Suffix.CSV.value}"
 FILENAME_DESCRIPTION = f"description{Suffix.CSV.value}"
 FILENAME_SUMMARIZATION = f"summarization{Suffix.CSV.value}"
+FILENAME_LOGS = f"logs{Suffix.CSV.value}"
+
 
 LOG_SEP = ";"
 
@@ -73,3 +75,7 @@ LABEL_COLUMN = "label"
 NORMALIZATION_SUFFIX = "Labels"
 
 RANDOM_STATE = 7
+
+BEST_WEIGHTS_NAME = "weights.best.hdf5"
+
+JUPYTER_LOG_NAME = "jupyter_log.txt"

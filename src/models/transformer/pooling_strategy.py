@@ -21,6 +21,8 @@ class TransformerPoolingStrategySelection(Enum):
     LastHidden = "LastHidden"
 
 
+MAX_FAKE_LAYERS = 12
+
 pooling_strategy_dictionary = {
     TransformerPoolingStrategySelection.SumAllLayersCLS: (
         TransformerPooling.HiddenStates,

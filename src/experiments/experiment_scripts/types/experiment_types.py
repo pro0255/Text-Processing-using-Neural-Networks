@@ -1,7 +1,7 @@
 
 from enum import Enum
 
-class ExperimentTypes(Enum):
-    Learning = "Learning"
+class ExperimentType(Enum):
+    TrainableTransformer = "Learning"
     PoolingStrategy = "PoolingStrategy"
 

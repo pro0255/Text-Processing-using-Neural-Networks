@@ -9,7 +9,7 @@ class ExperimentSetup:
 
     def create_parent_directory(self):
         path = os.path.sep.join([self.directory, self.experiment_id])
-
+        self.parent_path = path
         if not os.path.exists(path):
             os.makedirs(path)
 

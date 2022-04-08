@@ -1,5 +1,5 @@
 from src.config.config import FILENAME_DESCRIPTION
-from src.analysis.experiments.exists import exists
+from src.analysis.experiments.validation.exists import exists
 import pandas as pd
 
 
@@ -10,4 +10,5 @@ def parse_description(directory):
         return None
 
     content = pd.read_csv(path, sep=";")
+    content.columns = ['id', 'value']
     return content

@@ -50,6 +50,5 @@ def get_dataset_all(number_of_authors, number_of_sentences):
     path_data, path_authors = get_path_to_gutenberg_all(
         number_of_authors, number_of_sentences
     )
-    factory = PreprocessingFactory()
-    all_data = get_datasets([path_data], ";", factory.create(PreprocessingType.Default))
+    all_data = get_datasets([path_data], ";", None)
     return (all_data), (path_data, path_authors)
