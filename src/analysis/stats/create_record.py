@@ -6,11 +6,11 @@ from src.statistic.DEFAULT_INSTANCES import build_statistic_instances
 from src.analysis.stats.build_dictionary_from_wrapper import build_dictionary_from_wrapper
 import pandas as pd
 from src.analysis.stats.types.stats_field import StatsField 
-from src.config.config import FILE_DATA_NAME, AUTHORS_FILE_NAME
+from src.config.config import FILE_DATA_NAME, AUTHORS_FILE_NAME, BLANK_DESCRIPTION
 
 
 def create_record(parent_path, norm_value, preprocessing_type, subset_type, transformer_name):
-    print(f"Current {parent_path}, {str(norm_value)}, {preprocessing_type.value}, {subset_type.value}, {transformer_name.value}\n" )
+    print(f"Current {parent_path}, {str(norm_value)}, {preprocessing_type.value}, {subset_type.value}, {BLANK_DESCRIPTION if transformer_name is None else transformer_name.value}\n" )
     value = {}
     
     parts = parent_path.split(os.path.sep)
@@ -23,7 +23,7 @@ def create_record(parent_path, norm_value, preprocessing_type, subset_type, tran
         *build_input_for_statistics_from_path(
             path_to_data,
             ";",
-            build_statistic_instances(transformer_name.value),
+            build_statistic_instances(None if transformer_name is None else transformer_name.value),
             norm_value,
             preprocessing_type,
             subset_type,
@@ -43,7 +43,7 @@ def create_record(parent_path, norm_value, preprocessing_type, subset_type, tran
         StatsField.PreprocessingType.value: preprocessing_type.value,
         StatsField.NormalizationValue.value: norm_value,
         StatsField.SubsetType.value: subset_type.value,
-        StatsField.TransformerName.value: transformer_name.value,
+        StatsField.TransformerName.value: BLANK_DESCRIPTION if transformer_name is None else transformer_name.value,
         StatsField.Authors.value: authors_data,
         **stats_dictionary
     }

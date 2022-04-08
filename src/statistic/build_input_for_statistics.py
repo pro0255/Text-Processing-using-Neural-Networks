@@ -2,7 +2,6 @@ import os
 from src.statistic.create_stats_filename import create_stats_filename
 from src.statistic.metric_wrapper import MetricWrapper
 from src.data_loading.get_dataset_object_from import get_dataset_object_from_path
-from src.statistic.DEFAULT_INSTANCES import DEFAULT_STATISTICS_INSTANCES
 from src.config.config import SPECIFIC_DIRECTORY_FOR_STATISTICS, STATISTICS_SUBDIRECTORY, TEXT_COLUMN, LABEL_COLUMN
 from src.data_loading.load_dataset_from_path import load_dataset_from_path_with_normalization
 from src.utils.normalize_dataframe_to_size import normalize_dataframe_to_size

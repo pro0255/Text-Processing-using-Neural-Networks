@@ -27,7 +27,7 @@ experiment_config = {
         ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
             [TransformerName.DistilBertBaseUncased],
             [TransformerPoolingStrategySelection.LastLayerCLS],
-            [128],
+            [130],
             [True, False],
             list(settings_generator(
                 [64],
