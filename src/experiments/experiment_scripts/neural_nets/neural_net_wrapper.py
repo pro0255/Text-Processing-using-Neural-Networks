@@ -1,15 +1,15 @@
-from src.experiments.experiment_setup import ExperimentSetup
-from src.experiments.experiment_evaluate import ExperimentEvaluate
-from src.experiments.experiment_summarization import ExperimentSummarization
-from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOGS
+import os
+from src.experiments.helpers.experiment_setup import ExperimentSetup
+from src.experiments.helpers.experiment_evaluate import ExperimentEvaluate
+from src.experiments.helpers.experiment_summarization import ExperimentSummarization
+from src.experiments.helpers.experiment_timer import ExperimentTimer
+from src.callbacks.callback_factory import CallbacksFactory
+from src.callbacks.save_best_weights import create_save_best_weights_filepath
+from src.utils.log_juypter import add_experiment_jupyter_logger
 from src.utils.prediction_to_labels import prediction_to_labels
 from src.utils.dataset_to_ytrue import dataset_to_ytrue
-from src.callbacks.callback_factory import CallbacksFactory
-from src.experiments.experiment_timer import ExperimentTimer
 from src.types.time_type import TimeType
-from src.callbacks.save_best_weights import create_save_best_weights_filepath
-import os
-from src.utils.log_juypter import add_experiment_jupyter_logger
+from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOGS
 
 class NNExpRunWrapper:
     def __init__(

@@ -1,4 +1,3 @@
-from sklearn.metrics import confusion_matrix
 from src.experiments.results.accuracy import accuracy
 from src.experiments.results.f1 import f1
 from src.experiments.results.precision import presicion
