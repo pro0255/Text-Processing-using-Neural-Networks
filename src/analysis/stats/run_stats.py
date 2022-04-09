@@ -14,7 +14,7 @@ stats_configurations = {
         [None],
         PREPROCESSING_TYPES,
         SUBSETS,
-        TRANSFORMER_NAMES
+        [None]
     )
 }
 

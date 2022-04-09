@@ -37,8 +37,8 @@ def create_record(parent_path, norm_value, preprocessing_type, subset_type, tran
     
     value = {
         StatsField.Path.value: parent_path,
-        StatsField.NumberOfAuthors.value: "".join([c for c in parts[-3] if c.isdigit()]),
-        StatsField.NumberOfSentences.value: "".join([c for c in parts[-2] if c.isdigit()]),
+        StatsField.NumberOfAuthors.value: "".join([c for c in parts[-2] if c.isdigit()]),
+        StatsField.NumberOfSentences.value: "".join([c for c in parts[-1] if c.isdigit()]),
         StatsField.CalculationTime.value: toc - tic,
         StatsField.PreprocessingType.value: preprocessing_type.value,
         StatsField.NormalizationValue.value: norm_value,
