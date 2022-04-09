@@ -10,3 +10,4 @@ class StatsField(Enum):
     SubsetType = "SubsetType"    
     TransformerName = "TransformerName"
     Authors = "Authors"
+    TextExample = "TextExample"

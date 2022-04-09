@@ -1,6 +1,6 @@
 import time
 import os
-from src.statistic.create_statistics_from import create_statistics_from
+from src.statistic.create_statistics_from import create_statistics_from_with_example
 from src.statistic.build_input_for_statistics import build_input_for_statistics_from_path
 from src.statistic.DEFAULT_INSTANCES import build_statistic_instances
 from src.analysis.stats.build_dictionary_from_wrapper import build_dictionary_from_wrapper
@@ -19,7 +19,7 @@ def create_record(parent_path, norm_value, preprocessing_type, subset_type, tran
 
 
     tic = time.time()
-    current_stats = create_statistics_from(
+    current_stats, text_example = create_statistics_from_with_example(
         *build_input_for_statistics_from_path(
             path_to_data,
             ";",
@@ -45,6 +45,7 @@ def create_record(parent_path, norm_value, preprocessing_type, subset_type, tran
         StatsField.SubsetType.value: subset_type.value,
         StatsField.TransformerName.value: BLANK_DESCRIPTION if transformer_name is None else transformer_name.value,
         StatsField.Authors.value: authors_data,
+        StatsField.TextExample.value: text_example,
         **stats_dictionary
     }
     
