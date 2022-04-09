@@ -5,7 +5,6 @@ def create_statistics_from(dataset, metric_instance):
     return metric_instance
 
 
-
 def create_statistics_from_with_example(dataset, metric_instance):
     saved_record = None
     for record in dataset:
@@ -16,4 +15,3 @@ def create_statistics_from_with_example(dataset, metric_instance):
         metric_instance.process_row(record)
     metric_instance.save()
     return (metric_instance, saved_record)
-

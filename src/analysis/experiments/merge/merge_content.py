@@ -5,18 +5,18 @@ from src.types.experiment_description import ExperimentDescriptionType
 from src.types.results import ResultType
 
 
-def merge_content(confusion_matrix, metrics, description, summarization, directory, logs):
+def merge_content(
+    confusion_matrix, metrics, description, summarization, directory, logs
+):
     concat_df = pd.DataFrame()
 
     for df in [metrics, description, summarization, logs]:
         if df is not None:
             concat_df = pd.concat([concat_df, df])
 
-            
-    keys = concat_df.loc[:, 'id']
-    values = concat_df.loc[:, 'value']
-    
-        
+    keys = concat_df.loc[:, "id"]
+    values = concat_df.loc[:, "value"]
+
     if metrics is None:
         print(f"No metrics in {directory}")
         append_keys = [

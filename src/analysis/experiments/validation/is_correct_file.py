@@ -4,7 +4,7 @@ from src.config.config import (
     FILENAME_METRICS,
     FILENAME_DESCRIPTION,
     FILENAME_SUMMARIZATION,
-    FILENAME_LOGS
+    FILENAME_LOGS,
 )
 
 filenames = [
@@ -12,7 +12,7 @@ filenames = [
     FILENAME_METRICS,
     FILENAME_DESCRIPTION,
     FILENAME_SUMMARIZATION,
-    FILENAME_LOGS
+    FILENAME_LOGS,
 ]
 
 

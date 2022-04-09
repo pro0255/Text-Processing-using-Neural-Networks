@@ -1,8 +1,20 @@
-from src.config.learning_config import BATCH_SIZE, EPOCHS, LEARNING_RATE, LOSS, METRIC, OPTIMIZER
+from src.config.learning_config import (
+    BATCH_SIZE,
+    EPOCHS,
+    LEARNING_RATE,
+    LOSS,
+    METRIC,
+    OPTIMIZER,
+)
 import itertools
 
-def settings_generator(batch_sizes, learning_rates, metrics, losses, optimizers, epochs):
-    confs = itertools.product(batch_sizes, learning_rates, metrics, losses, optimizers, epochs)
+
+def settings_generator(
+    batch_sizes, learning_rates, metrics, losses, optimizers, epochs
+):
+    confs = itertools.product(
+        batch_sizes, learning_rates, metrics, losses, optimizers, epochs
+    )
     for batch_size, lr, metric, loss, optimizer, epoch in confs:
         yield LearningSettings(
             batch_size=batch_size,
@@ -10,7 +22,7 @@ def settings_generator(batch_sizes, learning_rates, metrics, losses, optimizers,
             metric=metric,
             loss=loss,
             optimizer=optimizer,
-            epochs=epoch
+            epochs=epoch,
         )
 
 
@@ -22,7 +34,7 @@ class LearningSettings:
         learning_rate=LEARNING_RATE,
         loss=LOSS,
         metric=METRIC,
-        optimizer=OPTIMIZER
+        optimizer=OPTIMIZER,
     ) -> None:
         self.batch_size = batch_size
         self.epochs = epochs

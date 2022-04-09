@@ -7,16 +7,18 @@ from src.config.config import PROJECT_CSV_DELIMITER
 from src.config.config import TEXT_COLUMN, LABEL_COLUMN
 
 
-def load_dataset_from_path_with_normalization(path, normalize=None, preprocessing_type=None):
+def load_dataset_from_path_with_normalization(
+    path, normalize=None, preprocessing_type=None
+):
     factory = PreprocessingFactory()
-    
+
     normalize_final = None
-    
+
     if normalize is not None:
-        print('Specified normalize method')
+        print("Specified normalize method")
         normalize_final = normalize
     else:
-        print(f'Specified type {preprocessing_type.value}')
+        print(f"Specified type {preprocessing_type.value}")
         if preprocessing_type is None:
             normalize_final = factory.create(PreprocessingType.Default)
         else:

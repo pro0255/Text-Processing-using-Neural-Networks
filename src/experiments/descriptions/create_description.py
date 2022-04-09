@@ -134,7 +134,12 @@ def create_description_for_transformer(
     learning_settings,
     preprocessing_type=PreprocessingType.Default.value,
 ):
-    transformer_pooling, transformer_pooling_strategy, transformer_start_index, transformer_end_index = pooling_strategy_arguments
+    (
+        transformer_pooling,
+        transformer_pooling_strategy,
+        transformer_start_index,
+        transformer_end_index,
+    ) = pooling_strategy_arguments
 
     return ExperimentDescription(
         experiment_id=experiment_id,
@@ -156,7 +161,8 @@ def create_description_for_transformer(
         extra_field=BLANK_DESCRIPTION,
         transformer_start_index=transformer_start_index(MAX_FAKE_LAYERS),
         transformer_end_index=transformer_end_index(MAX_FAKE_LAYERS),
-        transformer_pooling_strategy=BLANK_DESCRIPTION if transformer_pooling_strategy is None else transformer_pooling_strategy.value,
+        transformer_pooling_strategy=BLANK_DESCRIPTION
+        if transformer_pooling_strategy is None
+        else transformer_pooling_strategy.value,
         normalization_size=normalization_size,
     )
-

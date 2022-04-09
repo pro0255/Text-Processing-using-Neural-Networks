@@ -10,5 +10,5 @@ def parse_metrics(directory):
         return None
 
     content = pd.read_csv(path, sep=";")
-    content.columns = ['id', 'value']
+    content.columns = ["id", "value"]
     return content

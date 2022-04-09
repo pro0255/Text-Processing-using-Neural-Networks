@@ -7,7 +7,7 @@ class NNExpConf:
         test_ds,
         learning_settings,
         description,
-        save_model
+        save_model,
     ) -> None:
         self.nn_model = nn_model
         self.train_ds = train_ds
@@ -37,10 +37,3 @@ class NNExpConf:
 
     def get_save_model(self):
         return self.save
-
-
-
-
-
-
-

@@ -9,9 +9,8 @@ OPTIMIZER = tf.keras.optimizers.Adam
 
 # TRANSFORMER_LR = [
 #     0.001,
-#     5e-5, 
-#     4e-5, 
-#     3e-5, 
-#     2e-5    
+#     5e-5,
+#     4e-5,
+#     3e-5,
+#     2e-5
 # ]
-

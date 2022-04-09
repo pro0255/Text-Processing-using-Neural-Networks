@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class StatsField(Enum):
     Path = "Path"
     NumberOfAuthors = "NumberOfAuthors"
@@ -7,7 +8,7 @@ class StatsField(Enum):
     CalculationTime = "CalculationTime"
     PreprocessingType = "PreprocessingType"
     NormalizationValue = "NormalizationValue"
-    SubsetType = "SubsetType"    
+    SubsetType = "SubsetType"
     TransformerName = "TransformerName"
     Authors = "Authors"
     TextExample = "TextExample"

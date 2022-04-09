@@ -17,6 +17,7 @@ DEFAULT_STATISTICS_INSTANCES = DEFULT_WITHOUT_TRANSFORMER_INSTANCES.copy().appen
     TransformerTokenizerCounter()
 )
 
+
 def build_default_instances():
     instances = []
     instances.append(LabelMetric())

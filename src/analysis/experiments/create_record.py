@@ -5,6 +5,7 @@ from src.analysis.experiments.parse.parse_summarization import parse_summarizati
 from src.analysis.experiments.parse.parse_log import parse_log
 from src.analysis.experiments.merge.merge_content import merge_content
 
+
 def create_record(directory):
     try:
         confusion_matrix = parse_confusion_matrix(directory)

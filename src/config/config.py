@@ -65,6 +65,7 @@ LOG_SEP = ";"
 
 BLANK_DESCRIPTION = "Nada"
 
+
 def get_current_folder(testing=USE_TESTING_DATASET_FOLDER):
     return PATH_TO_DATASET_FOLDER_TEST if testing else PATH_TO_DATASET_FOLDER
 

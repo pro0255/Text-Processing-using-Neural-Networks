@@ -11,9 +11,8 @@ from gensim.parsing.preprocessing import (
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-BLACKLIST = [
-    'CHAPTER'
-]
+BLACKLIST = ["CHAPTER"]
+
 
 class TextPreprocessor:
     def __init__(self) -> None:
@@ -22,22 +21,21 @@ class TextPreprocessor:
 
     def strip_tags(self, text):
         return strip_tags_gensim(text)
-    
+
     def strip_upper_words(self, text):
-        return [word for word in text.split(' ') if word.upper() != word]
-    
-    
+        return [word for word in text.split(" ") if word.upper() != word]
+
     def remove_when_blacklisted(self, text):
-        current_text = set(text.split(' '))
+        current_text = set(text.split(" "))
         blacklist = set(BLACKLIST)
 
         l = len(current_text.intersection(blacklist))
-    
+
         if l > 0:
-            return ''
+            return ""
 
         return text
-    
+
     def strip_punctuation(self, text):
         return strip_punctuation_gensim(text)
 
@@ -102,7 +100,7 @@ class TextPreprocessor:
                 self.lemma_text,
             ]
         )
-    
+
     def default_lowerinterpunction(self):
         return self.create_preprocess_string_func(
             [
@@ -110,6 +108,6 @@ class TextPreprocessor:
                 self.to_lowercase,
                 self.strip_punctuation,
                 self.strip_multiple_whitespaces,
-                self.strip_numeric
+                self.strip_numeric,
             ]
         )

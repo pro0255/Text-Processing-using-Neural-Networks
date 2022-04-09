@@ -6,7 +6,10 @@ from src.config.config import (
     EXPERIMENT_RESULTS_DIRECTORY,
     MODEL_SAVE_DIRECTORY,
 )
-from src.callbacks.save_best_weights import create_save_best_weights_filepath, create_save_best_weights_callback
+from src.callbacks.save_best_weights import (
+    create_save_best_weights_filepath,
+    create_save_best_weights_callback,
+)
 
 
 class CallbacksFactory:
@@ -28,7 +31,7 @@ class CallbacksFactory:
         early_stopping = tf.keras.callbacks.EarlyStopping(
             monitor="val_loss", patience=3, restore_best_weights=True
         )
-        
+
         model_path = os.sep.join([experiment_directory, MODEL_SAVE_DIRECTORY])
         checkpoint_path = model_path + os.path.sep + "cp-{epoch:04d}.ckpt"
 
@@ -39,7 +42,7 @@ class CallbacksFactory:
         callbacks = [
             CSVLogger(os.sep.join([experiment_directory, filename])),
             early_stopping,
-            best_weights_cb
+            best_weights_cb,
         ]
 
         if self.save_model:

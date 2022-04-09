@@ -8,9 +8,9 @@ def parse_log(directory):
 
     if path is None:
         return None
-    
+
     content = pd.read_csv(path, sep=";")
-    
+
     keys = []
     dic = {}
     for index in range(content.shape[1]):
@@ -18,9 +18,8 @@ def parse_log(directory):
         keys.append(key)
         if "Unnamed" not in key:
             dic[key] = [content.iloc[:, index].values]
-    
-            
+
     res = pd.DataFrame.from_dict(dic, orient="index").reset_index()
-    res.columns = ['id', 'value']
-    
+    res.columns = ["id", "value"]
+
     return res

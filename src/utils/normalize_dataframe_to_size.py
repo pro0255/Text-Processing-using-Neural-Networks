@@ -8,7 +8,9 @@ def normalize_dataframe_to_size(dataframe, size):
     new_dataframe = pd.DataFrame()
 
     for label in all_labels:
-        selected_dataframe = dataframe[dataframe.label == label].sample(size, random_state=RANDOM_STATE)
+        selected_dataframe = dataframe[dataframe.label == label].sample(
+            size, random_state=RANDOM_STATE
+        )
         new_dataframe = pd.concat([new_dataframe, selected_dataframe])
 
     return shuffle(new_dataframe, random_state=RANDOM_STATE)

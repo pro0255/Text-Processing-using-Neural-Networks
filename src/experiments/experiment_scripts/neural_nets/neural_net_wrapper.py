@@ -11,6 +11,7 @@ from src.utils.dataset_to_ytrue import dataset_to_ytrue
 from src.types.time_type import TimeType
 from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOGS
 
+
 class NNExpRunWrapper:
     def __init__(
         self,
@@ -32,8 +33,15 @@ class NNExpRunWrapper:
         self.experiment_timer = ExperimentTimer()
 
     def get_configuration_values(self, nn_conf):
-        return nn_conf.get_model(), nn_conf.get_train(), nn_conf.get_valid(), nn_conf.get_test(), nn_conf.get_learning_settings(), nn_conf.get_description(), nn_conf.get_save_model()
-
+        return (
+            nn_conf.get_model(),
+            nn_conf.get_train(),
+            nn_conf.get_valid(),
+            nn_conf.get_test(),
+            nn_conf.get_learning_settings(),
+            nn_conf.get_description(),
+            nn_conf.get_save_model(),
+        )
 
     def compile_nn_model(self, nn_model, learning_settings):
         print("Compiling model")
@@ -57,13 +65,11 @@ class NNExpRunWrapper:
         )
         self.experiment_timer.end(TimeType.LearningTime.value)
 
-
     def load_nn_best(self, nn_model):
         print("Loading best weights to model")
         experiment_directory = os.path.sep.join([self.directory, self.experiment_id])
         best_weights_path = create_save_best_weights_filepath(experiment_directory)
         nn_model.load_weights(best_weights_path)
-
 
     def predict_on_nn(self, nn_model, test_ds):
         print("Predicting test dataset")
@@ -71,7 +77,6 @@ class NNExpRunWrapper:
         y_pred = nn_model.predict(test_ds)
         self.experiment_timer.end(TimeType.PredictionTime.value)
         return y_pred
-
 
     def evaluate_prediction(self, y_pred, test_ds):
         print("Evaluating results")
@@ -81,46 +86,52 @@ class NNExpRunWrapper:
         self.experiment_evaluate.calc(y_true_labels, y_pred_labels)
         self.experiment_timer.end(TimeType.EvaluateTime.value)
 
-
     def save_experiment(self):
         self.experiment_summarization.map_timer(self.experiment_timer)
         print("Saving")
         self.experiment_evaluate.save()
-        self.experiment_summarization.save()  
+        self.experiment_summarization.save()
         print("Saving decription of experiment")
         self.description.save()
 
-
     def run(self, nn_conf):
 
-        #Getting values from configuration object
-        nn_model, train_ds, valid_ds, test_ds, learning_settings, description, save_model = self.get_configuration_values(nn_conf)
+        # Getting values from configuration object
+        (
+            nn_model,
+            train_ds,
+            valid_ds,
+            test_ds,
+            learning_settings,
+            description,
+            save_model,
+        ) = self.get_configuration_values(nn_conf)
 
-        #Saving description to object
+        # Saving description to object
         self.description = description
 
-        #Creating experiment directory
+        # Creating experiment directory
         self.experiment_setup.run()
 
-        #Adding logger of jupyter
+        # Adding logger of jupyter
         f = add_experiment_jupyter_logger(self.experiment_setup.parent_path)
 
-        #Compiling model
+        # Compiling model
         self.compile_nn_model(nn_model, learning_settings)
 
-        #Fitting model
+        # Fitting model
         self.fit_nn_model(nn_model, train_ds, valid_ds, learning_settings, save_model)
 
-        #Before prediction load best weights
+        # Before prediction load best weights
         self.load_nn_best(nn_model)
 
-        #Make prediction
+        # Make prediction
         y_pred = self.predict_on_nn(nn_model, test_ds)
 
-        #Evaluate
+        # Evaluate
         self.evaluate_prediction(y_pred, test_ds)
 
-        #Saving experiment
+        # Saving experiment
         self.save_experiment()
 
-        print('End of experiment')
+        print("End of experiment")

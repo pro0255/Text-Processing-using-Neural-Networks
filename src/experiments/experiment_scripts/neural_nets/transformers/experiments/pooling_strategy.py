@@ -1,5 +1,7 @@
 from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
-from src.experiments.experiment_scripts.neural_nets.transformers.transformer_runner import TransformerRunner
+from src.experiments.experiment_scripts.neural_nets.transformers.transformer_runner import (
+    TransformerRunner,
+)
 
 
 class TransformerPoolingStrategy(TransformerRunner):
@@ -9,5 +11,5 @@ class TransformerPoolingStrategy(TransformerRunner):
     ) -> None:
         super().__init__(
             experiment_type=ExperimentType.PoolingStrategyTransformer,
-            save_model=save_model
+            save_model=save_model,
         )

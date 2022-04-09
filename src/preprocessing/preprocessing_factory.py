@@ -1,6 +1,7 @@
 from src.preprocessing.preprocessor import TextPreprocessor
 from src.types.processing_type import PreprocessingType
 
+
 class PreprocessingFactory:
     def __init__(self) -> None:
         self.preprocessor = TextPreprocessor()
