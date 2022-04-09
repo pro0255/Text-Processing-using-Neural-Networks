@@ -4,7 +4,6 @@ from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_t
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 
 class TransformerArchitecture:
-
     def __init__(self) -> None:
         pass
 
