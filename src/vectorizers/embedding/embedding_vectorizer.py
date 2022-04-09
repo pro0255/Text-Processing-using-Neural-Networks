@@ -50,6 +50,3 @@ class EmbeddingVectorizer:
 
         return self.get_mean(corpus)
 
-    def create_embedding_matrix(self, X):
-        # TODO: add to embedding layer
-        pass

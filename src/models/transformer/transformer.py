@@ -1,6 +1,5 @@
 from transformers import TFAutoModel, AutoConfig
 import tensorflow as tf
-from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_tokenizer
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 
 

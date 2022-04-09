@@ -1,6 +1,49 @@
+from src.models.embedding.embedding import Embedding
+import tensorflow as tf
+
 class CNNArchitecture:
     def __init__(self) -> None:
+        self.emb = Embedding()
         pass
 
-    def create_model(self):
-        pass
+    def create_model(
+        self,
+        number_of_authors,
+        train_ds,
+        valid_ds,
+        vocab_size,
+        embedding_dim,
+        output_sequence_length,
+        trainable,
+        embedding_dictionary=None
+    ):
+
+        emb, input_layer = self.emb.create_vect_embedding(
+            train_ds,
+            valid_ds,
+            vocab_size,
+            output_sequence_length,
+            trainable,
+            embedding_dim,
+            embedding_dictionary
+        )
+
+
+        x = tf.keras.layers.Conv1D(filters=128, kernel_size=4, padding='valid', activation='relu')(emb)
+        x = tf.keras.layers.MaxPooling1D(pool_size=2)(x)
+        x = tf.keras.layers.Conv1D(filters=256, kernel_size=6, padding='valid', activation='relu')(x)
+        x = tf.keras.layers.MaxPooling1D(pool_size=2)(x)
+        x = tf.keras.layers.Conv1D(filters=128, kernel_size=6, padding='valid', activation='relu')(x)
+        x = tf.keras.layers.MaxPooling1D(pool_size=2)(x)
+        x = tf.keras.layers.Flatten()(x)
+        x = tf.keras.layers.Dense(256, activation='relu')(x)
+        x = tf.keras.layers.Dropout(rate=0.4)(x)
+        x = tf.keras.layers.Dense(64, activation='relu')(x)
+        x = tf.keras.layers.Dropout(rate=0.4)(x)
+        x = tf.keras.layers.Dense(128, activation='relu')(x)
+        x = tf.keras.layers.Dropout(rate=0.2)(x)
+        output_layer = tf.keras.layers.Dense(number_of_authors, activation='softmax')(x)
+
+        model = tf.keras.Model(input_layer, output_layer)
+
+        return model 

@@ -110,12 +110,8 @@ class DataSetSplitter:
     def build_subsets(self, dataset):
         print(f"Building subsets with state {self.state}")
         for line in tqdm(dataset.shuffle(10000).as_numpy_iterator()):
-            # label = author Id
             text, label = line
             text = bytes.decode(text)
-
-            # TODO: DELETE!
-            # label = bytes.decode(label)
 
             path = self.get_path(label)
             if path is None:
