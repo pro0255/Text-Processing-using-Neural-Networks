@@ -6,6 +6,7 @@ from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 from transformers import AutoConfig
 import numpy as np
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
+from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection, pooling_strategy_dictionary
 
 
 class TransformerVectorizer:
@@ -15,7 +16,7 @@ class TransformerVectorizer:
         transformer_pooling_type,
         path_authors=None,
         encoder=None,
-        max_len=512,
+        max_len=None,
         preprocess_pipeline=None,
         transformer_pooling_strategy=TransformerPoolingStrategy.Blank,
         transformer_start_index=-1,
@@ -30,7 +31,7 @@ class TransformerVectorizer:
         self.max_len = max_len
         self.preprocess_pipeline = preprocess_pipeline
         self.path_to_authors = path_authors
-        self.setup()
+        
 
     def setup(self):
         self.config = AutoConfig.from_pretrained(
@@ -47,6 +48,7 @@ class TransformerVectorizer:
         )
 
     def fit_transform(self, dataset):
+        self.setup()
         sentence_embedding = []
         labels = []
 
@@ -69,10 +71,6 @@ class TransformerVectorizer:
             sentence_embedding.append(output)
         return np.array(sentence_embedding), np.array(labels)
 
-    def create_embedding_matrix(self, X):
-        # TODO: add to embedding layer
-        pass
-
     def get_transformer_name(self):
         return self.transformer_type
 
@@ -90,3 +88,19 @@ class TransformerVectorizer:
 
     def get_len(self):
         return self.max_len
+
+    def set_pooling_strategy(self, pooling_strategy):
+        (
+            transformer_pooling,
+            transformer_pooling_strategy,
+            transformer_start_index,
+            transformer_end_index,
+        ) = pooling_strategy_dictionary[pooling_strategy]
+
+        self.transformer_pooling_strategy = transformer_pooling_strategy
+        self.transformer_start_index = transformer_start_index
+        self.transformer_end_index = transformer_end_index
+        self.transformer_pooling_type = transformer_pooling
+
+
+    

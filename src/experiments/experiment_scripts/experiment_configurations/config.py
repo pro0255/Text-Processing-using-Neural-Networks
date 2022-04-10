@@ -16,6 +16,20 @@ from src.models.nets.rnn import RNNArchitecture
 from src.models.nets.dense import DenseArchitecture
 from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 from src.experiments.experiment_scripts.experiment_configurations.lookup import LOOKUP_KEY
+from src.vectorizers.classic.bow_vectorizer import BoWVectorizer
+from src.vectorizers.classic.tfidf_vectorizer import TFIDFVectorizer
+from src.vectorizers.embedding.glove_vectorizer import GloveVectorizer
+from src.vectorizers.embedding.word2vec_vectorizer import Word2VecVectorizer
+from src.vectorizers.transformer.electra_small_vectorizer import ElectraSmallVectorizer
+from src.vectorizers.transformer.bert_base_vectorizer import BertBaseUncasedVectorizer
+from src.vectorizers.transformer.distil_bert_base_vectorizer import (
+    DistilBertBaseUncasedVectorizer,
+)
+from src.models.classic.linear import LinearClassifier
+from src.models.classic.naive_bayes import NaiveBayes
+from src.models.classic.random_forest import RandomForest
+
+
 
 loader = ExperimentLoader()
 
@@ -27,6 +41,9 @@ class ExperimentGeneratorPart(Enum):
     DatasetGenerator = "DatasetGenerator"
     ExperimentConfiguration = "ExperimentConfiguration"
     ExperimentArchitecture = "ExperimentArchitecture"
+    FeatureExtractors = "FeatureExtractors"
+    Predictor = "Predictor"
+    TransformerPoolingStrategy = "TransformerPoolingStrategy"
 
 
 experiment_config = {
@@ -142,6 +159,29 @@ experiment_config = {
             RNNArchitecture(),
             DenseArchitecture()
         ]
+    },
+    ExperimentType.Classic: {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5],
+            [3],
+            [PreprocessingType.CaseInterpunction],
+            [LOOKUP_KEY],
+        ),
+        ExperimentGeneratorPart.FeatureExtractors: [
+            BoWVectorizer(),
+            TFIDFVectorizer(),
+            GloveVectorizer(),
+            Word2VecVectorizer(),
+            ElectraSmallVectorizer(),
+            BertBaseUncasedVectorizer(),
+            DistilBertBaseUncasedVectorizer()
+        ],
+        ExperimentGeneratorPart.Predictor: [
+            LinearClassifier(),
+            NaiveBayes(),
+            RandomForest()
+        ],
+        ExperimentGeneratorPart.TransformerPoolingStrategy: list(TransformerPoolingStrategySelection)
     }
 }
 

@@ -5,7 +5,7 @@ from src.types.transformer_input import TransformerInput
 
 class TransformerTokenizer:
     def __init__(
-        self, name, encoder=None, max_len=512, preprocess_pipeline=None
+        self, name, encoder=None, max_len=None, preprocess_pipeline=None
     ) -> None:
         self.name = name
         self.tokenizer = AutoTokenizer.from_pretrained(name)
@@ -26,7 +26,6 @@ class TransformerTokenizer:
             max_length=self.max_len,
             add_special_tokens=True,
             return_attention_mask=True,
-            pad_to_max_length=True,
             return_token_type_ids=False,
             padding="max_length",
             truncation=True,

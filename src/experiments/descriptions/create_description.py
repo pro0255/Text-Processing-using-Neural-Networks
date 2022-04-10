@@ -10,6 +10,8 @@ from src.models.transformer.pooling_strategy import MAX_FAKE_LAYERS
 
 
 def from_pred_instance_get_type(prediction_instance):
+    if prediction_instance is None:
+        return ""
     name_of_instance = type(prediction_instance).__name__
     dic = {
         "SGDClassifier": ClassicModelType.Linear.value,
@@ -20,6 +22,8 @@ def from_pred_instance_get_type(prediction_instance):
 
 
 def from_vect_instance_get_type(vectorizer_instance):
+    if vectorizer_instance is None:
+        return ""
     name_of_vectorizer_instance = type(vectorizer_instance).__name__
     dic = {
         "CountVectorizer": EmbeddingType.BoW.value,
@@ -62,7 +66,7 @@ def create_description_for_classic(
         number_of_sentences=number_of_sentences,
         load_path=path_data,
         seq_len=BLANK_DESCRIPTION,
-        is_test=USE_TESTING_DATASET_FOLDER,
+        is_test=str(False),
         classic_model_name=classic_model_type,
         extra_field=BLANK_DESCRIPTION,
         transformer_start_index=BLANK_DESCRIPTION,
@@ -87,11 +91,11 @@ def create_description_for_transformer_with_classic(
     vectorizer_model_type = from_vect_instance_get_type(vectorizer_instance)
 
     transformer_name = vectorizer_instance.get_transformer_name()
-    transformer_pooling = vectorizer_instance.get_transformer_pooling()
+    transformer_pooling = vectorizer_instance.get_transformer_pooling().value
     transformer_start_index = vectorizer_instance.get_transformer_start_index()
     transformer_end_index = vectorizer_instance.get_transformer_end_index()
     transformer_pooling_strategy = (
-        vectorizer_instance.get_transformer_pooling_strategy()
+        vectorizer_instance.get_transformer_pooling_strategy().value
     )
     le = vectorizer_instance.get_len()
 
@@ -110,7 +114,7 @@ def create_description_for_transformer_with_classic(
         number_of_sentences=number_of_sentences,
         load_path=path_data,
         seq_len=le,
-        is_test=USE_TESTING_DATASET_FOLDER,
+        is_test=str(False),
         classic_model_name=classic_model_type,
         extra_field=BLANK_DESCRIPTION,
         transformer_start_index=transformer_start_index,

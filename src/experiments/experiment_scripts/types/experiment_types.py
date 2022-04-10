@@ -16,3 +16,6 @@ class ExperimentType(Enum):
     NumberOfAuthorsNN = "NumberOfAuthorsNN"
     NumberOfSentencesNN = "NumberOfSentencesNN"
 
+
+    Classic = "Classic"
+

@@ -43,7 +43,10 @@ class NNRunner:
         self.experiment_architectures = experiment_config[self.experiment_type][ExperimentGeneratorPart.ExperimentArchitecture]
 
     def run(self):
-        for sets, loaded_data, paths, conf in self.dataset_generator:
+        for dataset_value in self.dataset_generator:
+            if dataset_value is None:
+                continue
+            sets, loaded_data, paths, conf = dataset_value
             X_train, X_valid, X_test, y_train, y_valid, y_test = sets
             data_path, author_path = paths
             current_authors, current_sentences, current_preprocessing, norm_size = conf
@@ -105,8 +108,8 @@ class NNRunner:
                         )
 
                         train_ds_trans = train_ds.batch(learning_settings.batch_size)
-                        valid_ds_trans = val_ds
-                        test_ds_trans = test_ds
+                        valid_ds_trans = val_ds.batch(1)
+                        test_ds_trans = test_ds.batch(1)
 
                         current_model = current_architecture.create_model(
                             current_authors,

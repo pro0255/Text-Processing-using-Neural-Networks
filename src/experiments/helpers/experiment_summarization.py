@@ -16,7 +16,7 @@ class ExperimentSummarization:
         experiment_type=None,
     ) -> None:
         self.directory = directory
-        self.experiment_id = experiment_id
+        self.set_id(experiment_id)
         self.state = {}
 
         print(f"Creating new experiment summarization for {experiment_id}!")
@@ -35,6 +35,9 @@ class ExperimentSummarization:
         self.state[ExperimentSummarizationFields.MissingRatioTrain.value] = 0
         self.state[ExperimentSummarizationFields.MissingRatioTest.value] = 0
         self.state[ExperimentSummarizationFields.EmbeddingSize.value] = 0
+
+    def set_id(self, experiment_id):
+        self.experiment_id = experiment_id
 
     def map_timer(self, experiment_timer):
         print("Mapping timer")
