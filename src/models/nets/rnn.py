@@ -42,6 +42,6 @@ class RNNArchitecture(NNArchitecture):
         x = tf.keras.layers.Dense(64, 'relu')(x)
         output_layer = tf.keras.layers.Dense(number_of_authors, 'softmax')(x)
 
-        model = tf.keras.Model(input_layer, output_layer)
+        model = tf.keras.Model(input_layer, output_layer, name=self.model_name)
 
         return model 

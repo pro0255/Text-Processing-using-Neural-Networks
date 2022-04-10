@@ -47,7 +47,7 @@ class TransformerArchitecture:
         output_layer = tf.keras.layers.Dense(
             units=number_of_authors, activation="softmax"
         )(output)
-        model = tf.keras.Model(inputs=[input_ids, attention_mask], outputs=output_layer)
+        model = tf.keras.Model(inputs=[input_ids, attention_mask], outputs=output_layer, name="TransformerDenseHead")
 
         model.layers[2].trainable = trainable
 
