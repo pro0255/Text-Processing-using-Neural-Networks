@@ -165,7 +165,7 @@ experiment_config = {
             [5],
             [3],
             [PreprocessingType.CaseInterpunction],
-            [LOOKUP_KEY],
+            [100],
         ),
         ExperimentGeneratorPart.FeatureExtractors: [
             BoWVectorizer(),
@@ -181,7 +181,7 @@ experiment_config = {
             NaiveBayes(),
             RandomForest()
         ],
-        ExperimentGeneratorPart.TransformerPoolingStrategy: list(TransformerPoolingStrategySelection)
+        ExperimentGeneratorPart.TransformerPoolingStrategy: None
     }
 }
 
