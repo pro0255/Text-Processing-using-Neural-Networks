@@ -140,13 +140,13 @@ experiment_config = {
             [5],
             [3],
             [PreprocessingType.CaseInterpunction],
-            [LOOKUP_KEY],
+            [100],
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
             [10000],
             [LOOKUP_KEY],
             [True, False],
-            list(settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [10])),
+            list(settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [1])),
             [
                 (50, None),
                 (150, None),

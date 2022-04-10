@@ -1,5 +1,6 @@
 import gensim.downloader
 import numpy as np
+from src.config.loaded_models import loaded_models
 
 
 class EmbeddingVectorizer:
@@ -16,7 +17,12 @@ class EmbeddingVectorizer:
     def setup(self):
         if self.vectors is None or self.embedding_size is None:  
             print(f'Downloading model {self.embedding_type}!')
-            self.vectors = gensim.downloader.load(self.embedding_type)
+            if self.embedding_type in loaded_models:
+                print(f"Already loaded model={self.embedding_type}")
+                self.vectors = loaded_models[self.embedding_type]
+            else:
+                print(f"Loading model={self.embedding_type}")
+                self.vectors = gensim.downloader.load(self.embedding_type)
             self.embedding_size = len(self.vectors["king"])
             print(f"Current embedding size is {self.embedding_size}")
         else:

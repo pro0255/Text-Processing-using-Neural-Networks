@@ -38,9 +38,9 @@ class ClassicRunner:
 
         print(self.experiment_type)
 
-        self.experiment_configurations = experiment_config[self.experiment_type][
-            ExperimentGeneratorPart.ExperimentConfiguration
-        ]
+        # self.experiment_configurations = experiment_config[self.experiment_type][
+        #     ExperimentGeneratorPart.ExperimentConfiguration
+        # ]
 
         self.dataset_generator = experiment_config[self.experiment_type][
             ExperimentGeneratorPart.DatasetGenerator
