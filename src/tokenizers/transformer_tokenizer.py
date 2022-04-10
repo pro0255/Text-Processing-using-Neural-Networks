@@ -12,6 +12,7 @@ class TransformerTokenizer:
         self.preprocess_pipeline = preprocess_pipeline
         self.max_len = max_len
         self.encoder = encoder
+        print(f"Tokenizer with max len = {str(self.max_len)}")
 
     def tokenize(self, text, label):
         text = bytes.decode(text.numpy())

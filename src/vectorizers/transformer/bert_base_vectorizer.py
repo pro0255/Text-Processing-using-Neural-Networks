@@ -10,7 +10,7 @@ class BertBaseUncasedVectorizer(TransformerVectorizer):
         transformer_pooling_type=TransformerPooling.Pooler,
         path_authors=None,
         encoder=None,
-        max_len=512,
+        max_len=None,
         preprocess_pipeline=None,
         transformer_pooling_strategy=TransformerPoolingStrategy.Blank,
         transformer_start_index=-1,
@@ -27,3 +27,6 @@ class BertBaseUncasedVectorizer(TransformerVectorizer):
             transformer_start_index=transformer_start_index,
             transformer_end_index=transformer_end_index,
         )
+        
+    def verify(self, transformer_pooling, transformer_pooling_strategy, transformer_start_index, transformer_end_index):
+        return True

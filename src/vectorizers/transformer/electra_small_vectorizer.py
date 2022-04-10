@@ -10,7 +10,7 @@ class ElectraSmallVectorizer(TransformerVectorizer):
         transformer_pooling_type=TransformerPooling.LastHiddenState,
         path_authors=None,
         encoder=None,
-        max_len=512,
+        max_len=None,
         preprocess_pipeline=None,
         transformer_pooling_strategy=TransformerPoolingStrategy.Blank,
         transformer_start_index=-1,
@@ -18,10 +18,10 @@ class ElectraSmallVectorizer(TransformerVectorizer):
     ):
         if transformer_pooling_type == TransformerPooling.Pooler:
             assert Exception(
-                f"Cannot use distibert with pooling={transformer_pooling_type.value}!"
+                f"Cannot use electra with pooling={transformer_pooling_type.value}!"
             )
         super().__init__(
-            TransformerName.ElectraSmall,
+            TransformerName.ElectraBase,
             transformer_pooling_type,
             path_authors=path_authors,
             encoder=encoder,
@@ -31,3 +31,6 @@ class ElectraSmallVectorizer(TransformerVectorizer):
             transformer_start_index=transformer_start_index,
             transformer_end_index=transformer_end_index,
         )
+
+    def verify(self, transformer_pooling, transformer_pooling_strategy, transformer_start_index, transformer_end_index):
+        return True
