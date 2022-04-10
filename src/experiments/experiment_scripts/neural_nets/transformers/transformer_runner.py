@@ -19,7 +19,7 @@ from src.experiments.experiment_scripts.experiment_configurations.config import 
     experiment_config,
     ExperimentGeneratorPart,
 )
-
+from src.experiments.experiment_scripts.neural_nets.use_lookup import use_lookup_seq
 
 class TransformerRunner:
     def __init__(
@@ -41,7 +41,10 @@ class TransformerRunner:
         self.transformer_architecture = TransformerArchitecture()
 
     def run(self):
-        for sets, loaded_data, paths, conf in self.dataset_generator:
+        for dataset_value in self.dataset_generator:
+            if dataset_value is None:
+                continue
+            sets, loaded_data, paths, conf = dataset_value
             X_train, X_valid, X_test, y_train, y_valid, y_test = sets
             data_path, author_path = paths
             current_authors, current_sentences, current_preprocessing, norm_size = conf
@@ -68,6 +71,12 @@ class TransformerRunner:
 
 
                 try:
+                    output_sequence_length = use_lookup_seq(output_sequence_length, current_authors, current_sentences, current_preprocessing)
+                    if output_sequence_length is None:
+                        print('Look up does not exists!')
+                        continue
+
+
                     tokenizer = TransformerTokenizer(
                         model_name.value,
                         create_encoder_from_path(author_path),

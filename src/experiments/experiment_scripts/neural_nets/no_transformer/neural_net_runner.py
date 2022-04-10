@@ -13,7 +13,7 @@ from src.experiments.experiment_scripts.experiment_configurations.config import 
 )
 from src.types.embedding_type import translate_from_embedding
 from src.encoder.create_encoder_from_path import create_encoder_from_path
-
+from src.experiments.experiment_scripts.neural_nets.use_lookup import use_lookup_seq
 
 class NNRunner:
 
@@ -76,6 +76,10 @@ class NNRunner:
                     embedding_size, embedding_dictionary_name = embedding
 
                     try:
+                        output_sequence_length = use_lookup_seq(output_sequence_length, current_authors, current_sentences, current_preprocessing)
+                        if output_sequence_length is None:
+                            print('Look up does not exists!')
+                            continue
                     
                         current_experiment_id = create_experiment_id(
                             self.experiment_type_str

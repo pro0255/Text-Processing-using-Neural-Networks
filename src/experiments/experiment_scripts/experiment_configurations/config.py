@@ -15,6 +15,7 @@ from src.models.nets.cnn import CNNArchitecture
 from src.models.nets.rnn import RNNArchitecture
 from src.models.nets.dense import DenseArchitecture
 from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
+from src.experiments.experiment_scripts.experiment_configurations.lookup import LOOKUP_KEY
 
 loader = ExperimentLoader()
 
@@ -122,11 +123,11 @@ experiment_config = {
             [5],
             [3],
             [PreprocessingType.CaseInterpunction],
-            [100],
+            [LOOKUP_KEY],
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
             [10000],
-            [130],
+            [LOOKUP_KEY],
             [True, False],
             list(settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [10])),
             [
