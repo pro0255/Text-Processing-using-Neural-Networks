@@ -3,5 +3,5 @@ from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 
 
 class GloveVectorizer(EmbeddingVectorizer):
-    def __init__(self):
-        super().__init__(DownloadedEmbeddingType.Glove)
+    def __init__(self, run_on_init=False):
+        super().__init__(DownloadedEmbeddingType.Glove, run_on_init)

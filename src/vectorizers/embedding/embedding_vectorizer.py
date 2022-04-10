@@ -3,16 +3,24 @@ import numpy as np
 
 
 class EmbeddingVectorizer:
-    def __init__(self, embedding_type):
+    def __init__(self, embedding_type, run_on_init=False):
         self.embedding_type = embedding_type.value
         self.missed = 0
         self.counter = 0
         self.embedding_size = 0
-        self.setup()
+        self.vectors = None
+        self.embedding_size = None
+        if run_on_init:
+            self.setup()
 
     def setup(self):
-        self.vectors = gensim.downloader.load(self.embedding_type)
-        self.embedding_size = len(self.vectors["king"])
+        if self.vectors is None or self.embedding_size is None:  
+            print(f'Downloading model {self.embedding_type}!')
+            self.vectors = gensim.downloader.load(self.embedding_type)
+            self.embedding_size = len(self.vectors["king"])
+            print(f"Current embedding size is {self.embedding_size}")
+        else:
+            print("Already downloaded")
 
     def get_from_vectors(self, key_vectors, key):
         self.counter += 1
@@ -35,6 +43,8 @@ class EmbeddingVectorizer:
         return [np.mean(sent, axis=0) for sent in corpus]
 
     def fit_transform(self, X):
+        self.setup()
+
         self.missed = 0
         self.counter = 0
 

@@ -32,11 +32,7 @@ class ClassicRunner:
     def __init__(
         self,
         experiment_type,
-        save_best=False,
-        save_model=False,
     ) -> None:
-        self.save_best = save_best
-        self.save_model = save_model
 
         self.experiment_type = experiment_type
 
