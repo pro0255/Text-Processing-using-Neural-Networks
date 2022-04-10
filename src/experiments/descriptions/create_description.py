@@ -1,5 +1,5 @@
 from src.config.config import USE_TESTING_DATASET_FOLDER, BLANK_DESCRIPTION
-from src.experiments.experiment_description import ExperimentDescription
+from src.experiments.helpers.experiment_description import ExperimentDescription
 from src.types.transformer_pooling import TransformerPooling
 from src.types.prediction_model_type import PredictionModelType
 from src.types.net_type import NetType
@@ -165,4 +165,46 @@ def create_description_for_transformer(
         if transformer_pooling_strategy is None
         else transformer_pooling_strategy.value,
         normalization_size=normalization_size,
+    )
+
+
+
+def create_description_for_nn(
+    experiment_id,
+    experiment_type,
+    number_of_authors,
+    number_of_sentences,
+    normalization_size,
+    seq_len,
+    trainable,
+    path_data,
+    net_type,
+    learning_settings,
+    embedding_type,
+    extra_field,
+    preprocessing_type=PreprocessingType.Default.value,
+):
+
+    return ExperimentDescription(
+        experiment_id=experiment_id,
+        experiment_type=experiment_type,
+        learning_settings=learning_settings,
+        transformer_name=BLANK_DESCRIPTION,
+        transformer_pooling=BLANK_DESCRIPTION,
+        prediction_model_type=PredictionModelType.NeuralNet.value,
+        net_type=net_type,
+        embedding_type=embedding_type.value,
+        trainable=trainable,
+        preprocessing_type=preprocessing_type,
+        number_of_authors=number_of_authors,
+        number_of_sentences=number_of_sentences,
+        load_path=path_data,
+        seq_len=seq_len,
+        is_test=False,
+        classic_model_name=BLANK_DESCRIPTION,
+        transformer_start_index=BLANK_DESCRIPTION,
+        transformer_end_index=BLANK_DESCRIPTION,
+        transformer_pooling_strategy=BLANK_DESCRIPTION,
+        normalization_size=normalization_size,
+        extra_field=extra_field
     )

@@ -1,10 +1,15 @@
-from src.models.embedding.embedding import Embedding
 import tensorflow as tf
+from src.models.nets.nn import NNArchitecture
+from src.types.net_type import NetType
 
-class RNNArchitecture:
+class RNNArchitecture(NNArchitecture):
     def __init__(self) -> None:
-        self.emb = Embedding()
-        pass
+        super().__init__(
+            "RNNBidirectionalLSTMAndGru"
+        )
+
+    def get_net_type(self):
+        return NetType.LSTM.value
 
     def create_model(
         self,

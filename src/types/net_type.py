@@ -7,4 +7,5 @@ class NetType(Enum):
     LSTM = "LSTM"
     RNN = "RNN"
     GRU = "GRU"
+    CNN = "CNN"
     Blank = BLANK_DESCRIPTION

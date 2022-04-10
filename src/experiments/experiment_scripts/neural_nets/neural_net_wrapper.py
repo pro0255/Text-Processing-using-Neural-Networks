@@ -41,6 +41,7 @@ class NNExpRunWrapper:
             nn_conf.get_learning_settings(),
             nn_conf.get_description(),
             nn_conf.get_save_model(),
+            nn_conf.get_save_best()
         )
 
     def compile_nn_model(self, nn_model, learning_settings):
@@ -51,8 +52,8 @@ class NNExpRunWrapper:
             metrics=learning_settings.metric,
         )
 
-    def fit_nn_model(self, nn_model, train_ds, valid_ds, learning_settings, save_model):
-        callback_factory = CallbacksFactory(save_model)
+    def fit_nn_model(self, nn_model, train_ds, valid_ds, learning_settings, save_model, save_best):
+        callback_factory = CallbacksFactory(save_model, save_best)
         print("Fitting model")
         self.experiment_timer.start(TimeType.LearningTime.value)
         nn_model.fit(
@@ -105,6 +106,7 @@ class NNExpRunWrapper:
             learning_settings,
             description,
             save_model,
+            save_best
         ) = self.get_configuration_values(nn_conf)
 
         # Saving description to object
@@ -120,10 +122,11 @@ class NNExpRunWrapper:
         self.compile_nn_model(nn_model, learning_settings)
 
         # Fitting model
-        self.fit_nn_model(nn_model, train_ds, valid_ds, learning_settings, save_model)
+        self.fit_nn_model(nn_model, train_ds, valid_ds, learning_settings, save_model, save_best)
 
         # Before prediction load best weights
-        self.load_nn_best(nn_model)
+        if save_best:
+            self.load_nn_best(nn_model)
 
         # Make prediction
         y_pred = self.predict_on_nn(nn_model, test_ds)

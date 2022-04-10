@@ -1,10 +1,15 @@
-from src.models.embedding.embedding import Embedding
 import tensorflow as tf
+from src.models.nets.nn import NNArchitecture
+from src.types.net_type import NetType
 
-class DenseArchitecture:
+class DenseArchitecture(NNArchitecture):
     def __init__(self) -> None:
-        self.emb = Embedding()
-        pass
+        super().__init__(
+            "Dense"
+        )
+
+    def get_net_type(self):
+        return NetType.Dense.value
 
     def create_model(
         self,

@@ -13,8 +13,9 @@ from src.callbacks.save_best_weights import (
 
 
 class CallbacksFactory:
-    def __init__(self, save_model):
+    def __init__(self, save_model, save_best):
         self.save_model = save_model
+        self.save_best = save_best
 
     def create(
         self,
@@ -41,9 +42,11 @@ class CallbacksFactory:
 
         callbacks = [
             CSVLogger(os.sep.join([experiment_directory, filename])),
-            early_stopping,
-            best_weights_cb,
+            early_stopping
         ]
+
+        if self.save_best:
+            callbacks.append(best_weights_cb)
 
         if self.save_model:
             callbacks.append(cp_callback)

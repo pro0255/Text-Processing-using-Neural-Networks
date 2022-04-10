@@ -1,15 +1,22 @@
 
 import tensorflow as tf
 from src.models.embedding.prepare_embedding_matrix import prepare_embedding_matrix
+from tensorflow import string as tf_string
 
 class Embedding:
     def __init__(self) -> None:
         pass
 
     def create_vect_embedding(self, train_ds, valid_ds, vocab_size, output_sequence_length, trainable, embedding_dim, embedding_dictionary=None):
-        input_layer = tf.keras.layers.Input(shape=(1,), dtype=tf.tf_string)
+        input_layer = tf.keras.layers.Input(shape=(1,), dtype=tf_string)
 
-        vector_layer = tf.keras.layers.TextVectorization(max_tokens=vocab_size, output_mode='int', output_sequence_length=output_sequence_length)
+        vector_layer = tf.keras.layers.TextVectorization(
+            max_tokens=vocab_size, 
+            output_mode='int', 
+            output_sequence_length=output_sequence_length,
+            standardize=None,
+            split='whitespace'
+        )
 
         vector_layer.adapt(train_ds.map(lambda x, y: x))
         voc = vector_layer.get_vocabulary()
