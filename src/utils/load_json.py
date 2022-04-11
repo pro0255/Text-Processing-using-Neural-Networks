@@ -3,7 +3,7 @@ import json
 from re import L
 
 
-def load_json(path):
+def load_json(path: str):
     with codecs.open(path, "r", encoding="utf-8", errors="ignore") as stream:
         try:
             content = stream.read()
@@ -24,7 +24,7 @@ def postprocess(stream):
     return content
 
 
-def correct_single_quote_JSON(s):
+def correct_single_quote_JSON(s: str) -> str:
     rstr = ""
     escaped = False
 

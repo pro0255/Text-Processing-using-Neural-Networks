@@ -1,10 +1,12 @@
 import itertools
+import typing
 
 from src.models.embedding.load_from_gensim import load_from_gensim
+from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 
 
 def nets_configuration_generator(
-    vocab_sizes, output_sequence_lengths, trainable, learning_settings, embedding
+    vocab_sizes: typing.List[int], output_sequence_lengths: typing.List[int], trainable:typing.List[bool], learning_settings, embedding: typing.Tuple[int, typing.Union[None, DownloadedEmbeddingType]]
 ):
     without_load = list(filter(lambda x: x[1] is None, embedding))
     need_to_load = list(filter(lambda x: x[1] is not None, embedding))

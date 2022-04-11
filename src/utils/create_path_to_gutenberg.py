@@ -1,3 +1,4 @@
+import typing
 from src.authors.create_author_directory import create_author_directory
 from src.config.config import (AUTHORS_FILE_NAME, FILE_DATA_NAME,
                                NORMALIZATION_SUFFIX, PATH_TO_DATASET_FOLDER)
@@ -8,19 +9,19 @@ from src.types.suffix import Suffix
 from src.utils.create_path import create_path
 
 
-def create_label_sub_directory(specific_label_size):
+def create_label_sub_directory(specific_label_size: int) -> str:
     if specific_label_size is None:
         return None
     return f"{specific_label_size}{NORMALIZATION_SUFFIX}"
 
 
 def create_path_to_gutenberg_sentence_authors_sentence(
-    number_of_authors,
-    number_of_sentence,
-    path_to_dataset_folder=PATH_TO_DATASET_FOLDER,
-    file_name=FILE_DATA_NAME,
-    sub_directory=None,
-):
+    number_of_authors: int,
+    number_of_sentence:  int,
+    path_to_dataset_folder: str=PATH_TO_DATASET_FOLDER,
+    file_name: str=FILE_DATA_NAME,
+    sub_directory: typing.Union[None, str]=None,
+) -> str:
     return create_path(
         path_to_dataset_folder,
         DataSet.Gutenberg,
@@ -33,11 +34,11 @@ def create_path_to_gutenberg_sentence_authors_sentence(
 
 
 def create_path_to_gutenberg_authors(
-    number_of_authors,
-    number_of_sentence,
-    path_to_dataset_folder=PATH_TO_DATASET_FOLDER,
-    file_name=AUTHORS_FILE_NAME,
-):
+    number_of_authors: int,
+    number_of_sentence: int,
+    path_to_dataset_folder: str=PATH_TO_DATASET_FOLDER,
+    file_name: str=AUTHORS_FILE_NAME,
+) -> str:
     return create_path(
         path_to_dataset_folder,
         DataSet.Gutenberg,
@@ -49,9 +50,9 @@ def create_path_to_gutenberg_authors(
 
 
 def get_paths_to_gutenberg(
-    number_of_authors,
-    number_of_sentence,
-    path_to_dataset_folder=PATH_TO_DATASET_FOLDER,
+    number_of_authors: int,
+    number_of_sentence: int,
+    path_to_dataset_folder: str=PATH_TO_DATASET_FOLDER,
 ):
     authors = create_path_to_gutenberg_authors(
         number_of_authors, number_of_sentence, path_to_dataset_folder
@@ -63,7 +64,7 @@ def get_paths_to_gutenberg(
     return data, authors
 
 
-def create_file_name_from_type(subset_type):
+def create_file_name_from_type(subset_type: SubsetType) -> str:
     dic = {
         SubsetType.All: FILE_DATA_NAME,
         SubsetType.Test: f"{SubsetType.Test.value}{Suffix.CSV.value}",

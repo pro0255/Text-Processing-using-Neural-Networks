@@ -15,13 +15,13 @@ from src.utils.delete_file_from import delete_file_from
 class DataSetSplitter:
     def __init__(
         self,
-        path_to_save,
-        train_size,
-        test_size,
-        valid_size,
+        path_to_save: str,
+        train_size:int,
+        test_size:int,
+        valid_size:int,
         label_counter,
-        normalization_size,
-        sub_directory,
+        normalization_size:int,
+        sub_directory:str,
     ):
         self.sub_directory = sub_directory
         self.directory_path = path_to_save
@@ -33,7 +33,7 @@ class DataSetSplitter:
         self.prepare_counters()
         self.save_counters()
 
-    def create_path(self, directory_path, subset_type, subdirectory):
+    def create_path(self, directory_path:str, subset_type, subdirectory:str):
         if subdirectory is not None:
             transformed_path = os.path.sep.join([directory_path, subdirectory])
             if not os.path.exists(transformed_path):
@@ -42,7 +42,7 @@ class DataSetSplitter:
 
         return os.path.sep.join([directory_path, add_suffix(subset_type.value)])
 
-    def create_state(self, train_size, test_size, valid_size):
+    def create_state(self, train_size:int, test_size:int, valid_size:int):
         self.state = {
             SubsetType.Train.value: {
                 "path": self.create_path(
@@ -65,7 +65,7 @@ class DataSetSplitter:
         }
         print(self.state)
 
-    def normalize(self, normalization_size):
+    def normalize(self, normalization_size:int):
         if normalization_size is not None:
             self.counter_dataframe.iloc[:, 0] = normalization_size
 

@@ -7,7 +7,7 @@ from IPython import get_ipython
 from src.config.config import JUPYTER_LOG_NAME
 
 
-def add_experiment_jupyter_logger(path):
+def add_experiment_jupyter_logger(path: str) -> None:
     path_file = os.path.sep.join([path, JUPYTER_LOG_NAME])
     nblog = open(path_file, "a+")
     sys.stdout.echo = nblog

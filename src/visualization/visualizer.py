@@ -104,7 +104,6 @@ class Visualizer:
         return x
 
     def generate_wordclouds(self, dataframe):
-        # result = vis.generate_wordclouds(test) test
         x = dataframe.copy()
         res = {}
 

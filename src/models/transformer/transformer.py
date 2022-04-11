@@ -1,7 +1,10 @@
+import typing
 import tensorflow as tf
 from transformers import AutoConfig, TFAutoModel
 
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
+from src.types.transformer_pooling import TransformerPooling
+from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
 
 class TransformerArchitecture:
@@ -10,14 +13,15 @@ class TransformerArchitecture:
 
     def create_model(
         self,
-        number_of_authors,
-        model_name,
-        output_sequence_length,
-        trainable,
-        pooling_type,
-        transformer_pooling_strategy=None,
-        transformer_start_index=lambda x: 0,
-        transformer_end_index=lambda x: 0,
+        number_of_authors: int,
+        model_name: str,
+        output_sequence_length:int,
+        trainable: bool,
+        pooling_type: TransformerPooling,
+        transformer_pooling_strategy: typing.Union[None, TransformerPoolingStrategy]=None,
+        transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=lambda x: 0,
+        transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=lambda x: 0,
+
     ):
 
         config = AutoConfig.from_pretrained(model_name, output_hidden_states=True)

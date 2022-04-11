@@ -1,3 +1,4 @@
+from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
 from src.config.config import BLANK_DESCRIPTION
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.experiment_scripts.experiment_configurations.config import (
@@ -20,9 +21,9 @@ from src.utils.get_train_test_valid_ds import get_train_test_valid_ds
 class NNRunner:
     def __init__(
         self,
-        experiment_type,
-        save_best=False,
-        save_model=False,
+        experiment_type: ExperimentType,
+        save_best: bool=False,
+        save_model: bool=False,
     ) -> None:
         self.save_best = save_best
         self.save_model = save_model

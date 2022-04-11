@@ -1,3 +1,4 @@
+import typing
 import tensorflow as tf
 
 from src.types.transformer_pooling import TransformerPooling
@@ -5,10 +6,10 @@ from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
 
 def verify_bert_pooling_input(
-    pooling_type,
-    transformer_pooling_strategy=None,
-    transformer_start_index=None,
-    transformer_end_index=None,
+    pooling_type: TransformerPooling,
+    transformer_pooling_strategy: typing.Union[None, TransformerPoolingStrategy]=None,
+    transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=-1,
+    transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=-1,
 ):
     if pooling_type in [
         TransformerPooling.LastHiddenState,
@@ -28,10 +29,10 @@ class BertPoolingLayer(tf.keras.layers.Layer):
     def call(
         self,
         inputs,
-        pooling_type,
-        transformer_pooling_strategy=None,
-        transformer_start_index=lambda x: 0,
-        transformer_end_index=lambda x: 0,
+        pooling_type: TransformerPooling,
+        transformer_pooling_strategy:typing.Union[None, TransformerPoolingStrategy]=None,
+        transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=lambda x: 0,
+        transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=lambda x: 0,
     ):
         verify_bert_pooling_input(
             pooling_type,

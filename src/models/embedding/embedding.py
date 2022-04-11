@@ -1,3 +1,4 @@
+import typing
 import tensorflow as tf
 from tensorflow import string as tf_string
 
@@ -14,12 +15,12 @@ class Embedding:
         self,
         train_ds,
         valid_ds,
-        vocab_size,
-        output_sequence_length,
-        trainable,
-        embedding_dim,
+        vocab_size:int,
+        output_sequence_length:int,
+        trainable:bool,
+        embedding_dim:int,
         embedding_dictionary=None,
-    ):
+    ) -> typing.Tuple:
         input_layer = tf.keras.layers.Input(shape=(1,), dtype=tf_string)
 
         vector_layer = tf.keras.layers.TextVectorization(

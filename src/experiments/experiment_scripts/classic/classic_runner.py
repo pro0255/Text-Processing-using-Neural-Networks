@@ -1,3 +1,6 @@
+import typing
+from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
+from src.experiments.helpers.experiment_description import ExperimentDescription
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.descriptions.create_description import (
     create_description_for_classic,
@@ -9,8 +12,6 @@ from src.experiments.experiment_scripts.classic.classic_wrapper import \
     ClassicExpRunWrapper
 from src.experiments.experiment_scripts.experiment_configurations.config import (
     ExperimentGeneratorPart, experiment_config)
-from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import \
-    NNExpRunWrapper
 from src.experiments.helpers.experiment_summarization import \
     ExperimentSummarization
 from src.models.transformer.pooling_strategy import \
@@ -26,16 +27,10 @@ DEFAULT_POOLING_STRATEGY = [TransformerPoolingStrategySelection.LastLayerCLS]
 class ClassicRunner:
     def __init__(
         self,
-        experiment_type,
+        experiment_type: ExperimentType,
     ) -> None:
 
         self.experiment_type = experiment_type
-
-        print(self.experiment_type)
-
-        # self.experiment_configurations = experiment_config[self.experiment_type][
-        #     ExperimentGeneratorPart.ExperimentConfiguration
-        # ]
 
         self.dataset_generator = experiment_config[self.experiment_type][
             ExperimentGeneratorPart.DatasetGenerator
@@ -67,7 +62,7 @@ class ClassicRunner:
         return self.transformer_pooling_strategy
 
     def run_prediction(
-        self, X_train, y_train, X_test, y_test, description, feature_extractor, wrapper
+        self, X_train, y_train, X_test, y_test, description: typing.Type[ExperimentDescription], feature_extractor, wrapper: typing.Type[ClassicExpRunWrapper]
     ):
 
         for predict_instance in self.predictors:

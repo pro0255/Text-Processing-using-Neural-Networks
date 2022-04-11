@@ -1,11 +1,13 @@
+import typing
 import gensim.downloader
 import numpy as np
 
 from src.config.loaded_models import loaded_models
+from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 
 
 class EmbeddingVectorizer:
-    def __init__(self, embedding_type, run_on_init=False):
+    def __init__(self, embedding_type: DownloadedEmbeddingType, run_on_init: bool=False) -> None:
         self.embedding_type = embedding_type.value
         self.missed = 0
         self.counter = 0
@@ -29,7 +31,7 @@ class EmbeddingVectorizer:
         else:
             print("Already downloaded")
 
-    def get_from_vectors(self, key_vectors, key):
+    def get_from_vectors(self, key_vectors: typing.Dict, key: str):
         self.counter += 1
         try:
             return key_vectors[key]
@@ -49,7 +51,7 @@ class EmbeddingVectorizer:
     def get_mean(self, corpus):
         return [np.mean(sent, axis=0) for sent in corpus]
 
-    def fit_transform(self, X):
+    def fit_transform(self, X: typing.List[typing.List[str]]):
         self.setup()
 
         self.missed = 0

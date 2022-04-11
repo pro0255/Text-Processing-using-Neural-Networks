@@ -1,3 +1,4 @@
+import typing
 import tensorflow as tf
 
 from src.models.nets.nn import NNArchitecture
@@ -13,15 +14,15 @@ class RNNArchitecture(NNArchitecture):
 
     def create_model(
         self,
-        number_of_authors,
+        number_of_authors:int,
         train_ds,
         valid_ds,
-        vocab_size,
-        embedding_dim,
-        output_sequence_length,
-        trainable,
-        embedding_dictionary=None,
-    ):
+        vocab_size:int,
+        embedding_dim:int,
+        output_sequence_length:int,
+        trainable:bool,
+        embedding_dictionary=typing.Union[typing.Dict, None],
+    ) -> typing.Union[typing.Tuple, None]:
 
         emb, input_layer, stats = self.emb.create_vect_embedding(
             train_ds,

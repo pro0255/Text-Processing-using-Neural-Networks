@@ -14,10 +14,10 @@ class gutenberg_builder:
 
     def build_dataset(
         self,
-        number_of_sentences,
-        number_of_authors,
-        load_path=os.sep.join([GUTENBERG_DOWNLOADED_DIRECTORY, PATTERN]),
-        directory_to_save=GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS,
+        number_of_sentences:int,
+        number_of_authors:int,
+        load_path:str=os.sep.join([GUTENBERG_DOWNLOADED_DIRECTORY, PATTERN]),
+        directory_to_save:str=GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS,
     ):
         iterate_over_files(
             load_path,

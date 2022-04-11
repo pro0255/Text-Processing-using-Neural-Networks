@@ -1,4 +1,5 @@
 import itertools
+import typing
 
 from src.data_loading.get_dataset_object_from import get_dataset_all
 from src.data_loading.load_dataset_from_path import \
@@ -14,7 +15,7 @@ class ExperimentLoader:
         pass
 
     def create_dataset_generator(
-        self, number_of_authors, number_of_sentences, preprocessing_types, norm_sizes
+        self, number_of_authors: typing.List[int], number_of_sentences: typing.List[int], preprocessing_types: typing.List, norm_sizes: typing.List[int]
     ):
 
         load_configs = list(

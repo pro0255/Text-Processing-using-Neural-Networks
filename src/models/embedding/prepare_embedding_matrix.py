@@ -1,7 +1,8 @@
+import typing
 import numpy as np
 
 
-def prepare_embedding_matrix(word_index, embeddings_index, embedding_dim):
+def prepare_embedding_matrix(word_index: typing.Dict[str, int], embeddings_index, embedding_dim: int):
     num_tokens = len(word_index) + 2
     hits = 0
     misses = 0

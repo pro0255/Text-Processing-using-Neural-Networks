@@ -1,4 +1,8 @@
+import typing
 import numpy as np
+import tensorflow as tf
+from pandas import DataFrame
+from src.experiments.helpers.experiment_summarization import ExperimentSummarization
 
 from src.config.config import LABEL_COLUMN, TEXT_COLUMN
 from src.types.experiment_summarization_fields import \
@@ -17,9 +21,9 @@ class VectorizerRunner:
     def fit_classic(
         self,
         vectorizer_instance,
-        dataset,
-        subset_type,
-        experiment_summarization_instance,
+        dataset: typing.Type[DataFrame],
+        subset_type: SubsetType,
+        experiment_summarization_instance: typing.Type[ExperimentSummarization],
     ):
         dataframe = from_dataset_dataframe(dataset)
 
@@ -48,9 +52,9 @@ class VectorizerRunner:
     def fit_embedding(
         self,
         vectorizer_instance,
-        dataset,
-        subset_type,
-        experiment_summarization_instance,
+        dataset: typing.Type[DataFrame],
+        subset_type: SubsetType,
+        experiment_summarization_instance: typing.Type[ExperimentSummarization],
     ):
         dataframe = from_dataset_dataframe(dataset)
 
@@ -87,9 +91,9 @@ class VectorizerRunner:
     def fit_transformer(
         self,
         vectorizer_instance,
-        dataset,
-        subset_type,
-        experiment_summarization_instance,
+        dataset: typing.Type[tf.data.Dataset],
+        subset_type: SubsetType,
+        experiment_summarization_instance: typing.Type[ExperimentSummarization],
     ):
         X, y = None, None
 
@@ -112,10 +116,10 @@ class VectorizerRunner:
 
     def fit(
         self,
-        dataset,
+        dataset: typing.Type[DataFrame],
         vectorizer_instance,
-        subset_type,
-        experiment_summarization_instance,
+        subset_type: SubsetType,
+        experiment_summarization_instance: typing.Type[ExperimentSummarization]
     ):
         name_of_instance = type(vectorizer_instance).__name__
 

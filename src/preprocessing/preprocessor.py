@@ -1,3 +1,4 @@
+import typing
 import nltk
 from gensim.parsing.preprocessing import preprocess_string
 from gensim.parsing.preprocessing import \
@@ -20,13 +21,13 @@ class TextPreprocessor:
         self.strip_short_default = self.create_strip_short_method(3)
         self.lemma_text = self.create_lemma_text()
 
-    def strip_tags(self, text):
+    def strip_tags(self, text: str) -> str:
         return strip_tags_gensim(text)
 
-    def strip_upper_words(self, text):
+    def strip_upper_words(self, text: str) -> typing.List[str]:
         return [word for word in text.split(" ") if word.upper() != word]
 
-    def remove_when_blacklisted(self, text):
+    def remove_when_blacklisted(self, text: str) -> str:
         current_text = set(text.split(" "))
         blacklist = set(BLACKLIST)
 
@@ -37,25 +38,25 @@ class TextPreprocessor:
 
         return text
 
-    def strip_punctuation(self, text):
+    def strip_punctuation(self, text: str) -> str:
         return strip_punctuation_gensim(text)
 
-    def strip_multiple_whitespaces(self, text):
+    def strip_multiple_whitespaces(self, text: str) -> str:
         return strip_multiple_whitespaces_gensim(text)
 
-    def strip_numeric(self, text):
+    def strip_numeric(self, text : str) -> str:
         return strip_numeric_gensim(text)
 
-    def strip_stopwords(self, text):
+    def strip_stopwords(self, text: str) -> str:
         return remove_stopwords_gensim(text)
 
-    def strip_short(self, text, minsize=3):
+    def strip_short(self, text:str, minsize:int=3):
         return strip_short_gensim(text, minsize)
 
-    def strip_short(self, text):
-        return strip_short_gensim(text)
+    # def strip_short(self, text):
+    #     return strip_short_gensim(text)
 
-    def create_strip_short_method(self, minsize=3):
+    def create_strip_short_method(self, minsize: int=3):
         # TODO: fix
         print(f"Creating shorting method with min = {minsize}")
 
@@ -64,10 +65,10 @@ class TextPreprocessor:
 
         return strip_short
 
-    def stem_text(self, text):
+    def stem_text(self, text: str) -> str:
         return stem_text_gensim(text)
 
-    def to_lowercase(self, text):
+    def to_lowercase(self, text: str) -> str:
         return text.lower()
 
     def create_lemma_text(self):

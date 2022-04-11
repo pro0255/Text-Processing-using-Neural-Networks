@@ -1,4 +1,5 @@
 import os
+import typing
 
 import pandas as pd
 
@@ -14,13 +15,13 @@ from src.utils.check_dataset_sizes import check_dataset_sizes
 
 
 def run_split_deps_on_stats(
-    path_to_load,
-    path_to_save,
-    normalization=True,
-    specific_label_size=None,
-    train_size=TRAIN_SIZE,
-    test_size=TEST_SIZE,
-    valid_size=VALIDATION_SIZE,
+    path_to_load:str,
+    path_to_save:str,
+    normalization:bool=True,
+    specific_label_size:typing.Union[int, None]=None,
+    train_size:int=TRAIN_SIZE,
+    test_size:int=TEST_SIZE,
+    valid_size:int=VALIDATION_SIZE,
 ):
     check_dataset_sizes(train_size, test_size, valid_size)
 
@@ -63,7 +64,7 @@ def run_split_deps_on_stats(
 
 
 def run_split_deps_on_stats_same_dir(
-    path_to_load, normalization=True, specific_label_size=None
+    path_to_load: str, normalization: bool=True, specific_label_size:typing.Union[None, int]=None
 ):
     run_split_deps_on_stats(
         path_to_load,

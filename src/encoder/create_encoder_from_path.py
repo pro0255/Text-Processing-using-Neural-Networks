@@ -4,7 +4,7 @@ from sklearn import preprocessing
 from src.types.authors_columns import AuthorsColumns
 
 
-def create_encoder_from_path(path):
+def create_encoder_from_path(path: str):
     authors = pd.read_csv(path, sep=";")
     ids = authors[AuthorsColumns.AuthorId.value].values
     encoder = preprocessing.LabelEncoder()

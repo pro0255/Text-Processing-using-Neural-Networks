@@ -1,10 +1,11 @@
+import typing
 from nltk import tokenize
 
 from src.preprocessing.preprocess_delimiter import preprocess_delimiter
 from src.preprocessing.preprocess_newlines import preprocess_newlines
 
 
-def chunk_document_by_sentence(document, k):
+def chunk_document_by_sentence(document: str, k: int) -> typing.List[str]:
     preprocessed_document_for_sentences = preprocess_newlines(document)
     preprocessed_document_for_sentences = preprocess_delimiter(
         preprocessed_document_for_sentences

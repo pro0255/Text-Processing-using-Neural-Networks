@@ -1,5 +1,6 @@
 import csv
 import os
+import typing
 
 import pandas as pd
 
@@ -13,7 +14,7 @@ from src.types.label_type import GutenbergLabelType
 from src.utils.get_data_from_gutenberg import get_data_from_gutenberg
 
 
-def build_process_func(k, name, path, authors_tuple):
+def build_process_func(k: int, name: str, path: str, authors_tuple: typing.List[typing.Tuple[int, str]]) -> typing.Callable[[typing.Dict], typing.List[str]]:
     number_of_authors = len(authors_tuple)
     authors_ids, authors_names = zip(*authors_tuple)
 

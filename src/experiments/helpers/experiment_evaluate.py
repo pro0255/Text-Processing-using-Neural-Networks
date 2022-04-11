@@ -1,4 +1,5 @@
 import os
+import typing
 
 import pandas as pd
 
@@ -13,11 +14,11 @@ from src.types.results import ResultType
 
 
 class ExperimentEvaluate:
-    def __init__(self, experiment_id, directory=None) -> None:
+    def __init__(self, experiment_id:str, directory: typing.Union[str, None]=None) -> None:
         self.directory = directory
         self.experiment_id = experiment_id
 
-    def calc(self, y_true, y_pred):
+    def calc(self, y_true: typing.List[int], y_pred:typing.List[int]) -> None:
         self.state = {}
         self.state[ResultType.Accuracy.value] = accuracy(y_true, y_pred)
         self.state[ResultType.F1.value] = f1(y_true, y_pred)
@@ -25,7 +26,7 @@ class ExperimentEvaluate:
         self.state[ResultType.Recall.value] = recall(y_true, y_pred)
         self.state[ResultType.ConsfusionMatrix.value] = conf_matrix(y_true, y_pred)
 
-    def save_confusion_matrix(self):
+    def save_confusion_matrix(self) -> None:
         confusion_matrix = self.state[ResultType.ConsfusionMatrix.value]
         df = pd.DataFrame(confusion_matrix)
         path = os.path.sep.join(
@@ -33,14 +34,14 @@ class ExperimentEvaluate:
         )
         df.to_csv(path, sep=LOG_SEP)
 
-    def save_metrics(self):
+    def save_metrics(self) -> None:
         metrics = self.state.copy()
         del metrics[ResultType.ConsfusionMatrix.value]
         df = pd.DataFrame.from_dict(metrics, orient="index")
         path = os.path.sep.join([self.directory, self.experiment_id, FILENAME_METRICS])
         df.to_csv(path, sep=LOG_SEP)
 
-    def save(self):
+    def save(self) -> None:
         print("Saving results")
         self.save_confusion_matrix()
         self.save_metrics()

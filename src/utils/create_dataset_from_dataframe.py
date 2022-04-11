@@ -1,9 +1,11 @@
+import typing
+from pandas import DataFrame
 import tensorflow as tf
 
 from src.config.config import LABEL_COLUMN, TEXT_COLUMN
 
 
-def create_dataset_from_dataframe(dataframe):
+def create_dataset_from_dataframe(dataframe: typing.Type[DataFrame]):
     features, target = dataframe[TEXT_COLUMN], dataframe[LABEL_COLUMN]
     return create_dataset_from_Xy(features, target)
 

@@ -1,14 +1,15 @@
+import typing
 from src.preprocessing.preprocessor import TextPreprocessor
 from src.types.processing_type import PreprocessingType
 
 
 class PreprocessingFactory:
     def __init__(self) -> None:
-        self.preprocessor = TextPreprocessor()
+        self.preprocessor: typing.Type[TextPreprocessor] = TextPreprocessor()
         self.build_dic()
 
     def build_dic(self):
-        self.dic = {
+        self.dic: typing.Dict[PreprocessingType, typing.Union[None, typing.Callable[[str], str]]] = {
             PreprocessingType.Default: self.preprocessor.default_preprocessing(),
             PreprocessingType.Lowercase: self.preprocessor.create_preprocess_string_func(
                 [self.preprocessor.to_lowercase]
@@ -18,5 +19,5 @@ class PreprocessingFactory:
             PreprocessingType.Blank: None,
         }
 
-    def create(self, preprocessing_type):
+    def create(self, preprocessing_type: PreprocessingType):
         return self.dic[preprocessing_type]

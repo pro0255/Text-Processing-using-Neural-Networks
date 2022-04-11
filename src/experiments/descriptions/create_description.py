@@ -10,8 +10,7 @@ from src.types.processing_type import PreprocessingType
 
 
 def from_pred_instance_get_type(prediction_instance):
-    print(f"Current prediction instance {prediction_instance}")
-    if not prediction_instance:
+    if prediction_instance == "":
         return ""
     name_of_instance = type(prediction_instance).__name__
     dic = {
@@ -25,8 +24,7 @@ def from_pred_instance_get_type(prediction_instance):
 
 
 def from_vect_instance_get_type(vectorizer_instance):
-    print(f"Current vectorizer instance {vectorizer_instance}")
-    if not vectorizer_instance:
+    if vectorizer_instance == "":
         return ""
     name_of_vectorizer_instance = type(vectorizer_instance).__name__
     dic = {
@@ -45,14 +43,14 @@ def from_vect_instance_get_type(vectorizer_instance):
 
 
 def create_description_for_classic(
-    experiment_id,
-    experiment_type,
-    number_of_authors,
-    number_of_sentences,
+    experiment_id: str,
+    experiment_type: str,
+    number_of_authors: int,
+    number_of_sentences: int,
     prediction_instance,
     vectorizer_instance,
-    normalization_size,
-    path_data,
+    normalization_size:int,
+    path_data:str,
     preprocessing_type=PreprocessingType.Default.value,
 ):
     classic_model_type = from_pred_instance_get_type(prediction_instance)
@@ -84,14 +82,14 @@ def create_description_for_classic(
 
 
 def create_description_for_transformer_with_classic(
-    experiment_id,
-    experiment_type,
-    number_of_authors,
-    number_of_sentences,
+    experiment_id:str,
+    experiment_type:str,
+    number_of_authors:int,
+    number_of_sentences:int,
     prediction_instance,
     vectorizer_instance,
-    normalization_size,
-    path_data,
+    normalization_size:int,
+    path_data:str,
     pooling_strategy,
     preprocessing_type=PreprocessingType.Default.value,
 ):
@@ -133,16 +131,16 @@ def create_description_for_transformer_with_classic(
 
 
 def create_description_for_transformer(
-    experiment_id,
-    experiment_type,
-    number_of_authors,
-    number_of_sentences,
+    experiment_id:str,
+    experiment_type:str,
+    number_of_authors:int,
+    number_of_sentences:int,
     model_name,
     pooling_strategy_arguments,
-    seq_len,
-    trainable,
-    normalization_size,
-    path_data,
+    seq_len:int,
+    trainable:bool,
+    normalization_size:int,
+    path_data:str,
     learning_settings,
     pooling_strategy,
     preprocessing_type=PreprocessingType.Default.value,
@@ -182,14 +180,14 @@ def create_description_for_transformer(
 
 
 def create_description_for_nn(
-    experiment_id,
-    experiment_type,
-    number_of_authors,
-    number_of_sentences,
-    normalization_size,
-    seq_len,
-    trainable,
-    path_data,
+    experiment_id:str,
+    experiment_type:str,
+    number_of_authors:int,
+    number_of_sentences:int,
+    normalization_size:int,
+    seq_len:int,
+    trainable:bool,
+    path_data:str,
     net_type,
     learning_settings,
     embedding_type,

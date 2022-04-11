@@ -10,7 +10,7 @@ from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
 
 
 class CallbacksFactory:
-    def __init__(self, save_model, save_best):
+    def __init__(self, save_model: bool, save_best: bool):
         self.save_model = save_model
         self.save_best = save_best
 

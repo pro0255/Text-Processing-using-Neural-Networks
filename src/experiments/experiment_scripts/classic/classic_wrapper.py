@@ -1,3 +1,5 @@
+import typing
+from src.experiments.experiment_scripts.classic.classic_configuration import ClassicExpConf
 from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
                                NAME_OF_LEARNING_LOGS)
 from src.experiments.helpers.experiment_evaluate import ExperimentEvaluate
@@ -15,10 +17,10 @@ from src.vectorizers.runner import VectorizerRunner
 class ClassicExpRunWrapper:
     def __init__(
         self,
-        experiment_id,
+        experiment_id:str,
         experiment_summarization=None,
-        directory=EXPERIMENT_RESULTS_DIRECTORY,
-        log_filename=NAME_OF_LEARNING_LOGS,
+        directory:str=EXPERIMENT_RESULTS_DIRECTORY,
+        log_filename:str=NAME_OF_LEARNING_LOGS,
     ) -> None:
         self.directory = directory
         self.experiment_id = experiment_id
@@ -31,13 +33,13 @@ class ClassicExpRunWrapper:
         )
         self.set_id(experiment_id)
 
-    def set_id(self, experiment_id):
+    def set_id(self, experiment_id:str):
         self.experiment_id = experiment_id
         self.experiment_setup = ExperimentSetup(experiment_id, self.directory)
         self.experiment_evaluate = ExperimentEvaluate(experiment_id, self.directory)
 
     def vectorizer_sentences(
-        self, train_ds, test_ds, vectorization_instance, cache=None
+        self, train_ds, test_ds, vectorization_instance
     ):
         print("New vectorization")
 
@@ -79,11 +81,11 @@ class ClassicExpRunWrapper:
 
     def run_vectorization(self, vectorization_instance, train_ds, test_ds):
         X_train, X_test, y_train, y_test = self.vectorizer_sentences(
-            train_ds, test_ds, vectorization_instance, None
+            train_ds, test_ds, vectorization_instance
         )
         return X_train, X_test, y_train, y_test
 
-    def get_configuration_values(self, classic_conf):
+    def get_configuration_values(self, classic_conf: typing.Type[ClassicExpConf]):
         X_train, y_train = classic_conf.get_train()
         X_test, y_test = classic_conf.get_test()
         return (
@@ -95,7 +97,7 @@ class ClassicExpRunWrapper:
             classic_conf.get_predict_instance(),
         )
 
-    def run_prediction(self, classic_conf):
+    def run_prediction(self, classic_conf: typing.Type[ClassicExpConf]):
         (
             X_train,
             y_train,

@@ -1,5 +1,5 @@
 AUTHOR_DIRECTORY_NAME = "Authors"
 
 
-def create_author_directory(k):
+def create_author_directory(k: int):
     return f"{k}{AUTHOR_DIRECTORY_NAME}"

@@ -1,5 +1,6 @@
 import time
 from enum import Enum
+import typing
 
 from src.types.experiment_summarization_fields import \
     ExperimentSummarizationFields
@@ -19,7 +20,7 @@ DEFAULT_TIMES = [
 
 
 class ExperimentTimer:
-    def __init__(self, times=DEFAULT_TIMES):
+    def __init__(self, times:typing.List[str]=DEFAULT_TIMES):
         self.dic = self.create_dic(times)
 
     def create_time_parts(self):
@@ -28,22 +29,22 @@ class ExperimentTimer:
             TimeParts.End.value: 0,
         }
 
-    def create_dic(self, times):
+    def create_dic(self, times:typing.List[str]) -> typing.Dict[str, float]:
         return {time_key: self.create_time_parts() for time_key in times}
 
-    def update(self, time_type, time_part, value):
+    def update(self, time_type:str, time_part:str, value:float):
         self.dic[time_type][time_part] = value
 
-    def get_elapsed(self, time_type):
+    def get_elapsed(self, time_type) -> float:
         return (
             self.dic[time_type][TimeParts.End.value]
             - self.dic[time_type][TimeParts.Start.value]
         )
 
-    def start(self, time_type):
+    def start(self, time_type:str)->None:
         current = time.time()
         self.update(time_type, TimeParts.Start.value, current)
 
-    def end(self, time_type):
+    def end(self, time_type:str)->None:
         current = time.time()
         self.update(time_type, TimeParts.End.value, current)

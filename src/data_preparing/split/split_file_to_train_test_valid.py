@@ -1,3 +1,4 @@
+import typing
 from src.config.config import (NORMALIZATION_SUFFIX, TEST_SIZE, TRAIN_SIZE,
                                VALIDATION_SIZE)
 from src.data_loading.get_dataset_object_from import \
@@ -6,7 +7,7 @@ from src.data_preparing.split.DataSetSplitter import DataSetSplitter
 from src.utils.check_dataset_sizes import check_dataset_sizes
 
 
-def create_subdirectory_name(normalization_size):
+def create_subdirectory_name(normalization_size: int):
     if normalization_size is None:
         return None
 
@@ -14,13 +15,13 @@ def create_subdirectory_name(normalization_size):
 
 
 def split_file_to_train_test_valid(
-    path_to_load,
-    path_to_save,
+    path_to_load: str,
+    path_to_save: str,
     label_metric=None,
-    normalization_size=None,
-    train_size=TRAIN_SIZE,
-    test_size=TEST_SIZE,
-    valid_size=VALIDATION_SIZE,
+    normalization_size:typing.Union[None, int]=None,
+    train_size: int=TRAIN_SIZE,
+    test_size: int=TEST_SIZE,
+    valid_size:int=VALIDATION_SIZE,
 ):
     check_dataset_sizes(train_size, test_size, valid_size)
 

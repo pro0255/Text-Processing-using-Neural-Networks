@@ -4,8 +4,7 @@ from src.utils.create_path_to_gutenberg import \
     create_path_to_gutenberg_sentence_authors_sentence
 
 
-# TODO: please calculate stats before :]
-def run_split_with_normalization(number_of_authors, number_of_sentences, f, t, step):
+def run_split_with_normalization(number_of_authors: int, number_of_sentences: int, f: int, t: int, step: int):
     path = create_path_to_gutenberg_sentence_authors_sentence(
         number_of_authors, number_of_sentences
     )

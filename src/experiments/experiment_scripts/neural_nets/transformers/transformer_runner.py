@@ -1,3 +1,4 @@
+from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.descriptions.create_description import \
     create_description_for_transformer
@@ -23,9 +24,9 @@ from src.utils.get_train_test_valid_ds import get_train_test_valid_ds
 class TransformerRunner:
     def __init__(
         self,
-        experiment_type,
-        save_best=True,
-        save_model=False,
+        experiment_type: ExperimentType,
+        save_best: bool=True,
+        save_model: bool=False,
     ) -> None:
         self.save_model = save_model
         self.save_best = save_best

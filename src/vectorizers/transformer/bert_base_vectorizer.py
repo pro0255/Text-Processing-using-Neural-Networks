@@ -1,3 +1,6 @@
+import typing
+
+from sklearn.preprocessing import LabelEncoder
 from src.types.transformer_name import TransformerName
 from src.types.transformer_pooling import TransformerPooling
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
@@ -6,16 +9,17 @@ from src.vectorizers.transformer.transformer_vectorizer import \
 
 
 class BertBaseUncasedVectorizer(TransformerVectorizer):
+
     def __init__(
         self,
-        transformer_pooling_type=TransformerPooling.Pooler,
-        path_authors=None,
-        encoder=None,
-        max_len=None,
-        preprocess_pipeline=None,
-        transformer_pooling_strategy=TransformerPoolingStrategy.Blank,
-        transformer_start_index=-1,
-        transformer_end_index=-1,
+        transformer_pooling_type: TransformerPooling=TransformerPooling.Pooler,
+        path_authors:typing.Union[None, str]=None,
+        encoder:typing.Union[None, typing.Type[LabelEncoder]]=None,
+        max_len:typing.Union[None, int]=None,
+        preprocess_pipeline=typing.Union[None, typing.Callable[[str], str]],
+        transformer_pooling_strategy:TransformerPoolingStrategy=TransformerPoolingStrategy.Blank,
+        transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=-1,
+        transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=-1,
     ):
         super().__init__(
             TransformerName.BertBaseUncased,

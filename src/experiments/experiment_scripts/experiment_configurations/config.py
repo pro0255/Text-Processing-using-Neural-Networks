@@ -35,6 +35,8 @@ from src.vectorizers.transformer.distil_bert_base_vectorizer import \
 from src.vectorizers.transformer.electra_small_vectorizer import \
     ElectraSmallVectorizer
 
+    
+
 loader = ExperimentLoader()
 
 
@@ -171,16 +173,16 @@ experiment_config = {
         ExperimentGeneratorPart.FeatureExtractors: [
             BoWVectorizer(),
             TFIDFVectorizer(),
-            GloveVectorizer(),
-            Word2VecVectorizer(),
-            ElectraSmallVectorizer(),
-            BertBaseUncasedVectorizer(),
-            DistilBertBaseUncasedVectorizer(),
+            # GloveVectorizer(),
+            # Word2VecVectorizer(),
+            # ElectraSmallVectorizer(),
+            # BertBaseUncasedVectorizer(),
+            # DistilBertBaseUncasedVectorizer(),
         ],
         ExperimentGeneratorPart.Predictor: [
             GaussianNB(),
             SGDClassifier(),
-            RandomForestClassifier(n_estimators=100, warm_start=True),
+            RandomForestClassifier(),
             KNeighborsClassifier(n_neighbors=5, metric=coss_similarity),
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,

@@ -1,10 +1,10 @@
 import time
+import typing
 
 import pandas as pd
 import tensorflow as tf
 
 from src.config.config import LOG_SEP
-
 
 class CSVLogger(tf.keras.callbacks.Callback):
     def __init__(self, path):
@@ -12,11 +12,11 @@ class CSVLogger(tf.keras.callbacks.Callback):
         self.timetaken = time.time()
         self.state = {}
 
-    def on_epoch_end(self, epoch, logs={}):
+    def on_epoch_end(self, epoch:int, logs:typing.Dict={}):
         logs["time"] = time.time() - self.timetaken
         self.state[epoch] = logs
 
-    def on_train_end(self, logs={}):
+    def on_train_end(self, logs:typing.Dict={}):
         headers = []
         for k, v in self.state.items():
             headers = self.state[k].keys()
