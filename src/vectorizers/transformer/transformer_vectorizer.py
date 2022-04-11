@@ -6,7 +6,7 @@ from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 from transformers import AutoConfig
 import numpy as np
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
-from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection, pooling_strategy_dictionary
+from src.models.transformer.pooling_strategy import pooling_strategy_dictionary
 
 
 class TransformerVectorizer:

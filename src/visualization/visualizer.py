@@ -13,7 +13,6 @@ class Visualizer:
         pass
 
     def create_max_min_mean_len(self, tuples):
-        # d = vis.create_max_min_mean_len([("test", test), ("feste", test)]) test
         res = pd.DataFrame()
 
         for name, data in tuples:

@@ -23,6 +23,7 @@ from src.experiments.descriptions.create_description import (
     create_description_for_classic,
     from_pred_instance_get_type
 )
+from src.types.experiment_description import ExperimentDescriptionType
 
 
 DEFAULT_POOLING_STRATEGY = [TransformerPoolingStrategySelection.LastLayerCLS]
@@ -92,12 +93,12 @@ class ClassicRunner:
 
                 description = description
 
-                description.state.experiment_id = current_experiment_id
+                description.state[ExperimentDescriptionType.ExperimentId.value] = current_experiment_id
 
                 
                 current_predict_instance_name = from_pred_instance_get_type(predict_instance)
                 print(f"Current predict instance {current_predict_instance_name}")
-                description.state.classic_model_name = current_predict_instance_name
+                description.state[ExperimentDescriptionType.ClassicModelName.value] = current_predict_instance_name
 
                 classic_conf = ClassicExpConf(
                     train=(X_train, y_train),
