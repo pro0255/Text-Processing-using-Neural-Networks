@@ -1,5 +1,6 @@
-from sklearn import preprocessing
 import pandas as pd
+from sklearn import preprocessing
+
 from src.types.authors_columns import AuthorsColumns
 
 

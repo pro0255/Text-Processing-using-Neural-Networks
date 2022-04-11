@@ -1,11 +1,12 @@
 from src.config.config import BLANK_DESCRIPTION
-from src.experiments.helpers.experiment_description import ExperimentDescription
-from src.types.prediction_model_type import PredictionModelType
-from src.types.net_type import NetType
-from src.types.embedding_type import EmbeddingType
-from src.types.processing_type import PreprocessingType
-from src.types.classic_model_type import ClassicModelType
+from src.experiments.helpers.experiment_description import \
+    ExperimentDescription
 from src.models.transformer.pooling_strategy import MAX_FAKE_LAYERS
+from src.types.classic_model_type import ClassicModelType
+from src.types.embedding_type import EmbeddingType
+from src.types.net_type import NetType
+from src.types.prediction_model_type import PredictionModelType
+from src.types.processing_type import PreprocessingType
 
 
 def from_pred_instance_get_type(prediction_instance):

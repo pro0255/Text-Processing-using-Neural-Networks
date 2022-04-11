@@ -1,4 +1,5 @@
 import itertools
+
 from src.models.embedding.load_from_gensim import load_from_gensim
 
 

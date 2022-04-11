@@ -1,13 +1,11 @@
 import itertools
-from src.data_preparing.build.gutenberg_builder import gutenberg_builder
-from src.config.config import (
-    GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS,
-    FILE_DATA_NAME,
-)
-from src.data_preparing.split.run_split_deps_on_stats import (
-    run_split_deps_on_stats_same_dir,
-)
 import os
+
+from src.config.config import (FILE_DATA_NAME,
+                               GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS)
+from src.data_preparing.build.gutenberg_builder import gutenberg_builder
+from src.data_preparing.split.run_split_deps_on_stats import \
+    run_split_deps_on_stats_same_dir
 
 AUTHORS = list(range(5, 115, 10))
 SENTENCES = list(range(1, 11, 1))

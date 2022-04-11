@@ -1,4 +1,5 @@
 from enum import Enum
+
 from src.types.processing_type import PreprocessingType
 
 LOOKUP_KEY = "LOOKUP_KEY"

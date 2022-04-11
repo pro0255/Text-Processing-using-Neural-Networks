@@ -1,12 +1,9 @@
 import tensorflow as tf
-from src.utils.create_path_to_gutenberg import (
-    get_path_to_gutenberg_sets,
-    get_path_to_gutenberg_all,
-)
-from src.preprocessing.preprocessing_factory import (
-    PreprocessingFactory,
-    PreprocessingType,
-)
+
+from src.preprocessing.preprocessing_factory import (PreprocessingFactory,
+                                                     PreprocessingType)
+from src.utils.create_path_to_gutenberg import (get_path_to_gutenberg_all,
+                                                get_path_to_gutenberg_sets)
 
 
 def get_dataset_object_from_path(csv_filename, delim, text_pipeline_func=None):

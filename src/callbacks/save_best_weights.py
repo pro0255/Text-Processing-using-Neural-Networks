@@ -1,6 +1,8 @@
-import tensorflow as tf
-from src.config.config import BEST_WEIGHTS_NAME
 import os
+
+import tensorflow as tf
+
+from src.config.config import BEST_WEIGHTS_NAME
 
 
 def create_save_best_weights_callback(filepath):

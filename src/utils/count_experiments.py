@@ -1,5 +1,6 @@
-from src.config.config import EXPERIMENT_RESULTS_DIRECTORY
 import os
+
+from src.config.config import EXPERIMENT_RESULTS_DIRECTORY
 
 
 def count_experiments(experiment_name):

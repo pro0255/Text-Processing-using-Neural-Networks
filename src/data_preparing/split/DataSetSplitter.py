@@ -1,13 +1,15 @@
-import os
+import csv
 import math
-from src.utils.delete_file_from import delete_file_from
+import os
 import random
+
 import pandas as pd
 from tqdm import tqdm
-import csv
+
+from src.config.config import NAME_OF_FILE_WITH_SUBSET_SIZES
 from src.types.subset_type import SubsetType
 from src.utils.add_suffix import add_suffix
-from src.config.config import NAME_OF_FILE_WITH_SUBSET_SIZES
+from src.utils.delete_file_from import delete_file_from
 
 
 class DataSetSplitter:

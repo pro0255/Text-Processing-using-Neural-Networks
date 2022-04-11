@@ -1,12 +1,7 @@
-from src.config.learning_config import (
-    BATCH_SIZE,
-    EPOCHS,
-    LEARNING_RATE,
-    LOSS,
-    METRIC,
-    OPTIMIZER,
-)
 import itertools
+
+from src.config.learning_config import (BATCH_SIZE, EPOCHS, LEARNING_RATE,
+                                        LOSS, METRIC, OPTIMIZER)
 
 
 def settings_generator(

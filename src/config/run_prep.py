@@ -1,5 +1,5 @@
-from src.config.nltk_prep import prepare_nltk_package
 from src.config.config import NLTK_PATH
+from src.config.nltk_prep import prepare_nltk_package
 
 
 def run_prep():

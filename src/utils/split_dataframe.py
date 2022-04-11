@@ -1,11 +1,7 @@
 from sklearn.model_selection import train_test_split
-from src.config.config import (
-    LABEL_COLUMN,
-    TEXT_COLUMN,
-    VALIDATION_SIZE,
-    TEST_SIZE,
-    RANDOM_STATE,
-)
+
+from src.config.config import (LABEL_COLUMN, RANDOM_STATE, TEST_SIZE,
+                               TEXT_COLUMN, VALIDATION_SIZE)
 
 
 def split_dataframe(dataframe, test_size=TEST_SIZE):

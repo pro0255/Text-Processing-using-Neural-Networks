@@ -1,5 +1,6 @@
-import nltk
 import os
+
+import nltk
 
 
 def prepare_nltk_package(nltk_path):

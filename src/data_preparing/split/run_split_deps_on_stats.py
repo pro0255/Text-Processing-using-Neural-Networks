@@ -1,14 +1,16 @@
-from src.config.config import TRAIN_SIZE, TEST_SIZE, VALIDATION_SIZE, AUTHORS_FILE_NAME
-from src.utils.check_dataset_sizes import check_dataset_sizes
+import os
+
+import pandas as pd
+
+from src.config.config import (AUTHORS_FILE_NAME, TEST_SIZE, TRAIN_SIZE,
+                               VALIDATION_SIZE)
+from src.data_preparing.split.split_file_to_train_test_valid import \
+    split_file_to_train_test_valid
 from src.statistic.build_input_for_statistics import build_input_for_statistics
 from src.statistic.create_statistics_from import create_statistics_from
 from src.statistic.instances.label_metric import LabelMetric
-from src.data_preparing.split.split_file_to_train_test_valid import (
-    split_file_to_train_test_valid,
-)
-import os
-import pandas as pd
 from src.types.authors_columns import AuthorsColumns
+from src.utils.check_dataset_sizes import check_dataset_sizes
 
 
 def run_split_deps_on_stats(

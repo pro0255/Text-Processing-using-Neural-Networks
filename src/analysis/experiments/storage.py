@@ -1,5 +1,6 @@
-from src.analysis.experiments.process_directory import process_directory
 import pandas as pd
+
+from src.analysis.experiments.process_directory import process_directory
 
 
 def create_dataframe(start_directory, storage=None):

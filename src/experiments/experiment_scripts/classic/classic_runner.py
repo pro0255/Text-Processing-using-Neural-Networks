@@ -1,32 +1,24 @@
-from src.utils.get_train_test_valid_ds import get_train_test_valid_ds
-from src.utils.create_experiment_id import create_experiment_id
-from src.experiments.helpers.experiment_summarization import ExperimentSummarization
-from src.experiments.experiment_scripts.classic.classic_configuration import (
-    ClassicExpConf,
-)
-from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import (
-    NNExpRunWrapper,
-)
-from src.experiments.experiment_scripts.experiment_configurations.config import (
-    experiment_config,
-    ExperimentGeneratorPart,
-)
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.descriptions.create_description import (
     create_description_for_classic,
-)
-from src.experiments.experiment_scripts.classic.classic_wrapper import (
-    ClassicExpRunWrapper,
-)
-from src.vectorizers.instances import TRANSFORMER
-from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection
-from src.experiments.descriptions.create_description import (
     create_description_for_transformer_with_classic,
-    create_description_for_classic,
-    from_pred_instance_get_type,
-)
+    from_pred_instance_get_type)
+from src.experiments.experiment_scripts.classic.classic_configuration import \
+    ClassicExpConf
+from src.experiments.experiment_scripts.classic.classic_wrapper import \
+    ClassicExpRunWrapper
+from src.experiments.experiment_scripts.experiment_configurations.config import (
+    ExperimentGeneratorPart, experiment_config)
+from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import \
+    NNExpRunWrapper
+from src.experiments.helpers.experiment_summarization import \
+    ExperimentSummarization
+from src.models.transformer.pooling_strategy import \
+    TransformerPoolingStrategySelection
 from src.types.experiment_description import ExperimentDescriptionType
-
+from src.utils.create_experiment_id import create_experiment_id
+from src.utils.get_train_test_valid_ds import get_train_test_valid_ds
+from src.vectorizers.instances import TRANSFORMER
 
 DEFAULT_POOLING_STRATEGY = [TransformerPoolingStrategySelection.LastLayerCLS]
 

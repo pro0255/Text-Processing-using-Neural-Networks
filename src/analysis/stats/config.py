@@ -1,6 +1,7 @@
-from src.config.config import PATH_TO_DATASET_FOLDER, AUTHORS_FILE_NAME, FILE_DATA_NAME
-from src.types.subset_type import SubsetType
+from src.config.config import (AUTHORS_FILE_NAME, FILE_DATA_NAME,
+                               PATH_TO_DATASET_FOLDER)
 from src.types.processing_type import PreprocessingType
+from src.types.subset_type import SubsetType
 from src.types.transformer_name import TransformerName
 
 START_DIRECTORY = PATH_TO_DATASET_FOLDER

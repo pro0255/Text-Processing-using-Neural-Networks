@@ -1,12 +1,13 @@
-from transformers import TFAutoModel
-from src.tokenizers.transformer_tokenizer import TransformerTokenizer
-from src.encoder.create_encoder_from_path import create_encoder_from_path
-from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_tokenizer
-from src.models.transformer.bert_pooling_layer import BertPoolingLayer
-from transformers import AutoConfig
 import numpy as np
-from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
+from transformers import AutoConfig, TFAutoModel
+
+from src.encoder.create_encoder_from_path import create_encoder_from_path
+from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 from src.models.transformer.pooling_strategy import pooling_strategy_dictionary
+from src.tokenizers.prepare_dataset_from_tokenizer import \
+    prepare_dataset_from_tokenizer
+from src.tokenizers.transformer_tokenizer import TransformerTokenizer
+from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
 
 class TransformerVectorizer:

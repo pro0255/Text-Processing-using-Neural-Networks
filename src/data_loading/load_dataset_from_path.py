@@ -1,10 +1,8 @@
 import pandas as pd
-from src.preprocessing.preprocessing_factory import (
-    PreprocessingFactory,
-    PreprocessingType,
-)
-from src.config.config import PROJECT_CSV_DELIMITER
-from src.config.config import TEXT_COLUMN, LABEL_COLUMN
+
+from src.config.config import LABEL_COLUMN, PROJECT_CSV_DELIMITER, TEXT_COLUMN
+from src.preprocessing.preprocessing_factory import (PreprocessingFactory,
+                                                     PreprocessingType)
 
 
 def load_dataset_from_path_with_normalization(

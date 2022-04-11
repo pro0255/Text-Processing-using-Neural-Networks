@@ -1,6 +1,7 @@
-from src.config.config import FILENAME_METRICS
-from src.analysis.experiments.validation.exists import exists
 import pandas as pd
+
+from src.analysis.experiments.validation.exists import exists
+from src.config.config import FILENAME_METRICS
 
 
 def parse_metrics(directory):

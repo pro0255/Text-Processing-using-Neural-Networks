@@ -1,6 +1,8 @@
 import time
-import tensorflow as tf
+
 import pandas as pd
+import tensorflow as tf
+
 from src.config.config import LOG_SEP
 
 

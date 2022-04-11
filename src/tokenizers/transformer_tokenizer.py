@@ -1,5 +1,6 @@
-from transformers import AutoTokenizer
 import tensorflow as tf
+from transformers import AutoTokenizer
+
 from src.types.transformer_input import TransformerInput
 
 

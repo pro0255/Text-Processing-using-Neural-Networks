@@ -1,11 +1,9 @@
-import pandas as pd
-from src.config.config import (
-    LOG_SEP,
-    EXPERIMENT_RESULTS_DIRECTORY,
-    FILENAME_DESCRIPTION,
-    BLANK_DESCRIPTION,
-)
 import os
+
+import pandas as pd
+
+from src.config.config import (BLANK_DESCRIPTION, EXPERIMENT_RESULTS_DIRECTORY,
+                               FILENAME_DESCRIPTION, LOG_SEP)
 from src.types.experiment_description import ExperimentDescriptionType
 
 

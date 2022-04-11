@@ -1,4 +1,5 @@
 import random
+
 from src.config.config import STAMP_SIZE
 
 

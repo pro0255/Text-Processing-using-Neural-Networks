@@ -1,13 +1,15 @@
-from src.experiments.helpers.experiment_setup import ExperimentSetup
+from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
+                               NAME_OF_LEARNING_LOGS)
 from src.experiments.helpers.experiment_evaluate import ExperimentEvaluate
-from src.experiments.helpers.experiment_summarization import ExperimentSummarization
+from src.experiments.helpers.experiment_setup import ExperimentSetup
+from src.experiments.helpers.experiment_summarization import \
+    ExperimentSummarization
 from src.experiments.helpers.experiment_timer import ExperimentTimer
-from src.types.time_type import TimeType
-from src.types.subset_type import SubsetType
 from src.types.experiment_description import ExperimentDescriptionType
+from src.types.subset_type import SubsetType
+from src.types.time_type import TimeType
 from src.utils.get_extra_field import get_extra
 from src.vectorizers.runner import VectorizerRunner
-from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOGS
 
 
 class ClassicExpRunWrapper:

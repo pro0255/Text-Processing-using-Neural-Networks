@@ -1,15 +1,16 @@
-from src.statistic.create_statistics_from import create_statistics_from
-from src.statistic.build_input_for_statistics import build_input_for_statistics
-from src.utils.create_path_to_gutenberg import get_path_to_gutenberg_sets
-from src.config.config import get_current_folder
-from src.preprocessing.preprocessing_factory import PreprocessingFactory
-from src.types.processing_type import PreprocessingType
-from src.statistic.instances.statistic_description import StatisticDescription
-from src.types.subset_type import SubsetType
-from src.types.transformer_name import TransformerName
-from src.statistic.DEFAULT_INSTANCES import build_statistic_instances
 import itertools
 import os
+
+from src.config.config import get_current_folder
+from src.preprocessing.preprocessing_factory import PreprocessingFactory
+from src.statistic.build_input_for_statistics import build_input_for_statistics
+from src.statistic.create_statistics_from import create_statistics_from
+from src.statistic.DEFAULT_INSTANCES import build_statistic_instances
+from src.statistic.instances.statistic_description import StatisticDescription
+from src.types.processing_type import PreprocessingType
+from src.types.subset_type import SubsetType
+from src.types.transformer_name import TransformerName
+from src.utils.create_path_to_gutenberg import get_path_to_gutenberg_sets
 
 
 def get_subset_path_index(subset_type):

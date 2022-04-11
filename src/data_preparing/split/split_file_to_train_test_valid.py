@@ -1,8 +1,9 @@
-from src.config.config import TEST_SIZE, TRAIN_SIZE, VALIDATION_SIZE
-from src.utils.check_dataset_sizes import check_dataset_sizes
+from src.config.config import (NORMALIZATION_SUFFIX, TEST_SIZE, TRAIN_SIZE,
+                               VALIDATION_SIZE)
+from src.data_loading.get_dataset_object_from import \
+    get_dataset_object_from_path
 from src.data_preparing.split.DataSetSplitter import DataSetSplitter
-from src.data_loading.get_dataset_object_from import get_dataset_object_from_path
-from src.config.config import NORMALIZATION_SUFFIX
+from src.utils.check_dataset_sizes import check_dataset_sizes
 
 
 def create_subdirectory_name(normalization_size):

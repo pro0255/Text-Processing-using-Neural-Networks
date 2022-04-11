@@ -1,6 +1,7 @@
-from src.analysis.experiments.validation.is_correct_file import is_correct_file
-from src.analysis.experiments.create_record import create_record
 import os
+
+from src.analysis.experiments.create_record import create_record
+from src.analysis.experiments.validation.is_correct_file import is_correct_file
 
 
 def process_directory(directory, storage=None):

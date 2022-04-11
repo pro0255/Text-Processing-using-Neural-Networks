@@ -1,13 +1,15 @@
-import os
 import csv
+import os
+
+import pandas as pd
+
+from src.config.config import (AUTHORS_FILE_NAME, FILE_DATA_NAME,
+                               PROJECT_CSV_DELIMITER)
+from src.data_preparing.build.chunk_document_by_sentence import \
+    chunk_document_by_sentence
+from src.data_preparing.build.logger import log_error
 from src.types.gutenberg_json_attributes import GutenbergJsonAttributes
 from src.types.label_type import GutenbergLabelType
-from src.data_preparing.build.chunk_document_by_sentence import (
-    chunk_document_by_sentence,
-)
-from src.config.config import AUTHORS_FILE_NAME, FILE_DATA_NAME, PROJECT_CSV_DELIMITER
-import pandas as pd
-from src.data_preparing.build.logger import log_error
 from src.utils.get_data_from_gutenberg import get_data_from_gutenberg
 
 

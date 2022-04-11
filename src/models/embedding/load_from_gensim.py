@@ -1,6 +1,7 @@
 import gensim.downloader as api
-from src.models.embedding.load_model import load_model
+
 from src.config.loaded_models import loaded_models
+from src.models.embedding.load_model import load_model
 
 
 def load_from_gensim(model_name):

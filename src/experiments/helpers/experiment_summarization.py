@@ -1,11 +1,11 @@
-import pandas as pd
-from src.config.config import (
-    LOG_SEP,
-    EXPERIMENT_RESULTS_DIRECTORY,
-    FILENAME_SUMMARIZATION,
-)
 import os
-from src.types.experiment_summarization_fields import ExperimentSummarizationFields
+
+import pandas as pd
+
+from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
+                               FILENAME_SUMMARIZATION, LOG_SEP)
+from src.types.experiment_summarization_fields import \
+    ExperimentSummarizationFields
 
 
 class ExperimentSummarization:

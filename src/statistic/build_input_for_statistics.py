@@ -1,21 +1,18 @@
 import os
+
+from src.config.config import (LABEL_COLUMN, SPECIFIC_DIRECTORY_FOR_STATISTICS,
+                               STATISTICS_SUBDIRECTORY, TEXT_COLUMN)
+from src.data_loading.get_dataset_object_from import \
+    get_dataset_object_from_path
+from src.data_loading.load_dataset_from_path import \
+    load_dataset_from_path_with_normalization
 from src.statistic.create_stats_filename import create_stats_filename
+from src.statistic.DEFAULT_INSTANCES import build_default_instances
 from src.statistic.metric_wrapper import MetricWrapper
-from src.data_loading.get_dataset_object_from import get_dataset_object_from_path
-from src.config.config import (
-    SPECIFIC_DIRECTORY_FOR_STATISTICS,
-    STATISTICS_SUBDIRECTORY,
-    TEXT_COLUMN,
-    LABEL_COLUMN,
-)
-from src.data_loading.load_dataset_from_path import (
-    load_dataset_from_path_with_normalization,
-)
+from src.types.subset_type import SubsetType
+from src.utils.create_dataset_from_dataframe import create_dataset_from_Xy
 from src.utils.normalize_dataframe_to_size import normalize_dataframe_to_size
 from src.utils.split_dataframe import split_dataframe_to_train_test_valid
-from src.utils.create_dataset_from_dataframe import create_dataset_from_Xy
-from src.types.subset_type import SubsetType
-from src.statistic.DEFAULT_INSTANCES import build_default_instances
 
 
 def get_datset_from_type(subset_type, normalized_data):

@@ -1,4 +1,5 @@
 import tensorflow as tf
+
 from src.types.transformer_pooling import TransformerPooling
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 

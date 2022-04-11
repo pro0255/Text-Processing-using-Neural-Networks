@@ -1,6 +1,7 @@
+from tqdm import tqdm
+
 from src.data_loading.load_files import load_files
 from src.utils.load_json import load_json
-from tqdm import tqdm
 
 
 def iterate_over_files(files_path, process_func):

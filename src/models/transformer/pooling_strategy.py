@@ -1,4 +1,5 @@
 from enum import Enum
+
 from src.types.transformer_pooling import TransformerPooling
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 

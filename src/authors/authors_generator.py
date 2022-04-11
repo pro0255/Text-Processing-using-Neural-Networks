@@ -1,5 +1,6 @@
 import pandas as pd
-from src.config.config import PATH_TO_ALL_AUTHORS, ALL_AUTHORS_DELIMITER
+
+from src.config.config import ALL_AUTHORS_DELIMITER, PATH_TO_ALL_AUTHORS
 
 
 class authors_generator:

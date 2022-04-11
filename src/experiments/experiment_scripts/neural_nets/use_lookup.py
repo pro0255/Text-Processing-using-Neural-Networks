@@ -1,8 +1,5 @@
 from src.experiments.experiment_scripts.experiment_configurations.lookup import (
-    gutenberg_lookup_seq,
-    gutenberg_lookup_normalization,
-    LOOKUP_KEY,
-)
+    LOOKUP_KEY, gutenberg_lookup_normalization, gutenberg_lookup_seq)
 
 
 def use_lookup_seq(value, current_authors, current_sentences, preprocessing_type):

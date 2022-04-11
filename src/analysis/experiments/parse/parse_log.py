@@ -1,6 +1,7 @@
+import pandas as pd
+
 from src.analysis.experiments.validation.exists import exists
 from src.config.config import FILENAME_LOGS
-import pandas as pd
 
 
 def parse_log(directory):

@@ -1,4 +1,5 @@
 import itertools
+
 from src.analysis.stats.create_record import create_record
 
 

@@ -1,7 +1,7 @@
-from src.analysis.stats.config import START_DIRECTORY
-from src.analysis.stats.config import FILENAMES
 import os
+
 from src.analysis.experiments.validation.is_correct_file import is_correct_file
+from src.analysis.stats.config import FILENAMES, START_DIRECTORY
 from src.analysis.stats.process_path import process_path
 
 

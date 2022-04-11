@@ -1,5 +1,6 @@
 import gensim.downloader
 import numpy as np
+
 from src.config.loaded_models import loaded_models
 
 

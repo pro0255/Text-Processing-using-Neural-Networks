@@ -1,15 +1,11 @@
-from src.config.config import (
-    PATH_TO_DATASET_FOLDER,
-    FILE_DATA_NAME,
-    AUTHORS_FILE_NAME,
-    NORMALIZATION_SUFFIX,
-)
+from src.authors.create_author_directory import create_author_directory
+from src.config.config import (AUTHORS_FILE_NAME, FILE_DATA_NAME,
+                               NORMALIZATION_SUFFIX, PATH_TO_DATASET_FOLDER)
 from src.types.dataset import DataSet
 from src.types.dataset_type import DataSetType
-from src.authors.create_author_directory import create_author_directory
-from src.utils.create_path import create_path
 from src.types.subset_type import SubsetType
 from src.types.suffix import Suffix
+from src.utils.create_path import create_path
 
 
 def create_label_sub_directory(specific_label_size):

@@ -1,6 +1,6 @@
 from src.config.config import NAME_OF_STATISTICS_FILE
-from src.utils.add_suffix import add_suffix
 from src.types.suffix import Suffix
+from src.utils.add_suffix import add_suffix
 from src.utils.generate_random_stamp import generator_random_stamp
 
 

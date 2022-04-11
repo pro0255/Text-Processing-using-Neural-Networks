@@ -1,4 +1,5 @@
 import pandas as pd
+
 from src.statistic.types.description_statistic import StatisticDescriptionField
 
 

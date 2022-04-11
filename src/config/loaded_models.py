@@ -1,5 +1,6 @@
-from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 import gensim.downloader
+
+from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 
 loaded_models = {
     DownloadedEmbeddingType.Glove.value: gensim.downloader.load(

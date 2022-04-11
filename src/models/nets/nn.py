@@ -1,9 +1,11 @@
-from src.models.embedding.embedding import Embedding
 import json
+
 from src.config.config import BLANK_DESCRIPTION
-from src.experiments.descriptions.create_description import create_description_for_nn
-from src.types.processing_type import PreprocessingType
+from src.experiments.descriptions.create_description import \
+    create_description_for_nn
+from src.models.embedding.embedding import Embedding
 from src.types.net_type import NetType
+from src.types.processing_type import PreprocessingType
 
 
 class NNArchitecture:

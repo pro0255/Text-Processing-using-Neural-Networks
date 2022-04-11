@@ -1,4 +1,5 @@
 import tensorflow as tf
+
 from src.models.nets.nn import NNArchitecture
 from src.types.net_type import NetType
 

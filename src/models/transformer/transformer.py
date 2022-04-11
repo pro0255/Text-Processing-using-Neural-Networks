@@ -1,5 +1,6 @@
-from transformers import TFAutoModel, AutoConfig
 import tensorflow as tf
+from transformers import AutoConfig, TFAutoModel
+
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 
 

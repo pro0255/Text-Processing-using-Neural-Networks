@@ -1,13 +1,12 @@
 import itertools
+
 from src.data_loading.get_dataset_object_from import get_dataset_all
-from src.data_loading.load_dataset_from_path import (
-    load_dataset_from_path_with_normalization,
-)
+from src.data_loading.load_dataset_from_path import \
+    load_dataset_from_path_with_normalization
+from src.experiments.experiment_scripts.neural_nets.use_lookup import \
+    use_lookup_normalization
 from src.utils.normalize_dataframe_to_size import normalize_dataframe_to_size
 from src.utils.split_dataframe import split_dataframe_to_train_test_valid
-from src.experiments.experiment_scripts.neural_nets.use_lookup import (
-    use_lookup_normalization,
-)
 
 
 class ExperimentLoader:

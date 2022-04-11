@@ -1,6 +1,7 @@
-from src.config.config import LOG_FILE_NAME
-import os
 import csv
+import os
+
+from src.config.config import LOG_FILE_NAME
 
 
 def log_error(directory, id, error):

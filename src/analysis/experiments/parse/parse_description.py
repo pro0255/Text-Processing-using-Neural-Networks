@@ -1,6 +1,7 @@
-from src.config.config import FILENAME_DESCRIPTION
-from src.analysis.experiments.validation.exists import exists
 import pandas as pd
+
+from src.analysis.experiments.validation.exists import exists
+from src.config.config import FILENAME_DESCRIPTION
 
 
 def parse_description(directory):

@@ -1,12 +1,15 @@
+import os
+
+import pandas as pd
+
+from src.config.config import (FILENAME_CONFUSION_MATRIX, FILENAME_METRICS,
+                               LOG_SEP)
 from src.experiments.results.accuracy import accuracy
+from src.experiments.results.conf_matrix import conf_matrix
 from src.experiments.results.f1 import f1
 from src.experiments.results.precision import presicion
 from src.experiments.results.recall import recall
-from src.experiments.results.conf_matrix import conf_matrix
 from src.types.results import ResultType
-import pandas as pd
-from src.config.config import FILENAME_METRICS, FILENAME_CONFUSION_MATRIX, LOG_SEP
-import os
 
 
 class ExperimentEvaluate:

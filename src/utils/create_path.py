@@ -1,6 +1,7 @@
-from src.types.dataset_type import DataSetType
 import os
+
 from src.config.config import FILE_DATA_NAME
+from src.types.dataset_type import DataSetType
 
 
 # TODO: refactor

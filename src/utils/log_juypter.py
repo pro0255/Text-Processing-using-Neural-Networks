@@ -1,7 +1,9 @@
-import sys
-import os
 import logging
+import os
+import sys
+
 from IPython import get_ipython
+
 from src.config.config import JUPYTER_LOG_NAME
 
 

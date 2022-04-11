@@ -1,7 +1,8 @@
 import pandas as pd
+from transformers import AutoTokenizer
+
 from src.statistic.DEFAULT_DIC_VALUE import DEFAULT_DIC_VALUE
 from src.statistic.utils.avg_min_max_updater import AvgMaxMinUpdate
-from transformers import AutoTokenizer
 from src.types.transformer_input import TransformerInput
 from src.types.transformer_name import TransformerName
 

@@ -1,9 +1,11 @@
-from src.vectorizers.instances import CLASSIC, EMBEDDING, TRANSFORMER
-from src.config.config import LABEL_COLUMN, TEXT_COLUMN
-from src.utils.from_dataset_arrays import from_dataset_dataframe
-from src.types.subset_type import SubsetType
-from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 import numpy as np
+
+from src.config.config import LABEL_COLUMN, TEXT_COLUMN
+from src.types.experiment_summarization_fields import \
+    ExperimentSummarizationFields
+from src.types.subset_type import SubsetType
+from src.utils.from_dataset_arrays import from_dataset_dataframe
+from src.vectorizers.instances import CLASSIC, EMBEDDING, TRANSFORMER
 
 
 class VectorizerRunner:

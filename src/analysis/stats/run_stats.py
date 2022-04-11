@@ -1,13 +1,11 @@
-from src.analysis.stats.config import START_DIRECTORY
-from src.analysis.stats.process_directory import process_directory
-from src.analysis.stats.config import (
-    NORMALIZATION_VALUES,
-    PREPROCESSING_TYPES,
-    SUBSETS,
-    TRANSFORMER_NAMES,
-)
-import pandas as pd
 from enum import Enum
+
+import pandas as pd
+
+from src.analysis.stats.config import (NORMALIZATION_VALUES,
+                                       PREPROCESSING_TYPES, START_DIRECTORY,
+                                       SUBSETS, TRANSFORMER_NAMES)
+from src.analysis.stats.process_directory import process_directory
 
 
 class StatsConfiguration(Enum):

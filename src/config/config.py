@@ -1,5 +1,6 @@
-from src.types.suffix import Suffix
 import os
+
+from src.types.suffix import Suffix
 
 STAMP_SIZE = 5
 

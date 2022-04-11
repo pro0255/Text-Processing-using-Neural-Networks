@@ -1,13 +1,11 @@
+import os
+
+from authors.authors_generator import authors_generator
+from src.config.config import (GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS,
+                               GUTENBERG_DOWNLOADED_DIRECTORY, PATTERN)
 from src.data_loading.iterate_over_files import iterate_over_files
 from src.data_preparing.build.build_process_func import build_process_func
-from authors.authors_generator import authors_generator
 from src.types.dataset_type import DataSetType
-import os
-from src.config.config import (
-    PATTERN,
-    GUTENBERG_DOWNLOADED_DIRECTORY,
-    GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS,
-)
 
 
 class gutenberg_builder:

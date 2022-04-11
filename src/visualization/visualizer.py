@@ -1,11 +1,13 @@
-import pandas as pd
-from src.config.config import TEXT_COLUMN, LABEL_COLUMN
-import numpy as np
 import itertools
-import nltk
-from wordcloud import WordCloud
+
 import matplotlib.pyplot as plt
+import nltk
+import numpy as np
+import pandas as pd
 import plotly.express as px
+from wordcloud import WordCloud
+
+from src.config.config import LABEL_COLUMN, TEXT_COLUMN
 
 
 class Visualizer:

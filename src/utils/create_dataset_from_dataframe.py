@@ -1,5 +1,6 @@
-from src.config.config import LABEL_COLUMN, TEXT_COLUMN
 import tensorflow as tf
+
+from src.config.config import LABEL_COLUMN, TEXT_COLUMN
 
 
 def create_dataset_from_dataframe(dataframe):

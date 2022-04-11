@@ -1,6 +1,7 @@
-from src.config.config import LABEL_COLUMN, RANDOM_STATE
 import pandas as pd
 from sklearn.utils import shuffle
+
+from src.config.config import LABEL_COLUMN, RANDOM_STATE
 
 
 def normalize_dataframe_to_size(dataframe, size):

@@ -1,10 +1,11 @@
-from src.config.config import USE_TESTING_DATASET_FOLDER, BLANK_DESCRIPTION
 from src.experiments.experiment_description import ExperimentDescription
-from src.types.transformer_pooling import TransformerPooling
-from src.types.prediction_model_type import PredictionModelType
-from src.types.net_type import NetType
+
+from src.config.config import BLANK_DESCRIPTION, USE_TESTING_DATASET_FOLDER
 from src.types.embedding_type import EmbeddingType
+from src.types.net_type import NetType
+from src.types.prediction_model_type import PredictionModelType
 from src.types.processing_type import PreprocessingType
+from src.types.transformer_pooling import TransformerPooling
 
 description = ExperimentDescription(
     experiment_id=experiment_id,
