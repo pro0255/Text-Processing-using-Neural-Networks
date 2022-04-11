@@ -29,6 +29,7 @@ from src.models.classic.linear import LinearClassifier
 from src.models.classic.naive_bayes import NaiveBayes
 from src.models.classic.kneighbors import KNeighborsClassifier
 from src.models.classic.random_forest import RandomForest
+from src.utils.coss_sim import coss_similarity
 
 
 
@@ -186,7 +187,7 @@ experiment_config = {
             ),
             KNeighborsClassifier(
                 n_neighbors=5,
-                metric="minkowski" #TODO add coss similarity
+                metric=coss_similarity
             )
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None
