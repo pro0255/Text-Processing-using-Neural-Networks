@@ -86,6 +86,7 @@ def create_description_for_transformer_with_classic(
     vectorizer_instance,
     normalization_size,
     path_data,
+    pooling_strategy,
     preprocessing_type=PreprocessingType.Default.value,
 ):
     classic_model_type = from_pred_instance_get_type(prediction_instance)

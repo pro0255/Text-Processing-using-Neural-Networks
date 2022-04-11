@@ -93,8 +93,12 @@ class ClassicRunner:
                 description = description
 
                 description.experiment_id = current_experiment_id
-                description.classic_model_name = from_pred_instance_get_type(predict_instance)
+
+                print(f"Current predict instance {current_predict_instance_name}")
                 
+                current_predict_instance_name = from_pred_instance_get_type(predict_instance)
+                description.classic_model_name = current_predict_instance_name
+
                 classic_conf = ClassicExpConf(
                     train=(X_train, y_train),
                     test=(X_test, y_test),
@@ -174,7 +178,8 @@ class ClassicRunner:
                             feature_extractor,
                             norm_size,
                             data_path,
-                            current_preprocessing.value
+                            pooling_strategy,
+                            current_preprocessing.value,
                         )
                         
                         #Predict

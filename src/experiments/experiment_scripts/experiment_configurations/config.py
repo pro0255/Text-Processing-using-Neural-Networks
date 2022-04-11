@@ -180,7 +180,8 @@ experiment_config = {
             LinearClassifier(),
             NaiveBayes(),
             RandomForest(
-                n_estimators=100
+                n_estimators=100,
+                warm_start=True
             )
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None
