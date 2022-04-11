@@ -17,7 +17,9 @@ def from_pred_instance_get_type(prediction_instance):
         "SGDClassifier": ClassicModelType.Linear.value,
         "GaussianNB": ClassicModelType.NaiveBayes.value,
         "RandomForestClassifier": ClassicModelType.RandomForest.value,
+        "KNeighborsClassifier": ClassicModelType.KNeighbors.value
     }
+    print(f"Current name of instance {name_of_instance} in {list(dic.items())}")
     return dic.get(name_of_instance, BLANK_DESCRIPTION)
 
 
@@ -35,6 +37,7 @@ def from_vect_instance_get_type(vectorizer_instance):
         "DistilBertBaseUncasedVectorizer": EmbeddingType.Transformer.value,
         "ElectraSmallVectorizer": EmbeddingType.Transformer.value,
     }
+    print(f"Current name of vectorizer {name_of_vectorizer_instance} in {list(dic.items())}")
     return dic.get(name_of_vectorizer_instance, BLANK_DESCRIPTION)
 
 
