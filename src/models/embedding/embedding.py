@@ -1,6 +1,6 @@
 
 import tensorflow as tf
-from config.config import BLANK_DESCRIPTION
+from src.config.config import BLANK_DESCRIPTION
 from src.models.embedding.prepare_embedding_matrix import prepare_embedding_matrix
 from tensorflow import string as tf_string
 
@@ -23,7 +23,7 @@ class Embedding:
         voc = vector_layer.get_vocabulary()
 
         x = vector_layer(input_layer)
-        
+
         state = BLANK_DESCRIPTION
         if embedding_dictionary is not None:
             word_index = dict(zip(voc, range(len(voc))))
