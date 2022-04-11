@@ -94,9 +94,9 @@ class ClassicRunner:
 
                 description.experiment_id = current_experiment_id
 
-                print(f"Current predict instance {current_predict_instance_name}")
                 
                 current_predict_instance_name = from_pred_instance_get_type(predict_instance)
+                print(f"Current predict instance {current_predict_instance_name}")
                 description.classic_model_name = current_predict_instance_name
 
                 classic_conf = ClassicExpConf(
@@ -156,7 +156,8 @@ class ClassicRunner:
                 if is_feature_extractor_transformer:
                     
                     for pooling_strategy in self.get_pooling_strategy():
-
+                        
+                        print('\n')
                         summarization = ExperimentSummarization("")
                         wrapper = ClassicExpRunWrapper("", summarization)
 
@@ -187,6 +188,8 @@ class ClassicRunner:
 
 
                 else:
+                    print('\n')
+
                     summarization = ExperimentSummarization("")
                     wrapper = ClassicExpRunWrapper("", summarization)
 
