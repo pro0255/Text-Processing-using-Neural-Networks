@@ -14,7 +14,8 @@ from src.experiments.experiment_scripts.experiment_configurations.config import 
 from src.types.embedding_type import translate_from_embedding
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.experiment_scripts.neural_nets.use_lookup import use_lookup_seq
-
+from src.types.experiment_summarization_fields import ExperimentSummarizationFields
+from src.config.config import BLANK_DESCRIPTION
 class NNRunner:
 
     def __init__(
@@ -111,7 +112,7 @@ class NNRunner:
                         valid_ds_trans = val_ds.batch(1)
                         test_ds_trans = test_ds.batch(1)
 
-                        current_model = current_architecture.create_model(
+                        current_model, stats = current_architecture.create_model(
                             current_authors,
                             train_ds,
                             val_ds,
@@ -126,6 +127,12 @@ class NNRunner:
 
                         summarization = ExperimentSummarization(current_experiment_id)
                         summarization.set_records(train_records, test_records, valid_records)
+
+                        if stats != BLANK_DESCRIPTION:
+                            hits, misses = stats
+                            summarization.state[ExperimentSummarizationFields.MissingRatioTrain.value] = str((misses, hits, 100 * (misses / (hits + misses))))
+
+                        summarization.state[ExperimentSummarizationFields.EmbeddingSize.value] = embedding_size
 
                         nn_conf = NNExpConf(
                             nn_model=current_model,

@@ -99,7 +99,8 @@ class TransformerRunner:
                         norm_size,
                         data_path,
                         learning_settings,
-                        current_preprocessing.value,
+                        pooling_strategy,
+                        current_preprocessing.value
                     )
 
                     train_ds_trans = prepare_dataset_from_tokenizer(

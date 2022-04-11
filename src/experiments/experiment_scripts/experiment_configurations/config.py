@@ -179,7 +179,9 @@ experiment_config = {
         ExperimentGeneratorPart.Predictor: [
             LinearClassifier(),
             NaiveBayes(),
-            RandomForest()
+            RandomForest(
+                n_estimators=100
+            )
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None
     }

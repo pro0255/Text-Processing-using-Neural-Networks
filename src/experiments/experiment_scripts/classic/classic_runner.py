@@ -68,7 +68,7 @@ class ClassicRunner:
 
     def get_pooling_strategy(self):
         if self.transformer_pooling_strategy is None:
-            return [DEFAULT_POOLING_STRATEGY]
+            return DEFAULT_POOLING_STRATEGY
 
         return self.transformer_pooling_strategy
 
@@ -94,7 +94,7 @@ class ClassicRunner:
 
                 description.experiment_id = current_experiment_id
                 description.classic_model_name = from_pred_instance_get_type(predict_instance)
-
+                
                 classic_conf = ClassicExpConf(
                     train=(X_train, y_train),
                     test=(X_test, y_test),
@@ -156,10 +156,10 @@ class ClassicRunner:
                         summarization = ExperimentSummarization("")
                         wrapper = ClassicExpRunWrapper("", summarization)
 
-                        feature_extractor.set_pooling_strategy(pooling_strategy, 512)
+                        feature_extractor.set_pooling_strategy(pooling_strategy)
 
                         #Get vectors
-                        X_train_trans, y_train_trans, X_test_trans, y_test_trans = wrapper.run_vectorization(
+                        X_train_trans, X_test_trans, y_train_trans, y_test_trans = wrapper.run_vectorization(
                             feature_extractor,
                             train_ds,
                             test_ds
@@ -186,7 +186,7 @@ class ClassicRunner:
                     wrapper = ClassicExpRunWrapper("", summarization)
 
                     #Get vectors
-                    X_train_trans, y_train_trans, X_test_trans, y_test_trans = wrapper.run_vectorization(
+                    X_train_trans, X_test_trans, y_train_trans, y_test_trans = wrapper.run_vectorization(
                         feature_extractor,
                         train_ds,
                         test_ds

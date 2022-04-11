@@ -40,8 +40,8 @@ class ExperimentDescription:
 
         self.state = {}
 
-        self.state[ExperimentDescriptionType.ExperimentType.value] = experiment_id
-        self.state[ExperimentDescriptionType.ExperimentId.value] = experiment_type
+        self.state[ExperimentDescriptionType.ExperimentType.value] = experiment_type
+        self.state[ExperimentDescriptionType.ExperimentId.value] = experiment_id
         self.state[ExperimentDescriptionType.BatchSize.value] = (
             learning_settings.batch_size if learning_settings is not None else None
         )

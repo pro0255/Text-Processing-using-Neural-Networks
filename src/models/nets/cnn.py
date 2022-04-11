@@ -23,7 +23,7 @@ class CNNArchitecture(NNArchitecture):
         embedding_dictionary=None
     ):
 
-        emb, input_layer = self.emb.create_vect_embedding(
+        emb, input_layer, stats = self.emb.create_vect_embedding(
             train_ds,
             valid_ds,
             vocab_size,
@@ -51,4 +51,4 @@ class CNNArchitecture(NNArchitecture):
 
         model = tf.keras.Model(input_layer, output_layer, name=self.model_name)
 
-        return model 
+        return model, stats

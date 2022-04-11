@@ -1,6 +1,5 @@
-from src.config.config import USE_TESTING_DATASET_FOLDER, BLANK_DESCRIPTION
+from src.config.config import BLANK_DESCRIPTION
 from src.experiments.helpers.experiment_description import ExperimentDescription
-from src.types.transformer_pooling import TransformerPooling
 from src.types.prediction_model_type import PredictionModelType
 from src.types.net_type import NetType
 from src.types.embedding_type import EmbeddingType
@@ -10,7 +9,8 @@ from src.models.transformer.pooling_strategy import MAX_FAKE_LAYERS
 
 
 def from_pred_instance_get_type(prediction_instance):
-    if prediction_instance is None:
+    print(f"Current prediction instance {prediction_instance}")
+    if not prediction_instance:
         return ""
     name_of_instance = type(prediction_instance).__name__
     dic = {
@@ -18,11 +18,12 @@ def from_pred_instance_get_type(prediction_instance):
         "GaussianNB": ClassicModelType.NaiveBayes.value,
         "RandomForestClassifier": ClassicModelType.RandomForest.value,
     }
-    return dic[name_of_instance]
+    return dic.get(name_of_instance, BLANK_DESCRIPTION)
 
 
 def from_vect_instance_get_type(vectorizer_instance):
-    if vectorizer_instance is None:
+    print(f"Current vectorizer instance {vectorizer_instance}")
+    if not vectorizer_instance:
         return ""
     name_of_vectorizer_instance = type(vectorizer_instance).__name__
     dic = {
@@ -34,7 +35,7 @@ def from_vect_instance_get_type(vectorizer_instance):
         "DistilBertBaseUncasedVectorizer": EmbeddingType.Transformer.value,
         "ElectraSmallVectorizer": EmbeddingType.Transformer.value,
     }
-    return dic[name_of_vectorizer_instance]
+    return dic.get(name_of_vectorizer_instance, BLANK_DESCRIPTION)
 
 
 def create_description_for_classic(
@@ -91,11 +92,11 @@ def create_description_for_transformer_with_classic(
     vectorizer_model_type = from_vect_instance_get_type(vectorizer_instance)
 
     transformer_name = vectorizer_instance.get_transformer_name()
-    transformer_pooling = vectorizer_instance.get_transformer_pooling().value
+    transformer_pooling = vectorizer_instance.get_transformer_pooling()
     transformer_start_index = vectorizer_instance.get_transformer_start_index()
     transformer_end_index = vectorizer_instance.get_transformer_end_index()
     transformer_pooling_strategy = (
-        vectorizer_instance.get_transformer_pooling_strategy().value
+        vectorizer_instance.get_transformer_pooling_strategy()
     )
     le = vectorizer_instance.get_len()
 
@@ -136,6 +137,7 @@ def create_description_for_transformer(
     normalization_size,
     path_data,
     learning_settings,
+    pooling_strategy,
     preprocessing_type=PreprocessingType.Default.value,
 ):
     (
@@ -162,7 +164,7 @@ def create_description_for_transformer(
         seq_len=seq_len,
         is_test=str(False),
         classic_model_name=BLANK_DESCRIPTION,
-        extra_field=BLANK_DESCRIPTION,
+        extra_field=pooling_strategy.value,
         transformer_start_index=transformer_start_index(MAX_FAKE_LAYERS),
         transformer_end_index=transformer_end_index(MAX_FAKE_LAYERS),
         transformer_pooling_strategy=BLANK_DESCRIPTION

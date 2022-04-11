@@ -93,6 +93,7 @@ class TransformerVectorizer:
         return True
 
     def set_pooling_strategy(self, pooling_strategy):
+        print(f'Setting pooling strategy {pooling_strategy}')
         (
             transformer_pooling,
             transformer_pooling_strategy,

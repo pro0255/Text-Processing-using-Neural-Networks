@@ -53,6 +53,7 @@ class EmbeddingVectorizer:
 
         self.missed = 0
         self.counter = 0
+        print(f'Transforming {len(X)}, {self.missed} {self.counter}')
 
         corpus = []
 
