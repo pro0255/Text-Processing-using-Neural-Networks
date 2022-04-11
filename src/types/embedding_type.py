@@ -2,6 +2,7 @@ from enum import Enum
 from src.config.config import BLANK_DESCRIPTION
 from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 
+
 class EmbeddingType(Enum):
     Glove = "Glove"
     W2V = "Word2Vec"
@@ -19,5 +20,3 @@ def translate_from_embedding(embedding_name):
         return EmbeddingType.Glove
     elif embedding_name is None:
         return EmbeddingType.TFEmbedding
-    
-    

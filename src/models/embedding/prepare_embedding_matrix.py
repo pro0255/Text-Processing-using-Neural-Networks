@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def prepare_embedding_matrix(word_index, embeddings_index, embedding_dim):
     num_tokens = len(word_index) + 2
     hits = 0

@@ -2,7 +2,7 @@ from src.utils.get_train_test_valid_ds import get_train_test_valid_ds
 from src.utils.create_experiment_id import create_experiment_id
 from src.experiments.helpers.experiment_summarization import ExperimentSummarization
 from src.experiments.experiment_scripts.classic.classic_configuration import (
-    ClassicExpConf
+    ClassicExpConf,
 )
 from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import (
     NNExpRunWrapper,
@@ -15,21 +15,23 @@ from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.descriptions.create_description import (
     create_description_for_classic,
 )
-from src.experiments.experiment_scripts.classic.classic_wrapper import ClassicExpRunWrapper
+from src.experiments.experiment_scripts.classic.classic_wrapper import (
+    ClassicExpRunWrapper,
+)
 from src.vectorizers.instances import TRANSFORMER
 from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection
 from src.experiments.descriptions.create_description import (
     create_description_for_transformer_with_classic,
     create_description_for_classic,
-    from_pred_instance_get_type
+    from_pred_instance_get_type,
 )
 from src.types.experiment_description import ExperimentDescriptionType
 
 
 DEFAULT_POOLING_STRATEGY = [TransformerPoolingStrategySelection.LastLayerCLS]
 
-class ClassicRunner:
 
+class ClassicRunner:
     def __init__(
         self,
         experiment_type,
@@ -61,7 +63,6 @@ class ClassicRunner:
 
         self.experiment_type_str = self.experiment_type.value
 
-
     def is_transformer(self, feature_extractor):
         if type(feature_extractor).__name__ in TRANSFORMER:
             return True
@@ -74,31 +75,27 @@ class ClassicRunner:
         return self.transformer_pooling_strategy
 
     def run_prediction(
-        self, 
-        X_train, 
-        y_train, 
-        X_test, 
-        y_test,
-        description,
-        feature_extractor,
-        wrapper
+        self, X_train, y_train, X_test, y_test, description, feature_extractor, wrapper
     ):
 
         for predict_instance in self.predictors:
-            
+
             try:
-                current_experiment_id = create_experiment_id(
-                    self.experiment_type_str
-                )
+                current_experiment_id = create_experiment_id(self.experiment_type_str)
 
                 description = description
 
-                description.state[ExperimentDescriptionType.ExperimentId.value] = current_experiment_id
+                description.state[
+                    ExperimentDescriptionType.ExperimentId.value
+                ] = current_experiment_id
 
-                
-                current_predict_instance_name = from_pred_instance_get_type(predict_instance)
+                current_predict_instance_name = from_pred_instance_get_type(
+                    predict_instance
+                )
                 print(f"Current predict instance {current_predict_instance_name}")
-                description.state[ExperimentDescriptionType.ClassicModelName.value] = current_predict_instance_name
+                description.state[
+                    ExperimentDescriptionType.ClassicModelName.value
+                ] = current_predict_instance_name
 
                 classic_conf = ClassicExpConf(
                     train=(X_train, y_train),
@@ -112,17 +109,12 @@ class ClassicRunner:
                 wrapper.experiment_summarization.set_id(current_experiment_id)
                 wrapper.set_id(current_experiment_id)
 
-                wrapper.run_prediction(
-                    classic_conf
-                )
+                wrapper.run_prediction(classic_conf)
 
             except Exception as e:
-                print(f'Error occured in {e}')
-
-
+                print(f"Error occured in {e}")
 
     def run(self):
-
 
         for dataset_value in self.dataset_generator:
             if dataset_value is None:
@@ -147,29 +139,34 @@ class ClassicRunner:
                 X_train, X_valid, X_test, y_train, y_valid, y_test
             )
 
-            #Loaded records
+            # Loaded records
 
-            #Go over vectorizer
+            # Go over vectorizer
             for feature_extractor in self.feature_extractors:
 
-                is_feature_extractor_transformer = self.is_transformer(feature_extractor)
+                is_feature_extractor_transformer = self.is_transformer(
+                    feature_extractor
+                )
 
                 if is_feature_extractor_transformer:
-                    
+
                     for pooling_strategy in self.get_pooling_strategy():
-                        
-                        print('\n')
+
+                        print("\n")
                         summarization = ExperimentSummarization("")
                         wrapper = ClassicExpRunWrapper("", summarization)
 
                         feature_extractor.set_pooling_strategy(pooling_strategy)
 
-                        #Get vectors
-                        X_train_trans, X_test_trans, y_train_trans, y_test_trans = wrapper.run_vectorization(
-                            feature_extractor,
-                            train_ds,
-                            test_ds
-                        ) 
+                        # Get vectors
+                        (
+                            X_train_trans,
+                            X_test_trans,
+                            y_train_trans,
+                            y_test_trans,
+                        ) = wrapper.run_vectorization(
+                            feature_extractor, train_ds, test_ds
+                        )
 
                         description = create_description_for_transformer_with_classic(
                             "",
@@ -183,23 +180,31 @@ class ClassicRunner:
                             pooling_strategy,
                             current_preprocessing.value,
                         )
-                        
-                        #Predict
-                        self.run_prediction(X_train_trans, y_train_trans, X_test_trans, y_test_trans, description, feature_extractor, wrapper)
 
+                        # Predict
+                        self.run_prediction(
+                            X_train_trans,
+                            y_train_trans,
+                            X_test_trans,
+                            y_test_trans,
+                            description,
+                            feature_extractor,
+                            wrapper,
+                        )
 
                 else:
-                    print('\n')
+                    print("\n")
 
                     summarization = ExperimentSummarization("")
                     wrapper = ClassicExpRunWrapper("", summarization)
 
-                    #Get vectors
-                    X_train_trans, X_test_trans, y_train_trans, y_test_trans = wrapper.run_vectorization(
-                        feature_extractor,
-                        train_ds,
-                        test_ds
-                    )
+                    # Get vectors
+                    (
+                        X_train_trans,
+                        X_test_trans,
+                        y_train_trans,
+                        y_test_trans,
+                    ) = wrapper.run_vectorization(feature_extractor, train_ds, test_ds)
 
                     description = create_description_for_classic(
                         "",
@@ -210,8 +215,16 @@ class ClassicRunner:
                         feature_extractor,
                         norm_size,
                         data_path,
-                        current_preprocessing.value
+                        current_preprocessing.value,
                     )
-                    
-                    #Predict
-                    self.run_prediction(X_train_trans, y_train_trans, X_test_trans, y_test_trans, description, feature_extractor, wrapper)
+
+                    # Predict
+                    self.run_prediction(
+                        X_train_trans,
+                        y_train_trans,
+                        X_test_trans,
+                        y_test_trans,
+                        description,
+                        feature_extractor,
+                        wrapper,
+                    )

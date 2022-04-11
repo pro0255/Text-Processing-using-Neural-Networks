@@ -32,5 +32,11 @@ class DistilBertBaseUncasedVectorizer(TransformerVectorizer):
             transformer_end_index=transformer_end_index,
         )
 
-    def verify(self, transformer_pooling, transformer_pooling_strategy, transformer_start_index, transformer_end_index):
+    def verify(
+        self,
+        transformer_pooling,
+        transformer_pooling_strategy,
+        transformer_start_index,
+        transformer_end_index,
+    ):
         return True

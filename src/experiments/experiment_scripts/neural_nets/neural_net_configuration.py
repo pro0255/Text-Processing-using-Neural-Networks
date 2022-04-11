@@ -8,7 +8,7 @@ class NNExpConf:
         learning_settings,
         description,
         save_model,
-        save_best
+        save_best,
     ) -> None:
         self.nn_model = nn_model
         self.train_ds = train_ds

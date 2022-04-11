@@ -12,11 +12,11 @@ class NNArchitecture:
         self.model_name = model_name
 
     def get_description(
-        self, 
-        experiment_id, 
-        experiment_type, 
-        number_of_authors, 
-        number_of_sentences, 
+        self,
+        experiment_id,
+        experiment_type,
+        number_of_authors,
+        number_of_sentences,
         normalization_size,
         seq_len,
         trainable,
@@ -29,10 +29,10 @@ class NNArchitecture:
         preprocessing_type=PreprocessingType.Default.value,
     ):
         return create_description_for_nn(
-            experiment_id, 
-            experiment_type, 
-            number_of_authors, 
-            number_of_sentences, 
+            experiment_id,
+            experiment_type,
+            number_of_authors,
+            number_of_sentences,
             normalization_size,
             seq_len,
             trainable,
@@ -40,11 +40,9 @@ class NNArchitecture:
             self.get_net_type(),
             learning_settings,
             embedding_type,
-            json.dumps(self.get_extra_field(
-                vocab_size,
-                embedding_size,
-                embedding_name
-            )),
+            json.dumps(
+                self.get_extra_field(vocab_size, embedding_size, embedding_name)
+            ),
             preprocessing_type=preprocessing_type,
         )
 
@@ -57,7 +55,7 @@ class NNArchitecture:
         embedding_dim,
         output_sequence_length,
         trainable,
-        embedding_dictionary=None
+        embedding_dictionary=None,
     ):
         return None
 
@@ -72,5 +70,7 @@ class NNArchitecture:
             "ModelName": self.model_name,
             "VocabSize": str(vocab_size),
             "EmbeddingSize": str(embedding_size),
-            "NameOfEmbedding": BLANK_DESCRIPTION if name_of_embedding is None else name_of_embedding.value
+            "NameOfEmbedding": BLANK_DESCRIPTION
+            if name_of_embedding is None
+            else name_of_embedding.value,
         }

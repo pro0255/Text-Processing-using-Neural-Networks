@@ -31,7 +31,6 @@ class TransformerVectorizer:
         self.max_len = max_len
         self.preprocess_pipeline = preprocess_pipeline
         self.path_to_authors = path_authors
-        
 
     def setup(self):
         self.config = AutoConfig.from_pretrained(
@@ -89,11 +88,17 @@ class TransformerVectorizer:
     def get_len(self):
         return self.max_len
 
-    def verify(self, transformer_pooling, transformer_pooling_strategy, transformer_start_index, transformer_end_index):
+    def verify(
+        self,
+        transformer_pooling,
+        transformer_pooling_strategy,
+        transformer_start_index,
+        transformer_end_index,
+    ):
         return True
 
     def set_pooling_strategy(self, pooling_strategy):
-        print(f'Setting pooling strategy {pooling_strategy}')
+        print(f"Setting pooling strategy {pooling_strategy}")
         (
             transformer_pooling,
             transformer_pooling_strategy,
@@ -101,11 +106,13 @@ class TransformerVectorizer:
             transformer_end_index,
         ) = pooling_strategy_dictionary[pooling_strategy]
 
-        if self.verify(transformer_pooling, transformer_pooling_strategy, transformer_start_index, transformer_end_index):
+        if self.verify(
+            transformer_pooling,
+            transformer_pooling_strategy,
+            transformer_start_index,
+            transformer_end_index,
+        ):
             self.transformer_pooling_strategy = transformer_pooling_strategy
             self.transformer_start_index = transformer_start_index
             self.transformer_end_index = transformer_end_index
             self.transformer_pooling_type = transformer_pooling
-
-
-    

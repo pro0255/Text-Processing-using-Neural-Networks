@@ -15,8 +15,8 @@ class EmbeddingVectorizer:
             self.setup()
 
     def setup(self):
-        if self.vectors is None or self.embedding_size is None:  
-            print(f'Downloading model {self.embedding_type}!')
+        if self.vectors is None or self.embedding_size is None:
+            print(f"Downloading model {self.embedding_type}!")
             if self.embedding_type in loaded_models:
                 print(f"Already loaded model={self.embedding_type}")
                 self.vectors = loaded_models[self.embedding_type]
@@ -53,7 +53,7 @@ class EmbeddingVectorizer:
 
         self.missed = 0
         self.counter = 0
-        print(f'Transforming {len(X)}, {self.missed} {self.counter}')
+        print(f"Transforming {len(X)}, {self.missed} {self.counter}")
 
         corpus = []
 
@@ -66,4 +66,3 @@ class EmbeddingVectorizer:
             corpus.append(np.array(sentence_embedding))
 
         return self.get_mean(corpus)
-

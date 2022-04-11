@@ -17,7 +17,7 @@ def from_pred_instance_get_type(prediction_instance):
         "SGDClassifier": ClassicModelType.Linear.value,
         "GaussianNB": ClassicModelType.NaiveBayes.value,
         "RandomForestClassifier": ClassicModelType.RandomForest.value,
-        "KNeighborsClassifier": ClassicModelType.KNeighbors.value
+        "KNeighborsClassifier": ClassicModelType.KNeighbors.value,
     }
     print(f"Current name of instance {name_of_instance} in {list(dic.items())}")
     return dic.get(name_of_instance, BLANK_DESCRIPTION)
@@ -37,7 +37,9 @@ def from_vect_instance_get_type(vectorizer_instance):
         "DistilBertBaseUncasedVectorizer": EmbeddingType.Transformer.value,
         "ElectraSmallVectorizer": EmbeddingType.Transformer.value,
     }
-    print(f"Current name of vectorizer {name_of_vectorizer_instance} in {list(dic.items())}")
+    print(
+        f"Current name of vectorizer {name_of_vectorizer_instance} in {list(dic.items())}"
+    )
     return dic.get(name_of_vectorizer_instance, BLANK_DESCRIPTION)
 
 
@@ -178,7 +180,6 @@ def create_description_for_transformer(
     )
 
 
-
 def create_description_for_nn(
     experiment_id,
     experiment_type,
@@ -216,5 +217,5 @@ def create_description_for_nn(
         transformer_end_index=BLANK_DESCRIPTION,
         transformer_pooling_strategy=BLANK_DESCRIPTION,
         normalization_size=normalization_size,
-        extra_field=extra_field
+        extra_field=extra_field,
     )

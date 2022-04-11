@@ -10,7 +10,7 @@ def create_save_best_weights_callback(filepath):
         monitor="val_loss",
         mode="auto",
         save_best_only=True,
-        save_format='tf'
+        save_format="tf",
     )
 
 

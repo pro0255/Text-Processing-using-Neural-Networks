@@ -1,4 +1,8 @@
-from src.experiments.experiment_scripts.experiment_configurations.lookup import gutenberg_lookup_seq, gutenberg_lookup_normalization, LOOKUP_KEY
+from src.experiments.experiment_scripts.experiment_configurations.lookup import (
+    gutenberg_lookup_seq,
+    gutenberg_lookup_normalization,
+    LOOKUP_KEY,
+)
 
 
 def use_lookup_seq(value, current_authors, current_sentences, preprocessing_type):

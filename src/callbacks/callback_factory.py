@@ -42,7 +42,7 @@ class CallbacksFactory:
 
         callbacks = [
             CSVLogger(os.sep.join([experiment_directory, filename])),
-            early_stopping
+            early_stopping,
         ]
 
         if self.save_best:

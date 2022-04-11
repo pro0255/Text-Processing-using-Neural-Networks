@@ -34,7 +34,6 @@ class ClassicExpRunWrapper:
         self.experiment_setup = ExperimentSetup(experiment_id, self.directory)
         self.experiment_evaluate = ExperimentEvaluate(experiment_id, self.directory)
 
-
     def vectorizer_sentences(
         self, train_ds, test_ds, vectorization_instance, cache=None
     ):
@@ -76,12 +75,7 @@ class ClassicExpRunWrapper:
         self.experiment_timer.end(TimeType.PredictionTime.value)
         return y_pred_labels
 
-    def run_vectorization(
-        self,
-        vectorization_instance,
-        train_ds,
-        test_ds
-    ):
+    def run_vectorization(self, vectorization_instance, train_ds, test_ds):
         X_train, X_test, y_train, y_test = self.vectorizer_sentences(
             train_ds, test_ds, vectorization_instance, None
         )
@@ -90,13 +84,24 @@ class ClassicExpRunWrapper:
     def get_configuration_values(self, classic_conf):
         X_train, y_train = classic_conf.get_train()
         X_test, y_test = classic_conf.get_test()
-        return X_train, y_train, X_test, y_test, classic_conf.get_description(), classic_conf.get_predict_instance()
+        return (
+            X_train,
+            y_train,
+            X_test,
+            y_test,
+            classic_conf.get_description(),
+            classic_conf.get_predict_instance(),
+        )
 
-    def run_prediction(
-        self,
-        classic_conf
-    ):
-        X_train, y_train, X_test, y_test, description, predict_instance = self.get_configuration_values(classic_conf)
+    def run_prediction(self, classic_conf):
+        (
+            X_train,
+            y_train,
+            X_test,
+            y_test,
+            description,
+            predict_instance,
+        ) = self.get_configuration_values(classic_conf)
 
         self.description = description
 
@@ -123,6 +128,8 @@ class ClassicExpRunWrapper:
                 predict_instance
             )
         except:
-            print(f"Error when getting extra field for experiment {classic_conf.get_experiment_id()}!")
-        
+            print(
+                f"Error when getting extra field for experiment {classic_conf.get_experiment_id()}!"
+            )
+
         self.description.save()

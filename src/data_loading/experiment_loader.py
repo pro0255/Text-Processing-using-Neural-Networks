@@ -5,7 +5,10 @@ from src.data_loading.load_dataset_from_path import (
 )
 from src.utils.normalize_dataframe_to_size import normalize_dataframe_to_size
 from src.utils.split_dataframe import split_dataframe_to_train_test_valid
-from src.experiments.experiment_scripts.neural_nets.use_lookup import use_lookup_normalization
+from src.experiments.experiment_scripts.neural_nets.use_lookup import (
+    use_lookup_normalization,
+)
+
 
 class ExperimentLoader:
     def __init__(self) -> None:
@@ -23,9 +26,11 @@ class ExperimentLoader:
 
         for conf in load_configs:
             current_authors, current_sentences, current_preprocessing, norm_size = conf
-            norm_size = use_lookup_normalization(norm_size, current_authors, current_sentences)
+            norm_size = use_lookup_normalization(
+                norm_size, current_authors, current_sentences
+            )
             if norm_size is None:
-                print('Look up does not exists!')
+                print("Look up does not exists!")
                 yield None
 
             _, paths = get_dataset_all(current_authors, current_sentences)

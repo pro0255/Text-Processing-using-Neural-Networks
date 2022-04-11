@@ -15,7 +15,7 @@ STATISTICS_SUBDIRECTORY = "statistics"
 NAME_OF_FILE_WITH_SUBSET_SIZES = f"subset_sizes{Suffix.CSV.value}"
 NAME_OF_LEARNING_LOGS = f"logs{Suffix.CSV.value}"
 
-#ROOT = "C:\\Users\\Vojta\\Desktop\\diploma"
+# ROOT = "C:\\Users\\Vojta\\Desktop\\diploma"
 ROOT = "/home/usp/pro0255/diploma"
 
 GENSIM_DATA = os.sep.join([ROOT, "gensim_data"])

@@ -15,7 +15,9 @@ from src.models.nets.cnn import CNNArchitecture
 from src.models.nets.rnn import RNNArchitecture
 from src.models.nets.dense import DenseArchitecture
 from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
-from src.experiments.experiment_scripts.experiment_configurations.lookup import LOOKUP_KEY
+from src.experiments.experiment_scripts.experiment_configurations.lookup import (
+    LOOKUP_KEY,
+)
 from src.vectorizers.classic.bow_vectorizer import BoWVectorizer
 from src.vectorizers.classic.tfidf_vectorizer import TFIDFVectorizer
 from src.vectorizers.embedding.glove_vectorizer import GloveVectorizer
@@ -32,11 +34,7 @@ from src.models.classic.random_forest import RandomForestClassifier
 from src.utils.coss_sim import coss_similarity
 
 
-
 loader = ExperimentLoader()
-
-
-
 
 
 class ExperimentGeneratorPart(Enum):
@@ -159,8 +157,8 @@ experiment_config = {
         ExperimentGeneratorPart.ExperimentArchitecture: [
             CNNArchitecture(),
             RNNArchitecture(),
-            DenseArchitecture()
-        ]
+            DenseArchitecture(),
+        ],
     },
     ExperimentType.Classic: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
@@ -176,22 +174,14 @@ experiment_config = {
             Word2VecVectorizer(),
             ElectraSmallVectorizer(),
             BertBaseUncasedVectorizer(),
-            DistilBertBaseUncasedVectorizer()
+            DistilBertBaseUncasedVectorizer(),
         ],
         ExperimentGeneratorPart.Predictor: [
             GaussianNB(),
             SGDClassifier(),
-            RandomForestClassifier(
-                n_estimators=100,
-                warm_start=True
-            ),
-            KNeighborsClassifier(
-                n_neighbors=5,
-                metric=coss_similarity
-            )
+            RandomForestClassifier(n_estimators=100, warm_start=True),
+            KNeighborsClassifier(n_neighbors=5, metric=coss_similarity),
         ],
-        ExperimentGeneratorPart.TransformerPoolingStrategy: None
-    }
+        ExperimentGeneratorPart.TransformerPoolingStrategy: None,
+    },
 }
-
-

@@ -21,6 +21,7 @@ from src.experiments.experiment_scripts.experiment_configurations.config import 
 )
 from src.experiments.experiment_scripts.neural_nets.use_lookup import use_lookup_seq
 
+
 class TransformerRunner:
     def __init__(
         self,
@@ -69,13 +70,16 @@ class TransformerRunner:
                     learning_settings,
                 ) = conf_parameters
 
-
                 try:
-                    output_sequence_length = use_lookup_seq(output_sequence_length, current_authors, current_sentences, current_preprocessing)
+                    output_sequence_length = use_lookup_seq(
+                        output_sequence_length,
+                        current_authors,
+                        current_sentences,
+                        current_preprocessing,
+                    )
                     if output_sequence_length is None:
-                        print('Look up does not exists!')
+                        print("Look up does not exists!")
                         continue
-
 
                     tokenizer = TransformerTokenizer(
                         model_name.value,
@@ -100,7 +104,7 @@ class TransformerRunner:
                         data_path,
                         learning_settings,
                         pooling_strategy,
-                        current_preprocessing.value
+                        current_preprocessing.value,
                     )
 
                     train_ds_trans = prepare_dataset_from_tokenizer(
@@ -118,13 +122,15 @@ class TransformerRunner:
                         model_name.value,
                         output_sequence_length,
                         trainable,
-                        *pooling_strategy_dictionary[pooling_strategy]
+                        *pooling_strategy_dictionary[pooling_strategy],
                     )
 
                     current_model.summary()
 
                     summarization = ExperimentSummarization(current_experiment_id)
-                    summarization.set_records(train_records, test_records, valid_records)
+                    summarization.set_records(
+                        train_records, test_records, valid_records
+                    )
 
                     nn_conf = NNExpConf(
                         nn_model=current_model,
@@ -134,7 +140,7 @@ class TransformerRunner:
                         learning_settings=learning_settings,
                         description=description,
                         save_model=self.save_model,
-                        save_best=self.save_best
+                        save_best=self.save_best,
                     )
 
                     wrapper = NNExpRunWrapper(current_experiment_id, summarization)
@@ -143,4 +149,4 @@ class TransformerRunner:
 
                 except Exception as e:
                     print(conf_parameters)
-                    print(f'Error occured in {e}')
+                    print(f"Error occured in {e}")

@@ -11,10 +11,9 @@ def nets_configuration_generator(
     embedding_final = []
     embedding_final += without_load
 
-    
     embedding_index_dict = {}
 
-    print('Loading embeddding')
+    print("Loading embeddding")
 
     for current_load in need_to_load:
         embedding_size, embedding_name = current_load
@@ -22,7 +21,7 @@ def nets_configuration_generator(
             continue
 
         current_embedding = load_from_gensim(embedding_name.value)
-        test_embedding_size = current_embedding['king'].shape[0]
+        test_embedding_size = current_embedding["king"].shape[0]
         if embedding_size == test_embedding_size:
 
             embedding_index_dict[embedding_name] = current_embedding
@@ -30,8 +29,14 @@ def nets_configuration_generator(
 
     print("Embedding dictionaries loaded..")
 
-    confs = list(itertools.product(
-        vocab_sizes, output_sequence_lengths, trainable, learning_settings, embedding
-    ))
+    confs = list(
+        itertools.product(
+            vocab_sizes,
+            output_sequence_lengths,
+            trainable,
+            learning_settings,
+            embedding,
+        )
+    )
 
     return confs, embedding_index_dict

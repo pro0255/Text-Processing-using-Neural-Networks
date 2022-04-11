@@ -16,8 +16,9 @@ from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.experiment_scripts.neural_nets.use_lookup import use_lookup_seq
 from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 from src.config.config import BLANK_DESCRIPTION
-class NNRunner:
 
+
+class NNRunner:
     def __init__(
         self,
         experiment_type,
@@ -31,9 +32,9 @@ class NNRunner:
 
         print(self.experiment_type)
 
-        self.experiment_configurations, self.embeddding_index_dict = experiment_config[self.experiment_type][
-            ExperimentGeneratorPart.ExperimentConfiguration
-        ]
+        self.experiment_configurations, self.embeddding_index_dict = experiment_config[
+            self.experiment_type
+        ][ExperimentGeneratorPart.ExperimentConfiguration]
 
         self.dataset_generator = experiment_config[self.experiment_type][
             ExperimentGeneratorPart.DatasetGenerator
@@ -41,7 +42,9 @@ class NNRunner:
 
         self.experiment_type_str = self.experiment_type.value
 
-        self.experiment_architectures = experiment_config[self.experiment_type][ExperimentGeneratorPart.ExperimentArchitecture]
+        self.experiment_architectures = experiment_config[self.experiment_type][
+            ExperimentGeneratorPart.ExperimentArchitecture
+        ]
 
     def run(self):
         for dataset_value in self.dataset_generator:
@@ -75,27 +78,34 @@ class NNRunner:
                         output_sequence_length,
                         trainable,
                         learning_settings,
-                        embedding
+                        embedding,
                     ) = conf_parameters
                     embedding_size, embedding_dictionary_name = embedding
 
                     try:
-                        output_sequence_length = use_lookup_seq(output_sequence_length, current_authors, current_sentences, current_preprocessing)
+                        output_sequence_length = use_lookup_seq(
+                            output_sequence_length,
+                            current_authors,
+                            current_sentences,
+                            current_preprocessing,
+                        )
                         if output_sequence_length is None:
-                            print('Look up does not exists!')
+                            print("Look up does not exists!")
                             continue
-                    
+
                         current_experiment_id = create_experiment_id(
                             self.experiment_type_str
                         )
 
-                        embedding_type = translate_from_embedding(embedding_dictionary_name)
+                        embedding_type = translate_from_embedding(
+                            embedding_dictionary_name
+                        )
 
                         description = current_architecture.get_description(
-                            current_experiment_id, 
-                            self.experiment_type_str, 
-                            current_authors, 
-                            current_sentences, 
+                            current_experiment_id,
+                            self.experiment_type_str,
+                            current_authors,
+                            current_sentences,
                             norm_size,
                             output_sequence_length,
                             trainable,
@@ -120,19 +130,27 @@ class NNRunner:
                             embedding_size,
                             output_sequence_length,
                             trainable,
-                            self.embeddding_index_dict.get(embedding_dictionary_name, None)
+                            self.embeddding_index_dict.get(
+                                embedding_dictionary_name, None
+                            ),
                         )
 
                         current_model.summary()
 
                         summarization = ExperimentSummarization(current_experiment_id)
-                        summarization.set_records(train_records, test_records, valid_records)
+                        summarization.set_records(
+                            train_records, test_records, valid_records
+                        )
 
                         if stats != BLANK_DESCRIPTION:
                             hits, misses = stats
-                            summarization.state[ExperimentSummarizationFields.MissingRatioTrain.value] = str((misses, hits, 100 * (misses / (hits + misses))))
+                            summarization.state[
+                                ExperimentSummarizationFields.MissingRatioTrain.value
+                            ] = str((misses, hits, 100 * (misses / (hits + misses))))
 
-                        summarization.state[ExperimentSummarizationFields.EmbeddingSize.value] = embedding_size
+                        summarization.state[
+                            ExperimentSummarizationFields.EmbeddingSize.value
+                        ] = embedding_size
 
                         nn_conf = NNExpConf(
                             nn_model=current_model,
@@ -142,7 +160,7 @@ class NNRunner:
                             learning_settings=learning_settings,
                             description=description,
                             save_model=self.save_model,
-                            save_best=self.save_best
+                            save_best=self.save_best,
                         )
 
                         wrapper = NNExpRunWrapper(current_experiment_id, summarization)
@@ -151,4 +169,4 @@ class NNRunner:
 
                     except Exception as e:
                         print(conf_parameters)
-                        print(f'Error occured in {e}')
+                        print(f"Error occured in {e}")

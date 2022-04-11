@@ -9,13 +9,8 @@ class ExperimentType(Enum):
     LabelSize = "LabelSize"  # Done
     PreprocessingType = "PreprocessingType"  # Done
     TransformerType = "TransformerType"
-    
-
-
 
     NumberOfAuthorsNN = "NumberOfAuthorsNN"
     NumberOfSentencesNN = "NumberOfSentencesNN"
 
-
     Classic = "Classic"
-
