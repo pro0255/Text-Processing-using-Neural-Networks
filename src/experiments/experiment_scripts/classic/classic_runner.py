@@ -92,12 +92,12 @@ class ClassicRunner:
 
                 description = description
 
-                description.experiment_id = current_experiment_id
+                description.state.experiment_id = current_experiment_id
 
                 
                 current_predict_instance_name = from_pred_instance_get_type(predict_instance)
                 print(f"Current predict instance {current_predict_instance_name}")
-                description.classic_model_name = current_predict_instance_name
+                description.state.classic_model_name = current_predict_instance_name
 
                 classic_conf = ClassicExpConf(
                     train=(X_train, y_train),

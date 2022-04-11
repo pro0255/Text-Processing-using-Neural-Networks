@@ -122,8 +122,8 @@ def create_description_for_transformer_with_classic(
         is_test=str(False),
         classic_model_name=classic_model_type,
         extra_field=BLANK_DESCRIPTION,
-        transformer_start_index=transformer_start_index,
-        transformer_end_index=transformer_end_index,
+        transformer_start_index=transformer_start_index(MAX_FAKE_LAYERS),
+        transformer_end_index=transformer_end_index(MAX_FAKE_LAYERS),
         transformer_pooling_strategy=transformer_pooling_strategy,
         normalization_size=normalization_size,
     )

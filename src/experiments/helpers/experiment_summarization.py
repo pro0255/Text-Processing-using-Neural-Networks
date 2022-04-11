@@ -20,8 +20,8 @@ class ExperimentSummarization:
         self.state = {}
 
         print(f"Creating new experiment summarization for {experiment_id}!")
-        self.state[ExperimentSummarizationFields.ExperimentType.value] = experiment_id
-        self.state[ExperimentSummarizationFields.ExperimentId.value] = experiment_type
+        self.state[ExperimentSummarizationFields.ExperimentId.value] = experiment_id
+        self.state[ExperimentSummarizationFields.ExperimentType.value] = experiment_type
 
         self.state[ExperimentSummarizationFields.VectorizationTime.value] = 0
         self.state[ExperimentSummarizationFields.LearningTime.value] = 0

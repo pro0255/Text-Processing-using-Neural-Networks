@@ -117,8 +117,12 @@ class ClassicExpRunWrapper:
         self.experiment_summarization.save()
 
         print("Saving decription of experiment")
-        description.state[ExperimentDescriptionType.ExtraField.value] = get_extra(
-            predict_instance
-        )
+
+        try:
+            description.state[ExperimentDescriptionType.ExtraField.value] = get_extra(
+                predict_instance
+            )
+        except:
+            print(f"Error when getting extra field for experiment {classic_conf.get_experiment_id()}!")
         
         self.description.save()
