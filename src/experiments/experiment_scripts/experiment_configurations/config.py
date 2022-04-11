@@ -27,6 +27,7 @@ from src.vectorizers.transformer.distil_bert_base_vectorizer import (
 )
 from src.models.classic.linear import LinearClassifier
 from src.models.classic.naive_bayes import NaiveBayes
+from src.models.classic.kneighbors import KNeighborsClassifier
 from src.models.classic.random_forest import RandomForest
 
 
@@ -182,6 +183,10 @@ experiment_config = {
             RandomForest(
                 n_estimators=100,
                 warm_start=True
+            ),
+            KNeighborsClassifier(
+                n_neighbors=5,
+                metric="minkowski" #TODO add coss similarity
             )
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None
