@@ -3,7 +3,7 @@ import os
 
 from src.config.config import (FILE_DATA_NAME,
                                GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS)
-from src.data_preparing.build.gutenberg_builder import gutenberg_builder
+from src.data_preparing.build_dataset.gutenberg_builder import gutenberg_builder
 from src.data_preparing.split.run_split_deps_on_stats import \
     run_split_deps_on_stats_same_dir
 

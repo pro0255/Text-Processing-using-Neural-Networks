@@ -76,7 +76,7 @@ class ClassicRunner:
                 current_experiment_id = create_experiment_id(self.experiment_type_str)
 
                 description = description
-
+                description.experiment_id = current_experiment_id
                 description.state[
                     ExperimentDescriptionType.ExperimentId.value
                 ] = current_experiment_id
@@ -145,7 +145,10 @@ class ClassicRunner:
                     for pooling_strategy in self.get_pooling_strategy():
 
                         print("\n")
-                        summarization = ExperimentSummarization("")
+                        summarization = ExperimentSummarization(
+                            experiment_id="",
+                            experiment_type=self.experiment_type_str
+                        )
                         wrapper = ClassicExpRunWrapper("", summarization)
 
                         feature_extractor.set_pooling_strategy(pooling_strategy)
@@ -187,7 +190,10 @@ class ClassicRunner:
                 else:
                     print("\n")
 
-                    summarization = ExperimentSummarization("")
+                    summarization = ExperimentSummarization(
+                        experiment_id="",
+                        experiment_type=self.experiment_type_str
+                    )
                     wrapper = ClassicExpRunWrapper("", summarization)
 
                     # Get vectors

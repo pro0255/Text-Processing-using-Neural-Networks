@@ -136,7 +136,11 @@ class NNRunner:
 
                         current_model.summary()
 
-                        summarization = ExperimentSummarization(current_experiment_id)
+                        summarization = ExperimentSummarization(
+                            experiment_id=current_experiment_id,
+                            experiment_type=self.experiment_type_str
+                        )
+                        
                         summarization.set_records(
                             train_records, test_records, valid_records
                         )
