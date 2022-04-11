@@ -24,7 +24,7 @@ class Embedding:
 
         x = vector_layer(input_layer)
 
-        state = BLANK_DESCRIPTION
+        stats = BLANK_DESCRIPTION
         if embedding_dictionary is not None:
             word_index = dict(zip(voc, range(len(voc))))
             embedding_matrix, num_tokens, stats = prepare_embedding_matrix(word_index, embedding_dictionary, embedding_dim)
