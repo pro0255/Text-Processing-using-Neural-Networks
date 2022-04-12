@@ -8,6 +8,37 @@
 
 ## Download Gutenberg Project
 
+If user wants to download data from Gutenberg Project then he needs to do:
+
+- Download R
+   - https://cran.r-project.org/bin/windows/base/
+- After R is downloaded from specified url then should be RScript.exe added to Path variable
+   - My location of RScript.exe is C:\Program Files\R\R-4.1.3\bin
+   - User should check step which was made before. Please use Rscript --version
+
+After this set od steps should user check ROOT variable in download_gutenberg_with_config.R which should be updated to correct path. Same process should be replicated in run_r.py.
+
+
+   - After this operations are made then user can download Gutenberg books via run_r.py
+   - Python scripts starts R script via subprocess. Creates directories according to r_config.csv which is specified in project
+   - Downloads libraries to r directory
+   - Prints some variables to shell. These varibles are shortly described in R script. It shows freq of authors, books etc. Also we can see how many books are in eng language, books which have author..
+   - After all this "prints" starts to download books. How many books will be downloaded can use change in already mentioned file with nam r_config.csv
+   - Keep an eye out that ROOT, or directory should be modified also in r_config.csv. Update DIRECTORY_REAL and DIRECTORY_TEST. Prefix should be same as ROOT variables..
+   - When all this was made well, then books will be downloaded and saved in .json
+   - All authors will be saved in authors.csv
+   - From this kind of data can be then made a dataset for Authorship classification
+
+Feel free to modify all script. Should be interested to try date prediction of data. For this should user modify r script smth like:
+
+ - Filter data with eng text
+ - Filter data where is date
+ - Save date to json
+ - Creates new dataset
+
+
+
+
 ## Description of creating datasets
 
 ## NLP
