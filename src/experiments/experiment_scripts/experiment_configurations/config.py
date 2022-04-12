@@ -162,8 +162,14 @@ experiment_config = {
             [15000],
         ),
         ExperimentGeneratorPart.FeatureExtractors: [
-            BoWVectorizer(),
-            TFIDFVectorizer(),
+            BoWVectorizer(
+                lowercase=False,
+                max_features=10000
+            ),
+            TFIDFVectorizer(
+                lowercase=False,
+                max_features=10000
+            ),
             GloveVectorizer(),
             Word2VecVectorizer(),
             ElectraSmallVectorizer(),
@@ -173,8 +179,14 @@ experiment_config = {
         ExperimentGeneratorPart.Predictor: [
             GaussianNB(),
             SGDClassifier(),
-            RandomForestClassifier(),
-            KNeighborsClassifier(n_neighbors=5, metric=coss_similarity),
+            RandomForestClassifier(
+                n_estimators=100
+            ),
+            KNeighborsClassifier(
+                n_neighbors=5, 
+                metric=coss_similarity,
+                n_jobs=-1
+            ),
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,
     },
