@@ -2,14 +2,12 @@ import os
 import typing
 
 import pandas as pd
-from src.experiments.helpers.experiment_timer import ExperimentTimer
 
-from src.config.config import (
-    EXPERIMENT_RESULTS_DIRECTORY,
-    FILENAME_SUMMARIZATION,
-    LOG_SEP,
-)
-from src.types.experiment_summarization_fields import ExperimentSummarizationFields
+from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
+                               FILENAME_SUMMARIZATION, LOG_SEP)
+from src.experiments.helpers.experiment_timer import ExperimentTimer
+from src.types.experiment_summarization_fields import \
+    ExperimentSummarizationFields
 
 
 class ExperimentSummarization:

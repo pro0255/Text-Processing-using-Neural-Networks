@@ -1,13 +1,15 @@
 import typing
+
 import nltk
 from gensim.parsing.preprocessing import preprocess_string
-from gensim.parsing.preprocessing import remove_stopwords as remove_stopwords_gensim
+from gensim.parsing.preprocessing import \
+    remove_stopwords as remove_stopwords_gensim
 from gensim.parsing.preprocessing import stem_text as stem_text_gensim
-from gensim.parsing.preprocessing import (
-    strip_multiple_whitespaces as strip_multiple_whitespaces_gensim,
-)
+from gensim.parsing.preprocessing import \
+    strip_multiple_whitespaces as strip_multiple_whitespaces_gensim
 from gensim.parsing.preprocessing import strip_numeric as strip_numeric_gensim
-from gensim.parsing.preprocessing import strip_punctuation as strip_punctuation_gensim
+from gensim.parsing.preprocessing import \
+    strip_punctuation as strip_punctuation_gensim
 from gensim.parsing.preprocessing import strip_short as strip_short_gensim
 from gensim.parsing.preprocessing import strip_tags as strip_tags_gensim
 from nltk.stem import WordNetLemmatizer

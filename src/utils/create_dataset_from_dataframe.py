@@ -1,6 +1,7 @@
 import typing
-from pandas import DataFrame
+
 import tensorflow as tf
+from pandas import DataFrame
 
 from src.config.config import LABEL_COLUMN, TEXT_COLUMN
 

@@ -1,4 +1,5 @@
 import typing
+
 import numpy as np
 import tensorflow as tf
 from sklearn.preprocessing import LabelEncoder
@@ -7,14 +8,13 @@ from transformers import AutoConfig, TFAutoModel
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 from src.models.transformer.pooling_strategy import (
-    TransformerPoolingStrategySelection,
-    pooling_strategy_dictionary,
-)
-from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_tokenizer
+    TransformerPoolingStrategySelection, pooling_strategy_dictionary)
+from src.tokenizers.prepare_dataset_from_tokenizer import \
+    prepare_dataset_from_tokenizer
 from src.tokenizers.transformer_tokenizer import TransformerTokenizer
-from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
-from src.types.transformer_pooling import TransformerPooling
 from src.types.transformer_name import TransformerName
+from src.types.transformer_pooling import TransformerPooling
+from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
 
 class TransformerVectorizer:

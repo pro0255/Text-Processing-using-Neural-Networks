@@ -1,8 +1,9 @@
 import time
-from enum import Enum
 import typing
+from enum import Enum
 
-from src.types.experiment_summarization_fields import ExperimentSummarizationFields
+from src.types.experiment_summarization_fields import \
+    ExperimentSummarizationFields
 
 
 class TimeParts(Enum):

@@ -1,7 +1,7 @@
-from src.experiments.experiment_scripts.neural_nets.transformers.transformer_runner import (
-    TransformerRunner,
-)
-from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
+from src.experiments.experiment_scripts.neural_nets.transformers.transformer_runner import \
+    TransformerRunner
+from src.experiments.experiment_scripts.types.experiment_types import \
+    ExperimentType
 
 
 class TransformerOutputSequenceLenght(TransformerRunner):

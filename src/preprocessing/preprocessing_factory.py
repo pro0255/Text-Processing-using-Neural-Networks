@@ -1,4 +1,5 @@
 import typing
+
 from src.preprocessing.preprocessor import TextPreprocessor
 from src.types.processing_type import PreprocessingType
 

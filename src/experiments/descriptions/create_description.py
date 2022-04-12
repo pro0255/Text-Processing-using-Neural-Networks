@@ -1,12 +1,13 @@
 import typing
-from src.experiments.settings.settings import LearningSettings
-from src.defined_types.types import PredictionClassesType, VectorizerClassesType
+
 from src.config.config import BLANK_DESCRIPTION
-from src.experiments.helpers.experiment_description import ExperimentDescription
+from src.defined_types.types import (PredictionClassesType,
+                                     VectorizerClassesType)
+from src.experiments.helpers.experiment_description import \
+    ExperimentDescription
+from src.experiments.settings.settings import LearningSettings
 from src.models.transformer.pooling_strategy import (
-    MAX_FAKE_LAYERS,
-    TransformerPoolingStrategySelection,
-)
+    MAX_FAKE_LAYERS, TransformerPoolingStrategySelection)
 from src.types.classic_model_type import ClassicModelType
 from src.types.embedding_type import EmbeddingType
 from src.types.net_type import NetType

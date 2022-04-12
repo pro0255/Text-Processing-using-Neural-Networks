@@ -1,4 +1,5 @@
 import typing
+
 from nltk import tokenize
 
 from src.preprocessing.preprocess_delimiter import preprocess_delimiter

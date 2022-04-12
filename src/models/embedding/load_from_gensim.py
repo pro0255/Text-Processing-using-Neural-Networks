@@ -1,4 +1,5 @@
 import typing
+
 import gensim.downloader as api
 
 from src.config.loaded_models import loaded_models

@@ -1,4 +1,5 @@
 import typing
+
 import pandas as pd
 
 from src.config.config import ALL_AUTHORS_DELIMITER, PATH_TO_ALL_AUTHORS

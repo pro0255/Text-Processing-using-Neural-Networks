@@ -1,6 +1,7 @@
 import os
 
-from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, MODEL_SAVE_DIRECTORY
+from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
+                               MODEL_SAVE_DIRECTORY)
 
 
 class ExperimentSetup:

@@ -1,9 +1,12 @@
 import typing
+
 from sklearn.preprocessing import LabelEncoder
+
 from src.types.transformer_name import TransformerName
 from src.types.transformer_pooling import TransformerPooling
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
-from src.vectorizers.transformer.transformer_vectorizer import TransformerVectorizer
+from src.vectorizers.transformer.transformer_vectorizer import \
+    TransformerVectorizer
 
 
 class DistilBertBaseUncasedVectorizer(TransformerVectorizer):

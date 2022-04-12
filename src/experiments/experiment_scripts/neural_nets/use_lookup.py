@@ -1,9 +1,7 @@
 import typing
+
 from src.experiments.experiment_scripts.experiment_configurations.lookup import (
-    LOOKUP_KEY,
-    gutenberg_lookup_normalization,
-    gutenberg_lookup_seq,
-)
+    LOOKUP_KEY, gutenberg_lookup_normalization, gutenberg_lookup_seq)
 from src.types.processing_type import PreprocessingType
 
 

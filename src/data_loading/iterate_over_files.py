@@ -1,6 +1,7 @@
-from tqdm import tqdm
 import typing
 from collections.abc import Callable
+
+from tqdm import tqdm
 
 from src.data_loading.load_files import load_files
 from src.utils.load_json import load_json

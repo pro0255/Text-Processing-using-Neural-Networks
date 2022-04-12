@@ -1,6 +1,7 @@
 import typing
-from src.statistic.types.metric_type import translate_instance_to_type
+
 from src.statistic.metric_wrapper import MetricWrapper
+from src.statistic.types.metric_type import translate_instance_to_type
 
 
 def build_dictionary_from_wrapper(

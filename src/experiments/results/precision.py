@@ -1,4 +1,5 @@
 import typing
+
 from sklearn.metrics import precision_score
 
 

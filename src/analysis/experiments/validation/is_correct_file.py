@@ -1,13 +1,9 @@
 import os
 import typing
 
-from src.config.config import (
-    FILENAME_CONFUSION_MATRIX,
-    FILENAME_DESCRIPTION,
-    FILENAME_LOGS,
-    FILENAME_METRICS,
-    FILENAME_SUMMARIZATION,
-)
+from src.config.config import (FILENAME_CONFUSION_MATRIX, FILENAME_DESCRIPTION,
+                               FILENAME_LOGS, FILENAME_METRICS,
+                               FILENAME_SUMMARIZATION)
 
 filenames = [
     FILENAME_CONFUSION_MATRIX,

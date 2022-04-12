@@ -2,8 +2,8 @@ import os
 import typing
 
 from src.config.config import FILE_DATA_NAME
-from src.types.dataset_type import DataSetType
 from src.types.dataset import DataSet
+from src.types.dataset_type import DataSetType
 
 
 # TODO: refactor

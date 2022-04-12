@@ -4,10 +4,10 @@ import typing
 
 import pandas as pd
 
-from src.config.config import AUTHORS_FILE_NAME, FILE_DATA_NAME, PROJECT_CSV_DELIMITER
-from src.data_preparing.build_dataset.chunk_document_by_sentence import (
-    chunk_document_by_sentence,
-)
+from src.config.config import (AUTHORS_FILE_NAME, FILE_DATA_NAME,
+                               PROJECT_CSV_DELIMITER)
+from src.data_preparing.build_dataset.chunk_document_by_sentence import \
+    chunk_document_by_sentence
 from src.data_preparing.build_dataset.logger import log_error
 from src.types.gutenberg_json_attributes import GutenbergJsonAttributes
 from src.types.label_type import GutenbergLabelType

@@ -1,4 +1,5 @@
 import typing
+
 import tensorflow as tf
 
 from src.tokenizers.transformer_tokenizer import TransformerTokenizer

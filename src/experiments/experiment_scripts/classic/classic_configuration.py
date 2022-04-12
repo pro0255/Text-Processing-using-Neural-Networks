@@ -1,4 +1,5 @@
-from src.defined_types.types import PredictionClassesType, VectorizerClassesType
+from src.defined_types.types import (PredictionClassesType,
+                                     VectorizerClassesType)
 
 
 class ClassicExpConf:

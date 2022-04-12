@@ -1,7 +1,9 @@
 import typing
-import tensorflow as tf
-from src.experiments.helpers.experiment_description import ExperimentDescription
 
+import tensorflow as tf
+
+from src.experiments.helpers.experiment_description import \
+    ExperimentDescription
 from src.experiments.settings.settings import LearningSettings
 
 

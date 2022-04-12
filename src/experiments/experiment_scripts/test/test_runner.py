@@ -1,14 +1,16 @@
 import typing
-from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
+
+from src.experiments.experiment_scripts.classic.classic_runner import \
+    ClassicRunner
+from src.experiments.experiment_scripts.neural_nets.no_transformer.neural_net_runner import \
+    NNRunner
+from src.experiments.experiment_scripts.neural_nets.transformers.transformer_runner import \
+    TransformerRunner
+from src.experiments.experiment_scripts.test.test_config import \
+    test_experiment_config
+from src.experiments.experiment_scripts.types.experiment_types import \
+    ExperimentType
 from src.types.test_types import TestType
-from src.experiments.experiment_scripts.neural_nets.no_transformer.neural_net_runner import (
-    NNRunner,
-)
-from src.experiments.experiment_scripts.neural_nets.transformers.transformer_runner import (
-    TransformerRunner,
-)
-from src.experiments.experiment_scripts.classic.classic_runner import ClassicRunner
-from src.experiments.experiment_scripts.test.test_config import test_experiment_config
 
 
 class TestRunner:

@@ -5,10 +5,10 @@ import numpy as np
 import pandas as pd
 
 from src.config.config import AUTHORS_FILE_NAME, FILE_DATA_NAME, TEST_DIR
-from src.data_loading.get_dataset_object_from import get_dataset_object_from_path
-from src.utils.create_path_to_gutenberg import (
-    create_path_to_gutenberg_sentence_authors_sentence,
-)
+from src.data_loading.get_dataset_object_from import \
+    get_dataset_object_from_path
+from src.utils.create_path_to_gutenberg import \
+    create_path_to_gutenberg_sentence_authors_sentence
 
 
 def create_test_dataset_from(number_of_authors, number_of_sentences, size):

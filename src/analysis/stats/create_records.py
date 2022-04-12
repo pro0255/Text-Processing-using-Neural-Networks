@@ -1,6 +1,7 @@
 import itertools
-import pandas as pd
 import typing
+
+import pandas as pd
 
 from src.analysis.stats.create_record import create_record
 from src.types.processing_type import PreprocessingType

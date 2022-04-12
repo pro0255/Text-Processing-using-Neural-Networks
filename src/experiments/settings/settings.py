@@ -1,14 +1,8 @@
 import itertools
 import typing
 
-from src.config.learning_config import (
-    BATCH_SIZE,
-    EPOCHS,
-    LEARNING_RATE,
-    LOSS,
-    METRIC,
-    OPTIMIZER,
-)
+from src.config.learning_config import (BATCH_SIZE, EPOCHS, LEARNING_RATE,
+                                        LOSS, METRIC, OPTIMIZER)
 
 
 def settings_generator(

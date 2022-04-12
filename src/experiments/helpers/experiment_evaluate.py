@@ -3,7 +3,8 @@ import typing
 
 import pandas as pd
 
-from src.config.config import FILENAME_CONFUSION_MATRIX, FILENAME_METRICS, LOG_SEP
+from src.config.config import (FILENAME_CONFUSION_MATRIX, FILENAME_METRICS,
+                               LOG_SEP)
 from src.experiments.results.accuracy import accuracy
 from src.experiments.results.conf_matrix import conf_matrix
 from src.experiments.results.f1 import f1

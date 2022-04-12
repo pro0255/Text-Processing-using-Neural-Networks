@@ -1,8 +1,9 @@
 import itertools
 import typing
-from src.experiments.settings.settings import LearningSettings
-from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection
 
+from src.experiments.settings.settings import LearningSettings
+from src.models.transformer.pooling_strategy import \
+    TransformerPoolingStrategySelection
 from src.types.transformer_name import TransformerName
 
 

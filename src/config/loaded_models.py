@@ -1,5 +1,7 @@
-import gensim.downloader
 import typing
+
+import gensim.downloader
+
 from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 
 loaded_models: typing.Dict[str, typing.Dict] = {

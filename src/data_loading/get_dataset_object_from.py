@@ -1,14 +1,11 @@
 import typing
+
 import tensorflow as tf
 
-from src.preprocessing.preprocessing_factory import (
-    PreprocessingFactory,
-    PreprocessingType,
-)
-from src.utils.create_path_to_gutenberg import (
-    get_path_to_gutenberg_all,
-    get_path_to_gutenberg_sets,
-)
+from src.preprocessing.preprocessing_factory import (PreprocessingFactory,
+                                                     PreprocessingType)
+from src.utils.create_path_to_gutenberg import (get_path_to_gutenberg_all,
+                                                get_path_to_gutenberg_sets)
 
 
 def get_dataset_object_from_path(

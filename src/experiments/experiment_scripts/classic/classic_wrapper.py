@@ -1,12 +1,15 @@
 import typing
-from src.defined_types.types import PredictionClassesType, VectorizerClassesType
-from src.experiments.experiment_scripts.classic.classic_configuration import (
-    ClassicExpConf,
-)
-from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOGS
+
+from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
+                               NAME_OF_LEARNING_LOGS)
+from src.defined_types.types import (PredictionClassesType,
+                                     VectorizerClassesType)
+from src.experiments.experiment_scripts.classic.classic_configuration import \
+    ClassicExpConf
 from src.experiments.helpers.experiment_evaluate import ExperimentEvaluate
 from src.experiments.helpers.experiment_setup import ExperimentSetup
-from src.experiments.helpers.experiment_summarization import ExperimentSummarization
+from src.experiments.helpers.experiment_summarization import \
+    ExperimentSummarization
 from src.experiments.helpers.experiment_timer import ExperimentTimer
 from src.types.experiment_description import ExperimentDescriptionType
 from src.types.subset_type import SubsetType

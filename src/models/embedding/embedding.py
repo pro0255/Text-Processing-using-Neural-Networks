@@ -1,9 +1,11 @@
 import typing
+
 import tensorflow as tf
 from tensorflow import string as tf_string
 
 from src.config.config import BLANK_DESCRIPTION
-from src.models.embedding.prepare_embedding_matrix import prepare_embedding_matrix
+from src.models.embedding.prepare_embedding_matrix import \
+    prepare_embedding_matrix
 
 
 class Embedding:

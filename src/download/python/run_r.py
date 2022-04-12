@@ -1,6 +1,5 @@
-import subprocess
 import os
-
+import subprocess
 
 # User should overwrite ROOT where project is situated. In my case was used local computer and remote school computer which provided more power for experiments.
 ROOT = "C:\\Users\\Vojta\\Desktop\\diploma"

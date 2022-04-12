@@ -1,6 +1,6 @@
 import os
-from os.path import exists as file_exists
 import typing
+from os.path import exists as file_exists
 
 
 def exists(directory: str, filename: str) -> typing.Union[None, str]:

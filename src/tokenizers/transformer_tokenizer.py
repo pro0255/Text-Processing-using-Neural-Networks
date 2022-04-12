@@ -1,6 +1,7 @@
 import typing
-from sklearn.preprocessing import LabelEncoder
+
 import tensorflow as tf
+from sklearn.preprocessing import LabelEncoder
 from transformers import AutoTokenizer
 
 from src.types.transformer_input import TransformerInput
