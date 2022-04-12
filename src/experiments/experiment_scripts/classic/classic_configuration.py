@@ -1,3 +1,6 @@
+from src.defined_types.types import PredictionClassesType, VectorizerClassesType
+
+
 class ClassicExpConf:
     def __init__(
         self,
@@ -5,8 +8,8 @@ class ClassicExpConf:
         test,
         experiment_id:str,
         description:str,
-        predict_instance,
-        vectorization_instance,
+        predict_instance: PredictionClassesType,
+        vectorization_instance: VectorizerClassesType,
     ) -> None:
         self.train = train
         self.test = test

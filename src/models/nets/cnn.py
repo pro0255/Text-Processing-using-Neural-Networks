@@ -15,14 +15,14 @@ class CNNArchitecture(NNArchitecture):
     def create_model(
         self,
         number_of_authors:int,
-        train_ds,
-        valid_ds,
+        train_ds: typing.Type[tf.data.Dataset],
+        valid_ds: typing.Type[tf.data.Dataset],
         vocab_size:int,
         embedding_dim:int,
         output_sequence_length:int,
         trainable:bool,
         embedding_dictionary=typing.Union[typing.Dict, None],
-    ) -> typing.Union[typing.Tuple, None]:
+    ) -> typing.Union[typing.Tuple[typing.Type[tf.kears.Model], typing.Tuple], None]:
 
         emb, input_layer, stats = self.emb.create_vect_embedding(
             train_ds,

@@ -1,15 +1,21 @@
+import typing
+from src.experiments.settings.settings import LearningSettings
+from src.defined_types.types import PredictionClassesType, VectorizerClassesType
 from src.config.config import BLANK_DESCRIPTION
 from src.experiments.helpers.experiment_description import \
     ExperimentDescription
-from src.models.transformer.pooling_strategy import MAX_FAKE_LAYERS
+from src.models.transformer.pooling_strategy import MAX_FAKE_LAYERS, TransformerPoolingStrategySelection
 from src.types.classic_model_type import ClassicModelType
 from src.types.embedding_type import EmbeddingType
 from src.types.net_type import NetType
 from src.types.prediction_model_type import PredictionModelType
 from src.types.processing_type import PreprocessingType
+from src.types.transformer_name import TransformerName
+from src.types.transformer_pooling import TransformerPooling
+from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
 
-def from_pred_instance_get_type(prediction_instance):
+def from_pred_instance_get_type(prediction_instance: typing.Union[PredictionClassesType, str]):
     if prediction_instance == "":
         return ""
     name_of_instance = type(prediction_instance).__name__
@@ -23,7 +29,7 @@ def from_pred_instance_get_type(prediction_instance):
     return dic.get(name_of_instance, BLANK_DESCRIPTION)
 
 
-def from_vect_instance_get_type(vectorizer_instance):
+def from_vect_instance_get_type(vectorizer_instance: typing.Union[VectorizerClassesType, str]):
     if vectorizer_instance == "":
         return ""
     name_of_vectorizer_instance = type(vectorizer_instance).__name__
@@ -47,8 +53,8 @@ def create_description_for_classic(
     experiment_type: str,
     number_of_authors: int,
     number_of_sentences: int,
-    prediction_instance,
-    vectorizer_instance,
+    prediction_instance: typing.Union[PredictionClassesType, str],
+    vectorizer_instance: typing.Union[VectorizerClassesType, str],
     normalization_size:int,
     path_data:str,
     preprocessing_type=PreprocessingType.Default.value,
@@ -86,11 +92,10 @@ def create_description_for_transformer_with_classic(
     experiment_type:str,
     number_of_authors:int,
     number_of_sentences:int,
-    prediction_instance,
-    vectorizer_instance,
+    prediction_instance: typing.Union[PredictionClassesType, str],
+    vectorizer_instance: typing.Union[VectorizerClassesType, str],
     normalization_size:int,
     path_data:str,
-    pooling_strategy,
     preprocessing_type=PreprocessingType.Default.value,
 ):
     classic_model_type = from_pred_instance_get_type(prediction_instance)
@@ -130,19 +135,26 @@ def create_description_for_transformer_with_classic(
     )
 
 
+
+
 def create_description_for_transformer(
     experiment_id:str,
     experiment_type:str,
     number_of_authors:int,
     number_of_sentences:int,
-    model_name,
-    pooling_strategy_arguments,
+    model_name: TransformerName,
+    pooling_strategy_arguments: typing.Tuple[
+        TransformerPooling,
+        TransformerPoolingStrategy,
+        typing.Union[int, typing.Callable[[int], int]],
+        typing.Union[int, typing.Callable[[int], int]]
+    ],
     seq_len:int,
     trainable:bool,
     normalization_size:int,
     path_data:str,
-    learning_settings,
-    pooling_strategy,
+    learning_settings: typing.Type[LearningSettings],
+    pooling_strategy: TransformerPoolingStrategySelection,
     preprocessing_type=PreprocessingType.Default.value,
 ):
     (
@@ -188,9 +200,9 @@ def create_description_for_nn(
     seq_len:int,
     trainable:bool,
     path_data:str,
-    net_type,
-    learning_settings,
-    embedding_type,
+    net_type: str,
+    learning_settings: typing.Type[LearningSettings],
+    embedding_type: EmbeddingType,
     extra_field,
     preprocessing_type=PreprocessingType.Default.value,
 ):

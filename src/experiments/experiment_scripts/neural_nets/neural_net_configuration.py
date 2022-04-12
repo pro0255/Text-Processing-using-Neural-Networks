@@ -1,14 +1,20 @@
+import typing
+import tensorflow as tf
+from src.experiments.helpers.experiment_description import ExperimentDescription
+
+from src.experiments.settings.settings import LearningSettings
+
 class NNExpConf:
     def __init__(
         self,
         nn_model,
-        train_ds,
-        valid_ds,
-        test_ds,
-        learning_settings,
-        description,
-        save_model,
-        save_best,
+        train_ds: typing.Type[tf.data.Dataset],
+        valid_ds: typing.Type[tf.data.Dataset],
+        test_ds: typing.Type[tf.data.Dataset],
+        learning_settings: typing.Type[LearningSettings],
+        description: typing.Type[ExperimentDescription],
+        save_model: bool,
+        save_best: bool,
     ) -> None:
         self.nn_model = nn_model
         self.train_ds = train_ds

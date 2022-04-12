@@ -168,7 +168,6 @@ class ClassicRunner:
                             feature_extractor,
                             norm_size,
                             data_path,
-                            pooling_strategy,
                             current_preprocessing.value,
                         )
 

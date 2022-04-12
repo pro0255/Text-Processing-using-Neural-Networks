@@ -1,4 +1,5 @@
 import typing
+from src.defined_types.types import PredictionClassesType, VectorizerClassesType
 from src.experiments.experiment_scripts.classic.classic_configuration import ClassicExpConf
 from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
                                NAME_OF_LEARNING_LOGS)
@@ -18,7 +19,7 @@ class ClassicExpRunWrapper:
     def __init__(
         self,
         experiment_id:str,
-        experiment_summarization=None,
+        experiment_summarization: typing.Union[None,typing.Type[ExperimentSummarization]]=None,
         directory:str=EXPERIMENT_RESULTS_DIRECTORY,
         log_filename:str=NAME_OF_LEARNING_LOGS,
     ) -> None:
@@ -39,7 +40,7 @@ class ClassicExpRunWrapper:
         self.experiment_evaluate = ExperimentEvaluate(experiment_id, self.directory)
 
     def vectorizer_sentences(
-        self, train_ds, test_ds, vectorization_instance
+        self, train_ds, test_ds, vectorization_instance: VectorizerClassesType
     ):
         print("New vectorization")
 
@@ -66,20 +67,20 @@ class ClassicExpRunWrapper:
 
         return X_train, X_test, y_train, y_true_labels
 
-    def fit(self, X_train, y_train, predict_instance):
+    def fit(self, X_train, y_train, predict_instance: PredictionClassesType):
         print("Fitting model")
         self.experiment_timer.start(TimeType.LearningTime.value)
         predict_instance.fit(X_train, y_train)
         self.experiment_timer.end(TimeType.LearningTime.value)
 
-    def predict(self, X_test, predict_instance):
+    def predict(self, X_test, predict_instance: PredictionClassesType):
         print("Predicting test dataset")
         self.experiment_timer.start(TimeType.PredictionTime.value)
         y_pred_labels = predict_instance.predict(X_test)
         self.experiment_timer.end(TimeType.PredictionTime.value)
         return y_pred_labels
 
-    def run_vectorization(self, vectorization_instance, train_ds, test_ds):
+    def run_vectorization(self, vectorization_instance: VectorizerClassesType, train_ds, test_ds):
         X_train, X_test, y_train, y_test = self.vectorizer_sentences(
             train_ds, test_ds, vectorization_instance
         )

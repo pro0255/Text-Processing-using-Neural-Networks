@@ -13,8 +13,8 @@ class Embedding:
 
     def create_vect_embedding(
         self,
-        train_ds,
-        valid_ds,
+        train_ds: typing.Type[tf.data.Dataset],
+        valid_ds: typing.Type[tf.data.Dataset],
         vocab_size:int,
         output_sequence_length:int,
         trainable:bool,
