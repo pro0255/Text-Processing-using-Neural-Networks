@@ -1,4 +1,10 @@
 Id;Value
 MIRROR;http://www.gutenberg.org/dirs/
-DATA_DIRECTORY;C:\\Users\\Vojta\\Desktop\\diploma\\gutenberg_downloaded\\data
-AUTHORS_DIRECTORY;C:\\Users\\Vojta\\Desktop\\diploma\\gutenberg_downloaded\\authors\\authors.csv
+DIRECTORY_REAL;C:\\Users\\Vojta\\Desktop\\diploma\\gutenberg_downloaded
+DIRECTORY_TEST;C:\\Users\\Vojta\\Desktop\\diploma\\gutenberg_downloaded_test
+DATA_DIRECTORY;data
+AUTHORS_DIRECTORY;authors
+AUTHORS_FILENAME;authors.csv
+IS_TEST;True
+FROM;None
+TO;5

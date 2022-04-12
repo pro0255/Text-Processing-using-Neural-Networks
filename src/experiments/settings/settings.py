@@ -8,6 +8,7 @@ from src.config.learning_config import (BATCH_SIZE, EPOCHS, LEARNING_RATE,
 def settings_generator(
     batch_sizes:typing.List[int], learning_rates:typing.List[float], metrics:typing.List, losses:typing.List, optimizers:typing.List, epochs:typing.List[int]
 ):
+    print(epochs)
     confs = itertools.product(
         batch_sizes, learning_rates, metrics, losses, optimizers, epochs
     )
@@ -38,3 +39,13 @@ class LearningSettings:
         self.metric = metric
         self.loss = loss
         self.optimizer = optimizer(learning_rate=self.learning_rate)
+
+    def __str__(self) -> str:
+        res = ""
+        res += f"BatchSize={self.batch_size}"
+        res += f"Epochs={self.epochs}"
+        res += f"LearningRate={self.learning_rate}"
+        res += f"Metric={self.metric}"
+        res += f"Loss={self.loss}"
+        res += f"Optimizer={self.optimizer}"
+        return res

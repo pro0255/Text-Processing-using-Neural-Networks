@@ -211,6 +211,7 @@ nltk_data
 meme
 gutenberg_test/*
 gutenberg_downloaded/*
+gutenberg_downloaded_test/*
 experiment_results/*
 data/*
 jupyters/aclImdb

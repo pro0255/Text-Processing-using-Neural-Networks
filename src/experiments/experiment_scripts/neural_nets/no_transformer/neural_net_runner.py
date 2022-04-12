@@ -83,6 +83,8 @@ class NNRunner:
                     embedding_size, embedding_dictionary_name = embedding
 
                     try:
+
+                        print("Settings = \n", learning_settings)
                         output_sequence_length = use_lookup_seq(
                             output_sequence_length,
                             current_authors,
