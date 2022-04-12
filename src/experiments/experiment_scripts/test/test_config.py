@@ -45,7 +45,7 @@ SEQ_LEN_TEST = [50]
 
 
 test_experiment_config = {
-    ExperimentType.TransformerTest: {
+    ExperimentType.TransformerTest: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             AUTHORS_TEST, SENTENCES_TEST, PREPROCESSING_TEST, LABEL_SIZE_TEST
         ),
@@ -61,7 +61,7 @@ test_experiment_config = {
             ),
         ),
     },
-    ExperimentType.NNTest: {
+    ExperimentType.NNTest: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             AUTHORS_TEST, SENTENCES_TEST, PREPROCESSING_TEST, LABEL_SIZE_TEST
         ),
@@ -88,7 +88,7 @@ test_experiment_config = {
             DenseArchitecture(),
         ],
     },
-    ExperimentType.ClassicTest: {
+    ExperimentType.ClassicTest: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             AUTHORS_TEST, SENTENCES_TEST, PREPROCESSING_TEST, LABEL_SIZE_TEST
         ),

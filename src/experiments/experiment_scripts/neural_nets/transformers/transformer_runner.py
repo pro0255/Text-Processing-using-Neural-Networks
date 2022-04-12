@@ -33,14 +33,18 @@ class TransformerRunner:
         self.save_best = save_best
         self.experiment_type = experiment_type
 
-        self.config_object = config_dict.get(self.experiment_type, None)
+        self.config_object_getter = config_dict.get(self.experiment_type, None)
 
-        if self.config_object is not None:
+        if self.config_object_getter is not None:
 
-            self.experiment_configurations = config_dict[self.experiment_type][
+            config_dict = self.config_object_getter()
+
+            print(f"Loaded configuration {list(config_dict.keys())}")
+
+            self.experiment_configurations = config_dict[
                 ExperimentGeneratorPart.ExperimentConfiguration
             ]
-            self.dataset_generator = config_dict[self.experiment_type][
+            self.dataset_generator = config_dict[
                 ExperimentGeneratorPart.DatasetGenerator
             ]
             self.experiment_type_str = self.experiment_type.value
@@ -50,7 +54,7 @@ class TransformerRunner:
         
 
     def run(self):
-        if self.config_object is None:
+        if self.config_object_getter is None:
             print("Experiment was not specified well!")
             return
 

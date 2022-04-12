@@ -31,26 +31,27 @@ class NNRunner:
 
         self.experiment_type = experiment_type
 
-        self.config_object = config_dict.get(self.experiment_type, None)
+        self.config_object_getter = config_dict.get(self.experiment_type, None)
 
-        if self.config_object is not None:
+        if self.config_object_getter is not None:
+            config_dict = self.config_object_getter()
+            
+            print(f"Loaded configuration {list(config_dict.keys())}")
 
-            self.experiment_configurations, self.embeddding_index_dict = config_dict[
-                self.experiment_type
-            ][ExperimentGeneratorPart.ExperimentConfiguration]
+            self.experiment_configurations, self.embeddding_index_dict = config_dict[ExperimentGeneratorPart.ExperimentConfiguration]
 
-            self.dataset_generator = config_dict[self.experiment_type][
+            self.dataset_generator = config_dict[
                 ExperimentGeneratorPart.DatasetGenerator
             ]
 
             self.experiment_type_str = self.experiment_type.value
 
-            self.experiment_architectures = config_dict[self.experiment_type][
+            self.experiment_architectures = config_dict[
                 ExperimentGeneratorPart.ExperimentArchitecture
             ]
 
     def run(self):
-        if self.config_object is None:
+        if self.config_object_getter is None:
             print("Experiment was not specified well!")
             return
 

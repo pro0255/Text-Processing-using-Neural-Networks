@@ -31,25 +31,28 @@ class ClassicRunner:
         self, experiment_type: ExperimentType, config_dict={}
     ) -> None:
 
-        self.config_object = config_dict.get(self.experiment_type, None)
+        self.config_object_getter = config_dict.get(self.experiment_type, None)
+        self.experiment_type = experiment_type
 
-        if self.config_object is not None:
+        if self.config_object_getter is not None:
 
-            self.experiment_type = experiment_type
+            config_dict = self.config_object_getter()
 
-            self.dataset_generator = config_dict[self.experiment_type][
+            print(f"Loaded configuration {list(config_dict.keys())}")
+
+            self.dataset_generator = config_dict[
                 ExperimentGeneratorPart.DatasetGenerator
             ]
 
-            self.feature_extractors = config_dict[self.experiment_type][
+            self.feature_extractors = config_dict[
                 ExperimentGeneratorPart.FeatureExtractors
             ]
 
-            self.predictors = config_dict[self.experiment_type][
+            self.predictors = config_dict[
                 ExperimentGeneratorPart.Predictor
             ]
 
-            self.transformer_pooling_strategy = config_dict[self.experiment_type][
+            self.transformer_pooling_strategy = config_dict[
                 ExperimentGeneratorPart.TransformerPoolingStrategy
             ]
 
@@ -114,7 +117,7 @@ class ClassicRunner:
                 print(f"Error occured in {e}")
 
     def run(self):
-        if self.config_object is None:
+        if self.config_object_getter is None:
             print("Experiment was not specified well!")
             return
 

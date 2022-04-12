@@ -38,7 +38,7 @@ loader = ExperimentLoader()
 
 
 experiment_config = {
-    ExperimentType.TrainableTransformer: {
+    ExperimentType.TrainableTransformer: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5], [3], [PreprocessingType.CaseInterpunction], [15000]
         ),
@@ -50,7 +50,7 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
-    ExperimentType.PoolingStrategyTransformer: {
+    ExperimentType.PoolingStrategyTransformer: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5], [3], [PreprocessingType.CaseInterpunction], [15000]
         ),
@@ -62,7 +62,7 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
-    ExperimentType.OutputSequenceLengthTransformer: {
+    ExperimentType.OutputSequenceLengthTransformer: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5], [3], [PreprocessingType.CaseInterpunction], [15000]
         ),
@@ -74,7 +74,7 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
-    ExperimentType.LearningRateTransformer: {
+    ExperimentType.LearningRateTransformer: lambda:  {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5], [3], [PreprocessingType.CaseInterpunction], [15000]
         ),
@@ -95,7 +95,7 @@ experiment_config = {
             ),
         ),
     },
-    ExperimentType.TransformerType: {
+    ExperimentType.TransformerType: lambda:  {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5], [3], [PreprocessingType.CaseInterpunction], [15000]
         ),
@@ -111,7 +111,7 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [10])),
         ),
     },
-    ExperimentType.LabelSize: {
+    ExperimentType.LabelSize: lambda:  {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -126,7 +126,7 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
-    ExperimentType.NumberOfAuthorsNN: {
+    ExperimentType.NumberOfAuthorsNN: lambda:  {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -154,7 +154,7 @@ experiment_config = {
             DenseArchitecture(),
         ],
     },
-    ExperimentType.Classic: {
+    ExperimentType.Classic: lambda:  {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
