@@ -1,3 +1,6 @@
+## DEPRECATED FILE. Please use download_gutenberg_with_config.R!
+
+
 library(gutenbergr)
 library(jsonlite)
 library(dplyr)

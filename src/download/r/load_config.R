@@ -1,3 +1,6 @@
+## DEPRECATED FILE. Please use download_gutenberg_with_config.R!
+
+
 ID_KEY = "Id"
 VALUE_KEY = "Value"
 
