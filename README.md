@@ -2,7 +2,7 @@
 
 ## References
 
-- Diploma
+- Diploma .. TODO: dspace
 
 I would like to thanks some ppl whos helped me very much with this thesis. Without them this thesis would be not created. Their subjects were great:
 
