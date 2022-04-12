@@ -1,5 +1,17 @@
 # Diploma - VSB - Technical University of Ostrava - VSB-TUO
 
+## References
+
+- Diploma
+
+I would like to thanks some ppl whos helped me very much with this thesis. Without them this thesis would be not created. Their subjects were great:
+
+- prof. Ing. Jan Platoš, Ph.D. - https://homel.vsb.cz/~pla06/
+- Ing. Radek Svoboda - https://homel.vsb.cz/~svo0175/
+- Ing. Petr Prokop - https://homel.vsb.cz/~pro0199/
+- Ing. Michal Vašinek Ph.D. - https://homel.vsb.cz/~vas218/
+- 
+
 ## Description
 
 ## Author
