@@ -1,8 +1,6 @@
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.descriptions.create_description import \
     create_description_for_transformer
-from src.experiments.experiment_scripts.experiment_configurations.config import \
-    experiment_config
 from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import \
     NNExpConf
 from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import \
@@ -29,21 +27,33 @@ class TransformerRunner:
         experiment_type: ExperimentType,
         save_best: bool = True,
         save_model: bool = False,
-        config_dict=experiment_config,
+        config_dict={},
     ) -> None:
         self.save_model = save_model
         self.save_best = save_best
         self.experiment_type = experiment_type
-        self.experiment_configurations = config_dict[self.experiment_type][
-            ExperimentGeneratorPart.ExperimentConfiguration
-        ]
-        self.dataset_generator = config_dict[self.experiment_type][
-            ExperimentGeneratorPart.DatasetGenerator
-        ]
-        self.experiment_type_str = self.experiment_type.value
-        self.transformer_architecture = TransformerArchitecture()
+
+        self.config_object = config_dict.get(self.experiment_type, None)
+
+        if self.config_object is not None:
+
+            self.experiment_configurations = config_dict[self.experiment_type][
+                ExperimentGeneratorPart.ExperimentConfiguration
+            ]
+            self.dataset_generator = config_dict[self.experiment_type][
+                ExperimentGeneratorPart.DatasetGenerator
+            ]
+            self.experiment_type_str = self.experiment_type.value
+
+            self.transformer_architecture = TransformerArchitecture()
+
+        
 
     def run(self):
+        if self.config_object is None:
+            print("Experiment was not specified well!")
+            return
+
         for dataset_value in self.dataset_generator:
             if dataset_value is None:
                 continue

@@ -9,8 +9,6 @@ from src.experiments.experiment_scripts.classic.classic_configuration import \
     ClassicExpConf
 from src.experiments.experiment_scripts.classic.classic_wrapper import \
     ClassicExpRunWrapper
-from src.experiments.experiment_scripts.experiment_configurations.config import \
-    experiment_config
 from src.experiments.experiment_scripts.types.experiment_types import \
     ExperimentType
 from src.experiments.helpers.experiment_description import \
@@ -30,28 +28,32 @@ DEFAULT_POOLING_STRATEGY = [TransformerPoolingStrategySelection.LastLayerCLS]
 
 class ClassicRunner:
     def __init__(
-        self, experiment_type: ExperimentType, config_dict=experiment_config
+        self, experiment_type: ExperimentType, config_dict={}
     ) -> None:
 
-        self.experiment_type = experiment_type
+        self.config_object = config_dict.get(self.experiment_type, None)
 
-        self.dataset_generator = config_dict[self.experiment_type][
-            ExperimentGeneratorPart.DatasetGenerator
-        ]
+        if self.config_object is not None:
 
-        self.feature_extractors = config_dict[self.experiment_type][
-            ExperimentGeneratorPart.FeatureExtractors
-        ]
+            self.experiment_type = experiment_type
 
-        self.predictors = config_dict[self.experiment_type][
-            ExperimentGeneratorPart.Predictor
-        ]
+            self.dataset_generator = config_dict[self.experiment_type][
+                ExperimentGeneratorPart.DatasetGenerator
+            ]
 
-        self.transformer_pooling_strategy = config_dict[self.experiment_type][
-            ExperimentGeneratorPart.TransformerPoolingStrategy
-        ]
+            self.feature_extractors = config_dict[self.experiment_type][
+                ExperimentGeneratorPart.FeatureExtractors
+            ]
 
-        self.experiment_type_str = self.experiment_type.value
+            self.predictors = config_dict[self.experiment_type][
+                ExperimentGeneratorPart.Predictor
+            ]
+
+            self.transformer_pooling_strategy = config_dict[self.experiment_type][
+                ExperimentGeneratorPart.TransformerPoolingStrategy
+            ]
+
+            self.experiment_type_str = self.experiment_type.value
 
     def is_transformer(self, feature_extractor):
         if type(feature_extractor).__name__ in TRANSFORMER:
@@ -112,6 +114,9 @@ class ClassicRunner:
                 print(f"Error occured in {e}")
 
     def run(self):
+        if self.config_object is None:
+            print("Experiment was not specified well!")
+            return
 
         for dataset_value in self.dataset_generator:
             if dataset_value is None:

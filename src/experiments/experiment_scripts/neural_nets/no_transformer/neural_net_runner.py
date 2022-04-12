@@ -1,7 +1,5 @@
 from src.config.config import BLANK_DESCRIPTION
 from src.encoder.create_encoder_from_path import create_encoder_from_path
-from src.experiments.experiment_scripts.experiment_configurations.config import \
-    experiment_config
 from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import \
     NNExpConf
 from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import \
@@ -26,30 +24,36 @@ class NNRunner:
         experiment_type: ExperimentType,
         save_best: bool = False,
         save_model: bool = False,
-        config_dict=experiment_config,
+        config_dict={},
     ) -> None:
         self.save_best = save_best
         self.save_model = save_model
 
         self.experiment_type = experiment_type
 
-        print(self.experiment_type)
+        self.config_object = config_dict.get(self.experiment_type, None)
 
-        self.experiment_configurations, self.embeddding_index_dict = config_dict[
-            self.experiment_type
-        ][ExperimentGeneratorPart.ExperimentConfiguration]
+        if self.config_object is not None:
 
-        self.dataset_generator = config_dict[self.experiment_type][
-            ExperimentGeneratorPart.DatasetGenerator
-        ]
+            self.experiment_configurations, self.embeddding_index_dict = config_dict[
+                self.experiment_type
+            ][ExperimentGeneratorPart.ExperimentConfiguration]
 
-        self.experiment_type_str = self.experiment_type.value
+            self.dataset_generator = config_dict[self.experiment_type][
+                ExperimentGeneratorPart.DatasetGenerator
+            ]
 
-        self.experiment_architectures = config_dict[self.experiment_type][
-            ExperimentGeneratorPart.ExperimentArchitecture
-        ]
+            self.experiment_type_str = self.experiment_type.value
+
+            self.experiment_architectures = config_dict[self.experiment_type][
+                ExperimentGeneratorPart.ExperimentArchitecture
+            ]
 
     def run(self):
+        if self.config_object is None:
+            print("Experiment was not specified well!")
+            return
+
         for dataset_value in self.dataset_generator:
             if dataset_value is None:
                 continue
