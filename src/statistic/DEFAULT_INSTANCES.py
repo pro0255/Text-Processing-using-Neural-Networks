@@ -1,6 +1,9 @@
 from src.statistic.instances.label_metric import LabelMetric
 from src.statistic.instances.label_token_counter import LabelTokenMetric
 from src.statistic.instances.sentence_length import SentenceLengthMetric
+from src.statistic.instances.quant_50_seq_len import Quant50SeqLen
+from src.statistic.instances.quant_75_seq_len import Quant75SeqLen
+from src.statistic.instances.sentence_length import SentenceLengthMetric
 from src.statistic.instances.token_counter import TokenMetric
 from src.statistic.instances.transformer_tokenizer import \
     TransformerTokenizerCounter
@@ -24,6 +27,8 @@ def build_default_instances():
     instances.append(LabelTokenMetric())
     instances.append(SentenceLengthMetric())
     instances.append(TokenMetric())
+    instances.append(Quant50SeqLen())
+    instances.append(Quant75SeqLen())
     return instances
 
 
