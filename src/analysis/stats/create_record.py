@@ -1,6 +1,7 @@
 import os
 import time
 import typing
+import json
 
 import pandas as pd
 
@@ -48,9 +49,9 @@ def create_record(
         )
     )
 
-    authors_data = pd.read_csv(
+    authors_data = json.dumps(pd.read_csv(
         os.path.sep.join([parent_path, AUTHORS_FILE_NAME])
-    ).to_dict()
+    ).to_dict())
 
     stats_dictionary = build_dictionary_from_wrapper(current_stats)
     toc = time.time()
