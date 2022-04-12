@@ -1,7 +1,11 @@
 import typing
 from src.authors.create_author_directory import create_author_directory
-from src.config.config import (AUTHORS_FILE_NAME, FILE_DATA_NAME,
-                               NORMALIZATION_SUFFIX, PATH_TO_DATASET_FOLDER)
+from src.config.config import (
+    AUTHORS_FILE_NAME,
+    FILE_DATA_NAME,
+    NORMALIZATION_SUFFIX,
+    PATH_TO_DATASET_FOLDER,
+)
 from src.types.dataset import DataSet
 from src.types.dataset_type import DataSetType
 from src.types.subset_type import SubsetType
@@ -17,10 +21,10 @@ def create_label_sub_directory(specific_label_size: int) -> str:
 
 def create_path_to_gutenberg_sentence_authors_sentence(
     number_of_authors: int,
-    number_of_sentence:  int,
-    path_to_dataset_folder: str=PATH_TO_DATASET_FOLDER,
-    file_name: str=FILE_DATA_NAME,
-    sub_directory: typing.Union[None, str]=None,
+    number_of_sentence: int,
+    path_to_dataset_folder: str = PATH_TO_DATASET_FOLDER,
+    file_name: str = FILE_DATA_NAME,
+    sub_directory: typing.Union[None, str] = None,
 ) -> str:
     return create_path(
         path_to_dataset_folder,
@@ -36,8 +40,8 @@ def create_path_to_gutenberg_sentence_authors_sentence(
 def create_path_to_gutenberg_authors(
     number_of_authors: int,
     number_of_sentence: int,
-    path_to_dataset_folder: str=PATH_TO_DATASET_FOLDER,
-    file_name: str=AUTHORS_FILE_NAME,
+    path_to_dataset_folder: str = PATH_TO_DATASET_FOLDER,
+    file_name: str = AUTHORS_FILE_NAME,
 ) -> str:
     return create_path(
         path_to_dataset_folder,
@@ -52,7 +56,7 @@ def create_path_to_gutenberg_authors(
 def get_paths_to_gutenberg(
     number_of_authors: int,
     number_of_sentence: int,
-    path_to_dataset_folder: str=PATH_TO_DATASET_FOLDER,
+    path_to_dataset_folder: str = PATH_TO_DATASET_FOLDER,
 ):
     authors = create_path_to_gutenberg_authors(
         number_of_authors, number_of_sentence, path_to_dataset_folder

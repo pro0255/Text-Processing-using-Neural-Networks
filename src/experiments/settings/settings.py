@@ -1,12 +1,23 @@
 import itertools
 import typing
 
-from src.config.learning_config import (BATCH_SIZE, EPOCHS, LEARNING_RATE,
-                                        LOSS, METRIC, OPTIMIZER)
+from src.config.learning_config import (
+    BATCH_SIZE,
+    EPOCHS,
+    LEARNING_RATE,
+    LOSS,
+    METRIC,
+    OPTIMIZER,
+)
 
 
 def settings_generator(
-    batch_sizes:typing.List[int], learning_rates:typing.List[float], metrics:typing.List, losses:typing.List, optimizers:typing.List, epochs:typing.List[int]
+    batch_sizes: typing.List[int],
+    learning_rates: typing.List[float],
+    metrics: typing.List,
+    losses: typing.List,
+    optimizers: typing.List,
+    epochs: typing.List[int],
 ):
     print(epochs)
     confs = itertools.product(
@@ -26,9 +37,9 @@ def settings_generator(
 class LearningSettings:
     def __init__(
         self,
-        batch_size:int=BATCH_SIZE,
-        epochs:int=EPOCHS,
-        learning_rate:float=LEARNING_RATE,
+        batch_size: int = BATCH_SIZE,
+        epochs: int = EPOCHS,
+        learning_rate: float = LEARNING_RATE,
         loss=LOSS,
         metric=METRIC,
         optimizer=OPTIMIZER,

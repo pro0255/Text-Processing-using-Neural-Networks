@@ -7,7 +7,9 @@ from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 
 
 class EmbeddingVectorizer:
-    def __init__(self, embedding_type: DownloadedEmbeddingType, run_on_init: bool=False) -> None:
+    def __init__(
+        self, embedding_type: DownloadedEmbeddingType, run_on_init: bool = False
+    ) -> None:
         self.embedding_type = embedding_type.value
         self.missed = 0
         self.counter = 0

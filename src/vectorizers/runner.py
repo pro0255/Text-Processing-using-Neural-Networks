@@ -5,8 +5,7 @@ from pandas import DataFrame
 from src.experiments.helpers.experiment_summarization import ExperimentSummarization
 
 from src.config.config import LABEL_COLUMN, TEXT_COLUMN
-from src.types.experiment_summarization_fields import \
-    ExperimentSummarizationFields
+from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 from src.types.subset_type import SubsetType
 from src.utils.from_dataset_arrays import from_dataset_dataframe
 from src.vectorizers.instances import CLASSIC, EMBEDDING, TRANSFORMER
@@ -119,7 +118,7 @@ class VectorizerRunner:
         dataset: typing.Type[DataFrame],
         vectorizer_instance,
         subset_type: SubsetType,
-        experiment_summarization_instance: typing.Type[ExperimentSummarization]
+        experiment_summarization_instance: typing.Type[ExperimentSummarization],
     ):
         name_of_instance = type(vectorizer_instance).__name__
 

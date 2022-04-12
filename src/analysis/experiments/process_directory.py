@@ -5,7 +5,9 @@ from src.analysis.experiments.create_record import create_record
 from src.analysis.experiments.validation.is_correct_file import is_correct_file
 
 
-def process_directory(directory: str, storage: typing.Union[typing.List, None]=None) -> None:
+def process_directory(
+    directory: str, storage: typing.Union[typing.List, None] = None
+) -> None:
     is_correct = is_correct_file(directory)
     record = None
 

@@ -7,9 +7,9 @@ from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
 def verify_bert_pooling_input(
     pooling_type: TransformerPooling,
-    transformer_pooling_strategy: typing.Union[None, TransformerPoolingStrategy]=None,
-    transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=-1,
-    transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=-1,
+    transformer_pooling_strategy: typing.Union[None, TransformerPoolingStrategy] = None,
+    transformer_start_index: typing.Union[int, typing.Callable[[int], int]] = -1,
+    transformer_end_index: typing.Union[int, typing.Callable[[int], int]] = -1,
 ):
     if pooling_type in [
         TransformerPooling.LastHiddenState,
@@ -30,9 +30,15 @@ class BertPoolingLayer(tf.keras.layers.Layer):
         self,
         inputs,
         pooling_type: TransformerPooling,
-        transformer_pooling_strategy:typing.Union[None, TransformerPoolingStrategy]=None,
-        transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=lambda x: 0,
-        transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=lambda x: 0,
+        transformer_pooling_strategy: typing.Union[
+            None, TransformerPoolingStrategy
+        ] = None,
+        transformer_start_index: typing.Union[
+            int, typing.Callable[[int], int]
+        ] = lambda x: 0,
+        transformer_end_index: typing.Union[
+            int, typing.Callable[[int], int]
+        ] = lambda x: 0,
     ):
         verify_bert_pooling_input(
             pooling_type,

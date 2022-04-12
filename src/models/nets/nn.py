@@ -2,8 +2,7 @@ import json
 import typing
 
 from src.config.config import BLANK_DESCRIPTION
-from src.experiments.descriptions.create_description import \
-    create_description_for_nn
+from src.experiments.descriptions.create_description import create_description_for_nn
 from src.models.embedding.embedding import Embedding
 from src.types.net_type import NetType
 from src.types.processing_type import PreprocessingType
@@ -51,13 +50,13 @@ class NNArchitecture:
 
     def create_model(
         self,
-        number_of_authors:int,
+        number_of_authors: int,
         train_ds,
         valid_ds,
-        vocab_size:int,
-        embedding_dim:int,
-        output_sequence_length:int,
-        trainable:bool,
+        vocab_size: int,
+        embedding_dim: int,
+        output_sequence_length: int,
+        trainable: bool,
         embedding_dictionary=typing.Union[typing.Dict, None],
     ) -> typing.Union[typing.Tuple, None]:
         return None

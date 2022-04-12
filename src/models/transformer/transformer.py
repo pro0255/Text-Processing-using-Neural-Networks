@@ -15,13 +15,18 @@ class TransformerArchitecture:
         self,
         number_of_authors: int,
         model_name: str,
-        output_sequence_length:int,
+        output_sequence_length: int,
         trainable: bool,
         pooling_type: TransformerPooling,
-        transformer_pooling_strategy: typing.Union[None, TransformerPoolingStrategy]=None,
-        transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=lambda x: 0,
-        transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=lambda x: 0,
-
+        transformer_pooling_strategy: typing.Union[
+            None, TransformerPoolingStrategy
+        ] = None,
+        transformer_start_index: typing.Union[
+            int, typing.Callable[[int], int]
+        ] = lambda x: 0,
+        transformer_end_index: typing.Union[
+            int, typing.Callable[[int], int]
+        ] = lambda x: 0,
     ):
 
         config = AutoConfig.from_pretrained(model_name, output_hidden_states=True)

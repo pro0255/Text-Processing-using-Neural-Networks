@@ -6,7 +6,12 @@ from src.data_loading.load_files import load_files
 from src.utils.load_json import load_json
 
 
-def iterate_over_files(files_path: typing.List[str], process_func: Callable[[typing.Dict], ]):
+def iterate_over_files(
+    files_path: typing.List[str],
+    process_func: Callable[
+        [typing.Dict],
+    ],
+):
     print(f"Loading files from {files_path}")
     counter = 0
     for path_to_file in tqdm(load_files(files_path)):

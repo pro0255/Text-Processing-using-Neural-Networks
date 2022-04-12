@@ -4,18 +4,20 @@ import typing
 import pandas as pd
 from src.experiments.helpers.experiment_timer import ExperimentTimer
 
-from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
-                               FILENAME_SUMMARIZATION, LOG_SEP)
-from src.types.experiment_summarization_fields import \
-    ExperimentSummarizationFields
+from src.config.config import (
+    EXPERIMENT_RESULTS_DIRECTORY,
+    FILENAME_SUMMARIZATION,
+    LOG_SEP,
+)
+from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 
 
 class ExperimentSummarization:
     def __init__(
         self,
-        experiment_id:str,
-        directory:str=EXPERIMENT_RESULTS_DIRECTORY,
-        experiment_type:str=None,
+        experiment_id: str,
+        directory: str = EXPERIMENT_RESULTS_DIRECTORY,
+        experiment_type: str = None,
     ) -> None:
         self.directory = directory
         self.state = {}
@@ -38,22 +40,24 @@ class ExperimentSummarization:
         self.state[ExperimentSummarizationFields.MissingRatioTest.value] = 0
         self.state[ExperimentSummarizationFields.EmbeddingSize.value] = 0
 
-    def set_id(self, experiment_id:str)->None:
+    def set_id(self, experiment_id: str) -> None:
         self.experiment_id = experiment_id
         self.state[ExperimentSummarizationFields.ExperimentId.value] = experiment_id
 
-    def map_timer(self, experiment_timer: typing.Type[ExperimentTimer])->None:
+    def map_timer(self, experiment_timer: typing.Type[ExperimentTimer]) -> None:
         print("Mapping timer")
         for k in experiment_timer.dic.keys():
             self.state[k] = experiment_timer.get_elapsed(k)
         print("End of maping timer")
 
-    def set_records(self, train_records:int, test_records:int, valid_records:int)->None:
+    def set_records(
+        self, train_records: int, test_records: int, valid_records: int
+    ) -> None:
         self.state[ExperimentSummarizationFields.TrainRecords.value] = train_records
         self.state[ExperimentSummarizationFields.TestRecords.value] = test_records
         self.state[ExperimentSummarizationFields.ValidRecords.value] = valid_records
 
-    def inspect_set(self, current_set, records_type:str)->None:
+    def inspect_set(self, current_set, records_type: str) -> None:
         print(f"Running inspection of input set for {records_type}")
         counter = 0
         for i in current_set:
@@ -61,7 +65,7 @@ class ExperimentSummarization:
         print(f"End of inspection of input set for {records_type} = {counter}")
         self.state[records_type] = counter
 
-    def save(self)->None:
+    def save(self) -> None:
         df = pd.DataFrame.from_dict(self.state, orient="index")
         path = os.path.sep.join(
             [self.directory, self.experiment_id, FILENAME_SUMMARIZATION]

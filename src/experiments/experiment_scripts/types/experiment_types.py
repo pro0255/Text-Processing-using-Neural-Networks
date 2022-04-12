@@ -10,12 +10,10 @@ class ExperimentType(Enum):
     PreprocessingType = "PreprocessingType"  # Done
     TransformerType = "TransformerType"
 
-
     NumberOfAuthorsNN = "NumberOfAuthorsNN"
     NumberOfSentencesNN = "NumberOfSentencesNN"
 
     Classic = "Classic"
-
 
     TransformerTest = "TransformerTest"
     NNTest = "NNTest"

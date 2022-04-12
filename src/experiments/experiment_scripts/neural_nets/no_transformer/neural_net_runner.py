@@ -1,19 +1,20 @@
 from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
 from src.config.config import BLANK_DESCRIPTION
 from src.encoder.create_encoder_from_path import create_encoder_from_path
-from src.experiments.experiment_scripts.experiment_configurations.config import (experiment_config)
+from src.experiments.experiment_scripts.experiment_configurations.config import (
+    experiment_config,
+)
 from src.types.experiment_generator_part_type import ExperimentGeneratorPart
-from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import \
-    NNExpConf
-from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import \
-    NNExpRunWrapper
-from src.experiments.experiment_scripts.neural_nets.use_lookup import \
-    use_lookup_seq
-from src.experiments.helpers.experiment_summarization import \
-    ExperimentSummarization
+from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import (
+    NNExpConf,
+)
+from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import (
+    NNExpRunWrapper,
+)
+from src.experiments.experiment_scripts.neural_nets.use_lookup import use_lookup_seq
+from src.experiments.helpers.experiment_summarization import ExperimentSummarization
 from src.types.embedding_type import translate_from_embedding
-from src.types.experiment_summarization_fields import \
-    ExperimentSummarizationFields
+from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 from src.utils.create_experiment_id import create_experiment_id
 from src.utils.get_train_test_valid_ds import get_train_test_valid_ds
 
@@ -22,9 +23,9 @@ class NNRunner:
     def __init__(
         self,
         experiment_type: ExperimentType,
-        save_best: bool=False,
-        save_model: bool=False,
-        config_dict=experiment_config
+        save_best: bool = False,
+        save_model: bool = False,
+        config_dict=experiment_config,
     ) -> None:
         self.save_best = save_best
         self.save_model = save_model
@@ -142,9 +143,9 @@ class NNRunner:
 
                         summarization = ExperimentSummarization(
                             experiment_id=current_experiment_id,
-                            experiment_type=self.experiment_type_str
+                            experiment_type=self.experiment_type_str,
                         )
-                        
+
                         summarization.set_records(
                             train_records, test_records, valid_records
                         )

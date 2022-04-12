@@ -3,10 +3,15 @@ import os
 import tensorflow as tf
 
 from src.callbacks.csv_callback import CSVLogger
-from src.callbacks.save_best_weights import (create_save_best_weights_callback,
-                                             create_save_best_weights_filepath)
-from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
-                               MODEL_SAVE_DIRECTORY, NAME_OF_LEARNING_LOGS)
+from src.callbacks.save_best_weights import (
+    create_save_best_weights_callback,
+    create_save_best_weights_filepath,
+)
+from src.config.config import (
+    EXPERIMENT_RESULTS_DIRECTORY,
+    MODEL_SAVE_DIRECTORY,
+    NAME_OF_LEARNING_LOGS,
+)
 
 
 class CallbacksFactory:

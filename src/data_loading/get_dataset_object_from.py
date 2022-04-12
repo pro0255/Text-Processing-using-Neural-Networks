@@ -1,12 +1,21 @@
 import typing
 import tensorflow as tf
 
-from src.preprocessing.preprocessing_factory import (PreprocessingFactory,
-                                                     PreprocessingType)
-from src.utils.create_path_to_gutenberg import (get_path_to_gutenberg_all,
-                                                get_path_to_gutenberg_sets)
+from src.preprocessing.preprocessing_factory import (
+    PreprocessingFactory,
+    PreprocessingType,
+)
+from src.utils.create_path_to_gutenberg import (
+    get_path_to_gutenberg_all,
+    get_path_to_gutenberg_sets,
+)
 
-def get_dataset_object_from_path(csv_filename: str, delim: str, text_pipeline_func: typing.Union[None, typing.Callable[[str], str]]=None):
+
+def get_dataset_object_from_path(
+    csv_filename: str,
+    delim: str,
+    text_pipeline_func: typing.Union[None, typing.Callable[[str], str]] = None,
+):
     print(f"Loading dataset from={csv_filename}")
     dataset = tf.data.TextLineDataset(filenames=csv_filename)
 
@@ -24,7 +33,11 @@ def get_dataset_object_from_path(csv_filename: str, delim: str, text_pipeline_fu
     return dataset
 
 
-def get_datasets(csv_filenames: str, delim: str, text_pipeline_func:typing.Union[None, typing.Callable[[str], str]]=None):
+def get_datasets(
+    csv_filenames: str,
+    delim: str,
+    text_pipeline_func: typing.Union[None, typing.Callable[[str], str]] = None,
+):
     datasets = [
         get_dataset_object_from_path(csv_filename, delim, text_pipeline_func)
         for csv_filename in csv_filenames
@@ -32,7 +45,7 @@ def get_datasets(csv_filenames: str, delim: str, text_pipeline_func:typing.Union
     return datasets
 
 
-def get_datasets_for_split(number_of_authors:int, number_of_sentences:int):
+def get_datasets_for_split(number_of_authors: int, number_of_sentences: int):
     path_data, path_authors = get_path_to_gutenberg_sets(
         number_of_authors, number_of_sentences
     )
@@ -43,7 +56,7 @@ def get_datasets_for_split(number_of_authors:int, number_of_sentences:int):
     return (train, valid, test), (path_data, path_authors)
 
 
-def get_dataset_all(number_of_authors:int, number_of_sentences:int):
+def get_dataset_all(number_of_authors: int, number_of_sentences: int):
     path_data, path_authors = get_path_to_gutenberg_all(
         number_of_authors, number_of_sentences
     )

@@ -8,13 +8,13 @@ from src.types.dataset import DataSet
 
 # TODO: refactor
 def create_sentence_path(
-    directory:str,
-    dataset:DataSet ,
+    directory: str,
+    dataset: DataSet,
     authors_directory: str,
     dataset_type: DataSetType,
-    k:typing.Union[None, int]=None,
-    file_name:str=FILE_DATA_NAME,
-    sub_directory:typing.Union[None, str]=None,
+    k: typing.Union[None, int] = None,
+    file_name: str = FILE_DATA_NAME,
+    sub_directory: typing.Union[None, str] = None,
 ) -> str:
     if sub_directory is None:
         return os.path.join(
@@ -36,13 +36,13 @@ def create_sentence_path(
 
 
 def create_article_path(
-    directory:str,
-    dataset:DataSet ,
+    directory: str,
+    dataset: DataSet,
     authors_directory: str,
     dataset_type: DataSetType,
-    k:typing.Union[None, int]=None,
-    file_name:str=FILE_DATA_NAME,
-    sub_directory:typing.Union[None, str]=None,
+    k: typing.Union[None, int] = None,
+    file_name: str = FILE_DATA_NAME,
+    sub_directory: typing.Union[None, str] = None,
 ) -> str:
     if sub_directory is None:
         return os.path.join(
@@ -59,13 +59,13 @@ def create_article_path(
 
 
 def create_path(
-    directory:str,
-    dataset:DataSet ,
+    directory: str,
+    dataset: DataSet,
     authors_directory: str,
     dataset_type: DataSetType,
-    k:typing.Union[None, int]=None,
-    file_name:str=FILE_DATA_NAME,
-    sub_directory:typing.Union[None, str]=None,
+    k: typing.Union[None, int] = None,
+    file_name: str = FILE_DATA_NAME,
+    sub_directory: typing.Union[None, str] = None,
 ) -> str:
     is_sentence_type = dataset_type == DataSetType.Sentence
     if is_sentence_type and k is None:

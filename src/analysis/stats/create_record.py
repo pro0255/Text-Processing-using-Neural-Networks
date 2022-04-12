@@ -4,15 +4,15 @@ import typing
 
 import pandas as pd
 
-from src.analysis.stats.build_dictionary_from_wrapper import \
-    build_dictionary_from_wrapper
+from src.analysis.stats.build_dictionary_from_wrapper import (
+    build_dictionary_from_wrapper,
+)
 from src.analysis.stats.types.stats_field import StatsField
-from src.config.config import (AUTHORS_FILE_NAME, BLANK_DESCRIPTION,
-                               FILE_DATA_NAME)
-from src.statistic.build_input_for_statistics import \
-    build_input_for_statistics_from_path
-from src.statistic.create_statistics_from import \
-    create_statistics_from_with_example
+from src.config.config import AUTHORS_FILE_NAME, BLANK_DESCRIPTION, FILE_DATA_NAME
+from src.statistic.build_input_for_statistics import (
+    build_input_for_statistics_from_path,
+)
+from src.statistic.create_statistics_from import create_statistics_from_with_example
 from src.statistic.DEFAULT_INSTANCES import build_statistic_instances
 from src.types.processing_type import PreprocessingType
 from src.types.subset_type import SubsetType
@@ -20,7 +20,11 @@ from src.types.transformer_name import TransformerName
 
 
 def create_record(
-    parent_path: str, norm_value: int, preprocessing_type: PreprocessingType, subset_type: SubsetType, transformer_name: typing.Union[None, TransformerName]
+    parent_path: str,
+    norm_value: int,
+    preprocessing_type: PreprocessingType,
+    subset_type: SubsetType,
+    transformer_name: typing.Union[None, TransformerName],
 ) -> typing.Type[pd.DataFrame]:
     print(
         f"Current {parent_path}, {str(norm_value)}, {preprocessing_type.value}, {subset_type.value}, {BLANK_DESCRIPTION if transformer_name is None else transformer_name.value}\n"

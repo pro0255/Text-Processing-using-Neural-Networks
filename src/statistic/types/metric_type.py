@@ -5,8 +5,7 @@ from src.statistic.instances.label_token_counter import LabelTokenMetric
 from src.statistic.instances.sentence_length import SentenceLengthMetric
 from src.statistic.instances.statistic_description import StatisticDescription
 from src.statistic.instances.token_counter import TokenMetric
-from src.statistic.instances.transformer_tokenizer import \
-    TransformerTokenizerCounter
+from src.statistic.instances.transformer_tokenizer import TransformerTokenizerCounter
 
 
 class MetricType(Enum):

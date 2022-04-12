@@ -1,14 +1,13 @@
 import typing
 import nltk
 from gensim.parsing.preprocessing import preprocess_string
-from gensim.parsing.preprocessing import \
-    remove_stopwords as remove_stopwords_gensim
+from gensim.parsing.preprocessing import remove_stopwords as remove_stopwords_gensim
 from gensim.parsing.preprocessing import stem_text as stem_text_gensim
-from gensim.parsing.preprocessing import \
-    strip_multiple_whitespaces as strip_multiple_whitespaces_gensim
+from gensim.parsing.preprocessing import (
+    strip_multiple_whitespaces as strip_multiple_whitespaces_gensim,
+)
 from gensim.parsing.preprocessing import strip_numeric as strip_numeric_gensim
-from gensim.parsing.preprocessing import \
-    strip_punctuation as strip_punctuation_gensim
+from gensim.parsing.preprocessing import strip_punctuation as strip_punctuation_gensim
 from gensim.parsing.preprocessing import strip_short as strip_short_gensim
 from gensim.parsing.preprocessing import strip_tags as strip_tags_gensim
 from nltk.stem import WordNetLemmatizer
@@ -44,19 +43,19 @@ class TextPreprocessor:
     def strip_multiple_whitespaces(self, text: str) -> str:
         return strip_multiple_whitespaces_gensim(text)
 
-    def strip_numeric(self, text : str) -> str:
+    def strip_numeric(self, text: str) -> str:
         return strip_numeric_gensim(text)
 
     def strip_stopwords(self, text: str) -> str:
         return remove_stopwords_gensim(text)
 
-    def strip_short(self, text:str, minsize:int=3):
+    def strip_short(self, text: str, minsize: int = 3):
         return strip_short_gensim(text, minsize)
 
     # def strip_short(self, text):
     #     return strip_short_gensim(text)
 
-    def create_strip_short_method(self, minsize: int=3):
+    def create_strip_short_method(self, minsize: int = 3):
         # TODO: fix
         print(f"Creating shorting method with min = {minsize}")
 

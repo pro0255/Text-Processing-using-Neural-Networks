@@ -2,12 +2,14 @@ import pandas as pd
 from collections.abc import Callable
 
 from src.config.config import LABEL_COLUMN, PROJECT_CSV_DELIMITER, TEXT_COLUMN
-from src.preprocessing.preprocessing_factory import (PreprocessingFactory,
-                                                     PreprocessingType)
+from src.preprocessing.preprocessing_factory import (
+    PreprocessingFactory,
+    PreprocessingType,
+)
 
 
 def load_dataset_from_path_with_normalization(
-    path:str, normalize:Callable[[str], str] =None, preprocessing_type=None
+    path: str, normalize: Callable[[str], str] = None, preprocessing_type=None
 ):
     factory = PreprocessingFactory()
 

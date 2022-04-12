@@ -9,7 +9,9 @@ from src.types.subset_type import SubsetType
 from src.types.transformer_name import TransformerName
 
 
-def load_paths(directory: str=START_DIRECTORY, storage: typing.Union[typing.List, None]=None):
+def load_paths(
+    directory: str = START_DIRECTORY, storage: typing.Union[typing.List, None] = None
+):
     for current_directory in os.listdir(directory):
 
         is_correct = is_correct_file(directory, FILENAMES)
@@ -30,7 +32,7 @@ def process_paths(
     preprocessing_types: typing.List[PreprocessingType],
     subsets: typing.List[SubsetType],
     transformer_names: typing.List[typing.Union[TransformerName, None]],
-    storage: typing.Union[typing.List, None]=None,
+    storage: typing.Union[typing.List, None] = None,
 ):
     for directory in directories:
         is_correct = is_correct_file(directory, FILENAMES)

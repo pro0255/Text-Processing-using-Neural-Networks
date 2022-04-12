@@ -4,6 +4,7 @@ from src.experiments.helpers.experiment_description import ExperimentDescription
 
 from src.experiments.settings.settings import LearningSettings
 
+
 class NNExpConf:
     def __init__(
         self,

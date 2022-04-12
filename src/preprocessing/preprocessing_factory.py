@@ -9,7 +9,9 @@ class PreprocessingFactory:
         self.build_dic()
 
     def build_dic(self):
-        self.dic: typing.Dict[PreprocessingType, typing.Union[None, typing.Callable[[str], str]]] = {
+        self.dic: typing.Dict[
+            PreprocessingType, typing.Union[None, typing.Callable[[str], str]]
+        ] = {
             PreprocessingType.Default: self.preprocessor.default_preprocessing(),
             PreprocessingType.Lowercase: self.preprocessor.create_preprocess_string_func(
                 [self.preprocessor.to_lowercase]

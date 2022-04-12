@@ -3,7 +3,9 @@ from src.statistic.types.metric_type import translate_instance_to_type
 from src.statistic.metric_wrapper import MetricWrapper
 
 
-def build_dictionary_from_wrapper(current_stats: typing.Type[MetricWrapper]) -> typing.Dict:
+def build_dictionary_from_wrapper(
+    current_stats: typing.Type[MetricWrapper],
+) -> typing.Dict:
     res = {}
 
     for m_instance in current_stats.metric_instances:

@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class ExperimentGeneratorPart(Enum):
     DatasetGenerator = "DatasetGenerator"
     ExperimentConfiguration = "ExperimentConfiguration"

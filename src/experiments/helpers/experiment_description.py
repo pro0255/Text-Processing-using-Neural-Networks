@@ -2,8 +2,12 @@ import os
 
 import pandas as pd
 
-from src.config.config import (BLANK_DESCRIPTION, EXPERIMENT_RESULTS_DIRECTORY,
-                               FILENAME_DESCRIPTION, LOG_SEP)
+from src.config.config import (
+    BLANK_DESCRIPTION,
+    EXPERIMENT_RESULTS_DIRECTORY,
+    FILENAME_DESCRIPTION,
+    LOG_SEP,
+)
 from src.types.experiment_description import ExperimentDescriptionType
 
 
@@ -13,25 +17,25 @@ class ExperimentDescription:
         experiment_id: str,
         experiment_type: str,
         learning_settings,
-        transformer_name:str,
-        transformer_pooling:str,
-        prediction_model_type:str,
-        net_type:str,
-        embedding_type:str,
-        trainable:bool,
-        preprocessing_type:str,
-        number_of_authors:int,
-        number_of_sentences:int,
-        load_path:str,
-        seq_len:str,
-        is_test:bool,
-        classic_model_name:str=BLANK_DESCRIPTION,
-        extra_field:str=BLANK_DESCRIPTION,
-        transformer_start_index:int=BLANK_DESCRIPTION,
-        transformer_end_index:int=BLANK_DESCRIPTION,
-        transformer_pooling_strategy:str=BLANK_DESCRIPTION,
-        normalization_size:int=BLANK_DESCRIPTION,
-        directory:str=EXPERIMENT_RESULTS_DIRECTORY,
+        transformer_name: str,
+        transformer_pooling: str,
+        prediction_model_type: str,
+        net_type: str,
+        embedding_type: str,
+        trainable: bool,
+        preprocessing_type: str,
+        number_of_authors: int,
+        number_of_sentences: int,
+        load_path: str,
+        seq_len: str,
+        is_test: bool,
+        classic_model_name: str = BLANK_DESCRIPTION,
+        extra_field: str = BLANK_DESCRIPTION,
+        transformer_start_index: int = BLANK_DESCRIPTION,
+        transformer_end_index: int = BLANK_DESCRIPTION,
+        transformer_pooling_strategy: str = BLANK_DESCRIPTION,
+        normalization_size: int = BLANK_DESCRIPTION,
+        directory: str = EXPERIMENT_RESULTS_DIRECTORY,
     ) -> None:
         self.directory = directory
         self.experiment_id = experiment_id

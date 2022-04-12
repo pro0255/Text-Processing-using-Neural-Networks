@@ -4,21 +4,20 @@ from sklearn.preprocessing import LabelEncoder
 from src.types.transformer_name import TransformerName
 from src.types.transformer_pooling import TransformerPooling
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
-from src.vectorizers.transformer.transformer_vectorizer import \
-    TransformerVectorizer
+from src.vectorizers.transformer.transformer_vectorizer import TransformerVectorizer
 
 
 class ElectraSmallVectorizer(TransformerVectorizer):
     def __init__(
         self,
-        transformer_pooling_type: TransformerPooling=TransformerPooling.LastHiddenState,
-        path_authors:typing.Union[None, str]=None,
-        encoder:typing.Union[None, typing.Type[LabelEncoder]]=None,
-        max_len:typing.Union[None, int]=None,
+        transformer_pooling_type: TransformerPooling = TransformerPooling.LastHiddenState,
+        path_authors: typing.Union[None, str] = None,
+        encoder: typing.Union[None, typing.Type[LabelEncoder]] = None,
+        max_len: typing.Union[None, int] = None,
         preprocess_pipeline=typing.Union[None, typing.Callable[[str], str]],
-        transformer_pooling_strategy:TransformerPoolingStrategy=TransformerPoolingStrategy.Blank,
-        transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=-1,
-        transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=-1,
+        transformer_pooling_strategy: TransformerPoolingStrategy = TransformerPoolingStrategy.Blank,
+        transformer_start_index: typing.Union[int, typing.Callable[[int], int]] = -1,
+        transformer_end_index: typing.Union[int, typing.Callable[[int], int]] = -1,
     ):
         if transformer_pooling_type == TransformerPooling.Pooler:
             assert Exception(

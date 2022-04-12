@@ -4,17 +4,19 @@ import typing
 
 import pandas as pd
 
-from src.config.config import (AUTHORS_FILE_NAME, FILE_DATA_NAME,
-                               PROJECT_CSV_DELIMITER)
-from src.data_preparing.build_dataset.chunk_document_by_sentence import \
-    chunk_document_by_sentence
+from src.config.config import AUTHORS_FILE_NAME, FILE_DATA_NAME, PROJECT_CSV_DELIMITER
+from src.data_preparing.build_dataset.chunk_document_by_sentence import (
+    chunk_document_by_sentence,
+)
 from src.data_preparing.build_dataset.logger import log_error
 from src.types.gutenberg_json_attributes import GutenbergJsonAttributes
 from src.types.label_type import GutenbergLabelType
 from src.utils.get_data_from_gutenberg import get_data_from_gutenberg
 
 
-def build_process_func(k: int, name: str, path: str, authors_tuple: typing.List[typing.Tuple[int, str]]) -> typing.Callable[[typing.Dict], typing.List[str]]:
+def build_process_func(
+    k: int, name: str, path: str, authors_tuple: typing.List[typing.Tuple[int, str]]
+) -> typing.Callable[[typing.Dict], typing.List[str]]:
     number_of_authors = len(authors_tuple)
     authors_ids, authors_names = zip(*authors_tuple)
 

@@ -1,11 +1,15 @@
 import os
 
-from src.config.config import (LABEL_COLUMN, SPECIFIC_DIRECTORY_FOR_STATISTICS,
-                               STATISTICS_SUBDIRECTORY, TEXT_COLUMN)
-from src.data_loading.get_dataset_object_from import \
-    get_dataset_object_from_path
-from src.data_loading.load_dataset_from_path import \
-    load_dataset_from_path_with_normalization
+from src.config.config import (
+    LABEL_COLUMN,
+    SPECIFIC_DIRECTORY_FOR_STATISTICS,
+    STATISTICS_SUBDIRECTORY,
+    TEXT_COLUMN,
+)
+from src.data_loading.get_dataset_object_from import get_dataset_object_from_path
+from src.data_loading.load_dataset_from_path import (
+    load_dataset_from_path_with_normalization,
+)
 from src.statistic.create_stats_filename import create_stats_filename
 from src.statistic.DEFAULT_INSTANCES import build_default_instances
 from src.statistic.metric_wrapper import MetricWrapper

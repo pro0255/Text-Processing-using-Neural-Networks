@@ -3,8 +3,7 @@ import typing
 
 import pandas as pd
 
-from src.config.config import (FILENAME_CONFUSION_MATRIX, FILENAME_METRICS,
-                               LOG_SEP)
+from src.config.config import FILENAME_CONFUSION_MATRIX, FILENAME_METRICS, LOG_SEP
 from src.experiments.results.accuracy import accuracy
 from src.experiments.results.conf_matrix import conf_matrix
 from src.experiments.results.f1 import f1
@@ -14,11 +13,13 @@ from src.types.results import ResultType
 
 
 class ExperimentEvaluate:
-    def __init__(self, experiment_id:str, directory: typing.Union[str, None]=None) -> None:
+    def __init__(
+        self, experiment_id: str, directory: typing.Union[str, None] = None
+    ) -> None:
         self.directory = directory
         self.experiment_id = experiment_id
 
-    def calc(self, y_true: typing.List[int], y_pred:typing.List[int]) -> None:
+    def calc(self, y_true: typing.List[int], y_pred: typing.List[int]) -> None:
         self.state = {}
         self.state[ResultType.Accuracy.value] = accuracy(y_true, y_pred)
         self.state[ResultType.F1.value] = f1(y_true, y_pred)

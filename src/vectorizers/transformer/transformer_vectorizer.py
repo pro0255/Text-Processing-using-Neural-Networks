@@ -6,9 +6,11 @@ from transformers import AutoConfig, TFAutoModel
 
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
-from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection, pooling_strategy_dictionary
-from src.tokenizers.prepare_dataset_from_tokenizer import \
-    prepare_dataset_from_tokenizer
+from src.models.transformer.pooling_strategy import (
+    TransformerPoolingStrategySelection,
+    pooling_strategy_dictionary,
+)
+from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_tokenizer
 from src.tokenizers.transformer_tokenizer import TransformerTokenizer
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 from src.types.transformer_pooling import TransformerPooling
@@ -20,13 +22,13 @@ class TransformerVectorizer:
         self,
         transformer_type: TransformerName,
         transformer_pooling_type: TransformerPooling,
-        path_authors:typing.Union[None, str]=None,
-        encoder:typing.Union[None, typing.Type[LabelEncoder]]=None,
-        max_len:typing.Union[None, int]=None,
+        path_authors: typing.Union[None, str] = None,
+        encoder: typing.Union[None, typing.Type[LabelEncoder]] = None,
+        max_len: typing.Union[None, int] = None,
         preprocess_pipeline=typing.Union[None, typing.Callable[[str], str]],
-        transformer_pooling_strategy:TransformerPoolingStrategy=TransformerPoolingStrategy.Blank,
-        transformer_start_index:typing.Union[int, typing.Callable[[int], int]]=-1,
-        transformer_end_index:typing.Union[int, typing.Callable[[int], int]]=-1,
+        transformer_pooling_strategy: TransformerPoolingStrategy = TransformerPoolingStrategy.Blank,
+        transformer_start_index: typing.Union[int, typing.Callable[[int], int]] = -1,
+        transformer_end_index: typing.Union[int, typing.Callable[[int], int]] = -1,
     ) -> None:
         self.transformer_pooling_strategy = transformer_pooling_strategy
         self.transformer_start_index = transformer_start_index
@@ -82,10 +84,14 @@ class TransformerVectorizer:
     def get_transformer_pooling(self) -> str:
         return self.transformer_pooling_type.value
 
-    def get_transformer_start_index(self) -> typing.Union[int, typing.Callable[[int], int]]:
+    def get_transformer_start_index(
+        self,
+    ) -> typing.Union[int, typing.Callable[[int], int]]:
         return self.transformer_start_index
 
-    def get_transformer_end_index(self) -> typing.Union[int, typing.Callable[[int], int]]:
+    def get_transformer_end_index(
+        self,
+    ) -> typing.Union[int, typing.Callable[[int], int]]:
         return self.transformer_end_index
 
     def get_transformer_pooling_strategy(self) -> str:
@@ -103,7 +109,9 @@ class TransformerVectorizer:
     ) -> bool:
         return True
 
-    def set_pooling_strategy(self, pooling_strategy: TransformerPoolingStrategySelection):
+    def set_pooling_strategy(
+        self, pooling_strategy: TransformerPoolingStrategySelection
+    ):
         print(f"Setting pooling strategy {pooling_strategy}")
         (
             transformer_pooling,

@@ -2,17 +2,24 @@ import typing
 from pandas import DataFrame
 from sklearn.model_selection import train_test_split
 
-from src.config.config import (LABEL_COLUMN, RANDOM_STATE, TEST_SIZE,
-                               TEXT_COLUMN, VALIDATION_SIZE)
+from src.config.config import (
+    LABEL_COLUMN,
+    RANDOM_STATE,
+    TEST_SIZE,
+    TEXT_COLUMN,
+    VALIDATION_SIZE,
+)
 
 
-def split_dataframe(dataframe: typing.Type[DataFrame], test_size:float=TEST_SIZE):
+def split_dataframe(dataframe: typing.Type[DataFrame], test_size: float = TEST_SIZE):
     features, target = dataframe[TEXT_COLUMN], dataframe[LABEL_COLUMN]
     return train_test_split(features, target, test_size=test_size)
 
 
 def split_dataframe_to_train_test_valid(
-    dataframe:typing.Type[DataFrame], test_size: float=TEST_SIZE, valid_size: float=VALIDATION_SIZE
+    dataframe: typing.Type[DataFrame],
+    test_size: float = TEST_SIZE,
+    valid_size: float = VALIDATION_SIZE,
 ):
     features, target = dataframe[TEXT_COLUMN], dataframe[LABEL_COLUMN]
     X_train, X_test, y_train, y_test = train_test_split(

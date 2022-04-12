@@ -1,11 +1,12 @@
 import os
 
-from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
-                               MODEL_SAVE_DIRECTORY)
+from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, MODEL_SAVE_DIRECTORY
 
 
 class ExperimentSetup:
-    def __init__(self, experiment_id:str, directory:str=EXPERIMENT_RESULTS_DIRECTORY) -> None:
+    def __init__(
+        self, experiment_id: str, directory: str = EXPERIMENT_RESULTS_DIRECTORY
+    ) -> None:
         self.directory = directory
         self.experiment_id = experiment_id
 

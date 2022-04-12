@@ -3,8 +3,7 @@ import tensorflow as tf
 from tensorflow import string as tf_string
 
 from src.config.config import BLANK_DESCRIPTION
-from src.models.embedding.prepare_embedding_matrix import \
-    prepare_embedding_matrix
+from src.models.embedding.prepare_embedding_matrix import prepare_embedding_matrix
 
 
 class Embedding:
@@ -15,10 +14,10 @@ class Embedding:
         self,
         train_ds: typing.Type[tf.data.Dataset],
         valid_ds: typing.Type[tf.data.Dataset],
-        vocab_size:int,
-        output_sequence_length:int,
-        trainable:bool,
-        embedding_dim:int,
+        vocab_size: int,
+        output_sequence_length: int,
+        trainable: bool,
+        embedding_dim: int,
         embedding_dictionary=None,
     ) -> typing.Tuple:
         input_layer = tf.keras.layers.Input(shape=(1,), dtype=tf_string)

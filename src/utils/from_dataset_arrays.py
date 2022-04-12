@@ -16,7 +16,9 @@ def from_dataset_array(dataset: typing.Type[tf.data.Dataset]):
     return X, y
 
 
-def from_dataset_dataframe(dataset:typing.Type[tf.data.Dataset]) -> typing.Type[pd.DataFrame]:
+def from_dataset_dataframe(
+    dataset: typing.Type[tf.data.Dataset],
+) -> typing.Type[pd.DataFrame]:
     X, y = from_dataset_array(dataset)
 
     df = pd.DataFrame()

@@ -6,8 +6,8 @@ class ClassicExpConf:
         self,
         train,
         test,
-        experiment_id:str,
-        description:str,
+        experiment_id: str,
+        description: str,
         predict_instance: PredictionClassesType,
         vectorization_instance: VectorizerClassesType,
     ) -> None:
@@ -24,10 +24,10 @@ class ClassicExpConf:
     def get_test(self):
         return self.test
 
-    def get_experiment_id(self)->str:
+    def get_experiment_id(self) -> str:
         return self.experiment_id
 
-    def get_description(self)->str:
+    def get_description(self) -> str:
         return self.description
 
     def get_predict_instance(self):

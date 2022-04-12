@@ -5,17 +5,20 @@ from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.descriptions.create_description import (
     create_description_for_classic,
     create_description_for_transformer_with_classic,
-    from_pred_instance_get_type)
-from src.experiments.experiment_scripts.classic.classic_configuration import \
-    ClassicExpConf
-from src.experiments.experiment_scripts.classic.classic_wrapper import \
-    ClassicExpRunWrapper
-from src.experiments.experiment_scripts.experiment_configurations.config import ( experiment_config)
+    from_pred_instance_get_type,
+)
+from src.experiments.experiment_scripts.classic.classic_configuration import (
+    ClassicExpConf,
+)
+from src.experiments.experiment_scripts.classic.classic_wrapper import (
+    ClassicExpRunWrapper,
+)
+from src.experiments.experiment_scripts.experiment_configurations.config import (
+    experiment_config,
+)
 from src.types.experiment_generator_part_type import ExperimentGeneratorPart
-from src.experiments.helpers.experiment_summarization import \
-    ExperimentSummarization
-from src.models.transformer.pooling_strategy import \
-    TransformerPoolingStrategySelection
+from src.experiments.helpers.experiment_summarization import ExperimentSummarization
+from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection
 from src.types.experiment_description import ExperimentDescriptionType
 from src.utils.create_experiment_id import create_experiment_id
 from src.utils.get_train_test_valid_ds import get_train_test_valid_ds
@@ -26,9 +29,7 @@ DEFAULT_POOLING_STRATEGY = [TransformerPoolingStrategySelection.LastLayerCLS]
 
 class ClassicRunner:
     def __init__(
-        self,
-        experiment_type: ExperimentType,
-        config_dict=experiment_config
+        self, experiment_type: ExperimentType, config_dict=experiment_config
     ) -> None:
 
         self.experiment_type = experiment_type
@@ -63,7 +64,14 @@ class ClassicRunner:
         return self.transformer_pooling_strategy
 
     def run_prediction(
-        self, X_train, y_train, X_test, y_test, description: typing.Type[ExperimentDescription], feature_extractor, wrapper: typing.Type[ClassicExpRunWrapper]
+        self,
+        X_train,
+        y_train,
+        X_test,
+        y_test,
+        description: typing.Type[ExperimentDescription],
+        feature_extractor,
+        wrapper: typing.Type[ClassicExpRunWrapper],
     ):
 
         for predict_instance in self.predictors:
@@ -142,8 +150,7 @@ class ClassicRunner:
 
                         print("\n")
                         summarization = ExperimentSummarization(
-                            experiment_id="",
-                            experiment_type=self.experiment_type_str
+                            experiment_id="", experiment_type=self.experiment_type_str
                         )
                         wrapper = ClassicExpRunWrapper("", summarization)
 
@@ -186,8 +193,7 @@ class ClassicRunner:
                     print("\n")
 
                     summarization = ExperimentSummarization(
-                        experiment_id="",
-                        experiment_type=self.experiment_type_str
+                        experiment_id="", experiment_type=self.experiment_type_str
                     )
                     wrapper = ClassicExpRunWrapper("", summarization)
 

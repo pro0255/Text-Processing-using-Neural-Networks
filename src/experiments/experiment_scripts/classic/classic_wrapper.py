@@ -1,12 +1,12 @@
 import typing
 from src.defined_types.types import PredictionClassesType, VectorizerClassesType
-from src.experiments.experiment_scripts.classic.classic_configuration import ClassicExpConf
-from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
-                               NAME_OF_LEARNING_LOGS)
+from src.experiments.experiment_scripts.classic.classic_configuration import (
+    ClassicExpConf,
+)
+from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOGS
 from src.experiments.helpers.experiment_evaluate import ExperimentEvaluate
 from src.experiments.helpers.experiment_setup import ExperimentSetup
-from src.experiments.helpers.experiment_summarization import \
-    ExperimentSummarization
+from src.experiments.helpers.experiment_summarization import ExperimentSummarization
 from src.experiments.helpers.experiment_timer import ExperimentTimer
 from src.types.experiment_description import ExperimentDescriptionType
 from src.types.subset_type import SubsetType
@@ -18,10 +18,12 @@ from src.vectorizers.runner import VectorizerRunner
 class ClassicExpRunWrapper:
     def __init__(
         self,
-        experiment_id:str,
-        experiment_summarization: typing.Union[None,typing.Type[ExperimentSummarization]]=None,
-        directory:str=EXPERIMENT_RESULTS_DIRECTORY,
-        log_filename:str=NAME_OF_LEARNING_LOGS,
+        experiment_id: str,
+        experiment_summarization: typing.Union[
+            None, typing.Type[ExperimentSummarization]
+        ] = None,
+        directory: str = EXPERIMENT_RESULTS_DIRECTORY,
+        log_filename: str = NAME_OF_LEARNING_LOGS,
     ) -> None:
         self.directory = directory
         self.experiment_id = experiment_id
@@ -34,7 +36,7 @@ class ClassicExpRunWrapper:
         )
         self.set_id(experiment_id)
 
-    def set_id(self, experiment_id:str):
+    def set_id(self, experiment_id: str):
         self.experiment_id = experiment_id
         self.experiment_setup = ExperimentSetup(experiment_id, self.directory)
         self.experiment_evaluate = ExperimentEvaluate(experiment_id, self.directory)
@@ -80,7 +82,9 @@ class ClassicExpRunWrapper:
         self.experiment_timer.end(TimeType.PredictionTime.value)
         return y_pred_labels
 
-    def run_vectorization(self, vectorization_instance: VectorizerClassesType, train_ds, test_ds):
+    def run_vectorization(
+        self, vectorization_instance: VectorizerClassesType, train_ds, test_ds
+    ):
         X_train, X_test, y_train, y_test = self.vectorizer_sentences(
             train_ds, test_ds, vectorization_instance
         )

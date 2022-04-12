@@ -9,7 +9,11 @@ from src.types.transformer_name import TransformerName
 
 
 def create_records(
-    parent_path: str, norm_values: typing.List[int], preprocessing_types: typing.List[PreprocessingType], subset_types: typing.List[SubsetType], transformer_names: typing.List[typing.Union[TransformerName, None]]
+    parent_path: str,
+    norm_values: typing.List[int],
+    preprocessing_types: typing.List[PreprocessingType],
+    subset_types: typing.List[SubsetType],
+    transformer_names: typing.List[typing.Union[TransformerName, None]],
 ) -> typing.List[typing.Type[pd.DataFrame]]:
     records = [
         create_record(*conf)

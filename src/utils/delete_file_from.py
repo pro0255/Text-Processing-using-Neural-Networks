@@ -1,7 +1,7 @@
 import os
 
 
-def delete_file_from(path:str) -> None:
+def delete_file_from(path: str) -> None:
     if os.path.exists(path):
         os.remove(path)
         print(f"Deleting file {path}")
