@@ -23,7 +23,7 @@ class DenseArchitecture(NNArchitecture):
         output_sequence_length: int,
         trainable: bool,
         embedding_dictionary=typing.Union[typing.Dict, None],
-    ) -> typing.Union[typing.Tuple[typing.Type[tf.kears.Model], typing.Tuple], None]:
+    ) -> typing.Union[typing.Tuple[typing.Type[tf.keras.Model], typing.Tuple], None]:
 
         emb, input_layer, stats = self.emb.create_vect_embedding(
             train_ds,

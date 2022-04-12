@@ -217,6 +217,9 @@ data/*
 jupyters/aclImdb
 jupyters/aclImdb*
 
+jupyter_log.txt
+stats.csv
+
 
 
 
