@@ -1,11 +1,15 @@
 import os
+import typing
 
 from src.analysis.experiments.validation.is_correct_file import is_correct_file
 from src.analysis.stats.config import FILENAMES, START_DIRECTORY
 from src.analysis.stats.process_path import process_path
+from src.types.processing_type import PreprocessingType
+from src.types.subset_type import SubsetType
+from src.types.transformer_name import TransformerName
 
 
-def load_paths(directory=START_DIRECTORY, storage=None):
+def load_paths(directory: str=START_DIRECTORY, storage: typing.Union[typing.List, None]=None):
     for current_directory in os.listdir(directory):
 
         is_correct = is_correct_file(directory, FILENAMES)
@@ -21,12 +25,12 @@ def load_paths(directory=START_DIRECTORY, storage=None):
 
 
 def process_paths(
-    directories,
-    normalization_values,
-    preprocessing_types,
-    subsets,
-    transformer_names,
-    storage=None,
+    directories: typing.List[str],
+    normalization_values: typing.List[int],
+    preprocessing_types: typing.List[PreprocessingType],
+    subsets: typing.List[SubsetType],
+    transformer_names: typing.List[typing.Union[TransformerName, None]],
+    storage: typing.Union[typing.List, None]=None,
 ):
     for directory in directories:
         is_correct = is_correct_file(directory, FILENAMES)

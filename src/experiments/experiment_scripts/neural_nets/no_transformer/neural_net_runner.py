@@ -1,8 +1,8 @@
 from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
 from src.config.config import BLANK_DESCRIPTION
 from src.encoder.create_encoder_from_path import create_encoder_from_path
-from src.experiments.experiment_scripts.experiment_configurations.config import (
-    ExperimentGeneratorPart, experiment_config)
+from src.experiments.experiment_scripts.experiment_configurations.config import (experiment_config)
+from src.types.experiment_generator_part_type import ExperimentGeneratorPart
 from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import \
     NNExpConf
 from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import \
@@ -24,6 +24,7 @@ class NNRunner:
         experiment_type: ExperimentType,
         save_best: bool=False,
         save_model: bool=False,
+        config_dict=experiment_config
     ) -> None:
         self.save_best = save_best
         self.save_model = save_model
@@ -32,17 +33,17 @@ class NNRunner:
 
         print(self.experiment_type)
 
-        self.experiment_configurations, self.embeddding_index_dict = experiment_config[
+        self.experiment_configurations, self.embeddding_index_dict = config_dict[
             self.experiment_type
         ][ExperimentGeneratorPart.ExperimentConfiguration]
 
-        self.dataset_generator = experiment_config[self.experiment_type][
+        self.dataset_generator = config_dict[self.experiment_type][
             ExperimentGeneratorPart.DatasetGenerator
         ]
 
         self.experiment_type_str = self.experiment_type.value
 
-        self.experiment_architectures = experiment_config[self.experiment_type][
+        self.experiment_architectures = config_dict[self.experiment_type][
             ExperimentGeneratorPart.ExperimentArchitecture
         ]
 

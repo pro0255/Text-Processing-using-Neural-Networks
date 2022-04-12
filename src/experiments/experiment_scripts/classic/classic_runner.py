@@ -10,8 +10,8 @@ from src.experiments.experiment_scripts.classic.classic_configuration import \
     ClassicExpConf
 from src.experiments.experiment_scripts.classic.classic_wrapper import \
     ClassicExpRunWrapper
-from src.experiments.experiment_scripts.experiment_configurations.config import (
-    ExperimentGeneratorPart, experiment_config)
+from src.experiments.experiment_scripts.experiment_configurations.config import ( experiment_config)
+from src.types.experiment_generator_part_type import ExperimentGeneratorPart
 from src.experiments.helpers.experiment_summarization import \
     ExperimentSummarization
 from src.models.transformer.pooling_strategy import \
@@ -28,23 +28,24 @@ class ClassicRunner:
     def __init__(
         self,
         experiment_type: ExperimentType,
+        config_dict=experiment_config
     ) -> None:
 
         self.experiment_type = experiment_type
 
-        self.dataset_generator = experiment_config[self.experiment_type][
+        self.dataset_generator = config_dict[self.experiment_type][
             ExperimentGeneratorPart.DatasetGenerator
         ]
 
-        self.feature_extractors = experiment_config[self.experiment_type][
+        self.feature_extractors = config_dict[self.experiment_type][
             ExperimentGeneratorPart.FeatureExtractors
         ]
 
-        self.predictors = experiment_config[self.experiment_type][
+        self.predictors = config_dict[self.experiment_type][
             ExperimentGeneratorPart.Predictor
         ]
 
-        self.transformer_pooling_strategy = experiment_config[self.experiment_type][
+        self.transformer_pooling_strategy = config_dict[self.experiment_type][
             ExperimentGeneratorPart.TransformerPoolingStrategy
         ]
 

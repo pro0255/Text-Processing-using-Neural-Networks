@@ -12,11 +12,11 @@ class CSVLogger(tf.keras.callbacks.Callback):
         self.timetaken = time.time()
         self.state = {}
 
-    def on_epoch_end(self, epoch:int, logs:typing.Dict={}):
+    def on_epoch_end(self, epoch:int, logs:typing.Dict={}) -> None:
         logs["time"] = time.time() - self.timetaken
         self.state[epoch] = logs
 
-    def on_train_end(self, logs:typing.Dict={}):
+    def on_train_end(self, logs:typing.Dict={}) -> None:
         headers = []
         for k, v in self.state.items():
             headers = self.state[k].keys()

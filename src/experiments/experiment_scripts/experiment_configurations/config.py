@@ -1,5 +1,3 @@
-from enum import Enum
-
 from src.config.learning_config import LOSS, METRIC, OPTIMIZER
 from src.data_loading.experiment_loader import ExperimentLoader
 from src.experiments.experiment_scripts.experiment_configurations.lookup import \
@@ -34,19 +32,12 @@ from src.vectorizers.transformer.distil_bert_base_vectorizer import \
     DistilBertBaseUncasedVectorizer
 from src.vectorizers.transformer.electra_small_vectorizer import \
     ElectraSmallVectorizer
+from src.types.experiment_generator_part_type import ExperimentGeneratorPart
 
     
 
 loader = ExperimentLoader()
 
-
-class ExperimentGeneratorPart(Enum):
-    DatasetGenerator = "DatasetGenerator"
-    ExperimentConfiguration = "ExperimentConfiguration"
-    ExperimentArchitecture = "ExperimentArchitecture"
-    FeatureExtractors = "FeatureExtractors"
-    Predictor = "Predictor"
-    TransformerPoolingStrategy = "TransformerPoolingStrategy"
 
 
 experiment_config = {

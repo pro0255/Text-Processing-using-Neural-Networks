@@ -1,5 +1,6 @@
 import os
 import time
+import typing
 
 import pandas as pd
 
@@ -13,11 +14,14 @@ from src.statistic.build_input_for_statistics import \
 from src.statistic.create_statistics_from import \
     create_statistics_from_with_example
 from src.statistic.DEFAULT_INSTANCES import build_statistic_instances
+from src.types.processing_type import PreprocessingType
+from src.types.subset_type import SubsetType
+from src.types.transformer_name import TransformerName
 
 
 def create_record(
-    parent_path, norm_value, preprocessing_type, subset_type, transformer_name
-):
+    parent_path: str, norm_value: int, preprocessing_type: PreprocessingType, subset_type: SubsetType, transformer_name: typing.Union[None, TransformerName]
+) -> typing.Type[pd.DataFrame]:
     print(
         f"Current {parent_path}, {str(norm_value)}, {preprocessing_type.value}, {subset_type.value}, {BLANK_DESCRIPTION if transformer_name is None else transformer_name.value}\n"
     )

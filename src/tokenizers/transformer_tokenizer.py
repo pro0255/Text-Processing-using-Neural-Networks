@@ -1,3 +1,5 @@
+import typing
+from sklearn.preprocessing import LabelEncoder
 import tensorflow as tf
 from transformers import AutoTokenizer
 
@@ -6,7 +8,7 @@ from src.types.transformer_input import TransformerInput
 
 class TransformerTokenizer:
     def __init__(
-        self, name, encoder=None, max_len=None, preprocess_pipeline=None
+        self, name: str, encoder: typing.Union[LabelEncoder, None]=None, max_len: typing.Union[None, int]=None, preprocess_pipeline: typing.Union[None, typing.Callable[[str], str]]=None
     ) -> None:
         self.name = name
         self.tokenizer = AutoTokenizer.from_pretrained(name)
@@ -32,7 +34,6 @@ class TransformerTokenizer:
             padding="max_length",
             truncation=True,
         )
-        # encode label
 
         label = (
             self.encoder.transform([label])[0] if self.encoder is not None else label

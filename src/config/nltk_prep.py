@@ -3,7 +3,7 @@ import os
 import nltk
 
 
-def prepare_nltk_package(nltk_path: str):
+def prepare_nltk_package(nltk_path: str) -> None:
     if not os.path.exists(nltk_path):
         os.makedirs(nltk_path)
 

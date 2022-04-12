@@ -1,10 +1,11 @@
+import typing
 import pandas as pd
 
 from src.analysis.experiments.validation.exists import exists
 from src.config.config import FILENAME_METRICS
 
 
-def parse_metrics(directory):
+def parse_metrics(directory: str) -> typing.Union[pd.DataFrame, None]:
     path = exists(directory, FILENAME_METRICS)
 
     if path is None:

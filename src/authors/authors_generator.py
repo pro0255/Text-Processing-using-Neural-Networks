@@ -7,7 +7,7 @@ from src.config.config import ALL_AUTHORS_DELIMITER, PATH_TO_ALL_AUTHORS
 class authors_generator:
     def __init__(
         self, path: str = PATH_TO_ALL_AUTHORS, sep: str = ALL_AUTHORS_DELIMITER
-    ):
+    ) -> None:
         self.path = path
         self.sep = sep
 
