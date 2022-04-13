@@ -72,7 +72,7 @@ experiment_config = {
             [TransformerPoolingStrategySelection.LastLayerCLS],
             list(range(50, 220, 20)),
             [True],
-            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
+            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
         ),
     },
     ExperimentType.LearningRateTransformer: lambda:  {

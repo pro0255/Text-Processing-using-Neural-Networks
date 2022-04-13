@@ -21,8 +21,11 @@ class Quant50SeqLen:
     def get_dataframe(self):
         dic = {k:np.quantile(v, 0.5) for k, v in self.state.items()}
         
-        all_values = np.array(list(self.state.values())).ravel()
-        value_together = np.quantile(all_values, 0.5)
+        mem_all = []
+        for x in self.state.values():
+            mem_all += x
+            
+        value_together = np.quantile(mem_all, 0.5)
 
         dic['All'] = value_together
 
