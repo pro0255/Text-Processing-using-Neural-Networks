@@ -51,6 +51,24 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
+    ExperimentType.PreprocessingTransformer: lambda: {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5], [3], 
+            [
+                PreprocessingType.CaseInterpunction,
+                PreprocessingType.Default,
+                PreprocessingType.Raw,
+                PreprocessingType.Lowercase,
+            ], [15000]
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
+            [TransformerName.DistilBertBaseUncased],
+            [TransformerPoolingStrategySelection.LastLayerCLS],
+            [130],
+            [True],
+            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
+        ),
+    },
     ExperimentType.PoolingStrategyTransformer: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5], [3], [PreprocessingType.CaseInterpunction], [15000]
@@ -70,7 +88,7 @@ experiment_config = {
         ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
             [TransformerName.DistilBertBaseUncased],
             [TransformerPoolingStrategySelection.LastLayerCLS],
-            list(range(50, 220, 20)),
+            list(range(50, 300, 30)),
             [True],
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
         ),
@@ -91,7 +109,7 @@ experiment_config = {
                     [METRIC],
                     [LOSS],
                     [OPTIMIZER],
-                    [5],
+                    [3],
                 )
             ),
         ),
@@ -112,19 +130,19 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [10])),
         ),
     },
-    ExperimentType.LabelSize: lambda:  {
+    ExperimentType.LabelSizeTransformer: lambda:  {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
             [PreprocessingType.CaseInterpunction],
-            list(range(5000, 22000, 2000)),
+            list(range(5000, 30000, 5000)),
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
             [TransformerName.DistilBertBaseUncased],
             [TransformerPoolingStrategySelection.LastLayerCLS],
             [130],
             [True],
-            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
+            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
         ),
     },
     ExperimentType.NumberOfAuthorsNN: lambda:  {
@@ -152,6 +170,33 @@ experiment_config = {
         ExperimentGeneratorPart.ExperimentArchitecture: [
             CNNArchitecture(),
             RNNArchitecture(),
+            DenseArchitecture(),
+        ],
+    },
+    ExperimentType.EmbeddingSizeNN: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5],
+            [3],
+            [PreprocessingType.CaseInterpunction],
+            [15000],
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
+            [15000],
+            [LOOKUP_KEY],
+            [True],
+            list(
+                settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [10])
+            ),
+            [
+                (50, None),
+                (100, None),
+                (150, None),
+                (200, None),
+                (300, None),
+            ],
+        ),
+        ExperimentGeneratorPart.ExperimentArchitecture: [
+            CNNArchitecture(),
             DenseArchitecture(),
         ],
     },
@@ -189,6 +234,47 @@ experiment_config = {
                 metric="euclidean", #coss_similarity
                 n_jobs=-1
             ),
+        ],
+        ExperimentGeneratorPart.TransformerPoolingStrategy: None,
+    },
+    ExperimentType.ClassicLogisticRegressionLabelSize: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5],
+            [3],
+            [PreprocessingType.CaseInterpunction],
+            list(range(5000, 30000, 5000)),
+        ),
+        ExperimentGeneratorPart.FeatureExtractors: [
+            BoWVectorizer(
+                lowercase=False,
+                max_features=10000
+            ),
+        ],
+        ExperimentGeneratorPart.Predictor: [
+            SGDClassifier(),
+        ],
+        ExperimentGeneratorPart.TransformerPoolingStrategy: None,
+    },
+    ExperimentType.ClassicLogisticRegressionPreprocessing: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5],
+            [3],
+            [
+                PreprocessingType.CaseInterpunction,
+                PreprocessingType.Default,
+                PreprocessingType.Lowercase,
+                PreprocessingType.Raw,
+            ],
+            [15000],
+        ),
+        ExperimentGeneratorPart.FeatureExtractors: [
+            BoWVectorizer(
+                lowercase=False,
+                max_features=10000
+            ),
+        ],
+        ExperimentGeneratorPart.Predictor: [
+            SGDClassifier(),
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,
     },

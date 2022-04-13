@@ -6,14 +6,22 @@ class ExperimentType(Enum):
     PoolingStrategyTransformer = "PoolingStrategyTransformer"  # Done
     OutputSequenceLengthTransformer = "OutputSequenceLength"  # Done
     LearningRateTransformer = "LearningRateTransformer"  # Done
-    LabelSize = "LabelSize"  # Done
+    LabelSizeTransformer = "LabelSizeLabelSizeTransformer"  # Done
     PreprocessingType = "PreprocessingType"  # Done
     TransformerType = "TransformerType"
+    PreprocessingTransformer = "PreprocessingTransformer"
 
     NumberOfAuthorsNN = "NumberOfAuthorsNN"
     NumberOfSentencesNN = "NumberOfSentencesNN"
 
+    
+
+
+    EmbeddingSizeNN = "EmbeddingSizeNN"
+
     Classic = "Classic"
+    ClassicLogisticRegressionLabelSize = "ClassicLogisticRegression"
+    ClassicLogisticRegressionPreprocessing = "ClassicLogisticRegression"
 
     TransformerTest = "TransformerTest"
     NNTest = "NNTest"

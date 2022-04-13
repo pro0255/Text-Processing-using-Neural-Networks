@@ -21,12 +21,12 @@ class Quant75SeqLen:
     def get_dataframe(self):
         dic = {k:np.quantile(v, 0.75) for k, v in self.state.items()}
         
-        mem_all = []
-        for x in self.state.values():
-            mem_all += x
+        # mem_all = []
+        # for x in self.state.values():
+        #     mem_all += x
             
-        value_together = np.quantile(mem_all, 0.75)
+        # value_together = np.quantile(mem_all, 0.75)
 
-        dic['All'] = value_together
+        # dic['All'] = value_together
 
         return pd.DataFrame.from_dict(dic, orient="index")
