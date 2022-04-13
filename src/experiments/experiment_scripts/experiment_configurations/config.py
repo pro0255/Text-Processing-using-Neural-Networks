@@ -33,6 +33,7 @@ from src.vectorizers.transformer.distil_bert_base_vectorizer import \
     DistilBertBaseUncasedVectorizer
 from src.vectorizers.transformer.electra_small_vectorizer import \
     ElectraSmallVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 loader = ExperimentLoader()
 
@@ -183,8 +184,9 @@ experiment_config = {
                 n_estimators=100
             ),
             KNeighborsClassifier(
+                algorithm="auto",
                 n_neighbors=5, 
-                metric=coss_similarity,
+                metric="euclidean", #coss_similarity
                 n_jobs=-1
             ),
         ],

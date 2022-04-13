@@ -21,8 +21,8 @@ class Quant75SeqLen:
     def get_dataframe(self):
         dic = {k:np.quantile(v, 0.75) for k, v in self.state.items()}
         
-        value_together = np.quantile(np.array(list(self.state.values())).ravel(), 0.75)
-
+        all_values = np.array(list(self.state.values())).ravel()
+        value_together = np.quantile(all_values, 0.75)
         dic['All'] = value_together
 
         return pd.DataFrame.from_dict(dic, orient="index")
