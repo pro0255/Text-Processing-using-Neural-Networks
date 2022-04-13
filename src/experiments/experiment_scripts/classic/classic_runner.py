@@ -31,8 +31,8 @@ class ClassicRunner:
         self, experiment_type: ExperimentType, config_dict={}
     ) -> None:
 
-        self.config_object_getter = config_dict.get(self.experiment_type, None)
         self.experiment_type = experiment_type
+        self.config_object_getter = config_dict.get(self.experiment_type, None)
 
         if self.config_object_getter is not None:
 

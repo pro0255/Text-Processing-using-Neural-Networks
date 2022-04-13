@@ -4,17 +4,25 @@ import numpy as np
 
 class Quant75SeqLen:
     def __init__(self):
-        self.mem = []
+        self.state = {}
 
     def update_state(self, text, label):
+
+        current_list = self.state.get(label, [])
 
         splitted_text = text.split(" ")
         
         current_length = len(splitted_text)
 
-        self.mem.append(current_length)
+        current_list.append(current_length)
 
+        self.state[label] = current_list
 
     def get_dataframe(self):
-        self.state = {"Value": np.quantile(self.mem, 0.75)}
-        return pd.DataFrame.from_dict(self.state, orient="index")
+        dic = {k:np.quantile(v, 0.75) for k, v in self.state.items()}
+        
+        value_together = np.quantile(np.array(list(self.state.values())).ravel(), 0.75)
+
+        dic['All'] = value_together
+
+        return pd.DataFrame.from_dict(dic, orient="index")

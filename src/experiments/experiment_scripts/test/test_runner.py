@@ -33,7 +33,7 @@ class TestRunner:
         print("Running transformer tests!")
 
         runner = TransformerRunner(
-            ExperimentType.TransformerTest, config_dict=test_experiment_config
+            experiment_type=ExperimentType.TransformerTest, config_dict=test_experiment_config
         )
         runner.run()
 
@@ -42,7 +42,7 @@ class TestRunner:
     def run_nn_tests(self) -> None:
         print("Running NN tests!")
 
-        runner = NNRunner(ExperimentType.NNTest, config_dict=test_experiment_config)
+        runner = NNRunner(experiment_type=ExperimentType.NNTest, config_dict=test_experiment_config)
         runner.run()
 
         print("End of NN tests!")
@@ -51,7 +51,7 @@ class TestRunner:
         print("Running transformer tests!")
 
         runner = ClassicRunner(
-            ExperimentType.ClassicTest, config_dict=test_experiment_config
+            experiment_type=ExperimentType.ClassicTest, config_dict=test_experiment_config
         )
         runner.run()
 
