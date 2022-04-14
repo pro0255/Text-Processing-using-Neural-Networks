@@ -58,9 +58,15 @@ class TransformerRunner:
             print("Experiment was not specified well!")
             return
 
+
         for dataset_value in self.dataset_generator:
+            print()
+
             if dataset_value is None:
+                print('Dataset value is None')
                 continue
+
+            print("Loaded dataset!")
             sets, loaded_data, paths, conf = dataset_value
             X_train, X_valid, X_test, y_train, y_valid, y_test = sets
             data_path, author_path = paths
@@ -76,6 +82,8 @@ class TransformerRunner:
             ) = get_train_test_valid_ds(
                 X_train, X_valid, X_test, y_train, y_valid, y_test
             )
+
+            print(f'Running experiment pre={current_preprocessing}, norm_size={norm_size}, authors={current_authors}, sentences={current_sentences}')
 
             for conf_parameters in self.experiment_configurations:
                 (
@@ -96,6 +104,9 @@ class TransformerRunner:
                     if output_sequence_length is None:
                         print("Look up does not exists!")
                         continue
+
+
+                    print(learning_settings, trainable, pooling_strategy, model_name, output_sequence_length)
 
                     tokenizer = TransformerTokenizer(
                         model_name.value,
@@ -165,6 +176,8 @@ class TransformerRunner:
                     wrapper = NNExpRunWrapper(current_experiment_id, summarization)
 
                     wrapper.run(nn_conf)
+
+                    print('Ended one experiment \n')
 
                 except Exception as e:
                     print(conf_parameters)

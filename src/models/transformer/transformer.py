@@ -29,7 +29,7 @@ class TransformerArchitecture:
             int, typing.Callable[[int], int]
         ] = lambda x: 0,
     ):
-
+        print(f"Creating model with name={model_name}")
         config = AutoConfig.from_pretrained(model_name, output_hidden_states=True)
         transformer_model = TFAutoModel.from_config(config)
 

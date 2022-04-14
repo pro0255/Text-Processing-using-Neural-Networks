@@ -58,15 +58,14 @@ experiment_config = {
                 PreprocessingType.CaseInterpunction,
                 PreprocessingType.Default,
                 PreprocessingType.Raw,
-                PreprocessingType.Lowercase,
-            ], [15000]
+            ], [10000]
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
             [TransformerName.DistilBertBaseUncased],
             [TransformerPoolingStrategySelection.LastLayerCLS],
             [130],
             [True],
-            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
+            list(settings_generator([128], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
         ),
     },
     ExperimentType.PoolingStrategyTransformer: lambda: {
@@ -90,7 +89,7 @@ experiment_config = {
             [TransformerPoolingStrategySelection.LastLayerCLS],
             list(range(50, 300, 30)),
             [True],
-            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
+            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
     ExperimentType.LearningRateTransformer: lambda:  {
@@ -120,14 +119,14 @@ experiment_config = {
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
             [
-                TransformerName.DistilBertBaseUncased,
+                # TransformerName.DistilBertBaseUncased,
                 TransformerName.ElectraBase,
                 TransformerName.BertBaseUncased,
             ],
             [TransformerPoolingStrategySelection.LastLayerCLS],
             [130],
             [True],
-            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [10])),
+            list(settings_generator([64], [2e-5, 5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
     ExperimentType.LabelSizeTransformer: lambda:  {

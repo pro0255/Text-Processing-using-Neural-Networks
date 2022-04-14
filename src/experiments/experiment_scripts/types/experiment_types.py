@@ -20,8 +20,8 @@ class ExperimentType(Enum):
     EmbeddingSizeNN = "EmbeddingSizeNN"
 
     Classic = "Classic"
-    ClassicLogisticRegressionLabelSize = "ClassicLogisticRegression"
-    ClassicLogisticRegressionPreprocessing = "ClassicLogisticRegression"
+    ClassicLogisticRegressionLabelSize = "ClassicLogisticRegressionLabelSize"
+    ClassicLogisticRegressionPreprocessing = "ClassicLogisticRegressionPreprocessing"
 
     TransformerTest = "TransformerTest"
     NNTest = "NNTest"
