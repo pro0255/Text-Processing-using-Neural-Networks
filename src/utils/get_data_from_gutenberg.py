@@ -2,9 +2,7 @@ import typing
 
 
 def get_data_from_gutenberg(
-    data: typing.Dict[
-        str,
-    ],
+    data,
     key: str,
 ):
     try:

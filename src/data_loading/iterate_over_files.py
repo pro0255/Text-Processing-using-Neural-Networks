@@ -9,9 +9,7 @@ from src.utils.load_json import load_json
 
 def iterate_over_files(
     files_path: typing.List[str],
-    process_func: Callable[
-        [typing.Dict],
-    ],
+    process_func
 ):
     print(f"Loading files from {files_path}")
     counter = 0

@@ -1,6 +1,6 @@
 import os
 
-from authors.authors_generator import authors_generator
+from src.authors.authors_generator import authors_generator
 from src.config.config import (GUTENBERG_DIRECTORY_TO_SAVE_BUILDED_DATASETS,
                                GUTENBERG_DOWNLOADED_DIRECTORY, PATTERN)
 from src.data_loading.iterate_over_files import iterate_over_files
