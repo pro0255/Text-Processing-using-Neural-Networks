@@ -277,4 +277,151 @@ experiment_config = {
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,
     },
+
+    ExperimentType.Classic5SentencesCombinations: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5],
+            [1, 2, 3, 7, 10, 15],
+            [
+                PreprocessingType.CaseInterpunction,
+            ],
+            [LOOKUP_KEY],
+        ),
+        ExperimentGeneratorPart.FeatureExtractors: [
+            BoWVectorizer(
+                lowercase=False,
+                max_features=10000
+            ),
+        ],
+        ExperimentGeneratorPart.Predictor: [
+            SGDClassifier(),
+        ],
+        ExperimentGeneratorPart.TransformerPoolingStrategy: None,
+    },
+    ExperimentType.Classic310Combinations: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5, 15, 25],
+            [3, 10],
+            [
+                PreprocessingType.CaseInterpunction,
+            ],
+            [LOOKUP_KEY],
+        ),
+        ExperimentGeneratorPart.FeatureExtractors: [
+            BoWVectorizer(
+                lowercase=False,
+                max_features=10000
+            ),
+            TFIDFVectorizer(
+                lowercase=False,
+                max_features=10000
+            ),
+            GloveVectorizer(),
+            Word2VecVectorizer(),
+        ],
+        ExperimentGeneratorPart.Predictor: [
+            GaussianNB(),
+            SGDClassifier(),
+            RandomForestClassifier(
+                n_estimators=100
+            ),
+            KNeighborsClassifier(
+                algorithm="auto",
+                n_neighbors=5, 
+                metric="euclidean", #coss_similarity
+                n_jobs=-1
+            ),
+        ],
+        ExperimentGeneratorPart.TransformerPoolingStrategy: None,
+    },
+
+    ExperimentType.NN310Combinations: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5, 15, 25],
+            [3, 10],
+            [PreprocessingType.CaseInterpunction],
+            [LOOKUP_KEY],
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
+            [15000],
+            [LOOKUP_KEY],
+            [True],
+            list(
+                settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [10])
+            ),
+            [
+                (50, None),
+                (150, None),
+                (200, None),
+                (300, DownloadedEmbeddingType.Word2Vec),
+                (300, DownloadedEmbeddingType.Glove),
+            ],
+        ),
+        ExperimentGeneratorPart.ExperimentArchitecture: [
+            CNNArchitecture(),
+            DenseArchitecture(),
+            RNNArchitecture()
+        ],
+    },
+
+    ExperimentType.NN5SentencesCombinations: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5],
+            [1, 2, 3, 7, 10, 15],
+            [PreprocessingType.CaseInterpunction],
+            [LOOKUP_KEY],
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
+            [15000],
+            [LOOKUP_KEY],
+            [True],
+            list(
+                settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [10])
+            ),
+            [
+                (50, None),
+                (150, None),
+                (200, None),
+                (300, DownloadedEmbeddingType.Word2Vec),
+                (300, DownloadedEmbeddingType.Glove),
+            ],
+        ),
+        ExperimentGeneratorPart.ExperimentArchitecture: [
+            CNNArchitecture(),
+            DenseArchitecture(),
+            RNNArchitecture()
+        ],
+    },
+
+    ExperimentType.Transformer310Combinations: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5, 15, 25], [3, 10], [PreprocessingType.CaseInterpunction], [LOOKUP_KEY]
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
+            [
+                TransformerName.DistilBertBaseUncased,
+            ],
+            [TransformerPoolingStrategySelection.LastLayerCLS],
+            [LOOKUP_KEY],
+            [True],
+            list(settings_generator([64], [2e-5, 5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
+        ),
+    },
+
+
+    ExperimentType.Transformer5SentencesCombinations: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5], [1, 2, 3, 7, 10, 15], [PreprocessingType.CaseInterpunction], [LOOKUP_KEY]
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
+            [
+                TransformerName.DistilBertBaseUncased,
+            ],
+            [TransformerPoolingStrategySelection.LastLayerCLS],
+            [LOOKUP_KEY],
+            [True],
+            list(settings_generator([64], [2e-5, 5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
+        ),
+    },
+
 }

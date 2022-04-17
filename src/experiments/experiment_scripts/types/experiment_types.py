@@ -11,9 +11,17 @@ class ExperimentType(Enum):
     TransformerType = "TransformerType"
     PreprocessingTransformer = "PreprocessingTransformer"
 
+    Transformer310Combinations = "Transformer310Combinations"
+    Transformer5SentencesCombinations = "Transformer5SentencesCombinations"
+
+
+
+
     NumberOfAuthorsNN = "NumberOfAuthorsNN"
     NumberOfSentencesNN = "NumberOfSentencesNN"
 
+    NN310Combinations = "NN310Combinations"
+    NN5SentencesCombinations = "NN5SentencesCombinations"
     
 
 
@@ -22,6 +30,10 @@ class ExperimentType(Enum):
     Classic = "Classic"
     ClassicLogisticRegressionLabelSize = "ClassicLogisticRegressionLabelSize"
     ClassicLogisticRegressionPreprocessing = "ClassicLogisticRegressionPreprocessing"
+    
+    Classic310Combinations = "Classic310Combinations"
+    Classic5SentencesCombinations = "Classic5SentencesCombinations"
+
 
     TransformerTest = "TransformerTest"
     NNTest = "NNTest"
