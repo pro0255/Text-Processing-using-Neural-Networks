@@ -404,7 +404,7 @@ experiment_config = {
             [TransformerPoolingStrategySelection.LastLayerCLS],
             [LOOKUP_KEY],
             [True],
-            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
+            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
 
@@ -420,7 +420,7 @@ experiment_config = {
             [TransformerPoolingStrategySelection.LastLayerCLS],
             [LOOKUP_KEY],
             [True],
-            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
+            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
 

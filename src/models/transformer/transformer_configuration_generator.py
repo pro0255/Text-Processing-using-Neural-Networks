@@ -14,6 +14,6 @@ def transformer_configuration_generator(
     trainable: typing.List[bool],
     settings: typing.List[typing.Type[LearningSettings]],
 ):
-    return itertools.product(
+    return list(itertools.product(
         model_names, pooling_strategies, seq_lengths, trainable, settings
-    )
+    ))
