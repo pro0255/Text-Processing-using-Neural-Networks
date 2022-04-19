@@ -300,7 +300,7 @@ experiment_config = {
     },
     ExperimentType.Classic310Combinations: lambda:  {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
-            [5, 15, 25],
+            [55, 75, 105], #5, 15, 25 
             [3, 10],
             [
                 PreprocessingType.CaseInterpunction,
