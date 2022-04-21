@@ -91,6 +91,7 @@ class NNExpRunWrapper:
         print("Loading best weights to model")
         experiment_directory = os.path.sep.join([self.directory, self.experiment_id])
         best_weights_path = create_save_best_weights_filepath(experiment_directory)
+        print(f'Loading from {best_weights_path}')
         nn_model.load_weights(best_weights_path)
 
     def predict_on_nn(self, nn_model, test_ds: typing.Type[tf.data.Dataset]):

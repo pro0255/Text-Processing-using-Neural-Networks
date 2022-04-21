@@ -16,12 +16,18 @@ class ExperimentType(Enum):
 
 
 
+    EmbeddingSizeModelingNN = "EmbeddingSizeModelingNN"
 
     NumberOfAuthorsNN = "NumberOfAuthorsNN"
     NumberOfSentencesNN = "NumberOfSentencesNN"
 
     NN310Combinations = "NN310Combinations"
     NN5SentencesCombinations = "NN5SentencesCombinations"
+
+
+
+    NNCNN5SentencesCombinations = "NNCNN5SentencesCombinations"
+    NNCNN310SentencesCombinations = "NNCNN310SentencesCombinations"
     
 
 

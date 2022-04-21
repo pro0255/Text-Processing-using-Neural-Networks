@@ -13,6 +13,7 @@ class LookupField(Enum):
 # number_of_authors, number_of_sentences, preprocessing_type
 gutenberg_lookup_seq = {
     (5, 3, PreprocessingType.CaseInterpunction): 100,
+    (5, 3, PreprocessingType.Default): 70,
     (5, 1, PreprocessingType.CaseInterpunction): 30,
     (5, 2, PreprocessingType.CaseInterpunction): 60,
     (5, 7, PreprocessingType.CaseInterpunction): 190,
@@ -33,6 +34,7 @@ gutenberg_lookup_normalization = {
     (5, 7): 6500,
     (5, 10): 4500,
     (5, 15): 3000,
+    
     (15, 10): 5000,
     (25, 10): 3000,
     (75, 10): 3000,

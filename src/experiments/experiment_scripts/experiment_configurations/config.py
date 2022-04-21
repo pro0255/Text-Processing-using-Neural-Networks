@@ -77,7 +77,7 @@ experiment_config = {
             list(TransformerPoolingStrategySelection),
             [130],
             [True],
-            list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
+            list(settings_generator([64], [2e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
     ExperimentType.OutputSequenceLengthTransformer: lambda: {
@@ -343,7 +343,7 @@ experiment_config = {
             [LOOKUP_KEY],
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
-            [15000],
+            [60000],
             [LOOKUP_KEY],
             [True],
             list(
@@ -372,7 +372,7 @@ experiment_config = {
             [LOOKUP_KEY],
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
-            [15000],
+            [60000],
             [LOOKUP_KEY],
             [True],
             list(
@@ -392,6 +392,79 @@ experiment_config = {
             RNNArchitecture()
         ],
     },
+
+    ExperimentType.NNCNN5SentencesCombinations: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5],
+            [1, 2, 3, 7, 10, 15],
+            [PreprocessingType.CaseInterpunction],
+            [LOOKUP_KEY],
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
+            [60000],
+            [LOOKUP_KEY],
+            [True],
+            list(
+                settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [10])
+            ),
+            [
+                (300, DownloadedEmbeddingType.Glove),
+            ],
+        ),
+        ExperimentGeneratorPart.ExperimentArchitecture: [
+            CNNArchitecture(),
+        ],
+    },
+
+    
+    ExperimentType.NNCNN310SentencesCombinations: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5, 15, 25],
+            [3, 10],
+            [PreprocessingType.CaseInterpunction],
+            [LOOKUP_KEY],
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
+            [60000],
+            [LOOKUP_KEY],
+            [True],
+            list(
+                settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [10])
+            ),
+            [
+                (300, DownloadedEmbeddingType.Glove),
+            ],
+        ),
+        ExperimentGeneratorPart.ExperimentArchitecture: [
+            CNNArchitecture(),
+        ],
+    },
+
+
+
+    ExperimentType.EmbeddingSizeModelingNN: lambda:  {
+        ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
+            [5],
+            [3],
+            [PreprocessingType.CaseInterpunction, PreprocessingType.Default],
+            [LOOKUP_KEY],
+        ),
+        ExperimentGeneratorPart.ExperimentConfiguration: nets_configuration_generator(
+            [60000],
+            [LOOKUP_KEY],
+            [True],
+            list(
+                settings_generator([64], [0.001], [METRIC], [LOSS], [OPTIMIZER], [10])
+            ),
+            [(i, None) for i in range(10, 320, 20)],
+        ),
+        ExperimentGeneratorPart.ExperimentArchitecture: [
+            CNNArchitecture(),
+            DenseArchitecture()
+        ],
+    },
+
+
 
     ExperimentType.Transformer310Combinations: lambda:  {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(

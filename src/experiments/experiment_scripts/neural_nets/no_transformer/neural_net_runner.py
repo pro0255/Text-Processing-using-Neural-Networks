@@ -52,7 +52,7 @@ class NNRunner:
 
     def run(self):
         if self.config_object_getter is None:
-            print("Experiment was not specified well!")
+            print(f"Experiment was not specified well .. {self.config_object_getter}!")
             return
 
         for dataset_value in self.dataset_generator:
