@@ -14,6 +14,8 @@ from src.types.test_types import TestType
 
 
 class TestRunner:
+    """Helper object which runs all types of experiments.
+    """
     def __init__(self) -> None:
         pass
 

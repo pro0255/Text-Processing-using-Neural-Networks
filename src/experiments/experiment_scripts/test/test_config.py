@@ -34,6 +34,9 @@ from src.vectorizers.transformer.distil_bert_base_vectorizer import \
 from src.vectorizers.transformer.electra_small_vectorizer import \
     ElectraSmallVectorizer
 
+"""Definition of values for test experiments.
+"""
+
 loader = ExperimentLoader()
 
 AUTHORS_TEST = [5]
