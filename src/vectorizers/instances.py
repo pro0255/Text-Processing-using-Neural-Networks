@@ -9,6 +9,9 @@ from src.vectorizers.transformer.distil_bert_base_vectorizer import \
 from src.vectorizers.transformer.electra_small_vectorizer import \
     ElectraSmallVectorizer
 
+"""Arrays which will help in other method with condition call of methods
+"""
+
 CLASSIC = [type(BoWVectorizer()).__name__, type(TFIDFVectorizer()).__name__]
 EMBEDDING = [type(GloveVectorizer()).__name__, type(Word2VecVectorizer()).__name__]
 TRANSFORMER = [

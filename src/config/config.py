@@ -2,6 +2,11 @@ import os
 
 from src.types.suffix import Suffix
 
+"""
+Global project configuration. These variables was used around all project. Specific description is situated next to varible.
+"""
+
+
 STAMP_SIZE = 5
 
 USE_TESTING_DATASET_FOLDER = True

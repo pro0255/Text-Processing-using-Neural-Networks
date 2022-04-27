@@ -41,6 +41,8 @@ class TransformerVectorizer:
         self.path_to_authors = path_authors
 
     def setup(self) -> None:
+        """Run setup on current vectorizer according to transformer type. To self state will be saved downloaded tokenizer and transformer.
+        """
         self.config = AutoConfig.from_pretrained(
             self.transformer_type, output_hidden_states=True
         )
@@ -55,6 +57,14 @@ class TransformerVectorizer:
         )
 
     def fit_transform(self, dataset: typing.Type[tf.data.Dataset]):
+        """Will be downloaded specified transformer and tokenizer. Then input will be iterated and transformed to number vectors.
+
+        Args:
+            dataset (typing.Type[tf.data.Dataset]): TensorFlow dataset with textual_data:id
+
+        Returns:
+            _type_: X, y
+        """
         self.setup()
         sentence_embedding = []
         labels = []

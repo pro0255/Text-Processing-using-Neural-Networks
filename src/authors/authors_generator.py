@@ -13,6 +13,14 @@ class authors_generator:
         self.sep = sep
 
     def generate_top_k(self, k: int) -> typing.List[typing.Tuple[int, str]]:
+        """Generates k authors from authors directory. Or specific directory. According to this authors will be generated new dataset.
+
+        Args:
+            k (int): number of authors
+
+        Returns:
+            typing.List[typing.Tuple[int, str]]: tuple of id and name
+        """
         data = pd.read_csv(self.path, sep=self.sep)
         rows = data.shape[0]
         authors_ids = data.iloc[0 : rows - 1, 0].astype(int).values[0:k]

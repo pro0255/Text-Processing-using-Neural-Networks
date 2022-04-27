@@ -21,6 +21,8 @@ class EmbeddingVectorizer:
             self.setup()
 
     def setup(self):
+        """According to specified embedding type will be downloaded vectors.
+        """
         if self.vectors is None or self.embedding_size is None:
             print(f"Downloading model {self.embedding_type}!")
             if self.embedding_type in loaded_models:
@@ -35,6 +37,15 @@ class EmbeddingVectorizer:
             print("Already downloaded")
 
     def get_from_vectors(self, key_vectors: typing.Dict, key: str):
+        """Will try to get vector for word. If word does exists in embedding, then empty vector will be returned.
+
+        Args:
+            key_vectors (typing.Dict): Dictionary of vectors.
+            key (str): Current word.
+
+        Returns:
+            _type_: Vector of embedding size. Empty if word does not exist.
+        """
         self.counter += 1
         try:
             return key_vectors[key]
@@ -43,6 +54,11 @@ class EmbeddingVectorizer:
             return np.zeros(shape=(self.embedding_size,))
 
     def get_state(self):
+        """Get state of vectorize process. Number of missed and not missed words.
+
+        Returns:
+            (int, int, float): State of embedding process.
+        """
         missed, counter, accuracy = (
             self.missed,
             self.counter,
@@ -55,6 +71,16 @@ class EmbeddingVectorizer:
         return [np.mean(sent, axis=0) for sent in corpus]
 
     def fit_transform(self, X: typing.List[typing.List[str]]):
+        """Run setup of vectorizer. Process of download vectors.
+
+        Sentence is splitted to tokens. After loop is every sentence (document) transformer to numeric vector.
+
+        Args:
+            X (typing.List[typing.List[str]]): List of lists where are situated sentences.
+
+        Returns:
+            list[float[]]: Array of mean which represents documents.
+        """
         self.setup()
 
         self.missed = 0

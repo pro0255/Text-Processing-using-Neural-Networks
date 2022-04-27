@@ -18,6 +18,10 @@ BLACKLIST = ["CHAPTER"]
 
 
 class TextPreprocessor:
+    """Class where are situated all methods which helps with preprocessing.
+
+    Stopwords, lemmatization, stemming, punctuation etc.
+    """
     def __init__(self) -> None:
         self.strip_short_default = self.create_strip_short_method(3)
         self.lemma_text = self.create_lemma_text()

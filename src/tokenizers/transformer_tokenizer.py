@@ -23,6 +23,15 @@ class TransformerTokenizer:
         print(f"Tokenizer with max len = {str(self.max_len)}")
 
     def tokenize(self, text, label):
+        """Tokenize input tensor(text):tensor(label) to transformer input.
+
+        Args:
+            text (string): text
+            label (int): id from author
+
+        Returns:
+            _type_: tuple where are separated parts of output after transformer tokenization
+        """
         text = bytes.decode(text.numpy())
         label = label.numpy()
 

@@ -5,6 +5,8 @@ from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 
 
 class EmbeddingType(Enum):
+    """Type of embedding which is used in project.
+    """
     Glove = "Glove"
     W2V = "Word2Vec"
     Transformer = "Transformer"

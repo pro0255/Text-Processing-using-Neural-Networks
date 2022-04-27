@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class ExperimentDescriptionType(Enum):
+    """Field which are saved in experiment description csv file.
+    """
     ExperimentType = "ExperimentType"
     ExperimentId = "ExperimentId"
     BatchSize = "BatchSize"

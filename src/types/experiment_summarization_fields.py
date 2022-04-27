@@ -4,6 +4,8 @@ from src.types.time_type import TimeType
 
 
 class ExperimentSummarizationFields(Enum):
+    """Fields which are used in experiment summarization.
+    """
     ExperimentType = "ExperimentType"
     ExperimentId = "ExperimentId"
     TrainRecords = "TrainRecords"
