@@ -13,6 +13,16 @@ def get_dataset_object_from_path(
     delim: str,
     text_pipeline_func: typing.Union[None, typing.Callable[[str], str]] = None,
 ):
+    """Create TensorFlow object
+
+    Args:
+        csv_filename (str): name of csv file
+        delim (str): delimiter which is used for splitting
+        text_pipeline_func (typing.Union[None, typing.Callable[[str], str]], optional): method which preprocess data. Defaults to None.
+
+    Returns:
+        _type_: TensorFlow object
+    """
     print(f"Loading dataset from={csv_filename}")
     dataset = tf.data.TextLineDataset(filenames=csv_filename)
 
@@ -35,6 +45,16 @@ def get_datasets(
     delim: str,
     text_pipeline_func: typing.Union[None, typing.Callable[[str], str]] = None,
 ):
+    """Loads csv files and make preprocessing part
+
+    Args:
+        csv_filenames (str): files which should be loaded
+        delim (str): delimiter which is used for splitting
+        text_pipeline_func (typing.Union[None, typing.Callable[[str], str]], optional): method which preprocess data. Defaults to None.
+
+    Returns:
+        _type_: array of dataset TensorFlow objects
+    """
     datasets = [
         get_dataset_object_from_path(csv_filename, delim, text_pipeline_func)
         for csv_filename in csv_filenames

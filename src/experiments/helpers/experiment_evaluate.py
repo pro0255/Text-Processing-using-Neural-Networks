@@ -14,6 +14,8 @@ from src.types.results import ResultType
 
 
 class ExperimentEvaluate:
+    """Holder for data which is saved to folder for experiment.
+    """
     def __init__(
         self, experiment_id: str, directory: typing.Union[str, None] = None
     ) -> None:

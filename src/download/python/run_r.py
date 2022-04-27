@@ -1,6 +1,12 @@
 import os
 import subprocess
 
+"""Python script with which can be downloaded data from Gutenberg Project. Please edit ROOT variable. This varibles shoud be edited in config and .R script also. Script should be optimalized in future.
+
+Also if user wants to call with .py script .r scirpt. Then should be Rscript.exe added to path.
+"""
+
+
 # User should overwrite ROOT where project is situated. In my case was used local computer and remote school computer which provided more power for experiments.
 ROOT = "C:\\Users\\Vojta\\Desktop\\diploma"
 # ROOT = "/home/usp/pro0255/diploma"

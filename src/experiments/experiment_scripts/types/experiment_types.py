@@ -1,13 +1,14 @@
 from enum import Enum
 
-
+"""Decleration of experiments which can be runned. These are keys and should be created definition with experiment values.
+"""
 class ExperimentType(Enum):
-    TrainableTransformer = "Learning"  # Done
-    PoolingStrategyTransformer = "PoolingStrategyTransformer"  # Done
-    OutputSequenceLengthTransformer = "OutputSequenceLength"  # Done
-    LearningRateTransformer = "LearningRateTransformer"  # Done
-    LabelSizeTransformer = "LabelSizeLabelSizeTransformer"  # Done
-    PreprocessingType = "PreprocessingType"  # Done
+    TrainableTransformer = "Learning"
+    PoolingStrategyTransformer = "PoolingStrategyTransformer"
+    OutputSequenceLengthTransformer = "OutputSequenceLength"
+    LearningRateTransformer = "LearningRateTransformer"
+    LabelSizeTransformer = "LabelSizeLabelSizeTransformer"
+    PreprocessingType = "PreprocessingType"
     TransformerType = "TransformerType"
     PreprocessingTransformer = "PreprocessingTransformer"
 

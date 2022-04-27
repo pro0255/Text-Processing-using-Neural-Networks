@@ -1,5 +1,4 @@
 import typing
-from collections.abc import Callable
 
 from tqdm import tqdm
 
@@ -11,6 +10,12 @@ def iterate_over_files(
     files_path: typing.List[str],
     process_func
 ):
+    """Iterates over files and call method process_func
+
+    Args:
+        files_path (typing.List[str]): path where files are situated
+        process_func (_type_): function which is called in loop
+    """
     print(f"Loading files from {files_path}")
     counter = 0
     for path_to_file in tqdm(load_files(files_path)):

@@ -11,6 +11,8 @@ from src.types.experiment_summarization_fields import \
 
 
 class ExperimentSummarization:
+    """Holder object which holds data for experiment. How many trainrecords, testrecords etc is situated in current experiment. When experiment is called then this object represents one .csv file.
+    """
     def __init__(
         self,
         experiment_id: str,

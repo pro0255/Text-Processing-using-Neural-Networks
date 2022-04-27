@@ -8,6 +8,8 @@ from src.types.experiment_description import ExperimentDescriptionType
 
 
 class ExperimentDescription:
+    """Helper object which saves a lot of data. It is just holder and after experiments ends then it is saved to desired directory.
+    """
     def __init__(
         self,
         experiment_id: str,

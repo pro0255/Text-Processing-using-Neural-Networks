@@ -20,6 +20,8 @@ DEFAULT_TIMES = [
 
 
 class ExperimentTimer:
+    """Helper method which calculates different times.
+    """
     def __init__(self, times: typing.List[str] = DEFAULT_TIMES):
         self.dic = self.create_dic(times)
 

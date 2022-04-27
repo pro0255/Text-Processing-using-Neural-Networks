@@ -13,6 +13,19 @@ def settings_generator(
     optimizers: typing.List,
     epochs: typing.List[int],
 ):
+    """Helper methods which according to arguments creates generator of LearningSetting objects.
+
+    Args:
+        batch_sizes (typing.List[int]): batch sizes which should be used
+        learning_rates (typing.List[float]): lr which should be used
+        metrics (typing.List): metrics which should be used
+        losses (typing.List): lossed which should be used
+        optimizers (typing.List): optimizers which should be used
+        epochs (typing.List[int]): epochs which should be used
+
+    Yields:
+        _type_: generator field
+    """
     print(epochs)
     confs = itertools.product(
         batch_sizes, learning_rates, metrics, losses, optimizers, epochs
@@ -29,6 +42,8 @@ def settings_generator(
 
 
 class LearningSettings:
+    """Helper object which holds all data for Model objects from TensorFlow. According to this object is then called fit and predict methods.
+    """
     def __init__(
         self,
         batch_size: int = BATCH_SIZE,

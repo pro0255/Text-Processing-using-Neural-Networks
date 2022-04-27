@@ -17,6 +17,9 @@ from src.types.transformer_name import TransformerName
 from src.types.transformer_pooling import TransformerPooling
 from src.types.transformer_pooling_strategy import TransformerPoolingStrategy
 
+"""Lot of helper methods which is used for creation of .csv objects.. Summarization, Descriptions etc. 
+"""
+
 
 def from_pred_instance_get_type(
     prediction_instance: typing.Union[PredictionClassesType, str]

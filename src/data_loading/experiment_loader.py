@@ -21,6 +21,17 @@ class ExperimentLoader:
         preprocessing_types: typing.List,
         norm_sizes: typing.List[int],
     ):
+        """According to parameters create generator, where is loaded csv, normalized, and splitted to train, test and valid.
+
+        Args:
+            number_of_authors (typing.List[int]): number of authors which should be loaded
+            number_of_sentences (typing.List[int]): number of sentences which should be loaded
+            preprocessing_types (typing.List): types of preprocessing which should be used
+            norm_sizes (typing.List[int]): integer value with descriptions of normalization value
+
+        Yields:
+            _type_: generates value descriptions of loaded data and splitted data train, test, valid
+        """
 
         load_configs = list(
             itertools.product(

@@ -18,6 +18,9 @@ from src.vectorizers.transformer.distil_bert_base_vectorizer import \
 from src.vectorizers.transformer.electra_small_vectorizer import \
     ElectraSmallVectorizer
 
+"""Created types which are used accross whole project.
+"""
+
 PredictionClassesType = typing.Union[
     str,
     typing.Type[KNeighborsClassifier],

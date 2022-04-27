@@ -10,6 +10,16 @@ from src.preprocessing.preprocessing_factory import (PreprocessingFactory,
 def load_dataset_from_path_with_normalization(
     path: str, normalize: Callable[[str], str] = None, preprocessing_type=None
 ):
+    """Helper method which loads data and normalize them according to preprocessing type or specified method.
+
+    Args:
+        path (str): path to data which should be loaded
+        normalize (Callable[[str], str], optional): method which is called when preprocessing type is not specified. Defaults to None.
+        preprocessing_type (_type_, optional): according this type is used PreprocessingType and called method for preprocessing text data. Defaults to None.
+
+    Returns:
+        _type_: DataFrame with two columns Label and Text which describes data for experiment or analysis
+    """
     factory = PreprocessingFactory()
 
     normalize_final = None
