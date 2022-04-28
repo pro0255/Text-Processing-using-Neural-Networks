@@ -13,6 +13,12 @@ from src.utils.delete_file_from import delete_file_from
 
 
 class DataSetSplitter:
+    """
+    Helper function which according to full data.csv input split .csv file to 3 sets. Train, test and valid. Here is implemented logic, where is founded maximal normalization value. Due to this value are data undersampled.
+
+
+    This method was in the end not used in project.
+    """
     def __init__(
         self,
         path_to_save: str,

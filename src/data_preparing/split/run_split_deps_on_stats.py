@@ -23,6 +23,20 @@ def run_split_deps_on_stats(
     test_size: int = TEST_SIZE,
     valid_size: int = VALIDATION_SIZE,
 ):
+    """
+    Helper function which loads data from path. Make analysis which calculates number of records per label. With this knowledge is then whole data.csv splitted to train, test, valid.
+
+    Args:
+        path_to_load (str): Path from where should be dataset loaded.
+        path_to_save (str): Path where should be datasets saved.
+        normalization (bool, optional): _description_. Should be normalization made?
+        specific_label_size (typing.Union[int, None], optional): Specific normalization value, not automatic.. Defaults to None.
+        train_size (int, optional): Size of train set. Defaults to TRAIN_SIZE.
+        test_size (int, optional): Size of test set. Defaults to TEST_SIZE.
+        valid_size (int, optional): Size of valid set. Defaults to VALIDATION_SIZE.
+    """
+
+    #Test all sizes ... should be 1
     check_dataset_sizes(train_size, test_size, valid_size)
 
     label_metric = None

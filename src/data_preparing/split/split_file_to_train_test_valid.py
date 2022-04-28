@@ -24,6 +24,17 @@ def split_file_to_train_test_valid(
     test_size: int = TEST_SIZE,
     valid_size: int = VALIDATION_SIZE,
 ):
+    """Splits whole data.csv to 3 sets.
+
+    Args:
+        path_to_load (str): path where is situated data.csv
+        path_to_save (str): path where should be saved sets
+        label_metric (_type_, optional): instance with knowledge about records per label. Defaults to None.
+        normalization_size (typing.Union[None, int], optional): specific normalization size. Defaults to None.
+        train_size (int, optional): size of train set. Defaults to TRAIN_SIZE.
+        test_size (int, optional): size of test set. Defaults to TEST_SIZE.
+        valid_size (int, optional): size of valid set. Defaults to VALIDATION_SIZE.
+    """
     check_dataset_sizes(train_size, test_size, valid_size)
 
     splitter = DataSetSplitter(
