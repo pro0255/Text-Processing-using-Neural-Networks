@@ -9,6 +9,19 @@ from src.types.results import ResultType
 def merge_content(
     confusion_matrix, metrics, description, summarization, directory, logs
 ):
+    """Merge all files to one record.
+
+    Args:
+        confusion_matrix (_type_): confusion matrix.csv
+        metrics (_type_): metrics.csv
+        description (_type_): ExperimentDescription ... description.csv
+        summarization (_type_): ExperimentSummarization ... summarization.csv
+        directory (_type_): directory
+        logs (_type_): log.csv
+
+    Returns:
+        _type_: DataFrame which represents experiment
+    """
     concat_df = pd.DataFrame()
 
     for df in [metrics, description, summarization, logs]:

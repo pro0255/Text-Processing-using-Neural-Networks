@@ -27,6 +27,18 @@ def create_record(
     subset_type: SubsetType,
     transformer_name: typing.Union[None, TransformerName],
 ) -> typing.Type[pd.DataFrame]:
+    """Loads data and run statistics which is saved to DataFrame and represent stats values for specific DataSet.
+
+    Args:
+        parent_path (str): path which should be processd
+        norm_value (int): normalization value, undersample
+        preprocessing_type (PreprocessingType): type of preprocessing which should be applied
+        subset_type (SubsetType): subsettype which should be used
+        transformer_name (typing.Union[None, TransformerName]): name of transformer which should be used
+
+    Returns:
+        typing.Type[pd.DataFrame]: DataFrame which represents statistic record for DataSet
+    """
     print(
         f"Current {parent_path}, {str(norm_value)}, {preprocessing_type.value}, {subset_type.value}, {BLANK_DESCRIPTION if transformer_name is None else transformer_name.value}\n"
     )

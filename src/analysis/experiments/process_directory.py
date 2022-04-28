@@ -8,6 +8,14 @@ from src.analysis.experiments.validation.is_correct_file import is_correct_file
 def process_directory(
     directory: str, storage: typing.Union[typing.List, None] = None
 ) -> None:
+    """Process directory recursive.
+
+    If record can be created. Then it is. And added to storage.
+
+    Args:
+        directory (str): directory which is processed
+        storage (typing.Union[typing.List, None], optional): storage where should be saved records. Defaults to None.
+    """
     is_correct = is_correct_file(directory)
     record = None
 

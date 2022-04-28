@@ -11,6 +11,14 @@ from src.analysis.experiments.parse.parse_summarization import parse_summarizati
 
 
 def create_record(directory: str) -> typing.Union[pd.DataFrame, None]:
+    """Creates record from .csv files which are situated in experiment directory
+
+    Args:
+        directory (str): directory which should be loaded
+
+    Returns:
+        typing.Union[pd.DataFrame, None]: DataFrame record or None
+    """
     try:
         confusion_matrix = parse_confusion_matrix(directory)
         metrics = parse_metrics(directory)
