@@ -5,8 +5,8 @@ from src.types.processing_type import PreprocessingType
 
 
 class PreprocessingFactory:
-    """Class which helps with preprocessing. According to defined types are inputs transformed (preprocessed).
-    """
+    """Class which helps with preprocessing. According to defined types are inputs transformed (preprocessed)."""
+
     def __init__(self) -> None:
         self.preprocessor: typing.Type[TextPreprocessor] = TextPreprocessor()
         self.build_dic()

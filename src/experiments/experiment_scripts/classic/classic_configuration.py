@@ -1,10 +1,9 @@
-from src.defined_types.types import (PredictionClassesType,
-                                     VectorizerClassesType)
+from src.defined_types.types import PredictionClassesType, VectorizerClassesType
 
 
 class ClassicExpConf:
-    """Helper class which holds important data for experiment wrapper.
-    """
+    """Helper class which holds important data for experiment wrapper."""
+
     def __init__(
         self,
         train,

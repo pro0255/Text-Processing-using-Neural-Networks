@@ -2,8 +2,7 @@ import time
 import typing
 from enum import Enum
 
-from src.types.experiment_summarization_fields import \
-    ExperimentSummarizationFields
+from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 
 
 class TimeParts(Enum):
@@ -20,8 +19,8 @@ DEFAULT_TIMES = [
 
 
 class ExperimentTimer:
-    """Helper method which calculates different times.
-    """
+    """Helper method which calculates different times."""
+
     def __init__(self, times: typing.List[str] = DEFAULT_TIMES):
         self.dic = self.create_dic(times)
 

@@ -8,8 +8,8 @@ from src.config.config import LOG_SEP
 
 
 class CSVLogger(tf.keras.callbacks.Callback):
-    """Own implemented CSV logger which helps to log time, accuracy and loss.
-    """
+    """Own implemented CSV logger which helps to log time, accuracy and loss."""
+
     def __init__(self, path):
         self.path = path
         self.timetaken = time.time()

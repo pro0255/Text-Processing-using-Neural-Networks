@@ -4,8 +4,8 @@ from src.config.config import BLANK_DESCRIPTION
 
 
 class NetType(Enum):
-    """Net types which are used in project.
-    """
+    """Net types which are used in project."""
+
     Dense = "Dense"
     LSTM = "LSTM"
     RNN = "RNN"

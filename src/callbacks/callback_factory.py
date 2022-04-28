@@ -3,16 +3,20 @@ import os
 import tensorflow as tf
 
 from src.callbacks.csv_callback import CSVLogger
-from src.callbacks.save_best_weights import (create_save_best_weights_callback,
-                                             create_save_best_weights_filepath)
-from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
-                               MODEL_SAVE_DIRECTORY, NAME_OF_LEARNING_LOGS)
+from src.callbacks.save_best_weights import (
+    create_save_best_weights_callback,
+    create_save_best_weights_filepath,
+)
+from src.config.config import (
+    EXPERIMENT_RESULTS_DIRECTORY,
+    MODEL_SAVE_DIRECTORY,
+    NAME_OF_LEARNING_LOGS,
+)
 
 
 class CallbacksFactory:
-    """Class which helps with creation of callbacks. These callbacks are inserted in TensorFlow model object. In project was mainly used early stopping, bcs model could stop before max epochs. This helped with opportunity to run more experiments. 
+    """Class which helps with creation of callbacks. These callbacks are inserted in TensorFlow model object. In project was mainly used early stopping, bcs model could stop before max epochs. This helped with opportunity to run more experiments."""
 
-    """
     def __init__(self, save_model: bool, save_best: bool):
         self.save_model = save_model
         self.save_best = save_best

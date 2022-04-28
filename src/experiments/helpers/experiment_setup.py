@@ -1,12 +1,11 @@
 import os
 
-from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
-                               MODEL_SAVE_DIRECTORY)
+from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, MODEL_SAVE_DIRECTORY
 
 
 class ExperimentSetup:
-    """Helper method which run setup for experiment. Creates directories which are needed.
-    """
+    """Helper method which run setup for experiment. Creates directories which are needed."""
+
     def __init__(
         self, experiment_id: str, directory: str = EXPERIMENT_RESULTS_DIRECTORY
     ) -> None:

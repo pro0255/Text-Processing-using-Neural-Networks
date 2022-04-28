@@ -1,8 +1,14 @@
 import itertools
 import typing
 
-from src.config.learning_config import (BATCH_SIZE, EPOCHS, LEARNING_RATE,
-                                        LOSS, METRIC, OPTIMIZER)
+from src.config.learning_config import (
+    BATCH_SIZE,
+    EPOCHS,
+    LEARNING_RATE,
+    LOSS,
+    METRIC,
+    OPTIMIZER,
+)
 
 
 def settings_generator(
@@ -42,8 +48,8 @@ def settings_generator(
 
 
 class LearningSettings:
-    """Helper object which holds all data for Model objects from TensorFlow. According to this object is then called fit and predict methods.
-    """
+    """Helper object which holds all data for Model objects from TensorFlow. According to this object is then called fit and predict methods."""
+
     def __init__(
         self,
         batch_size: int = BATCH_SIZE,

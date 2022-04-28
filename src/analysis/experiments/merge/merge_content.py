@@ -2,8 +2,7 @@ import pandas as pd
 
 from src.config.config import BLANK_DESCRIPTION
 from src.types.experiment_description import ExperimentDescriptionType
-from src.types.experiment_summarization_fields import \
-    ExperimentSummarizationFields
+from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 from src.types.results import ResultType
 
 

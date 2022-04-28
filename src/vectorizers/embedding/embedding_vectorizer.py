@@ -21,8 +21,7 @@ class EmbeddingVectorizer:
             self.setup()
 
     def setup(self):
-        """According to specified embedding type will be downloaded vectors.
-        """
+        """According to specified embedding type will be downloaded vectors."""
         if self.vectors is None or self.embedding_size is None:
             print(f"Downloading model {self.embedding_type}!")
             if self.embedding_type in loaded_models:

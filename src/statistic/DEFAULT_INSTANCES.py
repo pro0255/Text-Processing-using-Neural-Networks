@@ -5,8 +5,7 @@ from src.statistic.instances.quant_50_seq_len import Quant50SeqLen
 from src.statistic.instances.quant_75_seq_len import Quant75SeqLen
 from src.statistic.instances.sentence_length import SentenceLengthMetric
 from src.statistic.instances.token_counter import TokenMetric
-from src.statistic.instances.transformer_tokenizer import \
-    TransformerTokenizerCounter
+from src.statistic.instances.transformer_tokenizer import TransformerTokenizerCounter
 from src.types.transformer_name import TransformerName
 
 DEFULT_WITHOUT_TRANSFORMER_INSTANCES = [

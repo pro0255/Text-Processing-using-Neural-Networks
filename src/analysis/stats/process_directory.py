@@ -2,9 +2,13 @@ import os
 import typing
 
 from src.analysis.experiments.validation.is_correct_file import is_correct_file
-from src.analysis.stats.config import (FILENAMES, NORMALIZATION_VALUES,
-                                       PREPROCESSING_TYPES, SUBSETS,
-                                       TRANSFORMER_NAMES)
+from src.analysis.stats.config import (
+    FILENAMES,
+    NORMALIZATION_VALUES,
+    PREPROCESSING_TYPES,
+    SUBSETS,
+    TRANSFORMER_NAMES,
+)
 from src.analysis.stats.process_path import process_path
 from src.types.processing_type import PreprocessingType
 from src.types.subset_type import SubsetType

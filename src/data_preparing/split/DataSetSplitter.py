@@ -19,6 +19,7 @@ class DataSetSplitter:
 
     This method was in the end not used in project.
     """
+
     def __init__(
         self,
         path_to_save: str,

@@ -2,14 +2,18 @@ import os
 
 import pandas as pd
 
-from src.config.config import (BLANK_DESCRIPTION, EXPERIMENT_RESULTS_DIRECTORY,
-                               FILENAME_DESCRIPTION, LOG_SEP)
+from src.config.config import (
+    BLANK_DESCRIPTION,
+    EXPERIMENT_RESULTS_DIRECTORY,
+    FILENAME_DESCRIPTION,
+    LOG_SEP,
+)
 from src.types.experiment_description import ExperimentDescriptionType
 
 
 class ExperimentDescription:
-    """Helper object which saves a lot of data. It is just holder and after experiments ends then it is saved to desired directory.
-    """
+    """Helper object which saves a lot of data. It is just holder and after experiments ends then it is saved to desired directory."""
+
     def __init__(
         self,
         experiment_id: str,

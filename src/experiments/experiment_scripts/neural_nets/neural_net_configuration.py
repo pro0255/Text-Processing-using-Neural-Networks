@@ -2,14 +2,13 @@ import typing
 
 import tensorflow as tf
 
-from src.experiments.helpers.experiment_description import \
-    ExperimentDescription
+from src.experiments.helpers.experiment_description import ExperimentDescription
 from src.experiments.settings.settings import LearningSettings
 
 
 class NNExpConf:
-    """Helper class which holds important data for experiment wrapper.
-    """
+    """Helper class which holds important data for experiment wrapper."""
+
     def __init__(
         self,
         nn_model,

@@ -1,21 +1,20 @@
 import typing
 
-from src.experiments.experiment_scripts.classic.classic_runner import \
-    ClassicRunner
-from src.experiments.experiment_scripts.neural_nets.no_transformer.neural_net_runner import \
-    NNRunner
-from src.experiments.experiment_scripts.neural_nets.transformers.transformer_runner import \
-    TransformerRunner
-from src.experiments.experiment_scripts.test.test_config import \
-    test_experiment_config
-from src.experiments.experiment_scripts.types.experiment_types import \
-    ExperimentType
+from src.experiments.experiment_scripts.classic.classic_runner import ClassicRunner
+from src.experiments.experiment_scripts.neural_nets.no_transformer.neural_net_runner import (
+    NNRunner,
+)
+from src.experiments.experiment_scripts.neural_nets.transformers.transformer_runner import (
+    TransformerRunner,
+)
+from src.experiments.experiment_scripts.test.test_config import test_experiment_config
+from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
 from src.types.test_types import TestType
 
 
 class TestRunner:
-    """Helper object which runs all types of experiments.
-    """
+    """Helper object which runs all types of experiments."""
+
     def __init__(self) -> None:
         pass
 
@@ -35,7 +34,8 @@ class TestRunner:
         print("Running transformer tests!")
 
         runner = TransformerRunner(
-            experiment_type=ExperimentType.TransformerTest, config_dict=test_experiment_config
+            experiment_type=ExperimentType.TransformerTest,
+            config_dict=test_experiment_config,
         )
         runner.run()
 
@@ -44,7 +44,9 @@ class TestRunner:
     def run_nn_tests(self) -> None:
         print("Running NN tests!")
 
-        runner = NNRunner(experiment_type=ExperimentType.NNTest, config_dict=test_experiment_config)
+        runner = NNRunner(
+            experiment_type=ExperimentType.NNTest, config_dict=test_experiment_config
+        )
         runner.run()
 
         print("End of NN tests!")
@@ -53,7 +55,8 @@ class TestRunner:
         print("Running transformer tests!")
 
         runner = ClassicRunner(
-            experiment_type=ExperimentType.ClassicTest, config_dict=test_experiment_config
+            experiment_type=ExperimentType.ClassicTest,
+            config_dict=test_experiment_config,
         )
         runner.run()
 

@@ -11,7 +11,7 @@ class Quant50SeqLen:
         current_list = self.state.get(label, [])
 
         splitted_text = text.split(" ")
-        
+
         current_length = len(splitted_text)
 
         current_list.append(current_length)
@@ -19,12 +19,12 @@ class Quant50SeqLen:
         self.state[label] = current_list
 
     def get_dataframe(self):
-        dic = {k:np.quantile(v, 0.5) for k, v in self.state.items()}
-        
+        dic = {k: np.quantile(v, 0.5) for k, v in self.state.items()}
+
         # mem_all = []
         # for x in self.state.values():
         #     mem_all += x
-            
+
         # value_together = np.quantile(mem_all, 0.5)
 
         # dic['All'] = value_together

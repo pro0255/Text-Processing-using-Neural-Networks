@@ -6,10 +6,7 @@ from src.data_loading.load_files import load_files
 from src.utils.load_json import load_json
 
 
-def iterate_over_files(
-    files_path: typing.List[str],
-    process_func
-):
+def iterate_over_files(files_path: typing.List[str], process_func):
     """Iterates over files and call method process_func
 
     Args:

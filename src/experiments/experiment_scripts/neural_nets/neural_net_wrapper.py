@@ -5,14 +5,13 @@ import tensorflow as tf
 
 from src.callbacks.callback_factory import CallbacksFactory
 from src.callbacks.save_best_weights import create_save_best_weights_filepath
-from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
-                               NAME_OF_LEARNING_LOGS)
-from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import \
-    NNExpConf
+from src.config.config import EXPERIMENT_RESULTS_DIRECTORY, NAME_OF_LEARNING_LOGS
+from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import (
+    NNExpConf,
+)
 from src.experiments.helpers.experiment_evaluate import ExperimentEvaluate
 from src.experiments.helpers.experiment_setup import ExperimentSetup
-from src.experiments.helpers.experiment_summarization import \
-    ExperimentSummarization
+from src.experiments.helpers.experiment_summarization import ExperimentSummarization
 from src.experiments.helpers.experiment_timer import ExperimentTimer
 from src.experiments.settings.settings import LearningSettings
 from src.types.time_type import TimeType
@@ -22,8 +21,8 @@ from src.utils.prediction_to_labels import prediction_to_labels
 
 
 class NNExpRunWrapper:
-    """Helper wrapper class which starts experiment. Fit model, predict, make evaluation and save all .csv files.
-    """
+    """Helper wrapper class which starts experiment. Fit model, predict, make evaluation and save all .csv files."""
+
     def __init__(
         self,
         experiment_id: str,
@@ -93,7 +92,7 @@ class NNExpRunWrapper:
         print("Loading best weights to model")
         experiment_directory = os.path.sep.join([self.directory, self.experiment_id])
         best_weights_path = create_save_best_weights_filepath(experiment_directory)
-        print(f'Loading from {best_weights_path}')
+        print(f"Loading from {best_weights_path}")
         nn_model.load_weights(best_weights_path)
 
     def predict_on_nn(self, nn_model, test_ds: typing.Type[tf.data.Dataset]):

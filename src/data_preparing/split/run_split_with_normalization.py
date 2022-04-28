@@ -1,7 +1,9 @@
-from src.data_preparing.split.run_split_deps_on_stats import \
-    run_split_deps_on_stats_same_dir
-from src.utils.create_path_to_gutenberg import \
-    create_path_to_gutenberg_sentence_authors_sentence
+from src.data_preparing.split.run_split_deps_on_stats import (
+    run_split_deps_on_stats_same_dir,
+)
+from src.utils.create_path_to_gutenberg import (
+    create_path_to_gutenberg_sentence_authors_sentence,
+)
 
 
 def run_split_with_normalization(
@@ -11,7 +13,7 @@ def run_split_with_normalization(
     Run split with automatic normalization.
 
     This methods was not in the end used in project.
-    
+
     Args:
         number_of_authors (int): number of authors
         number_of_sentences (int): number of sentences

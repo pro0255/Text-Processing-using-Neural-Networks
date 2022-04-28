@@ -8,9 +8,10 @@ from transformers import AutoConfig, TFAutoModel
 from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.models.transformer.bert_pooling_layer import BertPoolingLayer
 from src.models.transformer.pooling_strategy import (
-    TransformerPoolingStrategySelection, pooling_strategy_dictionary)
-from src.tokenizers.prepare_dataset_from_tokenizer import \
-    prepare_dataset_from_tokenizer
+    TransformerPoolingStrategySelection,
+    pooling_strategy_dictionary,
+)
+from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_tokenizer
 from src.tokenizers.transformer_tokenizer import TransformerTokenizer
 from src.types.transformer_name import TransformerName
 from src.types.transformer_pooling import TransformerPooling
@@ -41,8 +42,7 @@ class TransformerVectorizer:
         self.path_to_authors = path_authors
 
     def setup(self) -> None:
-        """Run setup on current vectorizer according to transformer type. To self state will be saved downloaded tokenizer and transformer.
-        """
+        """Run setup on current vectorizer according to transformer type. To self state will be saved downloaded tokenizer and transformer."""
         self.config = AutoConfig.from_pretrained(
             self.transformer_type, output_hidden_states=True
         )

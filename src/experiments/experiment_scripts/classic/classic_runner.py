@@ -4,19 +4,18 @@ from src.encoder.create_encoder_from_path import create_encoder_from_path
 from src.experiments.descriptions.create_description import (
     create_description_for_classic,
     create_description_for_transformer_with_classic,
-    from_pred_instance_get_type)
-from src.experiments.experiment_scripts.classic.classic_configuration import \
-    ClassicExpConf
-from src.experiments.experiment_scripts.classic.classic_wrapper import \
-    ClassicExpRunWrapper
-from src.experiments.experiment_scripts.types.experiment_types import \
-    ExperimentType
-from src.experiments.helpers.experiment_description import \
-    ExperimentDescription
-from src.experiments.helpers.experiment_summarization import \
-    ExperimentSummarization
-from src.models.transformer.pooling_strategy import \
-    TransformerPoolingStrategySelection
+    from_pred_instance_get_type,
+)
+from src.experiments.experiment_scripts.classic.classic_configuration import (
+    ClassicExpConf,
+)
+from src.experiments.experiment_scripts.classic.classic_wrapper import (
+    ClassicExpRunWrapper,
+)
+from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
+from src.experiments.helpers.experiment_description import ExperimentDescription
+from src.experiments.helpers.experiment_summarization import ExperimentSummarization
+from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection
 from src.types.experiment_description import ExperimentDescriptionType
 from src.types.experiment_generator_part_type import ExperimentGeneratorPart
 from src.utils.create_experiment_id import create_experiment_id
@@ -33,9 +32,8 @@ class ClassicRunner:
 
     Same as NNRunner, TransformerRunner.
     """
-    def __init__(
-        self, experiment_type: ExperimentType, config_dict={}
-    ) -> None:
+
+    def __init__(self, experiment_type: ExperimentType, config_dict={}) -> None:
 
         self.experiment_type = experiment_type
         self.config_object_getter = config_dict.get(self.experiment_type, None)
@@ -54,9 +52,7 @@ class ClassicRunner:
                 ExperimentGeneratorPart.FeatureExtractors
             ]
 
-            self.predictors = config_dict[
-                ExperimentGeneratorPart.Predictor
-            ]
+            self.predictors = config_dict[ExperimentGeneratorPart.Predictor]
 
             self.transformer_pooling_strategy = config_dict[
                 ExperimentGeneratorPart.TransformerPoolingStrategy

@@ -1,9 +1,9 @@
 from src.config.learning_config import LOSS, METRIC, OPTIMIZER
 from src.data_loading.experiment_loader import ExperimentLoader
-from src.experiments.experiment_scripts.experiment_configurations.lookup import \
-    LOOKUP_KEY
-from src.experiments.experiment_scripts.types.experiment_types import \
-    ExperimentType
+from src.experiments.experiment_scripts.experiment_configurations.lookup import (
+    LOOKUP_KEY,
+)
+from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
 from src.experiments.settings.settings import settings_generator
 from src.models.classic.kneighbors import KNeighborsClassifier
 from src.models.classic.linear import SGDClassifier
@@ -11,13 +11,12 @@ from src.models.classic.naive_bayes import GaussianNB
 from src.models.classic.random_forest import RandomForestClassifier
 from src.models.nets.cnn import CNNArchitecture
 from src.models.nets.dense import DenseArchitecture
-from src.models.nets.nets_configuration_generator import \
-    nets_configuration_generator
+from src.models.nets.nets_configuration_generator import nets_configuration_generator
 from src.models.nets.rnn import RNNArchitecture
-from src.models.transformer.pooling_strategy import \
-    TransformerPoolingStrategySelection
-from src.models.transformer.transformer_configuration_generator import \
-    transformer_configuration_generator
+from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection
+from src.models.transformer.transformer_configuration_generator import (
+    transformer_configuration_generator,
+)
 from src.types.downloaded_embeddings_type import DownloadedEmbeddingType
 from src.types.experiment_generator_part_type import ExperimentGeneratorPart
 from src.types.processing_type import PreprocessingType
@@ -27,12 +26,11 @@ from src.vectorizers.classic.bow_vectorizer import BoWVectorizer
 from src.vectorizers.classic.tfidf_vectorizer import TFIDFVectorizer
 from src.vectorizers.embedding.glove_vectorizer import GloveVectorizer
 from src.vectorizers.embedding.word2vec_vectorizer import Word2VecVectorizer
-from src.vectorizers.transformer.bert_base_vectorizer import \
-    BertBaseUncasedVectorizer
-from src.vectorizers.transformer.distil_bert_base_vectorizer import \
-    DistilBertBaseUncasedVectorizer
-from src.vectorizers.transformer.electra_small_vectorizer import \
-    ElectraSmallVectorizer
+from src.vectorizers.transformer.bert_base_vectorizer import BertBaseUncasedVectorizer
+from src.vectorizers.transformer.distil_bert_base_vectorizer import (
+    DistilBertBaseUncasedVectorizer,
+)
+from src.vectorizers.transformer.electra_small_vectorizer import ElectraSmallVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 """Configurations for specific experiments.
@@ -57,12 +55,14 @@ experiment_config = {
     },
     ExperimentType.PreprocessingTransformer: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
-            [5], [3], 
+            [5],
+            [3],
             [
                 PreprocessingType.CaseInterpunction,
                 PreprocessingType.Default,
                 PreprocessingType.Raw,
-            ], [10000]
+            ],
+            [10000],
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
             [TransformerName.DistilBertBaseUncased],
@@ -96,7 +96,7 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
-    ExperimentType.LearningRateTransformer: lambda:  {
+    ExperimentType.LearningRateTransformer: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5], [3], [PreprocessingType.CaseInterpunction], [15000]
         ),
@@ -117,7 +117,7 @@ experiment_config = {
             ),
         ),
     },
-    ExperimentType.TransformerType: lambda:  {
+    ExperimentType.TransformerType: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5], [3], [PreprocessingType.CaseInterpunction], [15000]
         ),
@@ -130,10 +130,14 @@ experiment_config = {
             [TransformerPoolingStrategySelection.LastLayerCLS],
             [130],
             [True],
-            list(settings_generator([64], [2e-5, 5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
+            list(
+                settings_generator(
+                    [64], [2e-5, 5e-5], [METRIC], [LOSS], [OPTIMIZER], [5]
+                )
+            ),
         ),
     },
-    ExperimentType.LabelSizeTransformer: lambda:  {
+    ExperimentType.LabelSizeTransformer: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -148,7 +152,7 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [3])),
         ),
     },
-    ExperimentType.NumberOfAuthorsNN: lambda:  {
+    ExperimentType.NumberOfAuthorsNN: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -176,7 +180,7 @@ experiment_config = {
             DenseArchitecture(),
         ],
     },
-    ExperimentType.EmbeddingSizeNN: lambda:  {
+    ExperimentType.EmbeddingSizeNN: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -203,7 +207,7 @@ experiment_config = {
             DenseArchitecture(),
         ],
     },
-    ExperimentType.Classic: lambda:  {
+    ExperimentType.Classic: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -211,14 +215,8 @@ experiment_config = {
             [15000],
         ),
         ExperimentGeneratorPart.FeatureExtractors: [
-            BoWVectorizer(
-                lowercase=False,
-                max_features=10000
-            ),
-            TFIDFVectorizer(
-                lowercase=False,
-                max_features=10000
-            ),
+            BoWVectorizer(lowercase=False, max_features=10000),
+            TFIDFVectorizer(lowercase=False, max_features=10000),
             GloveVectorizer(),
             Word2VecVectorizer(),
             ElectraSmallVectorizer(),
@@ -228,19 +226,17 @@ experiment_config = {
         ExperimentGeneratorPart.Predictor: [
             GaussianNB(),
             SGDClassifier(),
-            RandomForestClassifier(
-                n_estimators=100
-            ),
+            RandomForestClassifier(n_estimators=100),
             KNeighborsClassifier(
                 algorithm="auto",
-                n_neighbors=5, 
-                metric="euclidean", #coss_similarity
-                n_jobs=-1
+                n_neighbors=5,
+                metric="euclidean",  # coss_similarity
+                n_jobs=-1,
             ),
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,
     },
-    ExperimentType.ClassicLogisticRegressionLabelSize: lambda:  {
+    ExperimentType.ClassicLogisticRegressionLabelSize: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -248,17 +244,14 @@ experiment_config = {
             list(range(5000, 30000, 5000)),
         ),
         ExperimentGeneratorPart.FeatureExtractors: [
-            BoWVectorizer(
-                lowercase=False,
-                max_features=10000
-            ),
+            BoWVectorizer(lowercase=False, max_features=10000),
         ],
         ExperimentGeneratorPart.Predictor: [
             SGDClassifier(),
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,
     },
-    ExperimentType.ClassicLogisticRegressionPreprocessing: lambda:  {
+    ExperimentType.ClassicLogisticRegressionPreprocessing: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -271,18 +264,14 @@ experiment_config = {
             [15000],
         ),
         ExperimentGeneratorPart.FeatureExtractors: [
-            BoWVectorizer(
-                lowercase=False,
-                max_features=10000
-            ),
+            BoWVectorizer(lowercase=False, max_features=10000),
         ],
         ExperimentGeneratorPart.Predictor: [
             SGDClassifier(),
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,
     },
-
-    ExperimentType.Classic5SentencesCombinations: lambda:  {
+    ExperimentType.Classic5SentencesCombinations: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [1, 2, 3, 7, 10, 15],
@@ -292,19 +281,16 @@ experiment_config = {
             [LOOKUP_KEY],
         ),
         ExperimentGeneratorPart.FeatureExtractors: [
-            BoWVectorizer(
-                lowercase=False,
-                max_features=10000
-            ),
+            BoWVectorizer(lowercase=False, max_features=10000),
         ],
         ExperimentGeneratorPart.Predictor: [
             SGDClassifier(),
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,
     },
-    ExperimentType.Classic310Combinations: lambda:  {
+    ExperimentType.Classic310Combinations: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
-            [55, 75, 105], #5, 15, 25 
+            [55, 75, 105],  # 5, 15, 25
             [3, 10],
             [
                 PreprocessingType.CaseInterpunction,
@@ -312,34 +298,25 @@ experiment_config = {
             [LOOKUP_KEY],
         ),
         ExperimentGeneratorPart.FeatureExtractors: [
-            BoWVectorizer(
-                lowercase=False,
-                max_features=10000
-            ),
-            TFIDFVectorizer(
-                lowercase=False,
-                max_features=10000
-            ),
+            BoWVectorizer(lowercase=False, max_features=10000),
+            TFIDFVectorizer(lowercase=False, max_features=10000),
             GloveVectorizer(),
             Word2VecVectorizer(),
         ],
         ExperimentGeneratorPart.Predictor: [
             GaussianNB(),
             SGDClassifier(),
-            RandomForestClassifier(
-                n_estimators=100
-            ),
+            RandomForestClassifier(n_estimators=100),
             KNeighborsClassifier(
                 algorithm="auto",
-                n_neighbors=5, 
-                metric="euclidean", #coss_similarity
-                n_jobs=-1
+                n_neighbors=5,
+                metric="euclidean",  # coss_similarity
+                n_jobs=-1,
             ),
         ],
         ExperimentGeneratorPart.TransformerPoolingStrategy: None,
     },
-
-    ExperimentType.NN310Combinations: lambda:  {
+    ExperimentType.NN310Combinations: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5, 15, 25],
             [3, 10],
@@ -364,11 +341,10 @@ experiment_config = {
         ExperimentGeneratorPart.ExperimentArchitecture: [
             CNNArchitecture(),
             DenseArchitecture(),
-            RNNArchitecture()
+            RNNArchitecture(),
         ],
     },
-
-    ExperimentType.NN5SentencesCombinations: lambda:  {
+    ExperimentType.NN5SentencesCombinations: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [1, 2, 3, 7, 10, 15],
@@ -393,11 +369,10 @@ experiment_config = {
         ExperimentGeneratorPart.ExperimentArchitecture: [
             CNNArchitecture(),
             DenseArchitecture(),
-            RNNArchitecture()
+            RNNArchitecture(),
         ],
     },
-
-    ExperimentType.NNCNN5SentencesCombinations: lambda:  {
+    ExperimentType.NNCNN5SentencesCombinations: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [1, 2, 3, 7, 10, 15],
@@ -419,9 +394,7 @@ experiment_config = {
             CNNArchitecture(),
         ],
     },
-
-    
-    ExperimentType.NNCNN310SentencesCombinations: lambda:  {
+    ExperimentType.NNCNN310SentencesCombinations: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5, 15, 25],
             [3, 10],
@@ -443,10 +416,7 @@ experiment_config = {
             CNNArchitecture(),
         ],
     },
-
-
-
-    ExperimentType.EmbeddingSizeModelingNN: lambda:  {
+    ExperimentType.EmbeddingSizeModelingNN: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5],
             [3],
@@ -464,13 +434,10 @@ experiment_config = {
         ),
         ExperimentGeneratorPart.ExperimentArchitecture: [
             CNNArchitecture(),
-            DenseArchitecture()
+            DenseArchitecture(),
         ],
     },
-
-
-
-    ExperimentType.Transformer310Combinations: lambda:  {
+    ExperimentType.Transformer310Combinations: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
             [5, 15, 25], [3, 10], [PreprocessingType.CaseInterpunction], [LOOKUP_KEY]
         ),
@@ -484,11 +451,12 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
-
-
-    ExperimentType.Transformer5SentencesCombinations: lambda:  {
+    ExperimentType.Transformer5SentencesCombinations: lambda: {
         ExperimentGeneratorPart.DatasetGenerator: loader.create_dataset_generator(
-            [5], [1, 2, 3, 7, 10, 15], [PreprocessingType.CaseInterpunction], [LOOKUP_KEY]
+            [5],
+            [1, 2, 3, 7, 10, 15],
+            [PreprocessingType.CaseInterpunction],
+            [LOOKUP_KEY],
         ),
         ExperimentGeneratorPart.ExperimentConfiguration: transformer_configuration_generator(
             [
@@ -500,5 +468,4 @@ experiment_config = {
             list(settings_generator([64], [5e-5], [METRIC], [LOSS], [OPTIMIZER], [5])),
         ),
     },
-
 }

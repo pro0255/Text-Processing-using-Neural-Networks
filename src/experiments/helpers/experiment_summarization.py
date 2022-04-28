@@ -3,16 +3,18 @@ import typing
 
 import pandas as pd
 
-from src.config.config import (EXPERIMENT_RESULTS_DIRECTORY,
-                               FILENAME_SUMMARIZATION, LOG_SEP)
+from src.config.config import (
+    EXPERIMENT_RESULTS_DIRECTORY,
+    FILENAME_SUMMARIZATION,
+    LOG_SEP,
+)
 from src.experiments.helpers.experiment_timer import ExperimentTimer
-from src.types.experiment_summarization_fields import \
-    ExperimentSummarizationFields
+from src.types.experiment_summarization_fields import ExperimentSummarizationFields
 
 
 class ExperimentSummarization:
-    """Holder object which holds data for experiment. How many trainrecords, testrecords etc is situated in current experiment. When experiment is called then this object represents one .csv file.
-    """
+    """Holder object which holds data for experiment. How many trainrecords, testrecords etc is situated in current experiment. When experiment is called then this object represents one .csv file."""
+
     def __init__(
         self,
         experiment_id: str,

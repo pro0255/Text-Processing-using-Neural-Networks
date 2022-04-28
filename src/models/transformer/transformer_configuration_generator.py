@@ -2,8 +2,7 @@ import itertools
 import typing
 
 from src.experiments.settings.settings import LearningSettings
-from src.models.transformer.pooling_strategy import \
-    TransformerPoolingStrategySelection
+from src.models.transformer.pooling_strategy import TransformerPoolingStrategySelection
 from src.types.transformer_name import TransformerName
 
 
@@ -14,6 +13,8 @@ def transformer_configuration_generator(
     trainable: typing.List[bool],
     settings: typing.List[typing.Type[LearningSettings]],
 ):
-    return list(itertools.product(
-        model_names, pooling_strategies, seq_lengths, trainable, settings
-    ))
+    return list(
+        itertools.product(
+            model_names, pooling_strategies, seq_lengths, trainable, settings
+        )
+    )

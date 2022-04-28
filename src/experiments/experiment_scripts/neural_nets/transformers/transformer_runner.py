@@ -1,20 +1,19 @@
 from src.encoder.create_encoder_from_path import create_encoder_from_path
-from src.experiments.descriptions.create_description import \
-    create_description_for_transformer
-from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import \
-    NNExpConf
-from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import \
-    NNExpRunWrapper
-from src.experiments.experiment_scripts.neural_nets.use_lookup import \
-    use_lookup_seq
-from src.experiments.experiment_scripts.types.experiment_types import \
-    ExperimentType
-from src.experiments.helpers.experiment_summarization import \
-    ExperimentSummarization
+from src.experiments.descriptions.create_description import (
+    create_description_for_transformer,
+)
+from src.experiments.experiment_scripts.neural_nets.neural_net_configuration import (
+    NNExpConf,
+)
+from src.experiments.experiment_scripts.neural_nets.neural_net_wrapper import (
+    NNExpRunWrapper,
+)
+from src.experiments.experiment_scripts.neural_nets.use_lookup import use_lookup_seq
+from src.experiments.experiment_scripts.types.experiment_types import ExperimentType
+from src.experiments.helpers.experiment_summarization import ExperimentSummarization
 from src.models.transformer.pooling_strategy import pooling_strategy_dictionary
 from src.models.transformer.transformer import TransformerArchitecture
-from src.tokenizers.prepare_dataset_from_tokenizer import \
-    prepare_dataset_from_tokenizer
+from src.tokenizers.prepare_dataset_from_tokenizer import prepare_dataset_from_tokenizer
 from src.tokenizers.transformer_tokenizer import TransformerTokenizer
 from src.types.experiment_generator_part_type import ExperimentGeneratorPart
 from src.utils.create_experiment_id import create_experiment_id
@@ -28,6 +27,7 @@ class TransformerRunner:
 
     Same as NNRunner, ClassicRunner.
     """
+
     def __init__(
         self,
         experiment_type: ExperimentType,
@@ -57,19 +57,16 @@ class TransformerRunner:
 
             self.transformer_architecture = TransformerArchitecture()
 
-        
-
     def run(self):
         if self.config_object_getter is None:
             print("Experiment was not specified well!")
             return
 
-
         for dataset_value in self.dataset_generator:
             print()
 
             if dataset_value is None:
-                print('Dataset value is None')
+                print("Dataset value is None")
                 continue
 
             print("Loaded dataset!")
@@ -89,7 +86,9 @@ class TransformerRunner:
                 X_train, X_valid, X_test, y_train, y_valid, y_test
             )
 
-            print(f'Running experiment pre={current_preprocessing}, norm_size={norm_size}, authors={current_authors}, sentences={current_sentences}')
+            print(
+                f"Running experiment pre={current_preprocessing}, norm_size={norm_size}, authors={current_authors}, sentences={current_sentences}"
+            )
 
             for conf_parameters in self.experiment_configurations:
                 (
@@ -111,8 +110,13 @@ class TransformerRunner:
                         print("Look up does not exists!")
                         continue
 
-
-                    print(learning_settings, trainable, pooling_strategy, model_name, output_sequence_length)
+                    print(
+                        learning_settings,
+                        trainable,
+                        pooling_strategy,
+                        model_name,
+                        output_sequence_length,
+                    )
 
                     tokenizer = TransformerTokenizer(
                         model_name.value,
@@ -183,7 +187,7 @@ class TransformerRunner:
 
                     wrapper.run(nn_conf)
 
-                    print('Ended one experiment \n')
+                    print("Ended one experiment \n")
 
                 except Exception as e:
                     print(conf_parameters)

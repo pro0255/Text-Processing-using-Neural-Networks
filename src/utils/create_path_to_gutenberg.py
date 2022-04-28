@@ -1,8 +1,12 @@
 import typing
 
 from src.authors.create_author_directory import create_author_directory
-from src.config.config import (AUTHORS_FILE_NAME, FILE_DATA_NAME,
-                               NORMALIZATION_SUFFIX, PATH_TO_DATASET_FOLDER)
+from src.config.config import (
+    AUTHORS_FILE_NAME,
+    FILE_DATA_NAME,
+    NORMALIZATION_SUFFIX,
+    PATH_TO_DATASET_FOLDER,
+)
 from src.types.dataset import DataSet
 from src.types.dataset_type import DataSetType
 from src.types.subset_type import SubsetType

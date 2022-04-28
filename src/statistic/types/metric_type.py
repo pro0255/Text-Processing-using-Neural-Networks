@@ -5,8 +5,7 @@ from src.statistic.instances.label_token_counter import LabelTokenMetric
 from src.statistic.instances.sentence_length import SentenceLengthMetric
 from src.statistic.instances.statistic_description import StatisticDescription
 from src.statistic.instances.token_counter import TokenMetric
-from src.statistic.instances.transformer_tokenizer import \
-    TransformerTokenizerCounter
+from src.statistic.instances.transformer_tokenizer import TransformerTokenizerCounter
 from src.statistic.instances.quant_50_seq_len import Quant50SeqLen
 from src.statistic.instances.quant_75_seq_len import Quant75SeqLen
 
@@ -35,11 +34,7 @@ def translate_instance_to_type(instance):
         type(
             StatisticDescription()
         ).__name__: MetricType.StatisticDescriptionType.value,
-        type(
-            Quant50SeqLen()
-        ).__name__: MetricType.Quant50SeqLen.value,
-        type(
-            Quant75SeqLen()
-        ).__name__: MetricType.Quant75SeqLen.value,
+        type(Quant50SeqLen()).__name__: MetricType.Quant50SeqLen.value,
+        type(Quant75SeqLen()).__name__: MetricType.Quant75SeqLen.value,
     }
     return dic[name_of_instance]

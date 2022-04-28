@@ -3,8 +3,13 @@ import typing
 from pandas import DataFrame
 from sklearn.model_selection import train_test_split
 
-from src.config.config import (LABEL_COLUMN, RANDOM_STATE, TEST_SIZE,
-                               TEXT_COLUMN, VALIDATION_SIZE)
+from src.config.config import (
+    LABEL_COLUMN,
+    RANDOM_STATE,
+    TEST_SIZE,
+    TEXT_COLUMN,
+    VALIDATION_SIZE,
+)
 
 
 def split_dataframe(dataframe: typing.Type[DataFrame], test_size: float = TEST_SIZE):
