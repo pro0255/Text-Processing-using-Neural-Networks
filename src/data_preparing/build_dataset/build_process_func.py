@@ -17,6 +17,19 @@ from src.utils.get_data_from_gutenberg import get_data_from_gutenberg
 def build_process_func(
     k: int, name: str, path: str, authors_tuple: typing.List[typing.Tuple[int, str]]
 ) -> typing.Callable[[typing.Dict], typing.List[str]]:
+    """Function which is called in process where is iterated all .json files.
+
+    Firstly is created desired directory with {NumberOfAuthors}Authors/Sentence{NumberOfSentences}. And then is also created function which is gonna chunk textual data from a work of art to k sentences. After that all chunks one after one are saved to specified .csv file.
+
+    Args:
+        k (int): number of sentences
+        name (str): name of sub directory
+        path (str): directory where should be dataset saved
+        authors_tuple (typing.List[typing.Tuple[int, str]]): tuple of authors whos should be processed
+
+    Returns:
+        typing.Callable[[typing.Dict], typing.List[str]]: function which take care of processing one .json file.
+    """
     number_of_authors = len(authors_tuple)
     authors_ids, authors_names = zip(*authors_tuple)
 
