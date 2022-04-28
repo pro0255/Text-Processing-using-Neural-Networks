@@ -22,6 +22,8 @@ from src.utils.prediction_to_labels import prediction_to_labels
 
 
 class NNExpRunWrapper:
+    """Helper wrapper class which starts experiment. Fit model, predict, make evaluation and save all .csv files.
+    """
     def __init__(
         self,
         experiment_id: str,

@@ -35,6 +35,10 @@ from src.vectorizers.transformer.electra_small_vectorizer import \
     ElectraSmallVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+"""Configurations for specific experiments.
+"""
+
+
 loader = ExperimentLoader()
 
 

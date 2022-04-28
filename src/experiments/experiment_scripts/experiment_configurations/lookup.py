@@ -2,6 +2,11 @@ from enum import Enum
 
 from src.types.processing_type import PreprocessingType
 
+"""
+Lookup logic. When is known some kind of variable from exploratory data analysis then is saved here. From experiments configutaion we can then easily load this variable.
+"""
+
+
 LOOKUP_KEY = "LOOKUP_KEY"
 
 

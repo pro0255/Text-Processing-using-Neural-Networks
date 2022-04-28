@@ -3,6 +3,8 @@ from src.defined_types.types import (PredictionClassesType,
 
 
 class ClassicExpConf:
+    """Helper class which holds important data for experiment wrapper.
+    """
     def __init__(
         self,
         train,

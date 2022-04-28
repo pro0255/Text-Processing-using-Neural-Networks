@@ -22,6 +22,12 @@ from src.utils.get_train_test_valid_ds import get_train_test_valid_ds
 
 
 class TransformerRunner:
+    """Helper class which starts Transformer experiment.
+
+    Firstly load data from configuration, then loads data, split, and one after one starts experiment with specified configuration.
+
+    Same as NNRunner, ClassicRunner.
+    """
     def __init__(
         self,
         experiment_type: ExperimentType,

@@ -19,6 +19,8 @@ from src.vectorizers.runner import VectorizerRunner
 
 
 class ClassicExpRunWrapper:
+    """Helper class which helps with classic experiment run.
+    """
     def __init__(
         self,
         experiment_id: str,

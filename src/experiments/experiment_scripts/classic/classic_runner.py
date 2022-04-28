@@ -27,6 +27,12 @@ DEFAULT_POOLING_STRATEGY = [TransformerPoolingStrategySelection.LastLayerCLS]
 
 
 class ClassicRunner:
+    """Helper class which starts Transformer experiment.
+
+    Firstly load data from configuration, then loads data, split, and one after one starts experiment with specified configuration.
+
+    Same as NNRunner, TransformerRunner.
+    """
     def __init__(
         self, experiment_type: ExperimentType, config_dict={}
     ) -> None:

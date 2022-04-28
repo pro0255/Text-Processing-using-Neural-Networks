@@ -8,6 +8,8 @@ from src.experiments.settings.settings import LearningSettings
 
 
 class NNExpConf:
+    """Helper class which holds important data for experiment wrapper.
+    """
     def __init__(
         self,
         nn_model,
