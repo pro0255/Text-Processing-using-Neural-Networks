@@ -49,7 +49,7 @@ given an unknown text, the model estimated a possible author with some confidenc
 
 ## Download Gutenberg Project
 
-If user wants to download data from Gutenberg Project then he needs to do:
+If user wants to download data from [Gutenberg Project](https://www.gutenberg.org/) then he needs to do:
 
 - Download R
    - https://cran.r-project.org/bin/windows/base/
@@ -79,7 +79,7 @@ Feel free to modify all scripts. Should be interested to try date prediction of 
 
 ## Description of creating datasets
 
-After what all books are downloaded from [GutenBerg Project](https://www.gutenberg.org/), then should be used gutenberg builder code, where is iterated whole repository of downloaded <i>.json</i> files. If author of current book is needed then text is segmented according to number of sentences. This segments represents one record in <i>.csv</i> file.
+After what all books are downloaded from [Gutenberg Project](https://www.gutenberg.org/), then should be used gutenberg builder code, where is iterated whole repository of downloaded <i>.json</i> files. If author of current book is needed then text is segmented according to number of sentences. This segments represents one record in <i>.csv</i> file.
 
 With this kind of approach are generated all datasets for <b>Autorship Classification</b>.
 
@@ -103,16 +103,44 @@ In thesis was used different approaches of preprocessing.
 In thesis was used three types of experiment approaches.
 #### Classic model
 
+Combination of different vectorizers and classic classification models:
 
+<b>Vectorizers:</b>
+
+- BoW
+- TF-IDF
+- Word2Vec
+- GloVe
+- BERT
+
+<b>Classic Models:</b>
+
+- Logistic regresion
+- Naive Bayes
+- Random Forest
+- Nearest Neighbor
 
 #### Neural Nets
 
+Combination of different embedding inicialization and various neural net architectures:
+
+<b>Embedding inicialization:</b>
+
+- Word2Vec - 300dim
+- GloVe - 300dim
+- Empty - {diff}dim
+
+<b>Architectures:</b>
+
+- Dense
+- LSTM
+- CNN
 
 #### BERT derivative
 
-
-
-
+- ELECTRA
+- BERT
+- DistilBERT
 
 ## Tech Stack
 
