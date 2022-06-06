@@ -1,8 +1,10 @@
-# Diploma - VSB - Technical University of Ostrava - VSB-TUO
+# Diploma - VSB - Technical University of Ostrava - VSB-TUO    ![Linkedin](https://play-lh.googleusercontent.com/jixi63muEsF09SBSxE1IMIh4X7-1-rDjsUCmeVOeFqMdrz8-MvXBCN98w3g21GX5cw=s48-rw)
 
 ## References
 
-- Diploma .. TODO: dspace
+[GitHub - <b>Presentation</b>](https://github.com/pro0255/Text-Processing-using-Neural-Networks---Presentation)
+
+### Thanks
 
 I would like to thanks some ppl whos helped me very much with this thesis. Without them this thesis would be not created. Their subjects were great:
 
@@ -10,13 +12,40 @@ I would like to thanks some ppl whos helped me very much with this thesis. Witho
 - Ing. Radek Svoboda - https://homel.vsb.cz/~svo0175/
 - Ing. Petr Prokop - https://homel.vsb.cz/~pro0199/
 - Ing. Michal Vašinek Ph.D. - https://homel.vsb.cz/~vas218/
-- 
+
+### DSpace
+
+- Link : TODO
+
 
 ## Description
 
+The thesis deals with the description of the different blocks of the natural language processing
+process from the preparation of text data, pre-processing, to the design of models that solve the
+classification problem over the language corpus.
+In the theoretical part, models ranging from classical machine learning approaches to the widely
+used Transformer architecture are described in detail. It is the models that are based on this
+architecture, their structure and performance that is the main domain of this thesis.
+In the practical part, experiments are performed over the different approaches and then their
+results are compared. Three approaches are used, text vectorization and the subsequent use of
+classical models, the use of neural network architectures up to the Transformer architecture and
+lastly the use of a derivative of the BERT model in conjunction with a deep forward network. Over
+all of these models, the quality of accuracy was investigated for the authorship problem, where,
+given an unknown text, the model estimated a possible author with some confidence.
+
 ## Author
 
+- <b>Supervisor</b>: prof. Ing. Jan Platoš, Ph.D.
+- <b>Author</b>: Bc. Vojtěch Prokop
+
 ### Contact
+
+
+[![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/vojta-prokop-91b71b1a0)
+&nbsp;
+[![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/pro0255)
+&nbsp;
+[![Gmail](https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/16/Gmail-icon.png) Gmail](mailto:prokop.vojtech@gmail.com)
 
 ## Download Gutenberg Project
 
@@ -41,19 +70,57 @@ After this set od steps should user check ROOT variable in download_gutenberg_wi
    - All authors will be saved in authors.csv
    - From this kind of data can be then made a dataset for Authorship classification
 
-Feel free to modify all script. Should be interested to try date prediction of data. For this should user modify r script smth like:
+Feel free to modify all scripts. Should be interested to try date prediction of data. For this should user modify r script smth like:
 
  - Filter data with eng text
  - Filter data where is date
  - Save date to json
  - Creates new dataset
 
-
-
-
 ## Description of creating datasets
 
-## NLP
+After what all books are downloaded from [GutenBerg Project](https://www.gutenberg.org/), then should be used gutenberg builder code, where is iterated whole repository of downloaded <i>.json</i> files. If author of current book is needed then text is segmented according to number of sentences. This segments represents one record in <i>.csv</i> file.
+
+With this kind of approach are generated all datasets for <b>Autorship Classification</b>.
+
+Dataset can be configurated with:
+- <b>Number of authors</b> - They are picked from <i>.csv</i> file.
+- <b>Number of sentences</b> - Represents size of record.
+
+All datasets are saved to specified <b>directory</b> which can be founded in [config.py](https://github.com/pro0255/Text-Processing-using-Neural-Networks/blob/master/src/config/config.py). This creation is kind of stupid approach because authors are picked automatically and saved to <b><i>{(N)Authors}/{Sentence(K)}</i></b>.
+
+Please feel free to modify scripts. Can be easily created script which creates dataset for used specified authors.
+
+## Text Analysis using Neural Networks
+
+
+### Preprocessing
+
+In thesis was used different approaches of preprocessing.
+
+### Classification
+
+In thesis was used three types of experiment approaches.
+#### Classic model
+
+
+
+#### Neural Nets
+
+
+#### BERT derivative
+
+
+
+
+
+## Tech Stack
+
+- [![Hugging Face](https://huggingface.co/front/assets/huggingface_logo-noborder.svg) Hugging Face](https://huggingface.co/)
+- [TensorFlow](https://www.tensorflow.org/)
+- [gutenberg](https://cran.r-project.org/web/packages/gutenbergr/vignettes/intro.html)
+- [NLTK](https://www.nltk.org/)
+- [GENSIM](https://radimrehurek.com/gensim/)
 
 ## Project structure
 
